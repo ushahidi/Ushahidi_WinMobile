@@ -10,6 +10,7 @@ namespace Ushahidi.Common.Controls
         public LabelTextBox()
         {
             InitializeComponent();
+            BackColorFocuser.Register(textBox);
         }
 
         /// <summary>

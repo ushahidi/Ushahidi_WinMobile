@@ -60,7 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AboutViewController.cs" />
     <Compile Include="Controllers\AddIncidentViewController.cs" />
     <Compile Include="Controllers\BaseViewController.cs" />
     <Compile Include="Controllers\WebsiteViewController.cs" />
@@ -73,7 +72,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\Keyboard.cs" />
-    <Compile Include="Models\AboutModel.cs" />
     <Compile Include="Models\AddIncidentModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Incident.cs" />
@@ -96,15 +94,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\ResourcesManager.cs" />
-    <Compile Include="Views\AboutView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\AboutView_PPC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\AboutView_PPC.Designer.cs">
-      <DependentUpon>AboutView_PPC.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\AddIncidentView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,9 +180,6 @@
     <EmbeddedResource Include="Resources\ushahidi_marker.png" />
     <EmbeddedResource Include="Resources\ushahidi_plane.png" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
-    <EmbeddedResource Include="Views\AboutView_PPC.resx">
-      <DependentUpon>AboutView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\AddIncidentView_PPC.resx">
       <DependentUpon>AddIncidentView_PPC.cs</DependentUpon>
     </EmbeddedResource>

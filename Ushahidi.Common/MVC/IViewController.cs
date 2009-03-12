@@ -21,9 +21,20 @@ namespace Ushahidi.Common.MVC
     public interface IViewController: IDisposable
     {
         /// <summary>
-        /// Load the view
+        /// View name
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
+        /// Load view with model data
         /// </summary>
         void Load();
+
+        /// <summary>
+        /// Save model from view data
+        /// </summary>
+        /// <returns>true, if successful</returns>
+        bool Save();
 
         /// <summary>
         /// Render the view

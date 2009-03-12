@@ -37,7 +37,7 @@
             this.menuItemIncidentMap = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
             this.menuItemSettings = new System.Windows.Forms.MenuItem();
-            this.menuItemAbout = new System.Windows.Forms.MenuItem();
+            this.menuItemWebsite = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemExit = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
@@ -58,7 +58,7 @@
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentMap);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator1);
             this.menuItemMenu.MenuItems.Add(this.menuItemSettings);
-            this.menuItemMenu.MenuItems.Add(this.menuItemAbout);
+            this.menuItemMenu.MenuItems.Add(this.menuItemWebsite);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemMenu.MenuItems.Add(this.menuItemExit);
             this.menuItemMenu.Text = "Menu";
@@ -89,8 +89,8 @@
             // 
             // menuItemAbout
             // 
-            this.menuItemAbout.Text = "About";
-            this.menuItemAbout.Click += new System.EventHandler(this.OnAbout);
+            this.menuItemWebsite.Text = "Website";
+            this.menuItemWebsite.Click += new System.EventHandler(this.OnWebsite);
             // 
             // menuItemSeparator2
             // 
@@ -121,7 +121,7 @@
         private System.Windows.Forms.MenuItem menuItemSeparator1;
         private System.Windows.Forms.MenuItem menuItemSeparator2;
         public System.Windows.Forms.MenuItem menuItemExit;
-        public System.Windows.Forms.MenuItem menuItemAbout;
+        public System.Windows.Forms.MenuItem menuItemWebsite;
         public System.Windows.Forms.MenuItem menuItemSettings;
         public System.Windows.Forms.MenuItem menuItemIncidentMap;
         public System.Windows.Forms.MenuItem menuItemIncidentList;

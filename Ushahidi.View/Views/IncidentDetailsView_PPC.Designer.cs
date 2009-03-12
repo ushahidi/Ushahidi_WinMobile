@@ -41,9 +41,9 @@
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemAddPhoto);
-            this.menuItemAction.MenuItems.Add(this.menuItemViewMap);
-            this.menuItemAction.Text = "Action";
+            this.menuItemWebsite.MenuItems.Add(this.menuItemAddPhoto);
+            this.menuItemWebsite.MenuItems.Add(this.menuItemViewMap);
+            this.menuItemWebsite.Text = "Action";
             // 
             // pictureBoxImage
             // 

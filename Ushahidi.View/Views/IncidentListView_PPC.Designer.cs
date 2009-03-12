@@ -35,7 +35,7 @@
             // 
             // menuItemAction
             // 
-            this.menuItemAction.Text = "Select";
+            this.menuItemWebsite.Text = "Select";
             // 
             // menuItemIncidentList
             // 

@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AboutViewController.cs" />
     <Compile Include="Controllers\AddIncidentViewController.cs" />
     <Compile Include="Controllers\BaseViewController.cs" />
     <Compile Include="Controllers\HomeViewController.cs" />
@@ -71,7 +70,6 @@
     <Compile Include="Controls\IncidentListItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\AboutModel.cs" />
     <Compile Include="Models\AddIncidentModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Incident.cs" />
@@ -94,15 +92,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\ResourcesManager.cs" />
-    <Compile Include="Views\AboutView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\AboutView_SP.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\AboutView_SP.Designer.cs">
-      <DependentUpon>AboutView_SP.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\AddIncidentView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,9 +178,6 @@
     <EmbeddedResource Include="Resources\ushahidi_marker.png" />
     <EmbeddedResource Include="Resources\ushahidi_plane.png" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
-    <EmbeddedResource Include="Views\AboutView_SP.resx">
-      <DependentUpon>AboutView_SP.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\AddIncidentView_SP.resx">
       <DependentUpon>AddIncidentView_SP.cs</DependentUpon>
     </EmbeddedResource>

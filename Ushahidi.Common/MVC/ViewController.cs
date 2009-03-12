@@ -13,6 +13,14 @@ namespace Ushahidi.Common.MVC
         where TModel : IModel, new()
     {
         /// <summary>
+        /// View name
+        /// </summary>
+        public string Name
+        {
+            get { return View.ToString(); }
+        }
+
+        /// <summary>
         /// The view
         /// </summary>
         protected TView View
@@ -24,6 +32,7 @@ namespace Ushahidi.Common.MVC
                     _View = new TView();
                     _View.Back += OnBack;
                     _View.Forward += OnForward;
+                    _View.Exit += OnExit;
                 }
                 return _View;
             }
@@ -55,17 +64,27 @@ namespace Ushahidi.Common.MVC
         }private TModel _Model;
 
         /// <summary>
-        /// Load the view
+        /// Load view with model data
         /// </summary>
         public virtual void Load()
         {
-            //implementing view controller will override and provide load code
+            //implementing view controller can provide their own load logic
+        }
+
+        /// <summary>
+        /// Save model data from view
+        /// </summary>
+        /// <returns>true, if successful</returns>
+        public virtual bool Save()
+        {
+            //implementing view controller can provide their own save logic
+            return true;
         }
 
         /// <summary>
         /// Render the view
         /// </summary>
-        public virtual void Render()
+        public void Render()
         {
             View.Render();
         }
@@ -73,7 +92,7 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Show view
         /// </summary>
-        public virtual void Show()
+        public void Show()
         {
             View.Show();
         }
@@ -81,7 +100,7 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Hide view
         /// </summary>
-        public virtual void Hide()
+        public void Hide()
         {
             View.Hide();
         }
@@ -169,7 +188,7 @@ namespace Ushahidi.Common.MVC
         {
             if (Exit != null)
             {
-                Exit();
+               Exit();
             }
         }
     }

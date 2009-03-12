@@ -43,9 +43,9 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// On about
         /// </summary>
-        private void OnAbout(object sender, EventArgs e)
+        private void OnWebsite(object sender, EventArgs e)
         {
-            OnForward(typeof(AboutViewController), true);  
+            OnForward(typeof(WebsiteViewController), true);  
         }
 
         /// <summary>

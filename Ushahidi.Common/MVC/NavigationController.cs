@@ -43,6 +43,7 @@ namespace Ushahidi.Common.MVC
             {
                 do
                 {
+                    //continue to run while stack contains view controllers
                     Application.DoEvents();
                 } while (Stack.Count > 0);
             }
@@ -68,20 +69,27 @@ namespace Ushahidi.Common.MVC
         /// <param name="clearStack">should clear stack?</param>
         public void Push(Type type, bool clearStack)
         {
-            IViewController previousViewController = (Depth > 0) ? Stack.Peek() : null;
+            IViewController currentViewController = (Depth > 0) ? Stack.Peek() : null;
             IViewController viewController;
             using (new WaitCursor())
             {
+                if (currentViewController != null && !currentViewController.Save())
+                {
+                    //unable to save previous view controller
+                    Dialog.Error("Error", "There was a problem saving {0} information", currentViewController.Name);
+                    return;
+                }
+                //previous view controller successfuly saved, proceed to load new view controller
                 if (!Cache.ContainsKey(type))
                 {
-                    if (!typeof(IViewController).IsAssignableFrom(type))
+                    if (!typeof (IViewController).IsAssignableFrom(type))
                     {
                         throw new ArgumentException("Invalid view controller type", "type");
                     }
-                    viewController = (IViewController)Activator.CreateInstance(type);
+                    viewController = (IViewController) Activator.CreateInstance(type);
                     viewController.Back += Pop;
                     viewController.Forward += Push;
-                    viewController.Exit += Dispose;
+                    viewController.Exit += Exit;
                     Cache.Add(type, viewController);
                     if (RootViewController == null)
                     {
@@ -95,16 +103,19 @@ namespace Ushahidi.Common.MVC
                 if (clearStack)
                 {
                     Stack.Clear();
-                    Stack.Push(RootViewController);
+                    if (RootViewController != null)
+                    {
+                        Stack.Push(RootViewController);
+                    }
                 }
                 Stack.Push(viewController);
                 viewController.Load();
                 viewController.Render();
             }
             viewController.Show();
-            if (previousViewController != null)
+            if (currentViewController != null)
             {
-                previousViewController.Hide();
+                currentViewController.Hide();
             }
         }
 
@@ -113,23 +124,58 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public void Pop()
         {
-            if (Depth != 1 || Dialog.Question("Exit", "Are you sure you would like to exit the application?"))
+            IViewController currentViewController = (Depth > 0) ? Stack.Peek() : null;
+            using (new WaitCursor())
             {
-                using (new WaitCursor())
+                if (currentViewController != null && !currentViewController.Save())
                 {
-                    IViewController previousViewController = (Depth > 0) ? Stack.Pop() : null;
+                    //unable to save current view controller
+                    if (Depth > 1)
+                    {
+                        Dialog.Error("Error", "There was a problem saving {0} information",
+                                     currentViewController.Name);
+                    }
+                    else
+                    {
+                        if (Dialog.Question("Error", "There was a problem saving {0} information. Would you like to exit anyways?",
+                                            currentViewController.Name))
+                        {
+                            Dispose();
+                        }
+                    }
+                }
+                else if (Depth > 0 || Dialog.Question("Exit", "Are you sure you would like to exit the application?"))
+                {
+                    //current view controller successfully saved
+                    currentViewController = Stack.Pop();
                     if (Stack.Count > 0)
                     {
+                        //show previous view controller
                         IViewController viewController = Stack.Peek();
                         viewController.Load();
                         viewController.Render();
                         viewController.Show();
                     }
-                    if (previousViewController != null)
+                    if (currentViewController != null)
                     {
-                        previousViewController.Hide();
+                        //hide current view controller
+                        currentViewController.Hide();
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Exit application
+        /// </summary>
+        private void Exit()
+        {
+            IViewController viewController = (Depth > 0) ? Stack.Peek() : null;
+            if (viewController == null || 
+                viewController.Save() || 
+                Dialog.Question("Error", "There was a problem saving {0} information. Would you like to exit anyways?", viewController.Name))
+            {
+                Dispose();
             }
         }
 

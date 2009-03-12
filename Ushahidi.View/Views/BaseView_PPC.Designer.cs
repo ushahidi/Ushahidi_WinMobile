@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseView));
             this.mainMenu = new System.Windows.Forms.MainMenu();
-            this.menuItemAction = new System.Windows.Forms.MenuItem();
+            this.menuItemWebsite = new System.Windows.Forms.MenuItem();
             this.menuItemMenu = new System.Windows.Forms.MenuItem();
             this.menuItemAddIncident = new System.Windows.Forms.MenuItem();
             this.menuItemIncidentList = new System.Windows.Forms.MenuItem();
@@ -44,12 +44,12 @@
             // 
             // mainMenu
             // 
-            this.mainMenu.MenuItems.Add(this.menuItemAction);
+            this.mainMenu.MenuItems.Add(this.menuItemWebsite);
             this.mainMenu.MenuItems.Add(this.menuItemMenu);
             // 
             // menuItemAction
             // 
-            this.menuItemAction.Text = "";
+            this.menuItemWebsite.Text = "";
             // 
             // menuItemMenu
             // 
@@ -89,8 +89,8 @@
             // 
             // menuItemAbout
             // 
-            this.menuItemAbout.Text = "About";
-            this.menuItemAbout.Click += new System.EventHandler(this.OnAbout);
+            this.menuItemAbout.Text = "Website";
+            this.menuItemAbout.Click += new System.EventHandler(this.OnWebsite);
             // 
             // menuItemSeparator2
             // 
@@ -121,7 +121,7 @@
 
         private System.Windows.Forms.MenuItem menuItemSeparator1;
         private System.Windows.Forms.MenuItem menuItemSeparator2;
-        public System.Windows.Forms.MenuItem menuItemAction;
+        public System.Windows.Forms.MenuItem menuItemWebsite;
         public System.Windows.Forms.MenuItem menuItemMenu;
         public System.Windows.Forms.MenuItem menuItemExit;
         public System.Windows.Forms.MenuItem menuItemAddIncident;

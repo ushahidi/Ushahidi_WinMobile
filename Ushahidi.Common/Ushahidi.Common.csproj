@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Controls\Constants.cs" />
     <Compile Include="Controls\Dialog.cs" />
+    <Compile Include="Controls\BackColorFocuser.cs" />
     <Compile Include="Controls\LabelComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>

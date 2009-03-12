@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.label = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pictureBoxLogo
@@ -40,11 +42,34 @@
             this.pictureBoxLogo.Size = new System.Drawing.Size(169, 90);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
+            // label
+            // 
+            this.label.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label.Location = new System.Drawing.Point(4, 101);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(169, 99);
+            this.label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // labelDescription
+            // 
+            this.labelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDescription.Font = new System.Drawing.Font("Segoe Condensed", 9F, System.Drawing.FontStyle.Bold);
+            this.labelDescription.Location = new System.Drawing.Point(4, 101);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(169, 99);
+            this.labelDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // HomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 200);
+            this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.label);
             this.Controls.Add(this.pictureBoxLogo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = null;
@@ -57,5 +82,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.Label labelDescription;
     }
 }

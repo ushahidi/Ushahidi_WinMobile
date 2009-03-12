@@ -42,10 +42,10 @@
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemSave);
-            this.menuItemAction.MenuItems.Add(this.menuItemAddPhoto);
-            this.menuItemAction.MenuItems.Add(this.menuItemCancel);
-            this.menuItemAction.Text = "Action";
+            this.menuItemWebsite.MenuItems.Add(this.menuItemSave);
+            this.menuItemWebsite.MenuItems.Add(this.menuItemAddPhoto);
+            this.menuItemWebsite.MenuItems.Add(this.menuItemCancel);
+            this.menuItemWebsite.Text = "Action";
             // 
             // menuItemAddIncident
             // 

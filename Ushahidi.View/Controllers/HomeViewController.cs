@@ -10,7 +10,8 @@ namespace Ushahidi.View.Controllers
         /// </summary>
         public override void Load()
         {
-
+            View.Description = Model.Description;
+            View.Logo = Model.Logo;
         }
     }
 }

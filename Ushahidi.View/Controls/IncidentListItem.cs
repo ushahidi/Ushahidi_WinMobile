@@ -82,7 +82,7 @@ namespace Ushahidi.View.Controls
                     e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
                 }
                 Rectangle rectangle = new Rectangle(Height, 0, Width - Height, rowHeight);
-                string titleAndLocale = String.Format("{0}{1}{2}", Title, String.IsNullOrEmpty(Locale) ? "" : " - ", Locale);
+                string titleAndLocale = String.Format("{0}{1}{2}", Title, String.IsNullOrEmpty(Locale) ? "" : " ", Locale);
                 e.Graphics.DrawString(titleAndLocale, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
@@ -90,7 +90,7 @@ namespace Ushahidi.View.Controls
                 e.Graphics.DrawString(incidentDate, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                string contributorsResponsesLinks = String.Format("{0} Cntrs {1} Rsps {2} Lnks", Contributors, Responses, Links);
+                string contributorsResponsesLinks = String.Format("{0} Contributors {1} Responses", Contributors, Responses);
                 e.Graphics.DrawString(contributorsResponsesLinks, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);

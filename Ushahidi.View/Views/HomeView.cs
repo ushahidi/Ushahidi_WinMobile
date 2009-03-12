@@ -1,17 +1,25 @@
-﻿using Ushahidi.View.Controllers;
+﻿using System.Drawing;
 
 namespace Ushahidi.View.Views
 {
     public partial class HomeView
     {
-        private void OnViewIncidents(object sender, System.EventArgs e)
+        /// <summary>
+        /// The description
+        /// </summary>
+        public string Description
         {
-            OnForward(typeof(IncidentListViewController));
+            get { return labelDescription.Text; }
+            set { labelDescription.Text = value; }
         }
 
-        private void OnAddIncident(object sender, System.EventArgs e)
+        /// <summary>
+        /// The logo
+        /// </summary>
+        public Image Logo
         {
-            OnForward(typeof(AddIncidentViewController));
+            get { return pictureBoxLogo.Image; }
+            set { pictureBoxLogo.Image = value; }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Ushahidi.View.Resources;
+﻿using System;
+using Ushahidi.View.Resources;
 
 namespace Ushahidi.View.Models
 {
@@ -6,14 +7,78 @@ namespace Ushahidi.View.Models
     {
         public IncidentListModel()
         {
-            Incidents[0] = new Incident("Uhuru fires still strong", "", "Uhuru, Kenya") {Image = ResourcesManager.LoadImageResource("ushahidi_fire.png")};
-            Incidents[1] = new Incident("Eastleigh Plane crash", "", "Nairobi, Kenya") { Image = ResourcesManager.LoadImageResource("ushahidi_plane.png") };
-            Incidents[2] = new Incident("Kenyatta Pwr Failure", "", "Nairobi, Kenya") { Image = ResourcesManager.LoadImageResource("ushahidi_globe.png") };
-            Incidents[3] = new Incident("Nairobi Protests", "", "Nairobi, Kenya") { Image = ResourcesManager.LoadImageResource("ushahidi_globe.png") };
-            Incidents[4] = new Incident("Uhuru fires still strong", "", "Uhuru, Kenya") { Image = ResourcesManager.LoadImageResource("ushahidi_fire.png") };
-            Incidents[5] = new Incident("Eastleigh Plane crash", "", "Nairobi, Kenya") { Image = ResourcesManager.LoadImageResource("ushahidi_plane.png") };
-            Incidents[6] = new Incident("Kenyatta Pwr Failure", "", "Nairobi, Kenya") { Image = ResourcesManager.LoadImageResource("ushahidi_globe.png") };
-            Incidents[7] = new Incident("Nairobi Protests", "", "Nairobi, Kenya") { Image = ResourcesManager.LoadImageResource("ushahidi_globe.png") };
+            Incidents[0] = new Incident("Uhuru fires still strong", "", "Uhuru, Kenya")
+            {
+               Image = ResourcesManager.LoadImageResource("ushahidi_fire.png"),
+               ContributorCount = 2,
+               Date = DateTime.Now,
+               LinkCount = 1,
+               ResponseCount = 1, 
+               Verified = true
+            };
+            Incidents[1] = new Incident("Eastleigh Plane crash", "", "Nairobi, Kenya")
+            {
+               Image = ResourcesManager.LoadImageResource("ushahidi_plane.png"),
+               ContributorCount = 2,
+               Date = DateTime.Now,
+               LinkCount = 7,
+               ResponseCount = 4,
+               Verified = false
+            };
+            Incidents[2] = new Incident("Kenyatta Pwr Failure", "", "Nairobi, Kenya")
+            {
+               Image = ResourcesManager.LoadImageResource("ushahidi_globe.png"),
+               ContributorCount = 1,
+               Date = DateTime.Now,
+               LinkCount = 0,
+               ResponseCount = 2,
+               Verified = true
+            };
+            Incidents[3] = new Incident("Nairobi Protests", "", "Nairobi, Kenya")
+            {
+               Image = ResourcesManager.LoadImageResource("ushahidi_fire.png"),
+               ContributorCount = 2,
+               Date = DateTime.Now,
+               LinkCount = 1,
+               ResponseCount = 1, 
+               Verified = true
+            };
+            Incidents[4] = new Incident("Uhuru fires still strong", "", "Uhuru, Kenya")
+            {
+                Image = ResourcesManager.LoadImageResource("ushahidi_fire.png"),
+                ContributorCount = 2,
+                Date = DateTime.Now,
+                LinkCount = 1,
+                ResponseCount = 1, 
+                Verified = true
+            };
+            Incidents[5] = new Incident("Eastleigh Plane crash", "", "Nairobi, Kenya")
+            {
+               Image = ResourcesManager.LoadImageResource("ushahidi_plane.png"),
+               ContributorCount = 2,
+               Date = DateTime.Now,
+               LinkCount = 1,
+               ResponseCount = 1,
+               Verified = true
+            };
+            Incidents[6] = new Incident("Kenyatta Pwr Failure", "", "Nairobi, Kenya")
+            {
+               Image = ResourcesManager.LoadImageResource("ushahidi_globe.png"),
+               ContributorCount = 2,
+               Date = DateTime.Now,
+               LinkCount = 1,
+               ResponseCount = 1,
+               Verified = true
+            };
+            Incidents[7] = new Incident("Nairobi Protests", "", "Nairobi, Kenya")
+            {
+               Image = ResourcesManager.LoadImageResource("ushahidi_globe.png"),
+               ContributorCount = 2,
+               Date = DateTime.Now,
+               LinkCount = 1,
+               ResponseCount = 1,
+               Verified = true
+            };
         }
 
         /// <summary>

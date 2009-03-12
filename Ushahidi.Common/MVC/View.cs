@@ -14,7 +14,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public virtual void Render()
         {
-            //implementing view will override and provide render code
+            //implementing view can override and provide render code
         }
 
         /// <summary>
@@ -86,6 +86,15 @@ namespace Ushahidi.Common.MVC
             {
                 Exit();
             }
+        }
+
+        /// <summary>
+        /// View text
+        /// </summary>
+        /// <returns>View text</returns>
+        public override string ToString()
+        {
+            return Text;
         }
     }
 }

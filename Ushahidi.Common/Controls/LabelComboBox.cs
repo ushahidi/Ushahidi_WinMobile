@@ -10,6 +10,7 @@ namespace Ushahidi.Common.Controls
         public LabelComboBox()
         {
             InitializeComponent();
+            BackColorFocuser.Register(comboBox);
         }
 
         /// <summary>
