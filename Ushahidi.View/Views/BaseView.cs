@@ -1,87 +1,59 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms;
-using Ushahidi.Common.MVC;
+using Ushahidi.View.Controllers;
 
 namespace Ushahidi.View.Views
 {
+    /// <summary>
+    /// Base view
+    /// </summary>
     public partial class BaseView
     {
         /// <summary>
-        /// The forward event
+        /// On add incident
         /// </summary>
-        public event ForwardHandler Forward;
-
-        /// <summary>
-        /// Move forward
-        /// </summary>
-        /// <param name="type">view controller type</param>
-        protected void OnForward(Type type)
+        private void OnAddIncident(object sender, EventArgs e)
         {
-            if (Forward != null)
-            {
-                Forward(type, false);
-            }
+            OnForward(typeof(AddIncidentViewController), true);
         }
 
         /// <summary>
-        /// The back event
+        /// On incident list
         /// </summary>
-        public event BackHandler Back;
-
-        /// <summary>
-        /// Override on closing to cancel close, and instead pop from navigation stack
-        /// </summary>
-        protected override void OnClosing(CancelEventArgs e)
+        private void OnIncidentList(object sender, EventArgs e)
         {
-            e.Cancel = true;
-            if (Back != null)
-            {
-                Back();
-            }
+            OnForward(typeof(IncidentListViewController), true);
         }
 
         /// <summary>
-        /// Render view
+        /// On incident map
         /// </summary>
-        public virtual void Render()
+        private void OnIncidentMap(object sender, EventArgs e)
         {
-            //implementing view will override and provide render code
+            OnForward(typeof(IncidentMapViewController), true);
         }
 
         /// <summary>
-        /// Primary action menu item
+        /// On settings
         /// </summary>
-        public MenuItem MenuPrimaryAction { get { return menuItemAction; } }
+        private void OnSettings(object sender, EventArgs e)
+        {
+            OnForward(typeof(SettingsViewController), true);
+        }
 
         /// <summary>
-        /// Exit menu item
+        /// On about
         /// </summary>
-        public MenuItem MenuExit { get { return menuItemExit; } }
+        private void OnAbout(object sender, EventArgs e)
+        {
+            OnForward(typeof(AboutViewController), true);  
+        }
 
         /// <summary>
-        /// Settings menu item
+        /// On exit
         /// </summary>
-        public MenuItem MenuSettings { get { return menuItemSettings; } }
-
-        /// <summary>
-        /// About menu item
-        /// </summary>
-        public MenuItem MenuAbout { get { return menuItemAbout; } }
-
-        /// <summary>
-        /// Add incident menu item
-        /// </summary>
-        public MenuItem MenuAddIncident { get { return menuItemAddIncident; } }
-
-        /// <summary>
-        /// Incident list menu item
-        /// </summary>
-        public MenuItem MenuIncidentList { get { return menuItemIncidentList; } }
-
-        /// <summary>
-        /// Incident map menu item
-        /// </summary>
-        public MenuItem MenuIncidentMap { get { return menuItemIncidentMap; } }
+        private void OnExit(object sender, EventArgs e)
+        {
+            OnExit();
+        }
     }
 }

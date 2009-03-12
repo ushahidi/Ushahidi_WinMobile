@@ -35,5 +35,10 @@ namespace Ushahidi.Common.MVC
         /// The back event
         /// </summary>
         event BackHandler Back;
+
+        /// <summary>
+        /// The exit event
+        /// </summary>
+        event BackHandler Exit;
     }
 }

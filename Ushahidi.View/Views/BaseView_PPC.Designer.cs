@@ -33,8 +33,8 @@
             this.menuItemAction = new System.Windows.Forms.MenuItem();
             this.menuItemMenu = new System.Windows.Forms.MenuItem();
             this.menuItemAddIncident = new System.Windows.Forms.MenuItem();
-            this.menuItemIncidentMap = new System.Windows.Forms.MenuItem();
             this.menuItemIncidentList = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentMap = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
             this.menuItemSettings = new System.Windows.Forms.MenuItem();
             this.menuItemAbout = new System.Windows.Forms.MenuItem();
@@ -66,14 +66,17 @@
             // menuItemAddIncident
             // 
             this.menuItemAddIncident.Text = "Add Incident";
-            // 
-            // menuItemIncidentMap
-            // 
-            this.menuItemIncidentMap.Text = "Incident Map";
+            this.menuItemAddIncident.Click += new System.EventHandler(this.OnAddIncident);
             // 
             // menuItemIncidentList
             // 
             this.menuItemIncidentList.Text = "Incident List";
+            this.menuItemIncidentList.Click += new System.EventHandler(this.OnIncidentList);
+            // 
+            // menuItemIncidentMap
+            // 
+            this.menuItemIncidentMap.Text = "Incident Map";
+            this.menuItemIncidentMap.Click += new System.EventHandler(this.OnIncidentMap);
             // 
             // menuItemSeparator1
             // 
@@ -82,10 +85,12 @@
             // menuItemSettings
             // 
             this.menuItemSettings.Text = "Settings";
+            this.menuItemSettings.Click += new System.EventHandler(this.OnSettings);
             // 
             // menuItemAbout
             // 
             this.menuItemAbout.Text = "About";
+            this.menuItemAbout.Click += new System.EventHandler(this.OnAbout);
             // 
             // menuItemSeparator2
             // 
@@ -94,6 +99,7 @@
             // menuItemExit
             // 
             this.menuItemExit.Text = "Exit";
+            this.menuItemExit.Click += new System.EventHandler(this.OnExit);
             // 
             // BaseView
             // 

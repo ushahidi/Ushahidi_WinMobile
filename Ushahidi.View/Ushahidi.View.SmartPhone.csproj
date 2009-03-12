@@ -130,7 +130,6 @@
     <Compile Include="Views\HomeView_SP.Designer.cs">
       <DependentUpon>HomeView_SP.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\IBaseView.cs" />
     <Compile Include="Views\IncidentDetailsView.cs">
       <SubType>Form</SubType>
     </Compile>

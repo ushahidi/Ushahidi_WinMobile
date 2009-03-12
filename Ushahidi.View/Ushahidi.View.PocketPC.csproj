@@ -132,7 +132,6 @@
     <Compile Include="Views\HomeView_PPC.Designer.cs">
       <DependentUpon>HomeView_PPC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\IBaseView.cs" />
     <Compile Include="Views\IncidentDetailsView.cs">
       <SubType>Form</SubType>
     </Compile>

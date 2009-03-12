@@ -22,6 +22,11 @@ namespace Ushahidi.Common.MVC
         private readonly IDictionary<Type, IViewController> Cache = new Dictionary<Type, IViewController>();
 
         /// <summary>
+        /// The root view controller
+        /// </summary>
+        protected IViewController RootViewController { get; private set; }
+
+        /// <summary>
         /// Stack depth
         /// </summary>
         public int Depth
@@ -78,6 +83,10 @@ namespace Ushahidi.Common.MVC
                     viewController.Forward += Push;
                     viewController.Exit += Dispose;
                     Cache.Add(type, viewController);
+                    if (RootViewController == null)
+                    {
+                        RootViewController = viewController;
+                    }
                 }
                 else
                 {
@@ -86,6 +95,7 @@ namespace Ushahidi.Common.MVC
                 if (clearStack)
                 {
                     Stack.Clear();
+                    Stack.Push(RootViewController);
                 }
                 Stack.Push(viewController);
                 viewController.Load();

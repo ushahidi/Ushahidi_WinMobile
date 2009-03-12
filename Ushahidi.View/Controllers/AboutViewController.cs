@@ -14,9 +14,5 @@ namespace Ushahidi.View.Controllers
             View.AboutLogo = Model.AboutLogo;
         }
 
-        protected override void OnPrimaryAction(object sender, System.EventArgs e)
-        {
-            OnForward(typeof(WebsiteViewController));
-        }
     }
 }

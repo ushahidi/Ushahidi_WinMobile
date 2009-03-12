@@ -102,6 +102,9 @@
     <Compile Include="Controls\ScrollListBox.Designer.cs">
       <DependentUpon>ScrollListBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="MVC\View.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MVC\ViewChangedEventArgs.cs" />
     <Compile Include="MVC\ViewController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
