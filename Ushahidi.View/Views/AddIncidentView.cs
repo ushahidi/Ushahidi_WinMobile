@@ -63,6 +63,15 @@ namespace Ushahidi.View.Views
             set { images.Images = value;}
         }
 
+        /// <summary>
+        /// Type data source
+        /// </summary>
+        public object Types
+        {
+            get { return comboBoxType.DataSource; }
+            set { comboBoxType.DataSource = value; }
+        }
+
         private void OnSaveIncident(object sender, EventArgs e)
         {
 

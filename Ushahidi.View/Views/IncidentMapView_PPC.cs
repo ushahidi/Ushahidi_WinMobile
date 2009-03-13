@@ -1,15 +1,18 @@
-﻿namespace Ushahidi.View.Views
+﻿using Ushahidi.View.Controls;
+
+namespace Ushahidi.View.Views
 {
     public partial class IncidentMapView : BaseView
     {
         public IncidentMapView()
         {
             InitializeComponent();
+            Keyboard.KeyboardChanged += OnKeyboardChanged;
         }
 
-        private void OnFilterChanged(object sender, System.EventArgs e)
+        private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
-
+            panelContent.Height = Height - args.KeyboardBounds.Height;
         }
     }
 }

@@ -14,6 +14,15 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
+        /// Set focus
+        /// </summary>
+        /// <returns>true, if focussed</returns>
+        public new bool Focus()
+        {
+            return Enabled ? textBox.Focus() : false;
+        }
+
+        /// <summary>
         /// Label
         /// </summary>
         public string Label 
@@ -34,10 +43,14 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Is textbox read only?
         /// </summary>
-        public bool ReadOnly
+        public new bool Enabled
         {
-            get { return textBox.ReadOnly; }
-            set { textBox.ReadOnly = value; }
+            get { return textBox.Enabled; }
+            set
+            {
+                textBox.Enabled = textBox.ReadOnly = value;
+                textBox.BackColor = value ? Color.White : Color.WhiteSmoke;
+            }
         }
 
         /// <summary>

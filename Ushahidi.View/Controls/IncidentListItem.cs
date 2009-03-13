@@ -81,7 +81,7 @@ namespace Ushahidi.View.Controls
                     Rectangle srcRect = new Rectangle(0, 0, Image.Width, Image.Height);
                     e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
                 }
-                Rectangle rectangle = new Rectangle(Height, 0, Width - Height, rowHeight);
+                Rectangle rectangle = new Rectangle(Height + 5, 0, Width - Height - 5, rowHeight);
                 string titleAndLocale = String.Format("{0}{1}{2}", Title, String.IsNullOrEmpty(Locale) ? "" : " ", Locale);
                 e.Graphics.DrawString(titleAndLocale, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 

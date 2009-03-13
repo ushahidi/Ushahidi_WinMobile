@@ -29,8 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WebsiteView));
+            this.panelContent = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.panelContent.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panelContent
+            // 
+            this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.webBrowser);
+            this.panelContent.Location = new System.Drawing.Point(0, 0);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(240, 294);
             // 
             // webBrowser
             // 
@@ -38,24 +51,24 @@
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(240, 294);
-            this.webBrowser.Url = new System.Uri("http://ushahidi.com");
             // 
             // WebsiteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(240, 294);
-            this.Controls.Add(this.webBrowser);
+            this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimizeBox = false;
             this.Name = "WebsiteView";
-            this.Text = "Ushahidi";
+            this.panelContent.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.WebBrowser webBrowser;
+
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentListView));
-            this.comboBoxFilter = new System.Windows.Forms.ComboBox();
+            this.comboBoxTypes = new System.Windows.Forms.ComboBox();
             this.listBoxIncidents = new Ushahidi.Common.Controls.ScrollListBox();
             this.SuspendLayout();
             // 
@@ -43,12 +43,12 @@
             // 
             // comboBoxFilter
             // 
-            this.comboBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.comboBoxTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxFilter.Location = new System.Drawing.Point(3, 3);
-            this.comboBoxFilter.Name = "comboBoxFilter";
-            this.comboBoxFilter.Size = new System.Drawing.Size(170, 22);
-            this.comboBoxFilter.TabIndex = 0;
+            this.comboBoxTypes.Location = new System.Drawing.Point(3, 3);
+            this.comboBoxTypes.Name = "comboBoxFilter";
+            this.comboBoxTypes.Size = new System.Drawing.Size(170, 22);
+            this.comboBoxTypes.TabIndex = 0;
             // 
             // listBoxIncidents
             // 
@@ -68,7 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.listBoxIncidents);
-            this.Controls.Add(this.comboBoxFilter);
+            this.Controls.Add(this.comboBoxTypes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IncidentListView";
             this.Text = "Incident List";
@@ -78,7 +78,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxFilter;
+        private System.Windows.Forms.ComboBox comboBoxTypes;
         private Ushahidi.Common.Controls.ScrollListBox listBoxIncidents;
     }
 }

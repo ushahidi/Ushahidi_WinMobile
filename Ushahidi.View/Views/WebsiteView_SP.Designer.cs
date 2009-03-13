@@ -38,7 +38,6 @@
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(176, 180);
-            this.webBrowser.Url = new System.Uri("http://ushahidi.com");
             // 
             // WebsiteView
             // 

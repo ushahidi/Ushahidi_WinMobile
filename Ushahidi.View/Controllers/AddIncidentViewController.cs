@@ -19,6 +19,7 @@ namespace Ushahidi.View.Controllers
             View.Date = Model.Date;
             View.Description = Model.Description;
             View.Images = Model.Images;
+            View.Types = Model.Types;
         }
 
         /// <summary>

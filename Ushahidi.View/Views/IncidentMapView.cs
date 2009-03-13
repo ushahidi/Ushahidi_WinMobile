@@ -1,11 +1,14 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ushahidi.View.Views
+﻿namespace Ushahidi.View.Views
 {
     public partial class IncidentMapView
     {
+        /// <summary>
+        /// Types
+        /// </summary>
+        public object Types
+        {
+            get { return comboBoxTypes.DataSource; }
+            set { comboBoxTypes.DataSource = value; }
+        }
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentMapView));
-            this.comboBoxFilter = new System.Windows.Forms.ComboBox();
+            this.comboBoxTypes = new System.Windows.Forms.ComboBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
@@ -39,12 +39,12 @@
             // 
             // comboBoxFilter
             // 
-            this.comboBoxFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.comboBoxTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxFilter.Location = new System.Drawing.Point(3, 3);
-            this.comboBoxFilter.Name = "comboBoxFilter";
-            this.comboBoxFilter.Size = new System.Drawing.Size(170, 22);
-            this.comboBoxFilter.TabIndex = 1;
+            this.comboBoxTypes.Location = new System.Drawing.Point(3, 3);
+            this.comboBoxTypes.Name = "comboBoxFilter";
+            this.comboBoxTypes.Size = new System.Drawing.Size(170, 22);
+            this.comboBoxTypes.TabIndex = 1;
             // 
             // pictureBoxMap
             // 
@@ -62,7 +62,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.pictureBoxMap);
-            this.Controls.Add(this.comboBoxFilter);
+            this.Controls.Add(this.comboBoxTypes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IncidentMapView";
             this.Text = "Incident Map";
@@ -72,7 +72,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxFilter;
+        private System.Windows.Forms.ComboBox comboBoxTypes;
         private System.Windows.Forms.PictureBox pictureBoxMap;
     }
 }

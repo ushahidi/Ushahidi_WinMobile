@@ -14,6 +14,28 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
+        /// Set focus
+        /// </summary>
+        /// <returns>true, if focussed</returns>
+        public new bool Focus()
+        {
+            return Enabled ? comboBox.Focus() : false;
+        }
+
+        /// <summary>
+        /// Enabled
+        /// </summary>
+        public new bool Enabled
+        {
+            get { return comboBox.Enabled; }
+            set
+            {
+                comboBox.Enabled = value;
+                comboBox.BackColor = value ? Color.White : Color.WhiteSmoke;
+            }
+        }
+
+        /// <summary>
         /// Label
         /// </summary>
         public string Label

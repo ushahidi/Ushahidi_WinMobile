@@ -38,5 +38,9 @@ namespace Ushahidi.View.Models
         /// </summary>
         public Image[] Images { get; set; }
 
+        /// <summary>
+        /// Incident types
+        /// </summary>
+        public string[] Types = { "Property Loss", "Fires", "Deaths", "Riots", "Other" };
     }
 }

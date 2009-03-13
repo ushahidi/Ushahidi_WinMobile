@@ -8,7 +8,7 @@ namespace Ushahidi.View.Controllers
     {
         public override void Load()
         {
-            View.FilterDataSource = Model.Types;  
+            View.Types = Model.Types;  
             View.ClearIncidents();
             foreach(Incident incident in Model.Incidents)
             {

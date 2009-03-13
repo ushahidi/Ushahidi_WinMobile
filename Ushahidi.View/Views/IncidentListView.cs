@@ -10,10 +10,10 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Filter data source
         /// </summary>
-        public object FilterDataSource
+        public object Types
         {
-            get { return comboBoxFilter.DataSource; }
-            set { comboBoxFilter.DataSource = value; }
+            get { return comboBoxTypes.DataSource; }
+            set { comboBoxTypes.DataSource = value; }
         }
 
         /// <summary>

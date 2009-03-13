@@ -2,6 +2,9 @@
 {
     public class SettingsModel : BaseModel
     {
-        
+        /// <summary>
+        /// Default locale
+        /// </summary>
+        public string DefaultLocale { get; set; }
     }
 }

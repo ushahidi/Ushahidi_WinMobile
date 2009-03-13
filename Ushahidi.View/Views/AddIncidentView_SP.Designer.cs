@@ -59,7 +59,6 @@
             this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
             this.textBoxTitle.Multiline = false;
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.ReadOnly = false;
             this.textBoxTitle.Size = new System.Drawing.Size(169, 28);
             this.textBoxTitle.TabIndex = 20;
             // 
@@ -97,7 +96,7 @@
             this.textBoxDate.Location = new System.Drawing.Point(0, 84);
             this.textBoxDate.Multiline = false;
             this.textBoxDate.Name = "textBoxDate";
-            this.textBoxDate.ReadOnly = false;
+            this.textBoxDate.Enabled = false;
             this.textBoxDate.Size = new System.Drawing.Size(169, 28);
             this.textBoxDate.TabIndex = 23;
             // 
@@ -111,7 +110,6 @@
             this.textBoxDescription.Location = new System.Drawing.Point(0, 112);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.ReadOnly = false;
             this.textBoxDescription.Size = new System.Drawing.Size(169, 80);
             this.textBoxDescription.TabIndex = 28;
             // 

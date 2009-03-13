@@ -10,7 +10,7 @@ namespace Ushahidi.View.Controllers
         /// </summary>
         public override void Load()
         {
-
+            View.Types = Model.Types;
         }
     }
 }
