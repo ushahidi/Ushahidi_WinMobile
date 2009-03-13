@@ -42,5 +42,10 @@ namespace Ushahidi.View.Models
         /// Incident types
         /// </summary>
         public string[] Types = { "Property Loss", "Fires", "Deaths", "Riots", "Other" };
+
+        /// <summary>
+        /// Incident types
+        /// </summary>
+        public string[] Locales = { "Uhuru, Kenya", "Nairobi, Kenya", "Other" };
     }
 }

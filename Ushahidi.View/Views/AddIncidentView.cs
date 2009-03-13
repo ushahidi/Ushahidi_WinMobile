@@ -72,6 +72,15 @@ namespace Ushahidi.View.Views
             set { comboBoxType.DataSource = value; }
         }
 
+        /// <summary>
+        /// Incident locales
+        /// </summary>
+        public object Locales
+        {
+            get { return comboBoxLocale.DataSource; }
+            set { comboBoxLocale.DataSource = value; }
+        }
+
         private void OnSaveIncident(object sender, EventArgs e)
         {
 

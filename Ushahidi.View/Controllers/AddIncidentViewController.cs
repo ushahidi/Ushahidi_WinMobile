@@ -20,6 +20,7 @@ namespace Ushahidi.View.Controllers
             View.Description = Model.Description;
             View.Images = Model.Images;
             View.Types = Model.Types;
+            View.Locales = Model.Locales;
         }
 
         /// <summary>

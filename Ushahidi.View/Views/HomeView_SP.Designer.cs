@@ -39,7 +39,7 @@
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(4, 4);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(169, 90);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(169, 79);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // label
@@ -57,10 +57,10 @@
             this.labelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDescription.Font = new System.Drawing.Font("Segoe Condensed", 9F, System.Drawing.FontStyle.Bold);
-            this.labelDescription.Location = new System.Drawing.Point(4, 101);
+            this.labelDescription.Font = new System.Drawing.Font("Segoe Condensed", 8F, System.Drawing.FontStyle.Bold);
+            this.labelDescription.Location = new System.Drawing.Point(4, 86);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(169, 99);
+            this.labelDescription.Size = new System.Drawing.Size(169, 114);
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // HomeView

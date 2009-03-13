@@ -137,6 +137,8 @@
             // 
             // comboBoxType
             // 
+            this.comboBoxType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxType.BackColor = System.Drawing.Color.Gainsboro;
             this.comboBoxType.Bold = true;
             this.comboBoxType.Label = "Type";
