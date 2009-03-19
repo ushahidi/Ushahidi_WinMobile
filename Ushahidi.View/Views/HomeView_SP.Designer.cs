@@ -39,7 +39,7 @@
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(4, 4);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(169, 79);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(169, 86);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // label
@@ -49,7 +49,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.label.Location = new System.Drawing.Point(4, 101);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(169, 99);
+            this.label.Size = new System.Drawing.Size(169, 119);
             this.label.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // labelDescription
@@ -58,16 +58,16 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDescription.Font = new System.Drawing.Font("Segoe Condensed", 8F, System.Drawing.FontStyle.Bold);
-            this.labelDescription.Location = new System.Drawing.Point(4, 86);
+            this.labelDescription.Location = new System.Drawing.Point(4, 101);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(169, 114);
+            this.labelDescription.Size = new System.Drawing.Size(169, 119);
             this.labelDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // HomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 200);
+            this.ClientSize = new System.Drawing.Size(176, 220);
             this.Controls.Add(this.labelDescription);
             this.Controls.Add(this.label);
             this.Controls.Add(this.pictureBoxLogo);
@@ -75,6 +75,7 @@
             this.Menu = null;
             this.Name = "HomeView";
             this.Text = "Ushahidi";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }

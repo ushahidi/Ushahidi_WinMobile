@@ -74,8 +74,10 @@
             this.ClientSize = new System.Drawing.Size(240, 294);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(0, 0);
             this.MinimizeBox = true;
             this.Name = "HomeView";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelContent.ResumeLayout(false);
             this.ResumeLayout(false);
 
