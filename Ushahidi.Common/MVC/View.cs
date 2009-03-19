@@ -7,7 +7,7 @@ namespace Ushahidi.Common.MVC
     /// <summary>
     /// Abstract view
     /// </summary>
-    public abstract class View : Form, IView
+    public class View : Form, IView
     {
         /// <summary>
         /// Render view

@@ -68,6 +68,12 @@
     <Compile Include="Controls\LabelComboBox.Designer.cs">
       <DependentUpon>LabelComboBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LabelDateBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LabelDateBox.Designer.cs">
+      <DependentUpon>LabelDateBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LabelPictureBoxes.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelComboBox.resx">
       <DependentUpon>LabelComboBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LabelDateBox.resx">
+      <DependentUpon>LabelDateBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelPictureBoxes.resx">
       <DependentUpon>LabelPictureBoxes.cs</DependentUpon>

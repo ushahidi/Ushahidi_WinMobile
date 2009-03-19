@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AddIncidentViewController.cs" />
     <Compile Include="Controllers\BaseViewController.cs" />
+    <Compile Include="Controllers\SyncViewController.cs" />
     <Compile Include="Controllers\WebsiteViewController.cs" />
     <Compile Include="Controllers\IncidentDetailsViewController.cs" />
     <Compile Include="Controllers\IncidentListViewController.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="Models\IncidentMapModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\SyncModel.cs" />
     <Compile Include="Models\WebsiteModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -157,6 +159,15 @@
     <Compile Include="Views\SettingsView_PPC.Designer.cs">
       <DependentUpon>SettingsView_PPC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SyncView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SyncView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SyncView_PPC.Designer.cs">
+      <DependentUpon>SyncView_PPC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\WebsiteView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -200,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SettingsView_PPC.resx">
       <DependentUpon>SettingsView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SyncView_PPC.resx">
+      <DependentUpon>SyncView_PPC.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WebsiteView_PPC.resx">
       <DependentUpon>WebsiteView_PPC.cs</DependentUpon>

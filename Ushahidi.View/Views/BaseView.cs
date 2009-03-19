@@ -33,6 +33,14 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
+        /// On sync
+        /// </summary>
+        private void OnSync(object sender, EventArgs e)
+        {
+            OnForward(typeof(SyncViewController), true);
+        }
+
+        /// <summary>
         /// On settings
         /// </summary>
         private void OnSettings(object sender, EventArgs e)

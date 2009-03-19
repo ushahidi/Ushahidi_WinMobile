@@ -40,6 +40,8 @@
             this.menuItemAbout = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemExit = new System.Windows.Forms.MenuItem();
+            this.menuItemSync = new System.Windows.Forms.MenuItem();
+            this.menuItemSeparator3 = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -47,7 +49,7 @@
             this.mainMenu.MenuItems.Add(this.menuItemWebsite);
             this.mainMenu.MenuItems.Add(this.menuItemMenu);
             // 
-            // menuItemAction
+            // menuItemWebsite
             // 
             this.menuItemWebsite.Text = "";
             // 
@@ -57,9 +59,11 @@
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentList);
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentMap);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator1);
+            this.menuItemMenu.MenuItems.Add(this.menuItemSync);
+            this.menuItemMenu.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemMenu.MenuItems.Add(this.menuItemSettings);
             this.menuItemMenu.MenuItems.Add(this.menuItemAbout);
-            this.menuItemMenu.MenuItems.Add(this.menuItemSeparator2);
+            this.menuItemMenu.MenuItems.Add(this.menuItemSeparator3);
             this.menuItemMenu.MenuItems.Add(this.menuItemExit);
             this.menuItemMenu.Text = "Menu";
             // 
@@ -101,6 +105,15 @@
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.OnExit);
             // 
+            // menuItemSync
+            // 
+            this.menuItemSync.Text = "Synchronize";
+            this.menuItemSync.Click += new System.EventHandler(this.OnSync);
+            // 
+            // menuItemSeparator3
+            // 
+            this.menuItemSeparator3.Text = "-";
+            // 
             // BaseView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -130,5 +143,7 @@
         public System.Windows.Forms.MenuItem menuItemSettings;
         public System.Windows.Forms.MenuItem menuItemAbout;
         public System.Windows.Forms.MainMenu mainMenu;
+        private System.Windows.Forms.MenuItem menuItemSync;
+        private System.Windows.Forms.MenuItem menuItemSeparator3;
     }
 }

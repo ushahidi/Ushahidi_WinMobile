@@ -66,6 +66,7 @@
     <Compile Include="Controllers\IncidentListViewController.cs" />
     <Compile Include="Controllers\IncidentMapViewController.cs" />
     <Compile Include="Controllers\SettingsViewController.cs" />
+    <Compile Include="Controllers\SyncViewController.cs" />
     <Compile Include="Controllers\WebsiteViewController.cs" />
     <Compile Include="Controls\IncidentListItem.cs">
       <SubType>Component</SubType>
@@ -73,6 +74,7 @@
     <Compile Include="Models\AddIncidentModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\Incident.cs" />
+    <Compile Include="Models\SyncModel.cs" />
     <Compile Include="Models\WebsiteModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IncidentDetailsModel.cs" />
@@ -155,6 +157,15 @@
     <Compile Include="Views\SettingsView_SP.Designer.cs">
       <DependentUpon>SettingsView_SP.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\SyncView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SyncView_SP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SyncView_SP.Designer.cs">
+      <DependentUpon>SyncView_SP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\WebsiteView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SettingsView_SP.resx">
       <DependentUpon>SettingsView_SP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SyncView_SP.resx">
+      <DependentUpon>SyncView_SP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\WebsiteView_SP.resx">
       <DependentUpon>WebsiteView_SP.cs</DependentUpon>
