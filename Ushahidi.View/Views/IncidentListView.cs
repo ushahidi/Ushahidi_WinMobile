@@ -36,7 +36,7 @@ namespace Ushahidi.View.Views
         /// <param name="verified">is incident verified?</param>
         public void AddIncident(string title, string locale, DateTime date, int contributors, int responses, int links, bool verified, Image image)
         {
-            IncidentListItem incidentListItem = new IncidentListItem(title, locale, date, contributors, responses, links, verified)
+            IncidentListItem incidentListItem = new IncidentListItem(title, locale, date, verified)
             {
                 Image = image
             };

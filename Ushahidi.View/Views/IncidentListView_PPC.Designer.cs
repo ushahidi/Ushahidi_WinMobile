@@ -60,12 +60,14 @@
             this.listBoxIncidents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxIncidents.AutoScroll = true;
             this.listBoxIncidents.BackColor = System.Drawing.Color.WhiteSmoke;
             this.listBoxIncidents.BackColorEven = System.Drawing.Color.Gainsboro;
             this.listBoxIncidents.BackColorOdd = System.Drawing.Color.WhiteSmoke;
-            this.listBoxIncidents.Location = new System.Drawing.Point(0, 28);
+            this.listBoxIncidents.BackSelectedColor = System.Drawing.Color.Black;
+            this.listBoxIncidents.Location = new System.Drawing.Point(0, 26);
             this.listBoxIncidents.Name = "listBoxIncidents";
-            this.listBoxIncidents.Size = new System.Drawing.Size(240, 264);
+            this.listBoxIncidents.Size = new System.Drawing.Size(240, 268);
             this.listBoxIncidents.TabIndex = 3;
             // 
             // comboBoxTypes

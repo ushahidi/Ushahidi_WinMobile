@@ -3,11 +3,18 @@ using System.Linq;
 using System.Drawing;
 using System.Windows.Forms;
 using Ushahidi.Common.Extensions;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.Controls
 {
+    /// <summary>
+    /// Custom scroll lsit box
+    /// </summary>
     public partial class ScrollListBox : UserControl
     {
+        /// <summary>
+        /// Scroll list box
+        /// </summary>
         public ScrollListBox()
         {
             InitializeComponent();
@@ -37,6 +44,15 @@ namespace Ushahidi.Common.Controls
         }private Color _BackColorEven = Color.White;
 
         /// <summary>
+        /// Selected back color
+        /// </summary>
+        public Color BackSelectedColor
+        {
+            get { return _BackSelectedColor; }
+            set { _BackSelectedColor = value; }
+        }private Color _BackSelectedColor = Color.Black;
+
+        /// <summary>
         /// Focus on list, if nothing currently selected, then select first item
         /// </summary>
         public new bool Focus()
@@ -44,7 +60,7 @@ namespace Ushahidi.Common.Controls
             if (ItemCount > 0 && SelectedIndex == -1 && SelectedItem == null)
             {
                 SelectedIndex = 0;
-                SelectedItem = Controls[0];
+                SelectedItem = Controls[0] as ScrollListBoxItem;
             }
             return base.Focus();
         }
@@ -55,7 +71,7 @@ namespace Ushahidi.Common.Controls
         public void ClearItems()
         {
             Controls.Clear();
-            OnIndexChanged(-1);
+            SelectedIndex = -1;
             Refresh();
         }
 
@@ -63,7 +79,7 @@ namespace Ushahidi.Common.Controls
         /// Add new item
         /// </summary>
         /// <param name="control">item to add</param>
-        public void AddItem(Control control)
+        public void AddItem(ScrollListBoxItem control)
         {
             AddItem(control, true);
         }
@@ -73,8 +89,9 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         /// <param name="control">item to add</param>
         /// <param name="refresh">should refresh list?</param>
-        public void AddItem(Control control, bool refresh)
+        public void AddItem(ScrollListBoxItem control, bool refresh)
         {
+            control.Index = Controls.Count;
             control.TabStop = false;
             control.Left = 0;
             control.Width = Width;
@@ -84,7 +101,7 @@ namespace Ushahidi.Common.Controls
             control.Click += control_Click;
             control.DoubleClick += control_DoubleClick;
 
-            SetItemColors(control);
+            control.BackColor = (control.Index % 2 == 0) ? BackColorEven : BackColorOdd;
 
             control.MouseDown += OnMouseDown;
             control.MouseUp += OnMouseUp;
@@ -93,7 +110,7 @@ namespace Ushahidi.Common.Controls
             Controls.Add(control);
             if (refresh)
             {
-                Refresh();
+                control.Refresh();
             }
         }
 
@@ -101,7 +118,7 @@ namespace Ushahidi.Common.Controls
         /// Remove an item
         /// </summary>
         /// <param name="control">list box item to remove</param>
-        public void RemoveItem(Control control)
+        public void RemoveItem(ScrollListBoxItem control)
         {
             if (Controls.Contains(control))
             {
@@ -112,25 +129,19 @@ namespace Ushahidi.Common.Controls
                     control.MouseMove -= OnMouseMove;
 
                     Controls.Remove(control);
-                    foreach (Control ctrl in Controls)
+                    for (int index = 0; index < Controls.Count; index++)
                     {
-                        SetItemColors(ctrl);
+                        ScrollListBoxItem item = Controls[index] as ScrollListBoxItem;
+                        if (item != null)
+                        {
+                            item.Index = index;
+                            item.BackColor = (index%2 == 0) ? BackColorEven : BackColorOdd;
+                        }
                     }
                 }
-                OnIndexChanged(-1);
+                SelectedIndex = -1;
                 Refresh();
             }
-        }
-
-        /// <summary>
-        /// Set the various item colors
-        /// </summary>
-        /// <param name="control">lsit box item</param>
-        private void SetItemColors(Control control)
-        {
-            if (control == null) return;
-            control.BackColor = Controls.Count % 2 == 0 ? BackColorEven : BackColorOdd;
-            control.ForeColor = ForeColor;
         }
 
         /// <summary>
@@ -141,90 +152,75 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// The selected index
         /// </summary>
-        public int SelectedIndex { get; private set; }
+        public int SelectedIndex
+        {
+            get{ return _SelectedIndex; }
+            set
+            {
+                if (value >= 0 && ItemCount > value)
+                {
+                    SelectedItem = Controls[value] as ScrollListBoxItem;
+                    _SelectedIndex = value;
+                }
+                else
+                {
+                    SelectedItem = null;
+                    _SelectedIndex = -1;
+                }
+            }
+        }private int _SelectedIndex = -1;
 
         /// <summary>
         /// The selected item
         /// </summary>
-        public Control SelectedItem
+        public ScrollListBoxItem SelectedItem
         {
             get { return _SelectedItem; }
             set
             {
                 if (_SelectedItem != null)
                 {
-                    _SelectedItem.Tag = false;
-                    _SelectedItem.Refresh();
+                    _SelectedItem.BackColor = (_SelectedItem.Index % 2 == 0) ? BackColorEven : BackColorOdd;
+                    _SelectedItem.IsSelected = false;
                 }
-                if (_SelectedItem != value)
+                _SelectedItem = value;
+                if (value != null)
                 {
-                    _SelectedItem = value;
-                    _SelectedItem.Tag = true;
-                    _SelectedItem.Refresh();
-                    OnIndexChanged(value);
+                    value.IsSelected = true;
+                    value.BackColor = BackSelectedColor;
+                    _SelectedIndex = GetSelectedIndex(value);
+                    int scrollPosition = Math.Abs(AutoScrollPosition.Y);
+                    if (value.Bottom + 1 > Height)
+                    {
+                        AutoScrollPosition = new Point(0, scrollPosition + value.Height);
+                    }
+                    else if (value.Top + 1 < 0)
+                    {
+                        AutoScrollPosition = new Point(0, scrollPosition - value.Height);
+                    }
                 }
+                else
+                {
+                    _SelectedIndex = -1;
+                }
+                if (IndexChanged != null)
+                {
+                    IndexChanged(value);
+                }
+                Focus();
             }
-        }private Control _SelectedItem;
+        }private ScrollListBoxItem _SelectedItem;
 
         /// <summary>
         /// Item action delegate
         /// </summary>
         /// <param name="control">control</param>
-        public delegate void ItemHandler(Control control);
+        public delegate void ItemHandler(ScrollListBoxItem control);
 
         /// <summary>
         /// Index changed event
         /// </summary>
         public event ItemHandler IndexChanged;
-
-        /// <summary>
-        /// Fire OnIndexChanged event, if handler is registered
-        /// </summary>
-        /// <param name="item">selected item</param>
-        private void OnIndexChanged(Control item)
-        {
-            if (item != null)
-            {
-                SelectedIndex = GetSelectedIndex(item);
-                _SelectedItem = item;
-                
-                int scrollPosition = Math.Abs(AutoScrollPosition.Y);
-                if (item.Bottom + 1 > Height)
-                {
-                    AutoScrollPosition = new Point(0, scrollPosition + item.Height);
-                }
-                else if (item.Top + 1 < 0)
-                {
-                    AutoScrollPosition = new Point(0, scrollPosition - item.Height);
-                }
-            }
-            else
-            {
-                SelectedItem = null;
-                SelectedIndex = -1;
-            }
-            if (IndexChanged != null)
-            {
-                IndexChanged(item);
-            }
-            Focus();
-        }
-
-        /// <summary>
-        /// Fire OnIndexChanged event, if handler is registered
-        /// </summary>
-        /// <param name="index">selected index</param>
-        private void OnIndexChanged(int index)
-        {
-            if (index >= 0 && ItemCount > index)
-            {
-                OnIndexChanged(Controls[index]);
-            }
-            else
-            {
-                OnIndexChanged(null);
-            }
-        }
 
         /// <summary>
         /// Item selected event
@@ -235,8 +231,9 @@ namespace Ushahidi.Common.Controls
         /// Fire ItemSelected event, if handler is registered
         /// </summary>
         /// <param name="item">selected item</param>
-        private void OnItemSelected(Control item)
+        private void OnItemSelected(ScrollListBoxItem item)
         {
+            Log.Info("ScrollListBox.OnItemSelected", "Item: {0}", item);
             if (item == null) return;
             SelectedIndex = Controls.GetChildIndex(item);
             SelectedItem = item;
@@ -258,8 +255,9 @@ namespace Ushahidi.Common.Controls
             {
                 return Controls.GetChildIndex(item);
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Exception("ScrollListBox.GetSelectedIndex", "Exception=", ex);
                 for (int index = 0; index < Controls.Count; index++)
                 {
                     if (item == Controls[index])
@@ -346,29 +344,30 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         private void EnhancedListBox_KeyDown(object sender, KeyEventArgs e)
         {
+            Log.Info("ScrollListBox.EnhancedListBox_KeyDown", "KeyCode: ", e.KeyCode);
             switch (e.KeyCode)
             {
                 case Keys.Down:
                     int indexDown = Controls.GetChildIndex(SelectedItem) + 1;
                     if (indexDown > -1 && ItemCount > indexDown)
                     {
-                        OnIndexChanged(indexDown);
+                        SelectedIndex = indexDown;
                     }
                     break;
                 case Keys.Up:
                     int indexUp = Controls.GetChildIndex(SelectedItem) - 1;
                     if (indexUp > -1 && ItemCount > indexUp)
                     {
-                        OnIndexChanged(indexUp);
+                        SelectedIndex = indexUp;
                     }
                     break;
                 case Keys.PageUp:
                 case Keys.Home:
-                    OnIndexChanged(0);
+                    SelectedIndex = 0;
                     break;
                 case Keys.PageDown:
                 case Keys.End:
-                    OnIndexChanged(Controls.Count - 1);
+                    SelectedIndex = Controls.Count - 1;
                     break;
                 case Keys.Enter:
                 case Keys.Space:
@@ -387,7 +386,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         private void control_Click(object sender, EventArgs e)
         {
-            OnIndexChanged(sender as Control);
+            SelectedItem = sender as ScrollListBoxItem;
         }
 
         /// <summary>
@@ -395,7 +394,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         private void control_DoubleClick(object sender, EventArgs e)
         {
-            OnItemSelected(sender as Control);
+            OnItemSelected(sender as ScrollListBoxItem);
         }
 
         /// <summary>

@@ -86,9 +86,15 @@
     <Compile Include="Controls\CenteredPictureBox.Designer.cs">
       <DependentUpon>CenteredPictureBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ScrollListBoxItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Extensions\FontExtensions.cs" />
+    <Compile Include="Logging\DebugLog.cs" />
+    <Compile Include="Logging\ILog.cs" />
+    <Compile Include="Logging\Log.cs" />
     <Compile Include="MVC\EventArgs.cs" />
     <Compile Include="MVC\IModel.cs" />
     <Compile Include="MVC\INavigationController.cs" />

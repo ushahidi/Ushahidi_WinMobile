@@ -6,17 +6,17 @@ using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.View.Controls
 {
-    public class IncidentListItem : Control
+    /// <summary>
+    /// Incident list item
+    /// </summary>
+    public class IncidentListItem : ScrollListBoxItem
     {
-        public IncidentListItem() : this (null, null, DateTime.MinValue, 0, 0, 0, false) { }
-        public IncidentListItem(string title, string locale, DateTime date, int contributors, int responses, int links, bool verified)
+        public IncidentListItem() : this (null, null, DateTime.MinValue, false) { }
+        public IncidentListItem(string title, string locale, DateTime date, bool verified)
         {
             Title = title;
             Locale = locale;
             Date = date;
-            Contributors = contributors;
-            Responses = responses;
-            Links = links;
             Verified = verified;
             CalculateHeight(Font);
             BoldFont = Font.ToBold();
@@ -43,25 +43,13 @@ namespace Ushahidi.View.Controls
             }
         }
 
-        public int RowCount = 4;
-
-        public bool IsSelected
-        {
-            get { return Convert.ToBoolean(Tag); }
-            set { Tag = value; }
-        }
+        public readonly int RowCount = 4;
 
         public string Title { get; set; }
 
         public string Locale { get; set; }
 
         public DateTime Date { get; set; }
-
-        public int Contributors { get; set; }
-
-        public int Responses { get; set; }
-
-        public int Links { get; set; }
 
         public bool Verified { get; set; }
 
@@ -82,20 +70,26 @@ namespace Ushahidi.View.Controls
                     e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
                 }
                 Rectangle rectangle = new Rectangle(Height + 5, 0, Width - Height - 5, rowHeight);
-                string titleAndLocale = String.Format("{0}{1}{2}", Title, String.IsNullOrEmpty(Locale) ? "" : " ", Locale);
-                e.Graphics.DrawString(titleAndLocale, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
+
+                rectangle.Offset(0, rowHeight);
+                e.Graphics.DrawString(Locale, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
                 string incidentDate = String.Format("Date: {0:dd.MM.yy}", Date);
                 e.Graphics.DrawString(incidentDate, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                string contributorsResponsesLinks = String.Format("{0} Contributors {1} Responses", Contributors, Responses);
-                e.Graphics.DrawString(contributorsResponsesLinks, Font, fontBrush, rectangle, Constants.LeftAligned);
-
-                rectangle.Offset(0, rowHeight);
                 string isVerified = Verified ? "VERIFIED" : "NOT VERIFIED";
                 e.Graphics.DrawString(isVerified, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
+            }
+            using (Pen pen = new Pen(Color.Black))
+            {
+                if (Index == 0)
+                {
+                    e.Graphics.DrawLine(pen, 0, 0, Width, 0);
+                }
+                e.Graphics.DrawLine(pen, 0, Height - 1, Width, Height - 1);
             }
         }
     }
