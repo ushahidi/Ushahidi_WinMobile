@@ -212,18 +212,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <Content Include="Resources\icon.png" />
-    <Content Include="Resources\ushahidi_add.png" />
-    <Content Include="Resources\ushahidi_btn.png" />
-    <Content Include="Resources\ushahidi_fire.png" />
-    <Content Include="Resources\ushahidi_globe.png" />
-    <Content Include="Resources\ushahidi_icon.ico" />
-    <Content Include="Resources\ushahidi_icon.png" />
-    <Content Include="Resources\ushahidi_main.gif" />
-    <Content Include="Resources\ushahidi_map.jpg" />
-    <Content Include="Resources\ushahidi_marker.png" />
-    <Content Include="Resources\ushahidi_plane.png" />
-    <Content Include="Resources\ushahidi_title.png" />
+    <EmbeddedResource Include="Resources\ushahidi_add.png" />
+    <EmbeddedResource Include="Resources\ushahidi_btn.png" />
+    <EmbeddedResource Include="Resources\ushahidi_fire.png" />
+    <EmbeddedResource Include="Resources\ushahidi_globe.png" />
+    <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
+    <EmbeddedResource Include="Resources\ushahidi_icon.png" />
+    <EmbeddedResource Include="Resources\ushahidi_main.gif" />
+    <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
+    <EmbeddedResource Include="Resources\ushahidi_marker.png" />
+    <EmbeddedResource Include="Resources\ushahidi_plane.png" />
+    <EmbeddedResource Include="Resources\ushahidi_title.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
