@@ -1,0 +1,243 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A407E731-7E9B-448E-9D26-933A078EE61D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ushahidi.View</RootNamespace>
+    <AssemblyName>Ushahidi.View.WM6PPC</AssemblyName>
+    <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <PlatformFamilyName>PocketPC</PlatformFamilyName>
+    <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
+    <OSVersion>5.2</OSVersion>
+    <DeployDirSuffix>Ushahidi.View.WM6PPC</DeployDirSuffix>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <NativePlatformName>Windows Mobile 6 Professional SDK</NativePlatformName>
+    <FormFactorID>
+    </FormFactorID>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <StartupObject>Ushahidi.View.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <FileAlignment>512</FileAlignment>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Windowsce.Forms" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AddIncidentViewController.cs" />
+    <Compile Include="Controllers\BaseViewController.cs" />
+    <Compile Include="Controllers\HomeViewController.cs" />
+    <Compile Include="Controllers\IncidentDetailsViewController.cs" />
+    <Compile Include="Controllers\IncidentListViewController.cs" />
+    <Compile Include="Controllers\IncidentMapViewController.cs" />
+    <Compile Include="Controllers\SettingsViewController.cs" />
+    <Compile Include="Controllers\SyncViewController.cs" />
+    <Compile Include="Controllers\WebsiteViewController.cs" />
+    <Compile Include="Controls\IncidentListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Keyboard.cs" />
+    <Compile Include="Models\AddIncidentModel.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\Incident.cs" />
+    <Compile Include="Models\IncidentDetailsModel.cs" />
+    <Compile Include="Models\IncidentListModel.cs" />
+    <Compile Include="Models\IncidentMapModel.cs" />
+    <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Models\SyncModel.cs" />
+    <Compile Include="Models\WebsiteModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddIncidentView_PPC.resx">
+      <DependentUpon>AddIncidentView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BaseView_PPC.resx">
+      <DependentUpon>BaseView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HomeView_PPC.resx">
+      <DependentUpon>HomeView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\IncidentDetailsView_PPC.resx">
+      <DependentUpon>IncidentDetailsView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\IncidentListView_PPC.resx">
+      <DependentUpon>IncidentListView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\IncidentMapView_PPC.resx">
+      <DependentUpon>IncidentMapView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SettingsView_PPC.resx">
+      <DependentUpon>SettingsView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SyncView_PPC.resx">
+      <DependentUpon>SyncView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WebsiteView_PPC.resx">
+      <DependentUpon>WebsiteView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\ResourcesManager.cs" />
+    <Compile Include="Views\AddIncidentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddIncidentView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddIncidentView_PPC.Designer.cs">
+      <DependentUpon>AddIncidentView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BaseView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BaseView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\BaseView_PPC.Designer.cs">
+      <DependentUpon>BaseView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HomeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HomeView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HomeView_PPC.Designer.cs">
+      <DependentUpon>HomeView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IncidentDetailsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentDetailsView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentDetailsView_PPC.Designer.cs">
+      <DependentUpon>IncidentDetailsView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IncidentListView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentListView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentListView_PPC.Designer.cs">
+      <DependentUpon>IncidentListView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IncidentMapView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentMapView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentMapView_PPC.Designer.cs">
+      <DependentUpon>IncidentMapView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SettingsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SettingsView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SettingsView_PPC.Designer.cs">
+      <DependentUpon>SettingsView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SyncView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SyncView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SyncView_PPC.Designer.cs">
+      <DependentUpon>SyncView_PPC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WebsiteView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\WebsiteView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\WebsiteView_PPC.Designer.cs">
+      <DependentUpon>WebsiteView_PPC.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ushahidi.Common\Ushahidi.Common.csproj">
+      <Project>{41B1C26D-FA1C-4A6D-8F14-3E84D5BBDD6A}</Project>
+      <Name>Ushahidi.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icon.ico" />
+    <Content Include="Resources\icon.png" />
+    <Content Include="Resources\ushahidi_add.png" />
+    <Content Include="Resources\ushahidi_btn.png" />
+    <Content Include="Resources\ushahidi_fire.png" />
+    <Content Include="Resources\ushahidi_globe.png" />
+    <Content Include="Resources\ushahidi_icon.ico" />
+    <Content Include="Resources\ushahidi_icon.png" />
+    <Content Include="Resources\ushahidi_main.gif" />
+    <Content Include="Resources\ushahidi_map.jpg" />
+    <Content Include="Resources\ushahidi_marker.png" />
+    <Content Include="Resources\ushahidi_plane.png" />
+    <Content Include="Resources\ushahidi_title.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}">
+        <HostingProcess disable="1" />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
