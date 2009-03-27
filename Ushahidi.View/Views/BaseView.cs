@@ -1,4 +1,5 @@
 ﻿using System;
+using Ushahidi.Model;
 using Ushahidi.View.Controllers;
 
 namespace Ushahidi.View.Views
@@ -62,6 +63,17 @@ namespace Ushahidi.View.Views
         private void OnExit(object sender, EventArgs e)
         {
             OnExit();
+        }
+
+        private void OnMenuPopup(object sender, EventArgs e)
+        {
+            menuItemAddIncident.Enabled =
+            menuItemIncidentList.Enabled =
+            menuItemIncidentMap.Enabled =
+                DataManager.HasCategories &&
+                DataManager.HasCountries &&
+                DataManager.HasLocales &&
+                DataManager.HasIncidents;
         }
     }
 }

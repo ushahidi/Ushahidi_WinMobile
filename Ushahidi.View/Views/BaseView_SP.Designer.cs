@@ -36,12 +36,12 @@
             this.menuItemIncidentList = new System.Windows.Forms.MenuItem();
             this.menuItemIncidentMap = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
+            this.menuItemSync = new System.Windows.Forms.MenuItem();
+            this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemSettings = new System.Windows.Forms.MenuItem();
             this.menuItemWebsite = new System.Windows.Forms.MenuItem();
-            this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
-            this.menuItemExit = new System.Windows.Forms.MenuItem();
-            this.menuItemSync = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator3 = new System.Windows.Forms.MenuItem();
+            this.menuItemExit = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -66,6 +66,7 @@
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator3);
             this.menuItemMenu.MenuItems.Add(this.menuItemExit);
             this.menuItemMenu.Text = "Menu";
+            this.menuItemMenu.Popup += new System.EventHandler(this.OnMenuPopup);
             // 
             // menuItemAddIncident
             // 
@@ -86,6 +87,15 @@
             // 
             this.menuItemSeparator1.Text = "-";
             // 
+            // menuItemSync
+            // 
+            this.menuItemSync.Text = "Synchronize";
+            this.menuItemSync.Click += new System.EventHandler(this.OnSync);
+            // 
+            // menuItemSeparator2
+            // 
+            this.menuItemSeparator2.Text = "-";
+            // 
             // menuItemSettings
             // 
             this.menuItemSettings.Text = "Settings";
@@ -96,23 +106,14 @@
             this.menuItemWebsite.Text = "Website";
             this.menuItemWebsite.Click += new System.EventHandler(this.OnWebsite);
             // 
-            // menuItemSeparator2
+            // menuItemSeparator3
             // 
-            this.menuItemSeparator2.Text = "-";
+            this.menuItemSeparator3.Text = "-";
             // 
             // menuItemExit
             // 
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.OnExit);
-            // 
-            // menuItemSync
-            // 
-            this.menuItemSync.Text = "Synchronize";
-            this.menuItemSync.Click += new System.EventHandler(this.OnSync);
-            // 
-            // menuItemSeparator3
-            // 
-            this.menuItemSeparator3.Text = "-";
             // 
             // BaseView
             // 

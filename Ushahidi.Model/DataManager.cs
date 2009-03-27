@@ -109,6 +109,14 @@ namespace Ushahidi.Model
         #region Categories
 
         /// <summary>
+        /// Has categories cache?
+        /// </summary>
+        public static bool HasCategories
+        {
+            get { return File.Exists(CategoriesFilepath); }
+        }
+
+        /// <summary>
         /// Category Filepath
         /// </summary>
         private static string CategoriesFilepath
@@ -159,6 +167,14 @@ namespace Ushahidi.Model
         #region Countries
 
         /// <summary>
+        /// Has countries cache?
+        /// </summary>
+        public static bool HasCountries
+        {
+            get { return File.Exists(CountriesFilepath); }
+        }
+
+        /// <summary>
         /// Countries Filepath
         /// </summary>
         private static string CountriesFilepath
@@ -198,7 +214,7 @@ namespace Ushahidi.Model
             {
                 if (_Countries == null)
                 {
-                    _Countries = Countries.Load(CountriesFilepath);
+                     _Countries = Countries.Load(CountriesFilepath);
                 }
                 return _Countries;
             }
@@ -207,6 +223,14 @@ namespace Ushahidi.Model
             #endregion
 
         #region Locales
+
+        /// <summary>
+        /// Has locales cache?
+        /// </summary>
+        public static bool HasLocales
+        {
+            get { return File.Exists(LocalesFilepath); }
+        }
 
         /// <summary>
         /// Locales Filepath
@@ -259,6 +283,14 @@ namespace Ushahidi.Model
         #region Incidents
 
         /// <summary>
+        /// Has incidents cache?
+        /// </summary>
+        public static bool HasIncidents
+        {
+            get { return File.Exists(IncidentsFilepath); }
+        }
+
+        /// <summary>
         /// Incidents Filepath
         /// </summary>
         private static string IncidentsFilepath
@@ -300,17 +332,20 @@ namespace Ushahidi.Model
                 {
                     //_Incidents = Incidents.Load(IncidentsFilepath);
                     //TODO remove this once Incidents XML no longer contains <incident0>, <incident1>, ... elements
-                    using (XmlReader reader = XmlReader.Create(IncidentsFilepath))
+                    if (File.Exists(IncidentsFilepath))
                     {
-                        if (reader.ReadToDescendant("payload"))
+                        using (XmlReader reader = XmlReader.Create(IncidentsFilepath))
                         {
-                            string xml = reader.ReadOuterXml();
-                            for (int i = 0; i < 10; i++)
+                            if (reader.ReadToDescendant("payload"))
                             {
-                                xml = xml.Replace(string.Format("<incident{0}>", i), "");
-                                xml = xml.Replace(string.Format("</incident{0}>", i), "");
+                                string xml = reader.ReadOuterXml();
+                                for (int i = 0; i < 10; i++)
+                                {
+                                    xml = xml.Replace(string.Format("<incident{0}>", i), "");
+                                    xml = xml.Replace(string.Format("</incident{0}>", i), "");
+                                }
+                                _Incidents = Serializer.Deserialize<Incidents>(xml);
                             }
-                            _Incidents = Serializer.Deserialize<Incidents>(xml);
                         }
                     }
                 }

@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System.IO;
+using System.Xml;
 
 namespace Ushahidi.Model.Models
 {
@@ -15,11 +16,14 @@ namespace Ushahidi.Model.Models
         /// <returns>TModels</returns>
         protected static TModels Load<TModels>(string filePath) where TModels : Models
         {
-            using (XmlReader reader = XmlReader.Create(filePath))
+            if (File.Exists(filePath))
             {
-                if (reader.ReadToDescendant("payload"))
+                using (XmlReader reader = XmlReader.Create(filePath))
                 {
-                    return Serializer.Deserialize<TModels>(reader.ReadOuterXml());
+                    if (reader.ReadToDescendant("payload"))
+                    {
+                        return Serializer.Deserialize<TModels>(reader.ReadOuterXml());
+                    }
                 }
             }
             return default(TModels);
