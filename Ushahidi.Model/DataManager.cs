@@ -315,8 +315,25 @@ namespace Ushahidi.Model
             Log.Info("DataManager.DownloadIncidents");
             if (DownloadAndSaveXml(IncidentsURL, IncidentsFilepath))
             {
-                _Incidents = Incidents.Load(IncidentsFilepath);
-                return true;
+                if (File.Exists(IncidentsFilepath))
+                {
+                    //_Incidents = Incidents.Load(IncidentsFilepath);
+                    //TODO remove this once Incidents XML no longer contains <incident0>, <incident1>, ... elements
+                    using (XmlReader reader = XmlReader.Create(IncidentsFilepath))
+                    {
+                        if (reader.ReadToDescendant("payload"))
+                        {
+                            string xml = reader.ReadOuterXml();
+                            for (int i = 0; i < 10; i++)
+                            {
+                                xml = xml.Replace(string.Format("<incident{0}>", i), "");
+                                xml = xml.Replace(string.Format("</incident{0}>", i), "");
+                            }
+                            _Incidents = Serializer.Deserialize<Incidents>(xml);
+                        }
+                    }
+                    return true;
+                }
             }
             return false;
         }

@@ -111,6 +111,7 @@ namespace Ushahidi.View.Views
                 {
                     progressBox.Value = 0;
                     progressBox.Text = "";
+                    LastSync = DateTime.Now;
                 }
             }
         }
