@@ -6,7 +6,7 @@ namespace Ushahidi.View.Views
     /// <summary>
     /// Base view
     /// </summary>
-    public partial class BaseView
+    partial class BaseView
     {
         /// <summary>
         /// On add incident

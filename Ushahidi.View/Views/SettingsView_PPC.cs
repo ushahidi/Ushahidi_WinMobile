@@ -1,4 +1,4 @@
-﻿using Ushahidi.View.Controls;
+﻿using Ushahidi.Common.Controls;
 
 namespace Ushahidi.View.Views
 {
@@ -16,6 +16,11 @@ namespace Ushahidi.View.Views
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
             panelContent.Height = Height - args.KeyboardBounds.Height;
+        }
+
+        private void OnKeyboardAutoShow(object sender, System.EventArgs e)
+        {
+            Keyboard.AutoShowHideKeyboard = checkBoxKeyboard.Checked;
         }
     }
 }

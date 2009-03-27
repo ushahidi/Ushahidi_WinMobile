@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Drawing;
+using Ushahidi.Common.Extensions;
+using Ushahidi.Model;
+using Ushahidi.Model.Models;
 
 namespace Ushahidi.View.Models
 {
@@ -14,6 +17,11 @@ namespace Ushahidi.View.Models
         public string Title { get; set; }
 
         /// <summary>
+        /// Incident description
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Incident date
         /// </summary>
         public DateTime Date { get; set; }
@@ -21,17 +29,12 @@ namespace Ushahidi.View.Models
         /// <summary>
         /// Incident type
         /// </summary>
-        public string Type { get; set; }
+        public Category Category { get; set; }
 
         /// <summary>
         /// Incident type
         /// </summary>
-        public string Locale { get; set; }
-
-        /// <summary>
-        /// Incident description
-        /// </summary>
-        public string Description { get; set; }
+        public Locale Locale { get; set; }
 
         /// <summary>
         /// Incident images
@@ -39,13 +42,42 @@ namespace Ushahidi.View.Models
         public Image[] Images { get; set; }
 
         /// <summary>
-        /// Incident types
+        /// Categories
         /// </summary>
-        public string[] Types = { "Property Loss", "Fires", "Deaths", "Riots", "Other" };
+        public Categories Categories
+        {
+            get { return DataManager.Categories; }
+        }
 
         /// <summary>
-        /// Incident types
+        /// Locales
         /// </summary>
-        public string[] Locales = { "Uhuru, Kenya", "Nairobi, Kenya", "Other" };
+        public Locales Locales
+        {
+            get { return DataManager.Locales; }
+        }
+
+        /// <summary>
+        /// Save model
+        /// </summary>
+        /// <returns></returns>
+        public override bool Save()
+        {
+            if (Title.HasText() && Description.HasText() && Locale != null && Category != null && Date != DateTime.MinValue)
+            {
+                Incident incident = new Incident
+                {
+                    ID = (-1),
+                    Title = Title,
+                    Description = Description,
+                    CategoryTitle = Category.Title,
+                    CategoryID = Category.ID,
+                    LocationName = Locale.Name,
+                    LocationID = Locale.ID
+                };
+                return DataManager.AddIncident(incident);
+            }
+            return false;
+        }
     }
 }

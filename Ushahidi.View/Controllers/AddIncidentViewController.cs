@@ -1,4 +1,5 @@
-﻿using Ushahidi.View.Models;
+﻿using System;
+using Ushahidi.View.Models;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -9,18 +10,34 @@ namespace Ushahidi.View.Controllers
     public class AddIncidentViewController : BaseViewController<AddIncidentView, AddIncidentModel>
     {
         /// <summary>
+        /// Save error caption
+        /// </summary>
+        public override string SaveErrorCaption
+        {
+            get { return "Missing Fields"; }
+        }
+
+        /// <summary>
+        /// Save error message
+        /// </summary>
+        public override string SaveErrorMessage
+        {
+            get { return "Please verify all required fields are entered"; }
+        }
+
+        /// <summary>
         /// Load AddIncidentView with AddIncidentModel data
         /// </summary>
         public override void Load()
         {
-            View.Title = Model.Title;
-            View.Type = Model.Type;
-            View.Locale = Model.Locale;
-            View.Date = Model.Date;
-            View.Description = Model.Description;
-            View.Images = Model.Images;
-            View.Types = Model.Types;
-            View.Locales = Model.Locales;
+            View.Categories = Model.Categories.Items;
+            View.Locales = Model.Locales.Items;
+            View.Title = string.Empty;
+            View.Category = null;
+            View.Locale = null;
+            View.Date = DateTime.Now;
+            View.Description = string.Empty;
+            View.Images = null;
         }
 
         /// <summary>
@@ -29,13 +46,16 @@ namespace Ushahidi.View.Controllers
         /// <returns>true, if successful</returns>
         public override bool Save()
         {
-            Model.Title = View.Title;
-            Model.Type = View.Type;
-            Model.Locale = View.Locale;
-            Model.Date = View.Date;
-            Model.Description = View.Description;
-            Model.Images = View.Images;
-            //TODO save values to database
+            if (View.ShouldSave)
+            {
+                Model.Title = View.Title;
+                Model.Category = View.Category;
+                Model.Locale = View.Locale;
+                Model.Date = View.Date;
+                Model.Description = View.Description;
+                Model.Images = View.Images;
+                return Model.Save();
+            }
             return true;
         }
     }

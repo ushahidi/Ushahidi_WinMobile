@@ -1,61 +1,44 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using Ushahidi.Model.Models;
 using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
 {
-    public partial class IncidentListView
+    /// <summary>
+    /// Incidents List View
+    /// </summary>
+    partial class IncidentListView
     {
         /// <summary>
-        /// Filter data source
+        /// Categories
         /// </summary>
-        public object Types
+        public object Categories
         {
-            get { return comboBoxTypes.DataSource; }
-            set { comboBoxTypes.DataSource = value; }
+            get { return comboBoxCategories.DataSource; }
+            set { comboBoxCategories.DataSource = value; }
         }
 
         /// <summary>
-        /// Clear incidents
+        /// Incidents
         /// </summary>
-        public void ClearIncidents()
+        public Incidents Incidents
         {
-            listBoxIncidents.ClearItems();
-        }
-
-        /// <summary>
-        /// Add incident
-        /// </summary>
-        /// <param name="title">incident title</param>
-        /// <param name="locale">incident locale</param>
-        /// <param name="date">incident date</param>
-        /// <param name="contributors">incident contributors</param>
-        /// <param name="responses">incident responses</param>
-        /// <param name="links">incident links</param>
-        /// <param name="verified">is incident verified?</param>
-        public void AddIncident(string title, string locale, DateTime date, int contributors, int responses, int links, bool verified, Image image)
-        {
-            IncidentListItem incidentListItem = new IncidentListItem(title, locale, date, verified)
+            get { return _Incidents; }
+            set
             {
-                Image = image
-            };
-            listBoxIncidents.AddItem(incidentListItem, false);
-        }
+                _Incidents = value;
+                if (value != null)
+                {
+                    listBoxIncidents.ClearItems();
+                    foreach(Incident incident in value.Items)
+                    {
+                        if (string.IsNullOrEmpty(incident.Title) == false)
+                        {
+                            listBoxIncidents.AddItem(new IncidentListItem(incident));
+                        }
+                    }
+                }
+            }
+        }private Incidents _Incidents;
 
-        protected void OnFilterChanged(object sender, EventArgs e)
-        {
-            //MessageBox.Show(listBoxIncidents.SelectedIndex.ToString(), "OnFilterChanged");
-        }
-
-        private void OnIncidentsIndexChanged(Control control)
-        {
-            //MessageBox.Show("OnIncidentsIndexChanged");
-        }
-
-        private void OnIncidentsItemSelected(Control control)
-        {
-            //MessageBox.Show("OnIncidentsItemSelected");
-        }
     }
 }

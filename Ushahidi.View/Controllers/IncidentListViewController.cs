@@ -8,15 +8,8 @@ namespace Ushahidi.View.Controllers
     {
         public override void Load()
         {
-            View.Types = Model.Types;  
-            View.ClearIncidents();
-            foreach(Incident incident in Model.Incidents)
-            {
-                View.AddIncident(incident.Title, incident.Locale, 
-                                 incident.Date, incident.ContributorCount, 
-                                 incident.ResponseCount, incident.LinkCount, 
-                                 incident.Verified, incident.Image);
-            }
+            View.Categories = Model.Categories.Items;
+            View.Incidents = Model.Incidents;
         }
 
         public override void OnModelChanged(object sender, PropertyChangedEventArgs e)

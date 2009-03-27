@@ -5,13 +5,42 @@ using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Common.Controls
 {
+    /// <summary>
+    /// Label + ComboBox
+    /// </summary>
     public partial class LabelComboBox : UserControl
     {
+        /// <summary>
+        /// Label + ComboBox
+        /// </summary>
         public LabelComboBox()
         {
             InitializeComponent();
-            BackColorFocuser.Register(comboBox);
         }
+
+        /// <summary>
+        /// Is input valid?
+        /// </summary>
+        public bool IsValid
+        {
+            get { return !Enabled || (IsRequired && comboBox.SelectedIndex != -1); }
+        }
+
+        /// <summary>
+        /// Is this field required?
+        /// </summary>
+        public bool IsRequired
+        {
+            get { return _IsRequired; }
+            set
+            {
+                _IsRequired = value;
+                if (!comboBox.Focused && Enabled)
+                {
+                    comboBox.BackColor = value ? Color.PeachPuff : Color.WhiteSmoke;
+                }
+            }
+        }private bool _IsRequired = false;
 
         /// <summary>
         /// Set focus
@@ -31,7 +60,7 @@ namespace Ushahidi.Common.Controls
             set
             {
                 comboBox.Enabled = value;
-                comboBox.BackColor = value ? Color.White : Color.WhiteSmoke;
+                comboBox.BackColor = value ? Color.WhiteSmoke : Color.LightGray;
             }
         }
 
@@ -63,12 +92,30 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
-        /// Combo box data source
+        /// ComboBox data source
         /// </summary>
         public object DataSource
         {
             get { return comboBox.DataSource; }
             set { comboBox.DataSource = value;}
+        }
+
+        /// <summary>
+        /// ComboBox display member
+        /// </summary>
+        public string DisplayMember
+        {
+            get { return comboBox.DisplayMember; }
+            set { comboBox.DisplayMember = value; }
+        }
+
+        /// <summary>
+        /// ComboBox value member
+        /// </summary>
+        public string ValueMember
+        {
+            get { return comboBox.ValueMember; }
+            set { comboBox.ValueMember = value; }
         }
 
         /// <summary>
@@ -90,6 +137,25 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
+        /// Selected Index
+        /// </summary>
+        public int SelectedIndex
+        {
+            get { return comboBox.SelectedIndex; }
+            set { comboBox.SelectedIndex = value; }
+        }
+
+        /// <summary>
+        /// Selected value
+        /// </summary>
+        /// <typeparam name="TValue">value type</typeparam>
+        /// <returns>Value</returns>
+        public TValue SelectedValue<TValue>()
+        {
+            return comboBox.SelectedItem != null ? (TValue) comboBox.SelectedItem : default(TValue);
+        }
+
+        /// <summary>
         /// Selected text
         /// </summary>
         public string SelectedText
@@ -105,7 +171,33 @@ namespace Ushahidi.Common.Controls
                 {
                     comboBox.SelectedText = value;    
                 }
+                if (!comboBox.Focused)
+                {
+                    comboBox.BackColor = (IsRequired && comboBox.SelectedIndex == -1)
+                                            ? Color.PeachPuff : Color.WhiteSmoke;    
+                }
             }
+        }
+        
+        /// <summary>
+        /// On selected index changed
+        /// </summary>
+        private void OnIndexChanged(object sender, EventArgs e)
+        {
+            if (!comboBox.Focused && Enabled)
+            {
+                comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.PeachPuff : Color.WhiteSmoke;
+            }
+        }
+
+        private void OnGotFocus(object sender, EventArgs e)
+        {
+            comboBox.BackColor = Color.LightYellow;
+        }
+
+        private void OnLostFocus(object sender, EventArgs e)
+        {
+            comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.PeachPuff : Color.WhiteSmoke;
         }
     }
 }

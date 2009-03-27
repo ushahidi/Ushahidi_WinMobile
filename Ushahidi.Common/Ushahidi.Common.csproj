@@ -61,7 +61,13 @@
   <ItemGroup>
     <Compile Include="Controls\Constants.cs" />
     <Compile Include="Controls\Dialog.cs" />
-    <Compile Include="Controls\BackColorFocuser.cs" />
+    <Compile Include="Controls\Keyboard.cs" />
+    <Compile Include="Controls\LabelCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LabelCheckBox.Designer.cs">
+      <DependentUpon>LabelCheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LabelComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -92,12 +98,19 @@
     <Compile Include="Controls\CenteredPictureBox.Designer.cs">
       <DependentUpon>CenteredPictureBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProgressBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProgressBox.Designer.cs">
+      <DependentUpon>ProgressBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ScrollListBoxItem.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Extensions\FontExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Logging\DebugLog.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\Log.cs" />
@@ -128,6 +141,9 @@
     <EmbeddedResource Include="Controls\CenteredPictureBox.resx">
       <DependentUpon>CenteredPictureBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LabelCheckBox.resx">
+      <DependentUpon>LabelCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelComboBox.resx">
       <DependentUpon>LabelComboBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelTextBox.resx">
       <DependentUpon>LabelTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProgressBox.resx">
+      <DependentUpon>ProgressBox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />

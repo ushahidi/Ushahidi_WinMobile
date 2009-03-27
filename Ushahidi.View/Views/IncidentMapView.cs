@@ -1,14 +1,17 @@
 ﻿namespace Ushahidi.View.Views
 {
-    public partial class IncidentMapView
+    /// <summary>
+    /// Incident Map View
+    /// </summary>
+    partial class IncidentMapView
     {
         /// <summary>
-        /// Types
+        /// Categories
         /// </summary>
-        public object Types
+        public object Categories
         {
-            get { return comboBoxTypes.DataSource; }
-            set { comboBoxTypes.DataSource = value; }
+            get { return comboBoxCategories.DataSource; }
+            set { comboBoxCategories.DataSource = value; }
         }
     }
 }

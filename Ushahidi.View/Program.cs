@@ -1,4 +1,5 @@
 ﻿using System;
+using Ushahidi.Common.Logging;
 using Ushahidi.Common.MVC;
 using Ushahidi.View.Controllers;
 
@@ -12,11 +13,13 @@ namespace Ushahidi.View
         [MTAThread]
         static void Main()
         {
+            Log.Info("Program.Main", "Starting...");
             using (INavigationController navigationController = new NavigationController())
             {
                 navigationController.Push(typeof(HomeViewController));
                 navigationController.Run();
             }
+            Log.Info("Program.Main", "...Exiting");
         }
     }
 }

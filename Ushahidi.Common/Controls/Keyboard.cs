@@ -3,8 +3,11 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.WindowsCE.Forms;
 
-namespace Ushahidi.View.Controls
+namespace Ushahidi.Common.Controls
 {
+    /// <summary>
+    /// InputPanel Keyboard
+    /// </summary>
     public static class Keyboard
     {
         private static readonly InputPanel InputPanel = new InputPanel();
@@ -39,7 +42,7 @@ namespace Ushahidi.View.Controls
         /// <param name="control">The control to register</param>
         public static void Register(Control control)
         {
-            if (control != null)
+            if (control != null && Runtime.IsPocketPC)
             {
                 control.GotFocus += control_GotFocus;
                 control.LostFocus += control_LostFocus;

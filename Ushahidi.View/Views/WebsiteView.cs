@@ -5,7 +5,7 @@ namespace Ushahidi.View.Views
     /// <summary>
     /// Website view
     /// </summary>
-    public partial class WebsiteView
+    partial class WebsiteView
     {
         /// <summary>
         /// Website URL

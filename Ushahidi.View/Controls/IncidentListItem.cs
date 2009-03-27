@@ -1,8 +1,8 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Extensions;
+using Ushahidi.Model.Models;
 
 namespace Ushahidi.View.Controls
 {
@@ -11,13 +11,9 @@ namespace Ushahidi.View.Controls
     /// </summary>
     public class IncidentListItem : ScrollListBoxItem
     {
-        public IncidentListItem() : this (null, null, DateTime.MinValue, false) { }
-        public IncidentListItem(string title, string locale, DateTime date, bool verified)
+        public IncidentListItem(Incident incident)
         {
-            Title = title;
-            Locale = locale;
-            Date = date;
-            Verified = verified;
+            Incident = incident;
             CalculateHeight(Font);
             BoldFont = Font.ToBold();
         }
@@ -33,6 +29,8 @@ namespace Ushahidi.View.Controls
             }
         }
 
+        protected Incident Incident { get; private set; }
+
         public Font BoldFont { get; set; }
 
         private void CalculateHeight(Font font)
@@ -44,14 +42,6 @@ namespace Ushahidi.View.Controls
         }
 
         public readonly int RowCount = 4;
-
-        public string Title { get; set; }
-
-        public string Locale { get; set; }
-
-        public DateTime Date { get; set; }
-
-        public bool Verified { get; set; }
 
         public Image Image { get; set; }
 
@@ -70,18 +60,16 @@ namespace Ushahidi.View.Controls
                     e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
                 }
                 Rectangle rectangle = new Rectangle(Height + 5, 0, Width - Height - 5, rowHeight);
-                e.Graphics.DrawString(Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Locale, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.Description, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                string incidentDate = String.Format("Date: {0:dd.MM.yy}", Date);
-                e.Graphics.DrawString(incidentDate, Font, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.LocationName, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                string isVerified = Verified ? "VERIFIED" : "NOT VERIFIED";
-                e.Graphics.DrawString(isVerified, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.CategoryTitle, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
             }
             using (Pen pen = new Pen(Color.Black))
             {

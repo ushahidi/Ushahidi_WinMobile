@@ -26,6 +26,16 @@ namespace Ushahidi.Common.MVC
         string Name { get; }
 
         /// <summary>
+        /// Save error caption
+        /// </summary>
+        string SaveErrorCaption { get; }
+
+        /// <summary>
+        /// Save error message
+        /// </summary>
+        string SaveErrorMessage { get; }
+
+        /// <summary>
         /// Load view with model data
         /// </summary>
         void Load();

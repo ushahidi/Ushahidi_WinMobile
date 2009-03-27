@@ -1,8 +1,6 @@
-﻿using Ushahidi.Common.MVC;
-
-namespace Ushahidi.View.Models
+﻿namespace Ushahidi.View.Models
 {
-    public abstract class BaseModel : Model
+    public abstract class BaseModel : Common.MVC.Model
     {
         
     }

@@ -34,7 +34,7 @@
             // 
             // label
             // 
-            this.label.Location = new System.Drawing.Point(5, 3);
+            this.label.Location = new System.Drawing.Point(4, 4);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(75, 20);
             // 
@@ -47,6 +47,7 @@
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(151, 23);
             this.dateTimePicker.TabIndex = 2;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.OnDateChanged);
             // 
             // LabelDateBox
             // 

@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Microsoft.WindowsCE.Forms;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common
 {
@@ -24,6 +25,14 @@ namespace Ushahidi.Common
                 IsPocketPC = false;
             }
             HasPhoneCapability = File.Exists(@"\Windows\Phone.dll");
+
+            Log.Info("Runtime", "OSVersion:{0}", OSVersion);
+            Log.Info("Runtime", "AppVersion:{0}", AppVersion);
+            Log.Info("Runtime", "ClrVersion:{0}", ClrVersion);
+            Log.Info("Runtime", "AppDirectory:{0}", AppDirectory);
+            Log.Info("Runtime", "IsSmartPhone:{0}", IsSmartPhone);
+            Log.Info("Runtime", "IsPocketPC:{0}", IsPocketPC);
+            Log.Info("Runtime", "HasPhoneCapability:{0}", HasPhoneCapability);
         }
 
         /// <summary>

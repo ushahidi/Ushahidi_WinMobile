@@ -7,7 +7,7 @@ namespace Ushahidi.View.Views
     /// <summary>
     /// Incident details view
     /// </summary>
-    public partial class IncidentDetailsView
+    partial class IncidentDetailsView
     {
         private const string VERIFIED = "VERIFIED";
         private const string NOT_VERIFIED = "NOT VERIFIED";

@@ -1,10 +1,25 @@
-﻿namespace Ushahidi.View.Models
+﻿using System.Collections.Generic;
+using Ushahidi.Model;
+using Ushahidi.Model.Models;
+
+namespace Ushahidi.View.Models
 {
     public class IncidentMapModel : BaseModel
     {
         /// <summary>
-        /// Incident types
+        /// Categories
         /// </summary>
-        public string[] Types = { "All Incidents", "Property Loss", "Fires", "Deaths", "Riots" };
+        public Categories Categories
+        {
+            get { return DataManager.Categories; }
+        }
+
+        /// <summary>
+        /// Incidents
+        /// </summary>
+        public Incidents Incidents
+        {
+            get { return DataManager.Incidents; }
+        }
     }
 }

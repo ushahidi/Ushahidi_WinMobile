@@ -71,11 +71,9 @@
     <Compile Include="Controls\IncidentListItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\Keyboard.cs" />
     <Compile Include="Models\AddIncidentModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\Incident.cs" />
     <Compile Include="Models\IncidentDetailsModel.cs" />
     <Compile Include="Models\IncidentListModel.cs" />
     <Compile Include="Models\IncidentMapModel.cs" />
@@ -208,6 +206,10 @@
     <ProjectReference Include="..\Ushahidi.Common\Ushahidi.Common.csproj">
       <Project>{41B1C26D-FA1C-4A6D-8F14-3E84D5BBDD6A}</Project>
       <Name>Ushahidi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ushahidi.Model\Ushahidi.Model.csproj">
+      <Project>{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}</Project>
+      <Name>Ushahidi.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

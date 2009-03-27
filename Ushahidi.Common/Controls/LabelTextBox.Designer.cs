@@ -39,14 +39,18 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(85, 3);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(152, 21);
+            this.textBox.Size = new System.Drawing.Size(152, 22);
             this.textBox.TabIndex = 3;
+            this.textBox.TextChanged += new System.EventHandler(this.OnTextChanged);
+            this.textBox.GotFocus += new System.EventHandler(this.OnGotFocus);
+            this.textBox.LostFocus += new System.EventHandler(this.OnLostFocus);
             // 
             // label
             // 
-            this.label.Location = new System.Drawing.Point(4, 3);
+            this.label.Location = new System.Drawing.Point(4, 4);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(75, 20);
+            this.label.Text = "Label";
             // 
             // LabelTextBox
             // 

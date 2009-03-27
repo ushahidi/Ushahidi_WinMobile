@@ -34,7 +34,7 @@
             // 
             // label
             // 
-            this.label.Location = new System.Drawing.Point(4, 3);
+            this.label.Location = new System.Drawing.Point(4, 4);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(75, 20);
             // 

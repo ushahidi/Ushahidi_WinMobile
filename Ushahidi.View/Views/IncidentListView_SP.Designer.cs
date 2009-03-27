@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentListView));
-            this.comboBoxTypes = new System.Windows.Forms.ComboBox();
             this.listBoxIncidents = new Ushahidi.Common.Controls.ScrollListBox();
+            this.comboBoxCategories = new Ushahidi.Common.Controls.LabelComboBox();
             this.SuspendLayout();
             // 
             // menuItemIncidentList
@@ -39,36 +39,45 @@
             // 
             // menuItemAction
             // 
+            this.menuItemAction.Enabled = false;
             this.menuItemAction.Text = "Select";
-            // 
-            // comboBoxFilter
-            // 
-            this.comboBoxTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxTypes.Location = new System.Drawing.Point(3, 3);
-            this.comboBoxTypes.Name = "comboBoxFilter";
-            this.comboBoxTypes.Size = new System.Drawing.Size(170, 22);
-            this.comboBoxTypes.TabIndex = 0;
             // 
             // listBoxIncidents
             // 
             this.listBoxIncidents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxIncidents.Location = new System.Drawing.Point(0, 26);
+            this.listBoxIncidents.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxIncidents.BackColorEven = System.Drawing.Color.WhiteSmoke;
+            this.listBoxIncidents.BackColorOdd = System.Drawing.Color.Gainsboro;
+            this.listBoxIncidents.BackSelectedColor = System.Drawing.Color.Black;
+            this.listBoxIncidents.Location = new System.Drawing.Point(0, 28);
             this.listBoxIncidents.Name = "listBoxIncidents";
-            this.listBoxIncidents.Size = new System.Drawing.Size(176, 154);
+            this.listBoxIncidents.Size = new System.Drawing.Size(176, 152);
             this.listBoxIncidents.TabIndex = 1;
-            this.listBoxIncidents.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentsItemSelected);
-            this.listBoxIncidents.IndexChanged += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentsIndexChanged);
+            // 
+            // comboBoxCategories
+            // 
+            this.comboBoxCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxCategories.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBoxCategories.Bold = true;
+            this.comboBoxCategories.DisplayMember = "Title";
+            this.comboBoxCategories.IsRequired = true;
+            this.comboBoxCategories.Label = "Category";
+            this.comboBoxCategories.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxCategories.Name = "comboBoxCategories";
+            this.comboBoxCategories.Size = new System.Drawing.Size(176, 28);
+            this.comboBoxCategories.TabIndex = 32;
+            this.comboBoxCategories.ValueMember = "ID";
             // 
             // IncidentListView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 180);
+            this.Controls.Add(this.comboBoxCategories);
             this.Controls.Add(this.listBoxIncidents);
-            this.Controls.Add(this.comboBoxTypes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IncidentListView";
             this.Text = "Incident List";
@@ -78,7 +87,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxTypes;
         private Ushahidi.Common.Controls.ScrollListBox listBoxIncidents;
+        private Ushahidi.Common.Controls.LabelComboBox comboBoxCategories;
     }
 }

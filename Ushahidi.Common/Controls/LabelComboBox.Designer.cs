@@ -41,6 +41,9 @@
             this.comboBox.Name = "comboBox";
             this.comboBox.Size = new System.Drawing.Size(151, 22);
             this.comboBox.TabIndex = 17;
+            this.comboBox.LostFocus += new System.EventHandler(this.OnLostFocus);
+            this.comboBox.SelectedIndexChanged += new System.EventHandler(this.OnIndexChanged);
+            this.comboBox.GotFocus += new System.EventHandler(this.OnGotFocus);
             // 
             // label
             // 

@@ -29,22 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentMapView));
-            this.comboBoxTypes = new System.Windows.Forms.ComboBox();
             this.pictureBoxMap = new System.Windows.Forms.PictureBox();
+            this.comboBoxCategories = new Ushahidi.Common.Controls.LabelComboBox();
             this.SuspendLayout();
             // 
             // menuItemIncidentMap
             // 
             this.menuItemIncidentMap.Enabled = false;
-            // 
-            // comboBoxFilter
-            // 
-            this.comboBoxTypes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxTypes.Location = new System.Drawing.Point(3, 3);
-            this.comboBoxTypes.Name = "comboBoxFilter";
-            this.comboBoxTypes.Size = new System.Drawing.Size(170, 22);
-            this.comboBoxTypes.TabIndex = 1;
             // 
             // pictureBoxMap
             // 
@@ -52,17 +43,32 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxMap.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMap.Image")));
-            this.pictureBoxMap.Location = new System.Drawing.Point(0, 30);
+            this.pictureBoxMap.Location = new System.Drawing.Point(0, 28);
             this.pictureBoxMap.Name = "pictureBoxMap";
-            this.pictureBoxMap.Size = new System.Drawing.Size(176, 150);
+            this.pictureBoxMap.Size = new System.Drawing.Size(176, 152);
+            // 
+            // comboBoxCategories
+            // 
+            this.comboBoxCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxCategories.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBoxCategories.Bold = true;
+            this.comboBoxCategories.DisplayMember = "Title";
+            this.comboBoxCategories.IsRequired = true;
+            this.comboBoxCategories.Label = "Category";
+            this.comboBoxCategories.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxCategories.Name = "comboBoxCategories";
+            this.comboBoxCategories.Size = new System.Drawing.Size(176, 28);
+            this.comboBoxCategories.TabIndex = 33;
+            this.comboBoxCategories.ValueMember = "ID";
             // 
             // IncidentMapView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 180);
+            this.Controls.Add(this.comboBoxCategories);
             this.Controls.Add(this.pictureBoxMap);
-            this.Controls.Add(this.comboBoxTypes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IncidentMapView";
             this.Text = "Incident Map";
@@ -72,7 +78,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBoxTypes;
         private System.Windows.Forms.PictureBox pictureBoxMap;
+        private Ushahidi.Common.Controls.LabelComboBox comboBoxCategories;
     }
 }

@@ -1,10 +1,51 @@
-﻿namespace Ushahidi.View.Models
+﻿using Ushahidi.Common.Extensions;
+using Ushahidi.Common.Logging;
+using Ushahidi.Model;
+
+namespace Ushahidi.View.Models
 {
+    /// <summary>
+    /// Settings Model
+    /// </summary>
     public class SettingsModel : BaseModel
     {
         /// <summary>
-        /// Default locale
+        /// Server Address
         /// </summary>
-        public string DefaultLocale { get; set; }
+        public string ServerAddress
+        {
+            get { return DataManager.ServerAddress; }
+            set { _ServerAdress = value; }
+        }private string _ServerAdress;
+
+        /// <summary>
+        /// Default Locale
+        /// </summary>
+        public string DefaultLocale
+        {
+            get { return DataManager.DefaultLocale; }
+            set { _DefaultLocale = value; }
+        }private string _DefaultLocale;
+
+        /// <summary>
+        /// Show keyboard?
+        /// </summary>
+        public bool ShowKeyboard
+        {
+            get { return DataManager.ShowKeyboard; }
+            set { DataManager.ShowKeyboard = value; }
+        }
+
+        public override bool Save()
+        {
+            Log.Info("SettingsModel.Save()");
+            if (_ServerAdress.HasText())
+            {
+                DataManager.ServerAddress = _ServerAdress;
+                DataManager.DefaultLocale = _DefaultLocale;
+                return DataManager.Save();
+            }
+            return false;
+        }
     }
 }

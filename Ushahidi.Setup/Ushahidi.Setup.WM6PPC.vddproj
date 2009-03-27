@@ -45,6 +45,12 @@
         "Entry"
         {
         "MsmKey" = "8:_1E4614925B4BCC3652C6948256AAD1FD"
+        "OwnerKey" = "8:_30AEDAA89027408B8194B63620C57C30"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1E4614925B4BCC3652C6948256AAD1FD"
         "OwnerKey" = "8:_0282224C67CA43988EB4AC75B250C0C6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -58,6 +64,12 @@
         {
         "MsmKey" = "8:_288530EC063524F8EE5699919BC85BD2"
         "OwnerKey" = "8:_DD06C07FC811174A5203F4C680565F3A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_288530EC063524F8EE5699919BC85BD2"
+        "OwnerKey" = "8:_30AEDAA89027408B8194B63620C57C30"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -98,6 +110,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_30AEDAA89027408B8194B63620C57C30"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3C1A73AAB5C47244595913859AB24C16"
         "OwnerKey" = "8:_DD06C07FC811174A5203F4C680565F3A"
         "MsmSig" = "8:_UNDEFINED"
@@ -124,6 +142,12 @@
         {
         "MsmKey" = "8:_49A9FB2DD09FE7DB16FCACC360D8EB35"
         "OwnerKey" = "8:_1E4614925B4BCC3652C6948256AAD1FD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_49A9FB2DD09FE7DB16FCACC360D8EB35"
+        "OwnerKey" = "8:_30AEDAA89027408B8194B63620C57C30"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,6 +202,12 @@
         {
         "MsmKey" = "8:_6E75AB8AC10901BEA7E7030E6D32857D"
         "OwnerKey" = "8:_DD06C07FC811174A5203F4C680565F3A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6E75AB8AC10901BEA7E7030E6D32857D"
+        "OwnerKey" = "8:_30AEDAA89027408B8194B63620C57C30"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -255,6 +285,12 @@
         "Entry"
         {
         "MsmKey" = "8:_72841523151927B3059A5C94154D693F"
+        "OwnerKey" = "8:_30AEDAA89027408B8194B63620C57C30"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_72841523151927B3059A5C94154D693F"
         "OwnerKey" = "8:_0282224C67CA43988EB4AC75B250C0C6"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -286,6 +322,12 @@
         {
         "MsmKey" = "8:_FC0A1D675992D8C728BC1F3CD7D11460"
         "OwnerKey" = "8:_0F5EC94701BA429098D5735A6F8A2287"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FC0A1D675992D8C728BC1F3CD7D11460"
+        "OwnerKey" = "8:_30AEDAA89027408B8194B63620C57C30"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -735,6 +777,32 @@
             "OutputConfiguration" = "8:"
             "OutputGroupCanonicalName" = "8:Built"
             "OutputProjectGuid" = "8:{41B1C26D-FA1C-4A6D-8F14-3E84D5BBDD6A}"
+            "ShowKeyOutput" = "11:TRUE"
+                "ExcludeFilters"
+                {
+                }
+            }
+            "{605BE39E-5046-48BD-AEC0-63C3A46626D5}:_30AEDAA89027408B8194B63620C57C30"
+            {
+            "SourcePath" = "8:..\\Ushahidi.Model\\obj\\Debug\\Ushahidi.Model.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_1C039B1F0BFE48EBBA733F221EE5AC8A"
+            "Condition" = "8:"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "Register" = "3:0"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            "ProjectOutputGroupRegister" = "3:0"
+            "OutputConfiguration" = "8:"
+            "OutputGroupCanonicalName" = "8:Built"
+            "OutputProjectGuid" = "8:{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}"
             "ShowKeyOutput" = "11:TRUE"
                 "ExcludeFilters"
                 {

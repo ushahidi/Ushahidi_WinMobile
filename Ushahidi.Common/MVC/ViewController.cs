@@ -21,6 +21,22 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
+        /// Save error caption
+        /// </summary>
+        public virtual string SaveErrorCaption
+        {
+            get { return "Error"; }
+        }
+
+        /// <summary>
+        /// Save error message
+        /// </summary>
+        public virtual string SaveErrorMessage
+        {
+            get { return string.Format("There was a problem saving {0} information", Name); }
+        }
+
+        /// <summary>
         /// The view
         /// </summary>
         protected TView View

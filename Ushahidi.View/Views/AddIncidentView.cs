@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Drawing;
-using Ushahidi.Common.Extensions;
+using Ushahidi.Model.Models;
 
 namespace Ushahidi.View.Views
 {
     /// <summary>
     /// Add incident view
     /// </summary>
-    public partial class AddIncidentView
+    partial class AddIncidentView
     {
         /// <summary>
         /// Incident title
@@ -23,26 +23,44 @@ namespace Ushahidi.View.Views
         /// </summary>
         public DateTime Date
         {
-            get { return textBoxDate.Text.ToDateTime(); }
-            set { textBoxDate.Text = value.ToString(); }
+            get { return dateBox.Date; }
+            set { dateBox.Date = value; }
+        }
+
+        /// <summary>
+        /// Categories data source
+        /// </summary>
+        public object Categories
+        {
+            get { return comboBoxCategories.DataSource; }
+            set { comboBoxCategories.DataSource = value; }
         }
 
         /// <summary>
         /// Incident type
         /// </summary>
-        public string Type
+        public Category Category
         {
-            get { return comboBoxType.SelectedText; }
-            set { comboBoxType.SelectedText = value; }
+            get { return comboBoxCategories.SelectedValue<Category>(); }
+            set { comboBoxCategories.SelectedIndex = -1; }
+        }
+
+        /// <summary>
+        /// Locales data source
+        /// </summary>
+        public object Locales
+        {
+            get { return comboBoxLocales.DataSource; }
+            set { comboBoxLocales.DataSource = value; }
         }
 
         /// <summary>
         /// Incident type
         /// </summary>
-        public string Locale
+        public Locale Locale
         {
-            get { return comboBoxLocale.SelectedText; }
-            set { comboBoxLocale.SelectedText = value; }
+            get { return comboBoxLocales.SelectedValue<Locale>(); }
+            set { comboBoxLocales.SelectedIndex = -1; }
         }
 
         /// <summary>
@@ -64,36 +82,30 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
-        /// Type data source
+        /// Is the process cancelled?
         /// </summary>
-        public object Types
-        {
-            get { return comboBoxType.DataSource; }
-            set { comboBoxType.DataSource = value; }
-        }
+        public bool ShouldSave { get; private set; }
 
-        /// <summary>
-        /// Incident locales
-        /// </summary>
-        public object Locales
+        public override void Render()
         {
-            get { return comboBoxLocale.DataSource; }
-            set { comboBoxLocale.DataSource = value; }
-        }
-
-        private void OnSaveIncident(object sender, EventArgs e)
-        {
-
+            ShouldSave = true;
         }
 
         private void OnAddPhoto(object sender, EventArgs e)
         {
+            //TODO add photo
+        }
 
+        private void OnSave(object sender, EventArgs e)
+        {
+            ShouldSave = true;
+            OnBack();
         }
 
         private void OnCancel(object sender, EventArgs e)
         {
-
+            ShouldSave = false;
+            OnBack();
         }
     }
 }

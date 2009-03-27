@@ -19,6 +19,30 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
+        /// Is input valid?
+        /// </summary>
+        public bool IsValid
+        {
+            get { return IsRequired && Date != DateTime.MinValue; }
+        }
+
+        /// <summary>
+        /// Is this field required?
+        /// </summary>
+        public bool IsRequired
+        {
+            get { return _IsRequired; }
+            set
+            {
+                _IsRequired = value;
+                if (!dateTimePicker.Focused && Enabled)
+                {
+                    dateTimePicker.BackColor = value ? Color.LightSalmon : Color.WhiteSmoke;
+                }
+            }
+        }private bool _IsRequired = false;
+
+        /// <summary>
         /// Date changed
         /// </summary>
         public event EventHandler DateChanged
@@ -105,6 +129,11 @@ namespace Ushahidi.Common.Controls
                     dateTimePicker.CustomFormat = " ";
                 }
             }
+        }
+
+        private void OnDateChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

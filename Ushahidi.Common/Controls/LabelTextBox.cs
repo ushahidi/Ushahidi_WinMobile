@@ -5,12 +5,55 @@ using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Common.Controls
 {
+    /// <summary>
+    /// Label + TextBox
+    /// </summary>
     public partial class LabelTextBox : UserControl
     {
+        /// <summary>
+        /// Label + TextBox
+        /// </summary>
         public LabelTextBox()
         {
             InitializeComponent();
-            BackColorFocuser.Register(textBox);
+            Keyboard.Register(textBox);
+        }
+
+        /// <summary>
+        /// Is input valid?
+        /// </summary>
+        public bool IsValid
+        {
+            get { return !IsRequired || (IsRequired && !string.IsNullOrEmpty(textBox.Text)); }
+        }
+
+        /// <summary>
+        /// Is this field required?
+        /// </summary>
+        public bool IsRequired
+        {
+            get { return _IsRequired; }
+            set
+            {
+                _IsRequired = value;
+                if (Enabled)
+                {
+                    textBox.BackColor = value ? Color.PeachPuff : Color.WhiteSmoke;    
+                }
+            }
+        }private bool _IsRequired = false;
+
+        /// <summary>
+        /// Is textbox read only?
+        /// </summary>
+        public new bool Enabled
+        {
+            get { return textBox.Enabled; }
+            set
+            {
+                textBox.Enabled = textBox.ReadOnly = value;
+                textBox.BackColor = value ? Color.WhiteSmoke : Color.LightGray;
+            }
         }
 
         /// <summary>
@@ -37,20 +80,7 @@ namespace Ushahidi.Common.Controls
         public new string Text
         {
             get { return textBox.Text; }
-            set { textBox.Text = value;}
-        }
-
-        /// <summary>
-        /// Is textbox read only?
-        /// </summary>
-        public new bool Enabled
-        {
-            get { return textBox.Enabled; }
-            set
-            {
-                textBox.Enabled = textBox.ReadOnly = value;
-                textBox.BackColor = value ? Color.White : Color.WhiteSmoke;
-            }
+            set { textBox.Text = value; }
         }
 
         /// <summary>
@@ -59,7 +89,7 @@ namespace Ushahidi.Common.Controls
         public new Color BackColor
         {
             get { return base.BackColor; }
-            set  { base.BackColor = label.BackColor =  value; }
+            set { base.BackColor = label.BackColor =  value; }
         }
 
         /// <summary>
@@ -96,6 +126,27 @@ namespace Ushahidi.Common.Controls
         {
             add { textBox.TextChanged += value; }
             remove { textBox.TextChanged -= value; }
+        }
+
+        /// <summary>
+        /// On text changed
+        /// </summary>
+        private void OnTextChanged(object sender, EventArgs e)
+        {
+            if (!textBox.Focused && Enabled)
+            {
+                textBox.BackColor = IsRequired && string.IsNullOrEmpty(textBox.Text) ? Color.PeachPuff : Color.WhiteSmoke;
+            }
+        }
+
+        private void OnGotFocus(object sender, EventArgs e)
+        {
+            textBox.BackColor = Color.LightYellow;
+        }
+
+        private void OnLostFocus(object sender, EventArgs e)
+        {
+            textBox.BackColor = IsRequired && string.IsNullOrEmpty(textBox.Text) ? Color.PeachPuff : Color.WhiteSmoke;
         }
     }
 }

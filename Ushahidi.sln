@@ -15,6 +15,8 @@ Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Ushahidi.Setup.WM6PPC", "Us
 EndProject
 Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Ushahidi.Setup.WM6SP", "Ushahidi.Setup\Ushahidi.Setup.WM6SP.vddproj", "{C41B6029-7DA1-439E-8F9A-1EBBEDCC37EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.Model", "Ushahidi.Model\Ushahidi.Model.csproj", "{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,12 @@ Global
 		{C41B6029-7DA1-439E-8F9A-1EBBEDCC37EA}.Debug|Any CPU.Build.0 = Debug
 		{C41B6029-7DA1-439E-8F9A-1EBBEDCC37EA}.Release|Any CPU.ActiveCfg = Release
 		{C41B6029-7DA1-439E-8F9A-1EBBEDCC37EA}.Release|Any CPU.Build.0 = Release
+		{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿using Ushahidi.View.Controls;
+﻿using Ushahidi.Common.Controls;
 
 namespace Ushahidi.View.Views
 {

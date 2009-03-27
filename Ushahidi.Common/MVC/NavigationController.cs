@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.MVC
 {
@@ -39,6 +40,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public void Run()
         {
+            Log.Info("NavigationController.Run");
             try
             {
                 do
@@ -69,6 +71,7 @@ namespace Ushahidi.Common.MVC
         /// <param name="clearStack">should clear stack?</param>
         public void Push(Type type, bool clearStack)
         {
+            Log.Info("NavigationController.Push", "type={0} clearStack={1}", type.Name, clearStack);
             IViewController currentViewController = (Depth > 0) ? Stack.Peek() : null;
             IViewController viewController;
             using (new WaitCursor())
@@ -124,6 +127,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public void Pop()
         {
+            Log.Info("NavigationController.Pop", "StackCount={0}", Stack.Count);
             IViewController currentViewController = (Depth > 0) ? Stack.Peek() : null;
             using (new WaitCursor())
             {
@@ -132,8 +136,7 @@ namespace Ushahidi.Common.MVC
                     //unable to save current view controller
                     if (Depth > 1)
                     {
-                        Dialog.Error("Error", "There was a problem saving {0} information",
-                                     currentViewController.Name);
+                        Dialog.Error(currentViewController.SaveErrorCaption, currentViewController.SaveErrorMessage);
                     }
                     else
                     {
@@ -170,6 +173,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         private void Exit()
         {
+            Log.Info("NavigationController.Exit");
             IViewController viewController = (Depth > 0) ? Stack.Peek() : null;
             if (viewController == null || 
                 viewController.Save() || 
@@ -184,6 +188,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public void Dispose()
         {
+            Log.Info("NavigationController.Dispose");
             Stack.Clear();
             foreach (IViewController view in Cache.Values.Reverse())
             {
