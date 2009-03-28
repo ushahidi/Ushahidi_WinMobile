@@ -589,7 +589,7 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_50A5853CD157975D83B4B65C415B2748"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Ushahidi.Model, Version=1.0.3374.19799, Culture=neutral"
+            "AssemblyAsmDisplayName" = "8:Ushahidi.Model, Version=1.0.3374.19882, Culture=neutral"
                 "ScatterAssemblies"
                 {
                     "_50A5853CD157975D83B4B65C415B2748"
@@ -701,7 +701,7 @@
             "{E4F2F62A-3940-4BF5-A031-F7FA98CAAFFA}:_D4F0E2B2A018854F9EB261CF1EC55EC3"
             {
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Ushahidi.Common, Version=1.0.3374.19798, Culture=neutral"
+            "AssemblyAsmDisplayName" = "8:Ushahidi.Common, Version=1.0.3374.19881, Culture=neutral"
                 "ScatterAssemblies"
                 {
                     "_D4F0E2B2A018854F9EB261CF1EC55EC3"
@@ -817,7 +817,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Ushahidi.WM6PPC"
+        "ProductName" = "8:Ushahidi"
         "Manufacturer" = "8:Ushahidi"
         "OSVersionMin" = "8:4.0"
         "OSVersionMax" = "8:6.99"

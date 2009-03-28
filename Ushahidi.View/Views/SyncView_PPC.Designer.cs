@@ -79,7 +79,7 @@
             this.checkBoxCategories.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxCategories.Bold = true;
             this.checkBoxCategories.CheckBox = "Refresh";
-            this.checkBoxCategories.Checked = false;
+            this.checkBoxCategories.Checked = true;
             this.checkBoxCategories.Label = "Categories";
             this.checkBoxCategories.Location = new System.Drawing.Point(0, 112);
             this.checkBoxCategories.Name = "checkBoxCategories";
@@ -93,7 +93,7 @@
             this.checkBoxLocales.BackColor = System.Drawing.Color.WhiteSmoke;
             this.checkBoxLocales.Bold = true;
             this.checkBoxLocales.CheckBox = "Refresh";
-            this.checkBoxLocales.Checked = false;
+            this.checkBoxLocales.Checked = true;
             this.checkBoxLocales.Label = "Locales";
             this.checkBoxLocales.Location = new System.Drawing.Point(0, 84);
             this.checkBoxLocales.Name = "checkBoxLocales";
@@ -107,7 +107,7 @@
             this.checkBoxCountries.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxCountries.Bold = true;
             this.checkBoxCountries.CheckBox = "Refresh";
-            this.checkBoxCountries.Checked = false;
+            this.checkBoxCountries.Checked = true;
             this.checkBoxCountries.Label = "Countries";
             this.checkBoxCountries.Location = new System.Drawing.Point(0, 56);
             this.checkBoxCountries.Name = "checkBoxCountries";
