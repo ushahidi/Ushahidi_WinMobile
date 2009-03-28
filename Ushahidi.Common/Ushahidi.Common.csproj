@@ -133,6 +133,7 @@
     </Compile>
     <Compile Include="MVC\ViewChangedEventArgs.cs" />
     <Compile Include="MVC\ViewController.cs" />
+    <Compile Include="Net\Internet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controls\WaitCursor.cs" />
     <Compile Include="Runtime.cs" />

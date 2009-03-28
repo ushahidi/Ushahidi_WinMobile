@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
+using Ushahidi.Common.Logging;
+using Ushahidi.Common.Net;
 using Ushahidi.Model;
 
 namespace Ushahidi.View.Views
@@ -18,20 +20,6 @@ namespace Ushahidi.View.Views
         {
             get { return dateBox.Date; }
             set { dateBox.Date = value;}
-        }
-
-        /// <summary>
-        /// On Sync
-        /// </summary>
-        public void OnSynchronize(object sender, EventArgs args)
-        {
-            StartTime = DateTime.Now;
-            RefreshIncidents = checkBoxIncidents.Checked;
-            RefreshCountries = checkBoxCountries.Checked;
-            RefreshLocales = checkBoxLocales.Checked;
-            RefreshCategories = checkBoxCategories.Checked;
-            Thread thread = new Thread(SyncInternal);
-            thread.Start();
         }
 
         /// <summary>
@@ -60,60 +48,141 @@ namespace Ushahidi.View.Views
         private bool RefreshCategories { get; set; }
 
         /// <summary>
+        /// On Sync
+        /// </summary>
+        public void OnSynchronize(object sender, EventArgs args)
+        {
+            progressBox.Value = 0;
+            progressBox.Maximum = 6;
+            StartTime = DateTime.Now;
+            RefreshIncidents = checkBoxIncidents.Checked;
+            RefreshCountries = checkBoxCountries.Checked;
+            RefreshLocales = checkBoxLocales.Checked;
+            RefreshCategories = checkBoxCategories.Checked;
+            Thread thread = new Thread(SyncInternal);
+            thread.Start(); 
+        }
+
+        /// <summary>
         /// Sync Internal
         /// </summary>
         private void SyncInternal()
         {
-            Download(DataManager.RefreshIncidents, RefreshIncidents, "Incidents", 0);
-            Download(DataManager.RefreshCountries, RefreshCountries, "Countries", 1);
-            Download(DataManager.RefreshLocales, RefreshLocales, "Locales", 2);
-            Download(DataManager.RefreshCategories, RefreshCategories, "Categories", 3);
-            Invoke(new UpdateProgressHandler(UpdateProgress), "Synchronization Complete", 4, 4);
-        }
-
-        private void Download(DownloadHandler downloadHandler, bool shouldRefresh, string taskName, int progress)
-        {
-            if (shouldRefresh)
+            try
             {
-                Invoke(new UpdateProgressHandler(UpdateProgress), string.Format("Refreshing {0}...", taskName), progress, 4);
-                if (downloadHandler.Invoke())
+                if (Download(Internet.HasNetworkConnection, true, "Testing Network", 0) == false)
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), string.Format("{0} Refreshed", taskName), progress, 4);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoNetwork, "No Network Connection", 0);
+                }
+                else if (Download(Internet.HasInternetConnection, true, "Testing Internet", 1) == false)
+                {
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "No Internet Connection", 0);
+                }
+                else if (Download(DataManager.RefreshIncidents, RefreshIncidents, "Refreshing Incidents", 2) &&
+                         Download(DataManager.RefreshCountries, RefreshCountries, "Refreshing Countries", 3) &&
+                         Download(DataManager.RefreshLocales, RefreshLocales, "Refreshing Locales", 4) &&
+                         Download(DataManager.RefreshCategories, RefreshCategories, "Refreshing Categories", 5))
+                {
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "Refresh Complete", 6);
                 }
                 else
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), string.Format("{0} Unsuccessful", taskName), progress, 4);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 6);
                 }
+
             }
-            else
+            catch (Exception ex)
             {
-                Invoke(new UpdateProgressHandler(UpdateProgress), string.Format("Skipping {0}...", taskName), progress, 4);
+                Log.Exception("SyncView.SyncInternal", "Exception: {0}", ex.Message);
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 6);
             }
         }
 
+        /// <summary>
+        /// Download
+        /// </summary>
+        /// <param name="downloadHandler">download handler delegate</param>
+        /// <param name="shouldRefresh">should refresh?</param>
+        /// <param name="taskName">task name</param>
+        /// <param name="progress">progress</param>
+        /// <returns>true, if successful</returns>
+        private bool Download(DownloadHandler downloadHandler, bool shouldRefresh, string taskName, int progress)
+        {
+            if (shouldRefresh)
+            {
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, string.Format("{0}...", taskName), progress);
+                return downloadHandler.Invoke();
+            }
+            Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, string.Format("Skipping {0}", taskName), progress);
+            return true;
+        }
+
+        /// <summary>
+        /// The download handler delegate
+        /// </summary>
+        /// <returns></returns>
         private delegate bool DownloadHandler();
 
-        private delegate void UpdateProgressHandler(string text, int value, int maximum);
-        private void UpdateProgress(string text, int value, int maximum)
+        /// <summary>
+        /// Progress handler delegate
+        /// </summary>
+        /// <param name="status">download staatus</param>
+        /// <param name="text">progress text</param>
+        /// <param name="value">progress value</param>
+        private delegate void UpdateProgressHandler(Status status, string text, int value);
+
+        /// <summary>
+        /// Update progress bar
+        /// </summary>
+        /// <param name="status">download status</param>
+        /// <param name="text">progress text</param>
+        /// <param name="value">progress value</param>
+        private void UpdateProgress(Status status, string text, int value)
         {
             progressBox.Text = text;
             progressBox.Value = value;
-            progressBox.Maximum = maximum;
-            if (value < maximum)
+            double totalSeconds = DateTime.Now.Subtract(StartTime).TotalSeconds;
+            if (status == Status.Downloading)
             {
-                Cursor.Current = Cursors.WaitCursor;
+                Cursor.Current = Cursors.WaitCursor;    
             }
-            else
+            else if (status == Status.NoNetwork && Dialog.Warning("No Network Connection", "Please verify your device has a network connection"))
             {
+                progressBox.Value = 0;
+                progressBox.Text = "";
                 Cursor.Current = Cursors.Default;
-                if (Dialog.Info("Synchronization", "Complete: {0} seconds", 
-                            DateTime.Now.Subtract(StartTime).TotalSeconds.ToString()))
-                {
-                    progressBox.Value = 0;
-                    progressBox.Text = "";
-                    LastSync = DateTime.Now;
-                }
             }
+            else if (status == Status.NoInternet && Dialog.Warning("No Internet Connection", "Please verify your device has an internet connection"))
+            {
+                progressBox.Value = 0;
+                progressBox.Text = "";
+                Cursor.Current = Cursors.Default;
+            }
+            else if (status == Status.Failure && Dialog.Warning("Refresh Failure", "{0} seconds", totalSeconds.ToString()))
+            {
+                progressBox.Value = 0;
+                progressBox.Text = "";
+                Cursor.Current = Cursors.Default;
+            }
+            else if (status == Status.Complete && Dialog.Info("Refresh Complete", "{0} seconds", totalSeconds.ToString()))
+            {
+                progressBox.Value = 0;
+                progressBox.Text = "";
+                LastSync = DateTime.Now;
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        /// <summary>
+        /// Download Status
+        /// </summary>
+        enum Status
+        {
+            Downloading,
+            Failure,
+            Complete,
+            NoNetwork,
+            NoInternet
         }
     }
 }

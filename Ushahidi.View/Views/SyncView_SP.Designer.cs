@@ -66,7 +66,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.progressBox.Location = new System.Drawing.Point(0, 140);
-            this.progressBox.Maximum = 100;
+            this.progressBox.Maximum = 6;
             this.progressBox.Minimum = 0;
             this.progressBox.Name = "progressBox";
             this.progressBox.Size = new System.Drawing.Size(176, 50);

@@ -394,21 +394,27 @@ namespace Ushahidi.Model
         private static bool DownloadAndSaveXml(string url, string filepath)
         {
             Log.Info("DataManager.DownloadJSON", "URL:{0} FilePath:{1}", url, filepath);
-            if (File.Exists(filepath))
-            {
-                Log.Info("DataManager.DownloadJSON", "File Deleted:{0}", filepath);
-                File.Delete(filepath);
-            }
             if (Directory.Exists(DataDirectory) == false)
             {
                 Log.Info("DataManager.DownloadJSON", "Directory Created:{0}", DataDirectory);
                 Directory.CreateDirectory(DataDirectory);
             }
-            using (StreamWriter writer = new StreamWriter(filepath))
+            string xml = DownloadXml(url);
+            if (string.IsNullOrEmpty(xml) == false)
             {
-                writer.WriteLine(DownloadXml(url));
+                if (File.Exists(filepath))
+                {
+                    Log.Info("DataManager.DownloadJSON", "File Deleted:{0}", filepath);
+                    File.Delete(filepath);
+                }
+                Log.Info("DataManager.DownloadJSON", "File Created:{0}", filepath);
+                using (StreamWriter writer = new StreamWriter(filepath))
+                {
+                    writer.WriteLine(xml);
+                }
+                return true;
             }
-            return true;
+            return false;
         }
 
         /// <summary>
