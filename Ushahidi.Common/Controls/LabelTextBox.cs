@@ -62,7 +62,7 @@ namespace Ushahidi.Common.Controls
         /// <returns>true, if focussed</returns>
         public new bool Focus()
         {
-            return Enabled ? textBox.Focus() : false;
+            return textBox.Enabled ? textBox.Focus() : false;
         }
 
         /// <summary>
@@ -133,7 +133,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         private void OnTextChanged(object sender, EventArgs e)
         {
-            if (!textBox.Focused && Enabled)
+            if (!textBox.Focused && textBox.Enabled)
             {
                 textBox.BackColor = IsRequired && string.IsNullOrEmpty(textBox.Text) ? Color.PeachPuff : Color.WhiteSmoke;
             }

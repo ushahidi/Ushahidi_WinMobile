@@ -23,7 +23,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         public bool IsValid
         {
-            get { return !Enabled || (IsRequired && comboBox.SelectedIndex != -1); }
+            get { return !comboBox.Enabled || (IsRequired && comboBox.SelectedIndex != -1); }
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace Ushahidi.Common.Controls
             set
             {
                 _IsRequired = value;
-                if (!comboBox.Focused && Enabled)
+                if (!comboBox.Focused && comboBox.Enabled)
                 {
                     comboBox.BackColor = value ? Color.PeachPuff : Color.WhiteSmoke;
                 }
@@ -48,7 +48,7 @@ namespace Ushahidi.Common.Controls
         /// <returns>true, if focussed</returns>
         public new bool Focus()
         {
-            return Enabled ? comboBox.Focus() : false;
+            return comboBox.Enabled ? comboBox.Focus() : false;
         }
 
         /// <summary>
@@ -184,7 +184,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         private void OnIndexChanged(object sender, EventArgs e)
         {
-            if (!comboBox.Focused && Enabled)
+            if (!comboBox.Focused && comboBox.Enabled)
             {
                 comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.PeachPuff : Color.WhiteSmoke;
             }
