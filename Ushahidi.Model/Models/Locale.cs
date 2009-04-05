@@ -3,7 +3,7 @@
 namespace Ushahidi.Model.Models
 {
     [XmlRoot("location")]
-    public class Locale
+    public class Locale : Model
     {
         [XmlElement("id")]
         public int ID { get; set; }
@@ -19,5 +19,10 @@ namespace Ushahidi.Model.Models
 
         [XmlElement("longitude", IsNullable=true)]
         public string Longitude { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

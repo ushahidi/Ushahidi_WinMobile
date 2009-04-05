@@ -28,39 +28,18 @@ namespace Ushahidi.View.Views
         private DateTime StartTime { get; set; }
 
         /// <summary>
-        /// Should refresh incidents?
-        /// </summary>
-        private bool RefreshIncidents { get; set; }
-
-        /// <summary>
-        /// Should refresh countries?
-        /// </summary>
-        private bool RefreshCountries { get; set; }
-
-        /// <summary>
-        /// Should refresh locales?
-        /// </summary>
-        private bool RefreshLocales { get; set; }
-
-        /// <summary>
-        /// Should refresh categories?
-        /// </summary>
-        private bool RefreshCategories { get; set; }
-
-        /// <summary>
         /// On Sync
         /// </summary>
         public void OnSynchronize(object sender, EventArgs args)
         {
+            Log.Info("SyncView.OnSynchronize");
             progressBox.Value = 0;
-            progressBox.Maximum = 6;
+            progressBox.Maximum = 7;
+            listView.Items.Clear();
+            columnHeader.Width = -2;
             StartTime = DateTime.Now;
-            RefreshIncidents = checkBoxIncidents.Checked;
-            RefreshCountries = checkBoxCountries.Checked;
-            RefreshLocales = checkBoxLocales.Checked;
-            RefreshCategories = checkBoxCategories.Checked;
-            Thread thread = new Thread(SyncInternal);
-            thread.Start(); 
+            Internet.TestURL = string.Format("{0}/help", DataManager.ServerAddress);
+            new Thread(SyncInternal).Start();
         }
 
         /// <summary>
@@ -68,33 +47,35 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void SyncInternal()
         {
+            Log.Info("SyncView.SyncInternal");
             try
             {
-                if (Download(Internet.HasNetworkConnection, true, "Testing Network", 0) == false)
+                if (Download(Internet.HasNetworkConnection, "Testing Network Connection", 0) == false)
                 {
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoNetwork, "No Network Connection", 0);
                 }
-                else if (Download(Internet.HasInternetConnection, true, "Testing Internet", 1) == false)
+                else if (Download(Internet.HasInternetConnection, "Testing Internet Connection", 1) == false)
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "No Internet Connection", 0);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "No Internet Connection", 1);
                 }
-                else if (Download(DataManager.RefreshIncidents, RefreshIncidents, "Refreshing Incidents", 2) &&
-                         Download(DataManager.RefreshCountries, RefreshCountries, "Refreshing Countries", 3) &&
-                         Download(DataManager.RefreshLocales, RefreshLocales, "Refreshing Locales", 4) &&
-                         Download(DataManager.RefreshCategories, RefreshCategories, "Refreshing Categories", 5))
+                else if (Download(DataManager.UploadIncidents, "Uploading Incidents", 2) &&
+                         Download(DataManager.RefreshIncidents, "Refreshing Incidents", 3) &&
+                         Download(DataManager.RefreshCountries, "Refreshing Countries", 4) &&
+                         Download(DataManager.RefreshLocales, "Refreshing Locales", 5) &&
+                         Download(DataManager.RefreshCategories, "Refreshing Categories", 6))
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "Refresh Complete", 6);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "Refresh Complete", 7);
                 }
                 else
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 6);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 7);
                 }
 
             }
             catch (Exception ex)
             {
                 Log.Exception("SyncView.SyncInternal", "Exception: {0}", ex.Message);
-                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 6);
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 7);
             }
         }
 
@@ -102,19 +83,18 @@ namespace Ushahidi.View.Views
         /// Download
         /// </summary>
         /// <param name="downloadHandler">download handler delegate</param>
-        /// <param name="shouldRefresh">should refresh?</param>
         /// <param name="taskName">task name</param>
         /// <param name="progress">progress</param>
         /// <returns>true, if successful</returns>
-        private bool Download(DownloadHandler downloadHandler, bool shouldRefresh, string taskName, int progress)
+        private bool Download(DownloadHandler downloadHandler, string taskName, int progress)
         {
-            if (shouldRefresh)
+            Log.Info("SyncView.Download", "Task: {0}", taskName);
+            Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, taskName, progress);
+            if (downloadHandler.Invoke())
             {
-                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, string.Format("{0}...", taskName), progress);
-                return downloadHandler.Invoke();
+                 return true;
             }
-            Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, string.Format("Skipping {0}", taskName), progress);
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -139,8 +119,8 @@ namespace Ushahidi.View.Views
         /// <param name="value">progress value</param>
         private void UpdateProgress(Status status, string text, int value)
         {
-            progressBox.Text = text;
             progressBox.Value = value;
+            listView.Items.Add(new ListViewItem(text));
             double totalSeconds = DateTime.Now.Subtract(StartTime).TotalSeconds;
             if (status == Status.Downloading)
             {

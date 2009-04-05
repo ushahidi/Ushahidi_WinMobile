@@ -11,9 +11,8 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Categories
         /// </summary>
-        public object Categories
+        public Categories Categories
         {
-            get { return comboBoxCategories.DataSource; }
             set { comboBoxCategories.DataSource = value; }
         }
 
@@ -29,7 +28,7 @@ namespace Ushahidi.View.Views
                 if (value != null)
                 {
                     listBoxIncidents.ClearItems();
-                    foreach(Incident incident in value.Items)
+                    foreach (Incident incident in value)
                     {
                         if (string.IsNullOrEmpty(incident.Title) == false)
                         {

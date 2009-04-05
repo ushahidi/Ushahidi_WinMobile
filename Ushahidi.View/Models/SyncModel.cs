@@ -17,11 +17,6 @@ namespace Ushahidi.View.Models
             set { DataManager.LastSyncDate = value; }
         }
 
-        public override bool Load()
-        {
-            return DataManager.Load();
-        }
-
         public override bool Save()
         {
             return DataManager.Save();

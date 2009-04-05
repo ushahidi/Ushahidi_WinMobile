@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
             this.panelContent = new System.Windows.Forms.Panel();
+            this.textBoxEmail = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxLastName = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxFirstName = new Ushahidi.Common.Controls.LabelTextBox();
             this.checkBoxKeyboard = new Ushahidi.Common.Controls.LabelCheckBox();
             this.textBoxLocale = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxServer = new Ushahidi.Common.Controls.LabelTextBox();
@@ -54,6 +57,9 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.textBoxEmail);
+            this.panelContent.Controls.Add(this.textBoxLastName);
+            this.panelContent.Controls.Add(this.textBoxFirstName);
             this.panelContent.Controls.Add(this.checkBoxKeyboard);
             this.panelContent.Controls.Add(this.textBoxLocale);
             this.panelContent.Controls.Add(this.textBoxServer);
@@ -61,13 +67,51 @@
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(240, 294);
             // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxEmail.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxEmail.Bold = true;
+            this.textBoxEmail.IsRequired = false;
+            this.textBoxEmail.Label = "Email";
+            this.textBoxEmail.Location = new System.Drawing.Point(0, 112);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(240, 28);
+            this.textBoxEmail.TabIndex = 5;
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLastName.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxLastName.Bold = true;
+            this.textBoxLastName.Label = "Last Name";
+            this.textBoxLastName.Location = new System.Drawing.Point(0, 84);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(240, 28);
+            this.textBoxLastName.TabIndex = 4;
+            // 
+            // textBoxFirstName
+            // 
+            this.textBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxFirstName.Bold = true;
+            this.textBoxFirstName.IsRequired = false;
+            this.textBoxFirstName.Label = "First Name";
+            this.textBoxFirstName.Location = new System.Drawing.Point(0, 56);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(240, 28);
+            this.textBoxFirstName.TabIndex = 3;
+            // 
             // checkBoxKeyboard
             // 
-            this.checkBoxKeyboard.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkBoxKeyboard.BackColor = System.Drawing.Color.Gainsboro;
             this.checkBoxKeyboard.Bold = true;
             this.checkBoxKeyboard.CheckBox = "Auto Show";
             this.checkBoxKeyboard.Label = "Keyboard";
-            this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 56);
+            this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 140);
             this.checkBoxKeyboard.Name = "checkBoxKeyboard";
             this.checkBoxKeyboard.Size = new System.Drawing.Size(240, 28);
             this.checkBoxKeyboard.TabIndex = 2;
@@ -131,5 +175,8 @@
         private Ushahidi.Common.Controls.LabelCheckBox checkBoxKeyboard;
         private System.Windows.Forms.MenuItem menuItemDone;
         private System.Windows.Forms.MenuItem menuItemCancel;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxEmail;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxLastName;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxFirstName;
     }
 }

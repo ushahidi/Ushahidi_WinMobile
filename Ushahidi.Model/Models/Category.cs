@@ -3,7 +3,7 @@
 namespace Ushahidi.Model.Models
 {
     [XmlRoot("category")]
-    public class Category
+    public class Category : Model
     {
         [XmlElement("id")]
         public int ID { get; set; }
@@ -16,5 +16,10 @@ namespace Ushahidi.Model.Models
 
         [XmlElement("category_color")]
         public string Color { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0} {1}", Title, Description).TrimEnd();
+        }
     }
 }

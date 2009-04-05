@@ -54,6 +54,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ProjectExtensions>
@@ -76,13 +77,16 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="Models\Countries.cs" />
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Incident.cs" />
     <Compile Include="Models\Incidents.cs" />
     <Compile Include="Models\Locale.cs" />
     <Compile Include="Models\Locales.cs" />
+    <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\Model.cs" />
     <Compile Include="Models\Models.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ushahidi.Common\Ushahidi.Common.csproj">

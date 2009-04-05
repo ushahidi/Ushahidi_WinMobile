@@ -29,6 +29,9 @@ namespace Ushahidi.View.Controllers
             View.ServerAddress = Model.ServerAddress;
             View.DefaultLocale = Model.DefaultLocale;
             View.ShowKeyboard = Model.ShowKeyboard;
+            View.FirstName = Model.FirstName;
+            View.LastName = Model.LastName;
+            View.Email = Model.Email;
         }
 
         public override bool Save()
@@ -38,6 +41,9 @@ namespace Ushahidi.View.Controllers
                 Model.ServerAddress = View.ServerAddress;
                 Model.DefaultLocale = View.DefaultLocale;
                 Model.ShowKeyboard = View.ShowKeyboard;
+                Model.FirstName = View.FirstName;
+                Model.LastName = View.LastName;
+                Model.Email = View.Email;
                 return Model.Save();
             }
             return true;

@@ -3,7 +3,7 @@
 namespace Ushahidi.Model.Models
 {
     [XmlRoot("country")]
-    public class Country
+    public class Country : Model
     {
         [XmlElement("id")]
         public int ID { get; set; }
@@ -15,6 +15,11 @@ namespace Ushahidi.Model.Models
         public string Name { get; set; }
 
         [XmlElement("capital")]
-        public string Capital { get; set; }        
+        public string Capital { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

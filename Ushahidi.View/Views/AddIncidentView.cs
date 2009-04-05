@@ -30,9 +30,8 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Categories data source
         /// </summary>
-        public object Categories
+        public Categories Categories
         {
-            get { return comboBoxCategories.DataSource; }
             set { comboBoxCategories.DataSource = value; }
         }
 
@@ -48,19 +47,18 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Locales data source
         /// </summary>
-        public object Locales
+        public Locales Locales
         {
-            get { return comboBoxLocales.DataSource; }
             set { comboBoxLocales.DataSource = value; }
         }
-
+        
         /// <summary>
         /// Incident type
         /// </summary>
         public Locale Locale
         {
             get { return comboBoxLocales.SelectedValue<Locale>(); }
-            set { comboBoxLocales.SelectedIndex = -1; }
+            set { comboBoxLocales.SelectedItem = value; }
         }
 
         /// <summary>

@@ -26,6 +26,33 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
+        /// First Name
+        /// </summary>
+        public string FirstName
+        {
+            get { return textBoxFirstName.Text; }
+            set { textBoxFirstName.Text = value; }
+        }
+
+        /// <summary>
+        /// Last Name
+        /// </summary>
+        public string LastName
+        {
+            get { return textBoxLastName.Text; }
+            set { textBoxLastName.Text = value; }
+        }
+
+        /// <summary>
+        /// Email
+        /// </summary>
+        public string Email
+        {
+            get { return textBoxEmail.Text; }
+            set { textBoxEmail.Text = value; }
+        }
+
+        /// <summary>
         /// Show keyboard?
         /// </summary>
         public bool ShowKeyboard

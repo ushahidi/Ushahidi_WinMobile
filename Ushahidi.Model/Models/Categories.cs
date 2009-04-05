@@ -2,13 +2,10 @@
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("payload")]
-    public class Categories : Models
+    [XmlRoot("categories")]
+    [XmlInclude(typeof(Category))]
+    public class Categories : Models<Category>
     {
-        [XmlArray("categories")]
-        [XmlArrayItem("category", typeof(Category))]
-        public Category[] Items;
-
         public static Categories Load(string filePath)
         {
             return Load<Categories>(filePath);

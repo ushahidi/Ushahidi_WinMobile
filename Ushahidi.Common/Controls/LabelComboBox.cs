@@ -97,7 +97,7 @@ namespace Ushahidi.Common.Controls
         public object DataSource
         {
             get { return comboBox.DataSource; }
-            set { comboBox.DataSource = value;}
+            set { comboBox.DataSource = value; }
         }
 
         /// <summary>
@@ -146,13 +146,22 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
+        /// Selected item
+        /// </summary>
+        public object SelectedItem
+        {
+            get { return comboBox.SelectedItem; }
+            set { comboBox.SelectedItem = value; }
+        }
+
+        /// <summary>
         /// Selected value
         /// </summary>
         /// <typeparam name="TValue">value type</typeparam>
         /// <returns>Value</returns>
         public TValue SelectedValue<TValue>()
         {
-            return comboBox.SelectedItem != null ? (TValue) comboBox.SelectedItem : default(TValue);
+            return comboBox.SelectedIndex != -1 && comboBox.SelectedItem != null ? (TValue)comboBox.SelectedItem : default(TValue);
         }
 
         /// <summary>

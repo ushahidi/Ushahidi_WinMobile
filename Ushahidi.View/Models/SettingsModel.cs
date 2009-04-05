@@ -36,6 +36,33 @@ namespace Ushahidi.View.Models
             set { DataManager.ShowKeyboard = value; }
         }
 
+        /// <summary>
+        /// First Name
+        /// </summary>
+        public string FirstName
+        {
+            get { return DataManager.FirstName; }
+            set { DataManager.FirstName = value; }
+        }
+
+        /// <summary>
+        /// Last Name
+        /// </summary>
+        public string LastName
+        {
+            get { return DataManager.LastName; }
+            set { DataManager.LastName = value; }
+        }
+
+        /// <summary>
+        /// Email
+        /// </summary>
+        public string Email
+        {
+            get { return DataManager.Email; }
+            set { DataManager.Email = value; }
+        }
+
         public override bool Save()
         {
             Log.Info("SettingsModel.Save()");

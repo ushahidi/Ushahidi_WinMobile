@@ -2,6 +2,9 @@
 
 namespace Ushahidi.View.Views
 {
+    /// <summary>
+    /// Home View
+    /// </summary>
     partial class HomeView
     {
         /// <summary>

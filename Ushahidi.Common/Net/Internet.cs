@@ -8,6 +8,22 @@ namespace Ushahidi.Common.Net
     public static class Internet
     {
         /// <summary>
+        /// Test URL
+        /// </summary>
+        public static string TestURL
+        {
+            set { _TestURL = value; }
+            get
+            {
+                if (_TestURL == null)
+                {
+                    _TestURL = "http://www.google.com";
+                }
+                return _TestURL;
+            }
+        }private static string _TestURL;
+
+        /// <summary>
         /// Has network connection?
         /// </summary>
         /// <returns></returns>
@@ -33,7 +49,7 @@ namespace Ushahidi.Common.Net
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://www.google.com");
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(TestURL);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 return response.StatusCode == HttpStatusCode.OK;
             }

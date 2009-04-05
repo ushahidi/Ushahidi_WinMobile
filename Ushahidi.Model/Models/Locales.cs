@@ -2,13 +2,10 @@
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("payload")]
-    public class Locales : Models
+    [XmlRoot("locations")]
+    [XmlInclude(typeof(Locale))]
+    public class Locales : Models<Locale>
     {
-        [XmlArray("locations")]
-        [XmlArrayItem("location", typeof(Locale))]
-        public Locale[] Items;
-
         public static Locales Load(string filePath)
         {
             return Load<Locales>(filePath);

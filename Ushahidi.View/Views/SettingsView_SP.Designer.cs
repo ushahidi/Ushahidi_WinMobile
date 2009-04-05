@@ -33,6 +33,9 @@
             this.textBoxServer = new Ushahidi.Common.Controls.LabelTextBox();
             this.menuItemDone = new System.Windows.Forms.MenuItem();
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
+            this.textBoxEmail = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxLastName = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxFirstName = new Ushahidi.Common.Controls.LabelTextBox();
             this.SuspendLayout();
             // 
             // menuItemSettings
@@ -79,11 +82,52 @@
             this.menuItemCancel.Text = "Cancel";
             this.menuItemCancel.Click += new System.EventHandler(this.OnCancel);
             // 
+            // textBoxEmail
+            // 
+            this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxEmail.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxEmail.Bold = true;
+            this.textBoxEmail.IsRequired = false;
+            this.textBoxEmail.Label = "Email";
+            this.textBoxEmail.Location = new System.Drawing.Point(0, 112);
+            this.textBoxEmail.Name = "textBoxEmail";
+            this.textBoxEmail.Size = new System.Drawing.Size(176, 28);
+            this.textBoxEmail.TabIndex = 8;
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLastName.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxLastName.Bold = true;
+            this.textBoxLastName.Label = "Last Name";
+            this.textBoxLastName.Location = new System.Drawing.Point(0, 84);
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(176, 28);
+            this.textBoxLastName.TabIndex = 7;
+            // 
+            // textBoxFirstName
+            // 
+            this.textBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxFirstName.Bold = true;
+            this.textBoxFirstName.IsRequired = false;
+            this.textBoxFirstName.Label = "First Name";
+            this.textBoxFirstName.Location = new System.Drawing.Point(0, 56);
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(176, 28);
+            this.textBoxFirstName.TabIndex = 6;
+            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 180);
+            this.Controls.Add(this.textBoxEmail);
+            this.Controls.Add(this.textBoxLastName);
+            this.Controls.Add(this.textBoxFirstName);
             this.Controls.Add(this.textBoxLocale);
             this.Controls.Add(this.textBoxServer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -99,6 +143,9 @@
         private Ushahidi.Common.Controls.LabelTextBox textBoxServer;
         private System.Windows.Forms.MenuItem menuItemDone;
         private System.Windows.Forms.MenuItem menuItemCancel;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxEmail;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxLastName;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxFirstName;
 
     }
 }

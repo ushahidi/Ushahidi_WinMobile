@@ -1,4 +1,6 @@
-﻿namespace Ushahidi.View.Views
+﻿using Ushahidi.Model.Models;
+
+namespace Ushahidi.View.Views
 {
     /// <summary>
     /// Incident Map View
@@ -8,9 +10,8 @@
         /// <summary>
         /// Categories
         /// </summary>
-        public object Categories
+        public Categories Categories
         {
-            get { return comboBoxCategories.DataSource; }
             set { comboBoxCategories.DataSource = value; }
         }
     }
