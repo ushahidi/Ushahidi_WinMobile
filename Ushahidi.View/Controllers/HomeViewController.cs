@@ -1,8 +1,5 @@
-﻿using System;
-using Ushahidi.Common.Controls;
-using Ushahidi.Common.Logging;
+﻿using Ushahidi.Common.Controls;
 using Ushahidi.Model;
-using Ushahidi.Model.Models;
 using Ushahidi.View.Models;
 using Ushahidi.View.Views;
 
@@ -16,10 +13,9 @@ namespace Ushahidi.View.Controllers
         /// <summary>
         /// Load the view
         /// </summary>
-        public override void Load()
+        public override void Load(object[] parameters)
         {
             Keyboard.AutoShowHideKeyboard = DataManager.ShowKeyboard;
-            View.Description = Model.Description;
             View.Logo = Model.Logo;
             //try
             //{

@@ -1,6 +1,7 @@
 ﻿using System;
 using Ushahidi.Model;
 using Ushahidi.View.Controllers;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
 {
@@ -9,6 +10,19 @@ namespace Ushahidi.View.Views
     /// </summary>
     partial class BaseView
     {
+        public override void Translate()
+        {
+            this.Translate(this);
+            menuItemMenu.Translate(this);
+            menuItemWebsite.Translate(this);
+            menuItemAddIncident.Translate(this);
+            menuItemExit.Translate(this);
+            menuItemIncidentList.Translate(this);
+            menuItemIncidentMap.Translate(this);
+            menuItemSettings.Translate(this);
+            menuItemSynchronize.Translate(this);
+        }
+
         /// <summary>
         /// On add incident
         /// </summary>

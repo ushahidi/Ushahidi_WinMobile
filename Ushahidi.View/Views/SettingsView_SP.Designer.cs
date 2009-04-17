@@ -29,107 +29,108 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
-            this.textBoxLocale = new Ushahidi.Common.Controls.LabelTextBox();
-            this.textBoxServer = new Ushahidi.Common.Controls.LabelTextBox();
-            this.menuItemDone = new System.Windows.Forms.MenuItem();
-            this.menuItemCancel = new System.Windows.Forms.MenuItem();
-            this.textBoxEmail = new Ushahidi.Common.Controls.LabelTextBox();
-            this.textBoxLastName = new Ushahidi.Common.Controls.LabelTextBox();
-            this.textBoxFirstName = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxSettingsServer = new Ushahidi.Common.Controls.LabelTextBox();
+            this.menuItemSettingsDone = new System.Windows.Forms.MenuItem();
+            this.menuItemSettingsCancel = new System.Windows.Forms.MenuItem();
+            this.textBoxSettingsEmail = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxSettingsLastName = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxSettingsFirstName = new Ushahidi.Common.Controls.LabelTextBox();
+            this.comboBoxSettingsLanguages = new Ushahidi.Common.Controls.LabelComboBox();
             this.SuspendLayout();
+            // 
+            // menuItemAction
+            // 
+            this.menuItemAction.MenuItems.Add(this.menuItemSettingsDone);
+            this.menuItemAction.MenuItems.Add(this.menuItemSettingsCancel);
+            this.menuItemAction.Text = "Action";
             // 
             // menuItemSettings
             // 
             this.menuItemSettings.Enabled = false;
             // 
-            // menuItemAction
-            // 
-            this.menuItemAction.MenuItems.Add(this.menuItemDone);
-            this.menuItemAction.MenuItems.Add(this.menuItemCancel);
-            this.menuItemAction.Text = "Action";
-            // 
-            // textBoxLocale
-            // 
-            this.textBoxLocale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLocale.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxLocale.Enabled = false;
-            this.textBoxLocale.Label = "Location";
-            this.textBoxLocale.Location = new System.Drawing.Point(0, 28);
-            this.textBoxLocale.Name = "textBoxLocale";
-            this.textBoxLocale.Size = new System.Drawing.Size(176, 28);
-            this.textBoxLocale.TabIndex = 3;
-            // 
             // textBoxServer
             // 
-            this.textBoxServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxSettingsServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxServer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxServer.IsRequired = true;
-            this.textBoxServer.Label = "Server";
-            this.textBoxServer.Location = new System.Drawing.Point(0, 0);
-            this.textBoxServer.Name = "textBoxServer";
-            this.textBoxServer.Size = new System.Drawing.Size(176, 28);
-            this.textBoxServer.TabIndex = 2;
+            this.textBoxSettingsServer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxSettingsServer.IsRequired = true;
+            this.textBoxSettingsServer.Label = "Server";
+            this.textBoxSettingsServer.Location = new System.Drawing.Point(0, 0);
+            this.textBoxSettingsServer.Name = "textBoxServer";
+            this.textBoxSettingsServer.Size = new System.Drawing.Size(176, 28);
+            this.textBoxSettingsServer.TabIndex = 1;
             // 
             // menuItemDone
             // 
-            this.menuItemDone.Text = "Done";
-            this.menuItemDone.Click += new System.EventHandler(this.OnDone);
+            this.menuItemSettingsDone.Text = "Done";
             // 
             // menuItemCancel
             // 
-            this.menuItemCancel.Text = "Cancel";
-            this.menuItemCancel.Click += new System.EventHandler(this.OnCancel);
+            this.menuItemSettingsCancel.Text = "Cancel";
             // 
             // textBoxEmail
             // 
-            this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxSettingsEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEmail.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxEmail.Bold = true;
-            this.textBoxEmail.IsRequired = false;
-            this.textBoxEmail.Label = "Email";
-            this.textBoxEmail.Location = new System.Drawing.Point(0, 112);
-            this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(176, 28);
-            this.textBoxEmail.TabIndex = 8;
+            this.textBoxSettingsEmail.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxSettingsEmail.Bold = true;
+            this.textBoxSettingsEmail.IsRequired = false;
+            this.textBoxSettingsEmail.Label = "Email";
+            this.textBoxSettingsEmail.Location = new System.Drawing.Point(0, 112);
+            this.textBoxSettingsEmail.Name = "textBoxEmail";
+            this.textBoxSettingsEmail.Size = new System.Drawing.Size(176, 28);
+            this.textBoxSettingsEmail.TabIndex = 5;
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxSettingsLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLastName.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxLastName.Bold = true;
-            this.textBoxLastName.Label = "Last Name";
-            this.textBoxLastName.Location = new System.Drawing.Point(0, 84);
-            this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(176, 28);
-            this.textBoxLastName.TabIndex = 7;
+            this.textBoxSettingsLastName.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxSettingsLastName.Bold = true;
+            this.textBoxSettingsLastName.Label = "Last Name";
+            this.textBoxSettingsLastName.Location = new System.Drawing.Point(0, 84);
+            this.textBoxSettingsLastName.Name = "textBoxLastName";
+            this.textBoxSettingsLastName.Size = new System.Drawing.Size(176, 28);
+            this.textBoxSettingsLastName.TabIndex = 4;
             // 
             // textBoxFirstName
             // 
-            this.textBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxSettingsFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxFirstName.Bold = true;
-            this.textBoxFirstName.IsRequired = false;
-            this.textBoxFirstName.Label = "First Name";
-            this.textBoxFirstName.Location = new System.Drawing.Point(0, 56);
-            this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(176, 28);
-            this.textBoxFirstName.TabIndex = 6;
+            this.textBoxSettingsFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxSettingsFirstName.Bold = true;
+            this.textBoxSettingsFirstName.IsRequired = false;
+            this.textBoxSettingsFirstName.Label = "First Name";
+            this.textBoxSettingsFirstName.Location = new System.Drawing.Point(0, 56);
+            this.textBoxSettingsFirstName.Name = "textBoxFirstName";
+            this.textBoxSettingsFirstName.Size = new System.Drawing.Size(176, 28);
+            this.textBoxSettingsFirstName.TabIndex = 3;
+            // 
+            // comboBoxLanguages
+            // 
+            this.comboBoxSettingsLanguages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSettingsLanguages.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBoxSettingsLanguages.Bold = true;
+            this.comboBoxSettingsLanguages.DisplayMember = "NativeName";
+            this.comboBoxSettingsLanguages.IsRequired = true;
+            this.comboBoxSettingsLanguages.Label = "Language";
+            this.comboBoxSettingsLanguages.Location = new System.Drawing.Point(0, 28);
+            this.comboBoxSettingsLanguages.Name = "comboBoxLanguages";
+            this.comboBoxSettingsLanguages.Size = new System.Drawing.Size(176, 28);
+            this.comboBoxSettingsLanguages.TabIndex = 2;
+            this.comboBoxSettingsLanguages.ValueMember = "Name";
             // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 180);
-            this.Controls.Add(this.textBoxEmail);
-            this.Controls.Add(this.textBoxLastName);
-            this.Controls.Add(this.textBoxFirstName);
-            this.Controls.Add(this.textBoxLocale);
-            this.Controls.Add(this.textBoxServer);
+            this.Controls.Add(this.comboBoxSettingsLanguages);
+            this.Controls.Add(this.textBoxSettingsEmail);
+            this.Controls.Add(this.textBoxSettingsLastName);
+            this.Controls.Add(this.textBoxSettingsFirstName);
+            this.Controls.Add(this.textBoxSettingsServer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";
             this.Text = "Settings";
@@ -139,13 +140,13 @@
 
         #endregion
 
-        private Ushahidi.Common.Controls.LabelTextBox textBoxLocale;
-        private Ushahidi.Common.Controls.LabelTextBox textBoxServer;
-        private System.Windows.Forms.MenuItem menuItemDone;
-        private System.Windows.Forms.MenuItem menuItemCancel;
-        private Ushahidi.Common.Controls.LabelTextBox textBoxEmail;
-        private Ushahidi.Common.Controls.LabelTextBox textBoxLastName;
-        private Ushahidi.Common.Controls.LabelTextBox textBoxFirstName;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxSettingsServer;
+        private System.Windows.Forms.MenuItem menuItemSettingsDone;
+        private System.Windows.Forms.MenuItem menuItemSettingsCancel;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxSettingsEmail;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxSettingsLastName;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxSettingsFirstName;
+        private Ushahidi.Common.Controls.LabelComboBox comboBoxSettingsLanguages;
 
     }
 }

@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ushahidi.View</RootNamespace>
-    <AssemblyName>Ushahidi.WM6PPC</AssemblyName>
+    <AssemblyName>Ushahidi</AssemblyName>
     <ProjectTypeGuids>{4D628B5B-2FBC-4AA6-8C16-197242AEB884};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PlatformFamilyName>PocketPC</PlatformFamilyName>
     <PlatformID>b2c48bd2-963d-4549-9169-1fa021dce484</PlatformID>
@@ -25,7 +25,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\WM6PPC\</OutputPath>
     <DefineConstants>DEBUG;TRACE;$(PlatformFamilyName)</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
@@ -37,7 +37,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\WM6PPC\</OutputPath>
     <DefineConstants>TRACE;$(PlatformFamilyName)</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
@@ -48,6 +48,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Windowsce.Forms" />
+    <Reference Include="Microsoft.WindowsMobile.Forms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files\Windows Mobile 5.0 SDK R2\Managed Libraries\Microsoft.WindowsMobile.Forms.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -65,18 +69,27 @@
     <Compile Include="Controllers\IncidentDetailsViewController.cs" />
     <Compile Include="Controllers\IncidentListViewController.cs" />
     <Compile Include="Controllers\IncidentMapViewController.cs" />
+    <Compile Include="Controllers\IncidentPhotoViewController.cs" />
     <Compile Include="Controllers\SettingsViewController.cs" />
     <Compile Include="Controllers\SyncViewController.cs" />
     <Compile Include="Controllers\WebsiteViewController.cs" />
     <Compile Include="Controls\IncidentListItem.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\PhotoSelector_WM6.cs" />
+    <Compile Include="Languages\Language.en-US.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.en-US.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Models\AddIncidentModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\IncidentDetailsModel.cs" />
     <Compile Include="Models\IncidentListModel.cs" />
     <Compile Include="Models\IncidentMapModel.cs" />
+    <Compile Include="Models\IncidentPhotoModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Models\SyncModel.cs" />
     <Compile Include="Models\WebsiteModel.cs" />
@@ -174,6 +187,15 @@
     <Compile Include="Views\IncidentMapView_PPC.Designer.cs">
       <DependentUpon>IncidentMapView_PPC.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\IncidentPhotoView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentPhotoView_PPC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\IncidentPhotoView_PPC.Designer.cs">
+      <DependentUpon>IncidentPhotoView_PPC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,17 +236,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <EmbeddedResource Include="Resources\ushahidi_add.png" />
+    <EmbeddedResource Include="Resources\no_photo.jpg" />
+    <EmbeddedResource Include="Languages\Language.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.en-US.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
-    <EmbeddedResource Include="Resources\ushahidi_fire.png" />
-    <EmbeddedResource Include="Resources\ushahidi_globe.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
-    <EmbeddedResource Include="Resources\ushahidi_icon.png" />
-    <EmbeddedResource Include="Resources\ushahidi_main.gif" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
-    <EmbeddedResource Include="Resources\ushahidi_marker.png" />
-    <EmbeddedResource Include="Resources\ushahidi_plane.png" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
+    <EmbeddedResource Include="Views\IncidentPhotoView_PPC.resx">
+      <DependentUpon>IncidentPhotoView_PPC.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

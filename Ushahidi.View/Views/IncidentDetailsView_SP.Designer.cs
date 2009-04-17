@@ -30,19 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentDetailsView));
             this.pictureBoxImage = new System.Windows.Forms.PictureBox();
-            this.labelTitle = new System.Windows.Forms.Label();
-            this.labelLocale = new System.Windows.Forms.Label();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.labelVerified = new System.Windows.Forms.Label();
-            this.labelDescription = new System.Windows.Forms.Label();
-            this.menuItemAddPhoto = new System.Windows.Forms.MenuItem();
-            this.menuItemViewMap = new System.Windows.Forms.MenuItem();
+            this.labelIncidentDetailTitle = new System.Windows.Forms.Label();
+            this.labelIncidentDetailLocale = new System.Windows.Forms.Label();
+            this.labelIncidentDetailDate = new System.Windows.Forms.Label();
+            this.labelIncidentDetailVerified = new System.Windows.Forms.Label();
+            this.labelIncidentDetailDescription = new System.Windows.Forms.Label();
+            this.menuItemIncidentDetailAddPhoto = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentDetailViewMap = new System.Windows.Forms.MenuItem();
+            this.imageListBox = new Ushahidi.Common.Controls.ImageListBox();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemAddPhoto);
-            this.menuItemAction.MenuItems.Add(this.menuItemViewMap);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailAddPhoto);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailViewMap);
             this.menuItemAction.Text = "Action";
             // 
             // pictureBoxImage
@@ -50,79 +51,88 @@
             this.pictureBoxImage.BackColor = System.Drawing.Color.Gray;
             this.pictureBoxImage.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxImage.Name = "pictureBoxImage";
-            this.pictureBoxImage.Size = new System.Drawing.Size(60, 60);
+            this.pictureBoxImage.Size = new System.Drawing.Size(80, 80);
             // 
-            // labelTitle
+            // labelIncidentDetailTitle
             // 
-            this.labelTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.labelIncidentDetailTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTitle.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
-            this.labelTitle.Location = new System.Drawing.Point(66, 3);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(107, 20);
-            this.labelTitle.Text = "[Title]";
+            this.labelIncidentDetailTitle.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.labelIncidentDetailTitle.Location = new System.Drawing.Point(84, 3);
+            this.labelIncidentDetailTitle.Name = "labelIncidentDetailTitle";
+            this.labelIncidentDetailTitle.Size = new System.Drawing.Size(88, 20);
+            this.labelIncidentDetailTitle.Text = "[Title]";
             // 
-            // labelLocale
+            // labelIncidentDetailLocale
             // 
-            this.labelLocale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.labelIncidentDetailLocale.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelLocale.Location = new System.Drawing.Point(66, 23);
-            this.labelLocale.Name = "labelLocale";
-            this.labelLocale.Size = new System.Drawing.Size(107, 20);
-            this.labelLocale.Text = "[Locale]";
+            this.labelIncidentDetailLocale.Location = new System.Drawing.Point(84, 23);
+            this.labelIncidentDetailLocale.Name = "labelIncidentDetailLocale";
+            this.labelIncidentDetailLocale.Size = new System.Drawing.Size(88, 20);
+            this.labelIncidentDetailLocale.Text = "[Locale]";
             // 
-            // labelDate
+            // labelIncidentDetailDate
             // 
-            this.labelDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.labelIncidentDetailDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDate.Location = new System.Drawing.Point(66, 43);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(107, 20);
-            this.labelDate.Text = "[Date]";
+            this.labelIncidentDetailDate.Location = new System.Drawing.Point(84, 43);
+            this.labelIncidentDetailDate.Name = "labelIncidentDetailDate";
+            this.labelIncidentDetailDate.Size = new System.Drawing.Size(88, 20);
+            this.labelIncidentDetailDate.Text = "[Date]";
             // 
-            // labelVerified
+            // labelIncidentDetailVerified
             // 
-            this.labelVerified.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.labelIncidentDetailVerified.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelVerified.Location = new System.Drawing.Point(66, 63);
-            this.labelVerified.Name = "labelVerified";
-            this.labelVerified.Size = new System.Drawing.Size(107, 20);
-            this.labelVerified.Text = "NOT VERIFIED";
+            this.labelIncidentDetailVerified.Location = new System.Drawing.Point(84, 63);
+            this.labelIncidentDetailVerified.Name = "labelIncidentDetailVerified";
+            this.labelIncidentDetailVerified.Size = new System.Drawing.Size(88, 20);
+            this.labelIncidentDetailVerified.Text = "NOT VERIFIED";
             // 
-            // labelDescription
+            // labelIncidentDetailDescription
             // 
-            this.labelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.labelIncidentDetailDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDescription.Location = new System.Drawing.Point(3, 83);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(170, 97);
-            this.labelDescription.Text = "[Description]";
+            this.labelIncidentDetailDescription.Location = new System.Drawing.Point(3, 86);
+            this.labelIncidentDetailDescription.Name = "labelIncidentDetailDescription";
+            this.labelIncidentDetailDescription.Size = new System.Drawing.Size(169, 40);
+            this.labelIncidentDetailDescription.Text = "[Description]";
             // 
-            // menuItemAddPhoto
+            // menuItemIncidentDetailAddPhoto
             // 
-            this.menuItemAddPhoto.Text = "Add Photo";
-            this.menuItemAddPhoto.Click += new System.EventHandler(this.OnAddPhoto);
+            this.menuItemIncidentDetailAddPhoto.Text = "Add Photo";
             // 
-            // menuItemViewMap
+            // menuItemIncidentDetailViewMap
             // 
-            this.menuItemViewMap.Text = "View Map";
-            this.menuItemViewMap.Click += new System.EventHandler(this.OnViewMap);
+            this.menuItemIncidentDetailViewMap.Text = "View Map";
+            // 
+            // imageListBox
+            // 
+            this.imageListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.imageListBox.Location = new System.Drawing.Point(5, 129);
+            this.imageListBox.Name = "imageListBox";
+            this.imageListBox.Size = new System.Drawing.Size(168, 51);
+            this.imageListBox.TabIndex = 6;
             // 
             // IncidentDetailsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 180);
-            this.Controls.Add(this.labelDescription);
-            this.Controls.Add(this.labelVerified);
-            this.Controls.Add(this.labelDate);
-            this.Controls.Add(this.labelLocale);
-            this.Controls.Add(this.labelTitle);
+            this.Controls.Add(this.imageListBox);
+            this.Controls.Add(this.labelIncidentDetailDescription);
+            this.Controls.Add(this.labelIncidentDetailVerified);
+            this.Controls.Add(this.labelIncidentDetailDate);
+            this.Controls.Add(this.labelIncidentDetailLocale);
+            this.Controls.Add(this.labelIncidentDetailTitle);
             this.Controls.Add(this.pictureBoxImage);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IncidentDetailsView";
             this.Text = "Incident Details";
+            this.Load += new System.EventHandler(this.IncidentDetailsView_Load);
             this.ResumeLayout(false);
 
         }
@@ -130,12 +140,13 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxImage;
-        private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.Label labelLocale;
-        private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.Label labelVerified;
-        private System.Windows.Forms.Label labelDescription;
-        private System.Windows.Forms.MenuItem menuItemAddPhoto;
-        private System.Windows.Forms.MenuItem menuItemViewMap;
+        private System.Windows.Forms.Label labelIncidentDetailTitle;
+        private System.Windows.Forms.Label labelIncidentDetailLocale;
+        private System.Windows.Forms.Label labelIncidentDetailDate;
+        private System.Windows.Forms.Label labelIncidentDetailVerified;
+        private System.Windows.Forms.Label labelIncidentDetailDescription;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailAddPhoto;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailViewMap;
+        private Ushahidi.Common.Controls.ImageListBox imageListBox;
     }
 }

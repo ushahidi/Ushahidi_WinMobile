@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Globalization;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
 {
@@ -7,22 +10,30 @@ namespace Ushahidi.View.Views
     /// </summary>
     partial class SettingsView
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+            menuItemSettingsDone.Click += OnDone;
+            menuItemSettingsCancel.Click += OnCancel;
+        }
+
+        public override void Translate()
+        {
+            base.Translate();
+            menuItemAction.Translate(this);
+            textBoxSettingsServer.Translate();
+            textBoxSettingsEmail.Translate();
+            textBoxSettingsFirstName.Translate();
+            textBoxSettingsLastName.Translate();
+            comboBoxSettingsLanguages.Translate();
+        }
         /// <summary>
         /// Server Address
         /// </summary>
         public string ServerAddress
         {
-            get { return textBoxServer.Text; }
-            set { textBoxServer.Text = value; }
-        }
-
-        /// <summary>
-        /// Default Locale
-        /// </summary>
-        public string DefaultLocale
-        {
-            get { return textBoxLocale.Text; }
-            set { textBoxLocale.Text = value; }
+            get { return textBoxSettingsServer.Text; }
+            set { textBoxSettingsServer.Text = value; }
         }
 
         /// <summary>
@@ -30,8 +41,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string FirstName
         {
-            get { return textBoxFirstName.Text; }
-            set { textBoxFirstName.Text = value; }
+            get { return textBoxSettingsFirstName.Text; }
+            set { textBoxSettingsFirstName.Text = value; }
         }
 
         /// <summary>
@@ -39,8 +50,26 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string LastName
         {
-            get { return textBoxLastName.Text; }
-            set { textBoxLastName.Text = value; }
+            get { return textBoxSettingsLastName.Text; }
+            set { textBoxSettingsLastName.Text = value; }
+        }
+
+        /// <summary>
+        /// Languages
+        /// </summary>
+        public object Languages
+        {
+            get { return comboBoxSettingsLanguages.DataSource; }
+            set { comboBoxSettingsLanguages.DataSource = value; }
+        }
+
+        /// <summary>
+        /// Current language
+        /// </summary>
+        public CultureInfo Language
+        {
+            get { return comboBoxSettingsLanguages.SelectedValue<CultureInfo>(); }
+            set { comboBoxSettingsLanguages.SelectedItem = value; }
         }
 
         /// <summary>
@@ -48,8 +77,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string Email
         {
-            get { return textBoxEmail.Text; }
-            set { textBoxEmail.Text = value; }
+            get { return textBoxSettingsEmail.Text; }
+            set { textBoxSettingsEmail.Text = value; }
         }
 
         /// <summary>
@@ -57,8 +86,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public bool ShowKeyboard
         {
-            get { return checkBoxKeyboard.Checked; }
-            set { checkBoxKeyboard.Checked = value; }
+            get { return checkBoxSettingsKeyboard.Checked; }
+            set { checkBoxSettingsKeyboard.Checked = value; }
         }
 
         /// <summary>
@@ -87,6 +116,12 @@ namespace Ushahidi.View.Views
         {
             ShouldSave = false;
             OnBack();
+        }
+
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            ShouldSave = true;
+            base.OnClosing(e);
         }
     }
 }

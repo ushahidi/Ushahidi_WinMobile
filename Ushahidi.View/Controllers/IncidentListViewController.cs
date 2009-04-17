@@ -6,7 +6,7 @@ namespace Ushahidi.View.Controllers
 {
     public class IncidentListViewController : BaseViewController<IncidentListView, IncidentListModel>
     {
-        public override void Load()
+        public override void Load(object[] parameters)
         {
             View.Categories = Model.Categories;
             View.Incidents = Model.Incidents;

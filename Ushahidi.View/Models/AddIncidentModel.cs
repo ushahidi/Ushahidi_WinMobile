@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Model;
@@ -49,7 +50,7 @@ namespace Ushahidi.View.Models
         /// <summary>
         /// Incident images
         /// </summary>
-        public Image[] Images { get; set; }
+        public IEnumerable<Image> Images { get; set; }
 
         /// <summary>
         /// Categories
@@ -81,8 +82,7 @@ namespace Ushahidi.View.Models
                     Date = Date,
                     Title = Title,
                     Description = Description,
-                    CategoryTitle = Category.Title,
-                    CategoryID = Category.ID,
+                    Category = Category,
                     LocationName = Locale.Name,
                     LocationID = Locale.ID,
                     Longitude = Longitude,

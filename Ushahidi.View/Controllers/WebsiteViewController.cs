@@ -8,7 +8,7 @@ namespace Ushahidi.View.Controllers
         /// <summary>
         /// Load the view
         /// </summary>
-        public override void Load()
+        public override void Load(object[] parameters)
         {
             View.WebsiteURL = Model.WebsiteURL;
         }

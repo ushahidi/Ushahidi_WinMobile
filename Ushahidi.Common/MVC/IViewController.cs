@@ -13,7 +13,8 @@ namespace Ushahidi.Common.MVC
     /// </summary>
     /// <param name="type">view controller type</param>
     /// <param name="clearStack">clear stack</param>
-    public delegate void ForwardHandler(Type type, bool clearStack);
+    /// <param name="parameters">parameters</param>
+    public delegate void ForwardHandler(Type type, bool clearStack, params object [] parameters);
 
     /// <summary>
     /// View Controller Interface
@@ -38,7 +39,8 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Load view with model data
         /// </summary>
-        void Load();
+        /// <param name="parameters">parameters</param>
+        void Load(params object [] parameters);
 
         /// <summary>
         /// Save model from view data
@@ -47,9 +49,19 @@ namespace Ushahidi.Common.MVC
         bool Save();
 
         /// <summary>
+        /// Initialize the view
+        /// </summary>
+        void Initialize();
+
+        /// <summary>
         /// Render the view
         /// </summary>
         void Render();
+
+        /// <summary>
+        /// Translate the view
+        /// </summary>
+        void Translate();
 
         /// <summary>
         /// Show the view

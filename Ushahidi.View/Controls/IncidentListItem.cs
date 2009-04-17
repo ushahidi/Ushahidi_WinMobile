@@ -29,7 +29,7 @@ namespace Ushahidi.View.Controls
             }
         }
 
-        protected Incident Incident { get; private set; }
+        public Incident Incident { get; private set; }
 
         public Font BoldFont { get; set; }
 
@@ -69,7 +69,7 @@ namespace Ushahidi.View.Controls
                 e.Graphics.DrawString(Incident.LocationName, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.CategoryTitle, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.Category.Title, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
             }
             using (Pen pen = new Pen(Color.Black))
             {

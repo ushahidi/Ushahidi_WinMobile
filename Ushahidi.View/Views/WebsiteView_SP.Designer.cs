@@ -32,6 +32,10 @@
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
+            // menuItemAction
+            // 
+            this.menuItemAction.Text = "Done";
+            // 
             // webBrowser
             // 
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -47,7 +51,6 @@
             this.Controls.Add(this.webBrowser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WebsiteView";
-            this.Text = "Ushahidi";
             this.ResumeLayout(false);
 
         }

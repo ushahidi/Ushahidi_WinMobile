@@ -34,6 +34,10 @@
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
+            // menuItemAction
+            // 
+            this.menuItemAction.Text = "Done";
+            // 
             // panelContent
             // 
             this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)

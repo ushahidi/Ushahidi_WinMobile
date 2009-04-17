@@ -1,1 +1,135 @@
-<locations><location><id>1</id><location_name>puwokerto</location_name><country_id>101</country_id><latitude>-7.431518</latitude><longitude>109.247398</longitude></location><location><id>2</id><location_name>Pacet</location_name><country_id>101</country_id><latitude>-6.7378385</latitude><longitude>107.0480378</longitude></location><location><id>3</id><location_name>Bogor</location_name><country_id>101</country_id><latitude>-6.59599</latitude><longitude>106.792</longitude></location><location><id>4</id><location_name>Chilachap</location_name><country_id>101</country_id><latitude>-7.74365134526334</latitude><longitude>109.00634765625</longitude></location><location><id>5</id><location_name>Balong</location_name><country_id /><latitude>-6.17468897974815</latitude><longitude>107.118072509766</longitude></location><location><id>6</id><location_name>migori</location_name><country_id>227</country_id><latitude>-1.066667</latitude><longitude>34.466667</longitude></location><location><id>7</id><location_name>kericho</location_name><country_id>115</country_id><latitude>-0.366062</latitude><longitude>35.281799</longitude></location></locations>
+<locations>
+  <location>
+    <id>1</id>
+    <location_name>puwokerto</location_name>
+    <country_id>101</country_id>
+    <latitude>-7.431518</latitude>
+    <longitude>109.247398</longitude>
+  </location>
+  <location>
+    <id>2</id>
+    <location_name>Pacet</location_name>
+    <country_id>101</country_id>
+    <latitude>-6.7378385</latitude>
+    <longitude>107.0480378</longitude>
+  </location>
+  <location>
+    <id>3</id>
+    <location_name>Bogor</location_name>
+    <country_id>101</country_id>
+    <latitude>-6.59599</latitude>
+    <longitude>106.792</longitude>
+  </location>
+  <location>
+    <id>4</id>
+    <location_name>Chilachap</location_name>
+    <country_id>101</country_id>
+    <latitude>-7.74365134526334</latitude>
+    <longitude>109.00634765625</longitude>
+  </location>
+  <location>
+    <id>5</id>
+    <location_name>Balong</location_name>
+    <country_id />
+    <latitude>-6.17468897974815</latitude>
+    <longitude>107.118072509766</longitude>
+  </location>
+  <location>
+    <id>6</id>
+    <location_name>migori</location_name>
+    <country_id>227</country_id>
+    <latitude>-1.066667</latitude>
+    <longitude>34.466667</longitude>
+  </location>
+  <location>
+    <id>7</id>
+    <location_name>kericho</location_name>
+    <country_id>115</country_id>
+    <latitude>-0.366062</latitude>
+    <longitude>35.281799</longitude>
+  </location>
+  <location>
+    <id>8</id>
+    <location_name>accra</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>9</id>
+    <location_name>accra</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>10</id>
+    <location_name>Pacet</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>11</id>
+    <location_name>Pacet</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>12</id>
+    <location_name>Pacet</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>13</id>
+    <location_name>Pacet</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>14</id>
+    <location_name>Pacet</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>15</id>
+    <location_name>Pacet</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>16</id>
+    <location_name>Pacet</location_name>
+    <country_id />
+    <latitude>-1.2873</latitude>
+    <longitude>36.821451</longitude>
+  </location>
+  <location>
+    <id>17</id>
+    <location_name>Dar es Salaam</location_name>
+    <country_id>227</country_id>
+    <latitude>-2.52094</latitude>
+    <longitude>35.15625</longitude>
+  </location>
+  <location>
+    <id>18</id>
+    <location_name>Naivasha</location_name>
+    <country_id />
+    <latitude>-0.725078</latitude>
+    <longitude>36.45813</longitude>
+  </location>
+  <location>
+    <id>19</id>
+    <location_name>Los Angeles, California, USA</location_name>
+    <country_id />
+    <latitude>-2.52094</latitude>
+    <longitude>35.15625</longitude>
+  </location>
+</locations>

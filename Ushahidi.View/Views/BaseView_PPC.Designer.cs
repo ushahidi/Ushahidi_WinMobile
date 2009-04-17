@@ -30,28 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BaseView));
             this.mainMenu = new System.Windows.Forms.MainMenu();
-            this.menuItemWebsite = new System.Windows.Forms.MenuItem();
+            this.menuItemAction = new System.Windows.Forms.MenuItem();
             this.menuItemMenu = new System.Windows.Forms.MenuItem();
             this.menuItemAddIncident = new System.Windows.Forms.MenuItem();
             this.menuItemIncidentList = new System.Windows.Forms.MenuItem();
             this.menuItemIncidentMap = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
-            this.menuItemSync = new System.Windows.Forms.MenuItem();
+            this.menuItemSynchronize = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemSettings = new System.Windows.Forms.MenuItem();
-            this.menuItemAbout = new System.Windows.Forms.MenuItem();
+            this.menuItemWebsite = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator3 = new System.Windows.Forms.MenuItem();
             this.menuItemExit = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
             // 
-            this.mainMenu.MenuItems.Add(this.menuItemWebsite);
+            this.mainMenu.MenuItems.Add(this.menuItemAction);
             this.mainMenu.MenuItems.Add(this.menuItemMenu);
             // 
-            // menuItemWebsite
+            // menuItemAction
             // 
-            this.menuItemWebsite.Text = "";
+            this.menuItemAction.Text = "";
             // 
             // menuItemMenu
             // 
@@ -59,10 +59,10 @@
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentList);
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentMap);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator1);
-            this.menuItemMenu.MenuItems.Add(this.menuItemSync);
+            this.menuItemMenu.MenuItems.Add(this.menuItemSynchronize);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemMenu.MenuItems.Add(this.menuItemSettings);
-            this.menuItemMenu.MenuItems.Add(this.menuItemAbout);
+            this.menuItemMenu.MenuItems.Add(this.menuItemWebsite);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator3);
             this.menuItemMenu.MenuItems.Add(this.menuItemExit);
             this.menuItemMenu.Text = "Menu";
@@ -87,10 +87,10 @@
             // 
             this.menuItemSeparator1.Text = "-";
             // 
-            // menuItemSync
+            // menuItemSynchronize
             // 
-            this.menuItemSync.Text = "Synchronize";
-            this.menuItemSync.Click += new System.EventHandler(this.OnSync);
+            this.menuItemSynchronize.Text = "Synchronize";
+            this.menuItemSynchronize.Click += new System.EventHandler(this.OnSync);
             // 
             // menuItemSeparator2
             // 
@@ -101,10 +101,10 @@
             this.menuItemSettings.Text = "Settings";
             this.menuItemSettings.Click += new System.EventHandler(this.OnSettings);
             // 
-            // menuItemAbout
+            // menuItemWebsite
             // 
-            this.menuItemAbout.Text = "Website";
-            this.menuItemAbout.Click += new System.EventHandler(this.OnWebsite);
+            this.menuItemWebsite.Text = "Website";
+            this.menuItemWebsite.Click += new System.EventHandler(this.OnWebsite);
             // 
             // menuItemSeparator3
             // 
@@ -135,16 +135,16 @@
 
         private System.Windows.Forms.MenuItem menuItemSeparator1;
         private System.Windows.Forms.MenuItem menuItemSeparator2;
-        public System.Windows.Forms.MenuItem menuItemWebsite;
+        public System.Windows.Forms.MenuItem menuItemAction;
         public System.Windows.Forms.MenuItem menuItemMenu;
         public System.Windows.Forms.MenuItem menuItemExit;
         public System.Windows.Forms.MenuItem menuItemAddIncident;
         public System.Windows.Forms.MenuItem menuItemIncidentMap;
         public System.Windows.Forms.MenuItem menuItemIncidentList;
         public System.Windows.Forms.MenuItem menuItemSettings;
-        public System.Windows.Forms.MenuItem menuItemAbout;
+        public System.Windows.Forms.MenuItem menuItemWebsite;
         public System.Windows.Forms.MainMenu mainMenu;
-        private System.Windows.Forms.MenuItem menuItemSync;
+        private System.Windows.Forms.MenuItem menuItemSynchronize;
         private System.Windows.Forms.MenuItem menuItemSeparator3;
     }
 }

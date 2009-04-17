@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Xml.Serialization;
 
 namespace Ushahidi.Model.Models
@@ -16,38 +17,50 @@ namespace Ushahidi.Model.Models
         [XmlElement("incidentdescription")]
         public string Description { get; set; }
 
+        [XmlElement("incidentdate")]
+        public DateTime Date { get; set; }
+
+        [XmlElement("incidentmode")]
+        public int Mode { get; set; }
+
+        [XmlElement("incidentactive")]
+        public bool Active { get; set; }
+
+        [XmlElement("incidentverified")]
+        public bool Verified { get; set; }
+
         [XmlElement("locationid")]
         public int LocationID { get; set; }
 
         [XmlElement("locationname")]
         public string LocationName { get; set; }
 
-        [XmlElement("categoryid")]
-        public int CategoryID { get; set; }
-
-        [XmlElement("categorytitle")]
-        public string CategoryTitle { get; set; }
-
-        [XmlElement("incidentdate")]
-        public DateTime Date { get; set; }
-
-        [XmlElement("latitude")]
+        [XmlElement("locationlatitude")]
         public double Latitude { get; set; }
 
-        [XmlElement("longitude")]
+        [XmlElement("locationlongitude")]
         public double Longitude { get; set; }
 
+        [XmlElement("category")]
+        public Category Category { get; set; }
+
         [XmlArray("media", IsNullable = true)]
-        [XmlArrayItem("mediaitem")] 
+        [XmlArrayItem("media")] 
         public Media[] MediaItems
         {
             get { return _Media.ToArray(); }
             set
             {
                 _Media.Clear();
-                _Media.AddRange(value);
+                if (value != null)
+                {
+                    _Media.AddRange(value);
+                }
             }
         }private readonly List<Media> _Media = new List<Media>();
+
+        [XmlIgnore]
+        public bool IsNew { get; set; }
 
         public void AddMedia(Media media)
         {
@@ -58,9 +71,6 @@ namespace Ushahidi.Model.Models
         {
             return Title;
         }
-
-        [XmlIgnore]
-        public bool IsNew { get; set; }
 
         public static Incident Load(string filePath)
         {

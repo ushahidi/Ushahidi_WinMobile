@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
 {
@@ -7,13 +8,10 @@ namespace Ushahidi.View.Views
     /// </summary>
     partial class HomeView
     {
-        /// <summary>
-        /// The description
-        /// </summary>
-        public string Description
+        public override void Translate()
         {
-            get { return labelDescription.Text; }
-            set { labelDescription.Text = value; }
+            base.Translate();
+            labelHomeDescription.Translate();
         }
 
         /// <summary>

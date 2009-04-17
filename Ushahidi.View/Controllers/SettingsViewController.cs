@@ -24,10 +24,11 @@ namespace Ushahidi.View.Controllers
             get { return "Please verify all required fields are entered"; }
         }
 
-        public override void Load()
+        public override void Load(object[] parameters)
         {
+            View.Languages = Model.Languages;
+            View.Language = Model.Language;
             View.ServerAddress = Model.ServerAddress;
-            View.DefaultLocale = Model.DefaultLocale;
             View.ShowKeyboard = Model.ShowKeyboard;
             View.FirstName = Model.FirstName;
             View.LastName = Model.LastName;
@@ -38,8 +39,8 @@ namespace Ushahidi.View.Controllers
         {
             if (View.ShouldSave)
             {
+                Model.Language = View.Language;
                 Model.ServerAddress = View.ServerAddress;
-                Model.DefaultLocale = View.DefaultLocale;
                 Model.ShowKeyboard = View.ShowKeyboard;
                 Model.FirstName = View.FirstName;
                 Model.LastName = View.LastName;

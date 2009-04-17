@@ -36,7 +36,7 @@
             this.menuItemIncidentList = new System.Windows.Forms.MenuItem();
             this.menuItemIncidentMap = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
-            this.menuItemSync = new System.Windows.Forms.MenuItem();
+            this.menuItemSynchronize = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemSettings = new System.Windows.Forms.MenuItem();
             this.menuItemWebsite = new System.Windows.Forms.MenuItem();
@@ -59,7 +59,7 @@
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentList);
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentMap);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator1);
-            this.menuItemMenu.MenuItems.Add(this.menuItemSync);
+            this.menuItemMenu.MenuItems.Add(this.menuItemSynchronize);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemMenu.MenuItems.Add(this.menuItemSettings);
             this.menuItemMenu.MenuItems.Add(this.menuItemWebsite);
@@ -89,8 +89,8 @@
             // 
             // menuItemSync
             // 
-            this.menuItemSync.Text = "Synchronize";
-            this.menuItemSync.Click += new System.EventHandler(this.OnSync);
+            this.menuItemSynchronize.Text = "Synchronize";
+            this.menuItemSynchronize.Click += new System.EventHandler(this.OnSync);
             // 
             // menuItemSeparator2
             // 
@@ -143,7 +143,7 @@
         public System.Windows.Forms.MenuItem menuItemAction;
         public System.Windows.Forms.MainMenu mainMenu;
         public System.Windows.Forms.MenuItem menuItemMenu;
-        private System.Windows.Forms.MenuItem menuItemSync;
+        private System.Windows.Forms.MenuItem menuItemSynchronize;
         private System.Windows.Forms.MenuItem menuItemSeparator3;
     }
 }

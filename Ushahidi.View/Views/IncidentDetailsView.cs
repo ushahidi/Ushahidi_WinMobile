@@ -1,6 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using Ushahidi.Common.Controls;
 using Ushahidi.Common.Extensions;
+using Ushahidi.Model.Models;
+using Ushahidi.View.Controllers;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
 {
@@ -9,16 +17,28 @@ namespace Ushahidi.View.Views
     /// </summary>
     partial class IncidentDetailsView
     {
-        private const string VERIFIED = "VERIFIED";
-        private const string NOT_VERIFIED = "NOT VERIFIED";
+        public override void Initialize()
+        {
+            base.Initialize();
+            menuItemIncidentDetailAddPhoto.Click += OnAddPhoto;
+            menuItemIncidentDetailViewMap.Click += OnViewMap;
+            imageListBox.ImageSelected += OnImageSelected;
+            imageListBox.ThumbnailSize = ThumbnailSizes.FullWidth;
+        }
+
+        public override void Translate()
+        {
+            base.Translate();
+            menuItemIncidentDetailAddPhoto.Translate(this);
+            menuItemIncidentDetailViewMap.Translate(this);
+        }
 
         /// <summary>
         /// Incident title
         /// </summary>
         public string Title
         {
-            get { return labelTitle.Text; }
-            set { labelTitle.Text = value; }
+            set { labelIncidentDetailTitle.Text = value; }
         }
 
         /// <summary>
@@ -26,8 +46,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string Locale
         {
-            get { return labelLocale.Text; }
-            set { labelLocale.Text = value; }
+            set { labelIncidentDetailLocale.Text = value; }
         }
 
         /// <summary>
@@ -35,8 +54,12 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string Description
         {
-            get { return labelDescription.Text; }
-            set { labelDescription.Text = value; }
+            set 
+            { 
+                labelIncidentDetailDescription.Text = value;
+                labelIncidentDetailDescription.Height = labelIncidentDetailDescription.GetRequiredHeight(labelIncidentDetailDescription.Font, value);
+                imageListBox.Top = labelIncidentDetailDescription.Bottom + labelIncidentDetailDescription.Left;
+            }
         }
 
         /// <summary>
@@ -44,58 +67,89 @@ namespace Ushahidi.View.Views
         /// </summary>
         public DateTime Date
         {
-            get { return labelDate.Text.ToDateTime(); }
-            set { labelDate.Text = value.ToString(); }
+            set { labelIncidentDetailDate.Text = value.ToString(); }
         }
+
+        public double Latitude { get; set; }
+
+        public double Longitude { get; set; }
 
         /// <summary>
         /// Incident image
         /// </summary>
-        public Image Image
+        public IEnumerable<Media> MedaItems
         {
-            get { return pictureBoxImage.Image; }
-            set { pictureBoxImage.Image = value; }
-        }
+            get { return _MedaItems; }
+            set
+            {
+                _MedaItems.Clear();
+                if (value != null && value.Count() > 0)
+                {
+                    _MedaItems.AddRange(value);
+                    pictureBoxImage.Image = value.ElementAt(0).Thumbnail;
+                    foreach(Media media in value)
+                    {
+                        imageListBox.AddImage(media.Original);
+                    }
+                }
+                else
+                {
+                    pictureBoxImage.Image = DefaultImage;
+                    imageListBox.Images = null;
+                }
+            }
+        }private readonly List<Media> _MedaItems = new List<Media>();
 
         /// <summary>
         /// Incident verified?
         /// </summary>
         public bool Verified
         {
-            get { return labelVerified.Text.Equals(VERIFIED); }
             set
             {
-                labelVerified.Text = value ? VERIFIED : NOT_VERIFIED;
-                labelVerified.ForeColor = value ? Color.Green : Color.Red;
+                labelIncidentDetailVerified.Text = value ? "verified".Translate() : "notVerified".Translate();
+                labelIncidentDetailVerified.ForeColor = value ? Color.Green : Color.Red;
             }
         }
 
-        /// <summary>
-        /// View map event
-        /// </summary>
-        public event EventHandler ViewMap
-        {
-            add { menuItemViewMap.Click += value; }
-            remove { menuItemViewMap.Click -= value; }
-        }
-
-        /// <summary>
-        /// Add photo event
-        /// </summary>
-        public event EventHandler AddPhoto
-        {
-            add { menuItemAddPhoto.Click += value; }
-            remove { menuItemAddPhoto.Click -= value; }
-        }
+        public bool Active { get; set; }
 
         private void OnViewMap(object sender, EventArgs e)
         {
-
+            //TODO
         }
 
         private void OnAddPhoto(object sender, EventArgs e)
         {
-
+            //TODO
         }
+
+        private void OnImageSelected(object sender, Common.Controls.ImageSelectedEventArgs args)
+        {
+            OnForward(typeof(IncidentPhotoViewController), args.Image);
+        }
+
+        protected Image DefaultImage
+        {
+            get
+            {
+                if (_DefaultImage == null)
+                {
+                    foreach (string resource in Assembly.GetExecutingAssembly().GetManifestResourceNames())
+                    {
+                        if (!resource.EndsWith("no_photo.jpg")) continue;
+                        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource))
+                        {
+                            if (stream != null)
+                            {
+                                _DefaultImage = new Bitmap(stream);
+                            }
+                            break;
+                        }
+                    }
+                }
+                return _DefaultImage;
+            }
+        }private Image _DefaultImage;
     }
 }

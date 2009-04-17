@@ -30,19 +30,49 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentListView));
             this.panelContent = new System.Windows.Forms.Panel();
-            this.comboBoxCategories = new Ushahidi.Common.Controls.LabelComboBox();
-            this.listBoxIncidents = new Ushahidi.Common.Controls.ScrollListBox();
+            this.comboBoxIncidentListCategories = new Ushahidi.Common.Controls.LabelComboBox();
+            this.listBoxIncidentListIncidents = new Ushahidi.Common.Controls.ScrollListBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuItemWebsite
+            // menuItemAction
             // 
-            this.menuItemWebsite.Enabled = false;
-            this.menuItemWebsite.Text = "Select";
+            this.menuItemAction.Enabled = false;
+            this.menuItemAction.Text = "Select";
             // 
             // menuItemIncidentList
             // 
             this.menuItemIncidentList.Enabled = false;
+            // 
+            // comboBoxIncidentListCategories
+            // 
+            this.comboBoxIncidentListCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxIncidentListCategories.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBoxIncidentListCategories.Bold = true;
+            this.comboBoxIncidentListCategories.DisplayMember = "Title";
+            this.comboBoxIncidentListCategories.IsRequired = true;
+            this.comboBoxIncidentListCategories.Label = "Category";
+            this.comboBoxIncidentListCategories.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxIncidentListCategories.Name = "comboBoxIncidentListCategories";
+            this.comboBoxIncidentListCategories.Size = new System.Drawing.Size(240, 28);
+            this.comboBoxIncidentListCategories.TabIndex = 1;
+            this.comboBoxIncidentListCategories.ValueMember = "ID";
+            // 
+            // listBoxIncidentListIncidents
+            // 
+            this.listBoxIncidentListIncidents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxIncidentListIncidents.AutoScroll = true;
+            this.listBoxIncidentListIncidents.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxIncidentListIncidents.BackColorEven = System.Drawing.Color.WhiteSmoke;
+            this.listBoxIncidentListIncidents.BackColorOdd = System.Drawing.Color.Gainsboro;
+            this.listBoxIncidentListIncidents.BackSelectedColor = System.Drawing.Color.Black;
+            this.listBoxIncidentListIncidents.Location = new System.Drawing.Point(0, 28);
+            this.listBoxIncidentListIncidents.Name = "listBoxIncidentListIncidents";
+            this.listBoxIncidentListIncidents.Size = new System.Drawing.Size(240, 266);
+            this.listBoxIncidentListIncidents.TabIndex = 2;
             // 
             // panelContent
             // 
@@ -50,41 +80,11 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContent.Controls.Add(this.comboBoxCategories);
-            this.panelContent.Controls.Add(this.listBoxIncidents);
+            this.panelContent.Controls.Add(this.comboBoxIncidentListCategories);
+            this.panelContent.Controls.Add(this.listBoxIncidentListIncidents);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(240, 294);
-            // 
-            // comboBoxCategories
-            // 
-            this.comboBoxCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxCategories.BackColor = System.Drawing.Color.Gainsboro;
-            this.comboBoxCategories.Bold = true;
-            this.comboBoxCategories.DisplayMember = "Title";
-            this.comboBoxCategories.IsRequired = true;
-            this.comboBoxCategories.Label = "Category";
-            this.comboBoxCategories.Location = new System.Drawing.Point(0, 0);
-            this.comboBoxCategories.Name = "comboBoxCategories";
-            this.comboBoxCategories.Size = new System.Drawing.Size(240, 28);
-            this.comboBoxCategories.TabIndex = 31;
-            this.comboBoxCategories.ValueMember = "ID";
-            // 
-            // listBoxIncidents
-            // 
-            this.listBoxIncidents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxIncidents.AutoScroll = true;
-            this.listBoxIncidents.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxIncidents.BackColorEven = System.Drawing.Color.WhiteSmoke;
-            this.listBoxIncidents.BackColorOdd = System.Drawing.Color.Gainsboro;
-            this.listBoxIncidents.BackSelectedColor = System.Drawing.Color.Black;
-            this.listBoxIncidents.Location = new System.Drawing.Point(0, 28);
-            this.listBoxIncidents.Name = "listBoxIncidents";
-            this.listBoxIncidents.Size = new System.Drawing.Size(240, 266);
-            this.listBoxIncidents.TabIndex = 3;
             // 
             // IncidentListView
             // 
@@ -103,8 +103,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panelContent;
-        private Ushahidi.Common.Controls.ScrollListBox listBoxIncidents;
-        private Ushahidi.Common.Controls.LabelComboBox comboBoxCategories;
+        private Ushahidi.Common.Controls.ScrollListBox listBoxIncidentListIncidents;
+        private Ushahidi.Common.Controls.LabelComboBox comboBoxIncidentListCategories;
 
     }
 }

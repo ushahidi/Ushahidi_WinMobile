@@ -98,6 +98,12 @@
     <Compile Include="Controls\CenteredPictureBox.Designer.cs">
       <DependentUpon>CenteredPictureBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ImageListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageListBox.Designer.cs">
+      <DependentUpon>ImageListBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProgressBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,7 +127,6 @@
     <Compile Include="MVC\IView.cs" />
     <Compile Include="MVC\IViewController.cs" />
     <Compile Include="MVC\Model.cs" />
-    <Compile Include="MVC\ModelChangedEventArgs.cs" />
     <Compile Include="MVC\NavigationController.cs" />
     <Compile Include="Controls\ScrollListBox.cs">
       <SubType>UserControl</SubType>
@@ -132,7 +137,6 @@
     <Compile Include="MVC\View.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MVC\ViewChangedEventArgs.cs" />
     <Compile Include="MVC\ViewController.cs" />
     <Compile Include="Net\Http.cs" />
     <Compile Include="Net\Internet.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelTextBox.resx">
       <DependentUpon>LabelTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageListBox.resx">
+      <DependentUpon>ImageListBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProgressBox.resx">
       <DependentUpon>ProgressBox.cs</DependentUpon>

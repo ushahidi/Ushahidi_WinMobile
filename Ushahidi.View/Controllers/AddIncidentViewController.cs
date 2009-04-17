@@ -29,7 +29,7 @@ namespace Ushahidi.View.Controllers
         /// <summary>
         /// Load AddIncidentView with AddIncidentModel data
         /// </summary>
-        public override void Load()
+        public override void Load(object[] parameters)
         {
             View.Categories = Model.Categories;
             View.Locales = Model.Locales;

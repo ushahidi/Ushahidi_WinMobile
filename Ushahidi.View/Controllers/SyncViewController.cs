@@ -11,7 +11,7 @@ namespace Ushahidi.View.Controllers
         /// <summary>
         /// Load View with Model data
         /// </summary>
-        public override void Load()
+        public override void Load(object[] parameters)
         {
             View.LastSync = Model.LastSync;
         }

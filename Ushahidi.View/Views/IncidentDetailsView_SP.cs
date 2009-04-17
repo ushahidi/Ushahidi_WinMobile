@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        private void IncidentDetailsView_Load(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

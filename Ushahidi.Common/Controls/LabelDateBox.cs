@@ -121,7 +121,7 @@ namespace Ushahidi.Common.Controls
                 {
                     dateTimePicker.Value = value;
                     dateTimePicker.Format = DateTimePickerFormat.Custom;
-                    dateTimePicker.CustomFormat = "MM/dd/yyyy hh:mm tt";
+                    dateTimePicker.CustomFormat = "MM/dd/yyyy h:mm tt";
                 }
                 else
                 {

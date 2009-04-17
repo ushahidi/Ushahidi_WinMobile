@@ -7,6 +7,11 @@ namespace Ushahidi.Common.MVC
     /// </summary>
     public interface IView : IDisposable
     {
+        /// <summary>
+        /// Initialize view
+        /// </summary>
+        void Initialize();
+
         /// Show view
         /// </summary>
         void Show();
@@ -20,6 +25,11 @@ namespace Ushahidi.Common.MVC
         /// Render view
         /// </summary>
         void Render();
+
+        /// <summary>
+        /// Translate view
+        /// </summary>
+        void Translate();
 
         /// <summary>
         /// Close view

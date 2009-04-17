@@ -1,5 +1,218 @@
 <incidents>
-<incident0><incident><incidentid>3</incidentid><incidenttitle>Test 1</incidenttitle><incidentdescription>Ushahidi Demo test with misc image...</incidentdescription><locationid>3</locationid><locationname>Bogor</locationname><categoryid>10</categoryid><categorytitle>Media 1</categorytitle></incident><media><mediaitem0><id>1</id><title /><type>1</type><link>1_1_1231886194.jpg</link><thumb>1_1_1231886194_t.jpg</thumb></mediaitem0></media></incident0>
-<incident1><incident><incidentid>4</incidentid><incidenttitle>Test 2</incidenttitle><incidentdescription>Ushahidi Demo test with misc image...</incidentdescription><locationid>3</locationid><locationname>Bogor</locationname><categoryid>10</categoryid><categorytitle>Media 2</categorytitle></incident><media><mediaitem0><id>2</id><title /><type>1</type><link>2_1_1231886194.jpg</link><thumb>2_1_1231886194_t.jpg</thumb></mediaitem0></media></incident1>
-<incident2><incident><incidentid>5</incidentid><incidenttitle>Test 3</incidenttitle><incidentdescription>Ushahidi Demo test with misc image...</incidentdescription><locationid>3</locationid><locationname>Bogor</locationname><categoryid>10</categoryid><categorytitle>Media 3</categorytitle></incident><media><mediaitem0><id>3</id><title /><type>1</type><link>3_1_1231886194.jpg</link><thumb>3_1_1231886194_t.jpg</thumb></mediaitem0></media></incident2>
+  <incident>
+    <incidentid>1</incidentid>
+    <incidenttitle>Test</incidenttitle>
+    <incidentdescription>Test by E.</incidentdescription>
+    <incidentdate>2009-01-13 01:00:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>0</incidentverified>
+    <locationid>1</locationid>
+    <locationname>puwokerto</locationname>
+    <locationlatitude>-7.431518</locationlatitude>
+    <locationlongitude>109.247398</locationlongitude>
+    <category>
+      <categoryid>7</categoryid>
+      <categorytitle>CIVILIANS</categorytitle>
+      <categoryid>8</categoryid>
+      <categorytitle>LOOTING</categorytitle>
+    </category>
+  </incident>
+  <incident>
+    <incidentid>2</incidentid>
+    <incidenttitle>Mobile Report Test</incidenttitle>
+    <incidentdescription>Test Message</incidentdescription>
+    <incidentdate>2009-01-12 01:00:00</incidentdate>
+    <incidentmode>2</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>1</incidentverified>
+    <locationid>2</locationid>
+    <locationname>Pacet</locationname>
+    <locationlatitude>-6.7378385</locationlatitude>
+    <locationlongitude>107.0480378</locationlongitude>
+    <category>
+      <categoryid>10</categoryid>
+      <categorytitle>MISC</categorytitle>
+    </category>
+  </incident>
+  <incident>
+    <incidentid>3</incidentid>
+    <incidenttitle>Mobile Demo Test</incidenttitle>
+    <incidentdescription>Ushahidi Demo test with misc image...</incidentdescription>
+    <incidentdate>2009-01-13 01:00:00</incidentdate>
+    <incidentmode>2</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>0</incidentverified>
+    <locationid>3</locationid>
+    <locationname>Bogor</locationname>
+    <locationlatitude>-6.59599</locationlatitude>
+    <locationlongitude>106.792</locationlongitude>
+    <category>
+      <categoryid>10</categoryid>
+      <categorytitle>MISC</categorytitle>
+    </category>
+    <media>
+      <mediaid>1</mediaid>
+      <mediatitle />
+      <mediatype>1</mediatype>
+      <medialink>3_1_1231886194.jpg</medialink>
+      <mediathumb>3_1_1231886194_t.jpg</mediathumb>
+    </media>
+  </incident>
+  <incident>
+    <incidentid>5</incidentid>
+    <incidenttitle>Balong Conflict</incidenttitle>
+    <incidentdescription>The various things happening here.</incidentdescription>
+    <incidentdate>2009-01-29 01:00:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>0</incidentverified>
+    <locationid>5</locationid>
+    <locationname>Balong</locationname>
+    <locationlatitude>-6.17468897974815</locationlatitude>
+    <locationlongitude>107.118072509766</locationlongitude>
+    <category>
+      <categoryid>1</categoryid>
+      <categorytitle>RIOTS</categorytitle>
+    </category>
+  </incident>
+  <incident>
+    <incidentid>6</incidentid>
+    <incidenttitle>Mobile Report</incidenttitle>
+    <incidentdescription>Hey, this is Lee. Copy that ?</incidentdescription>
+    <incidentdate>2009-04-08 01:00:00</incidentdate>
+    <incidentmode>2</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>1</incidentverified>
+    <locationid>6</locationid>
+    <locationname>migori</locationname>
+    <locationlatitude>-1.066667</locationlatitude>
+    <locationlongitude>34.466667</locationlongitude>
+    <category>
+      <categoryid>8</categoryid>
+      <categorytitle>LOOTING</categorytitle>
+    </category>
+  </incident>
+  <incident>
+    <incidentid>7</incidentid>
+    <incidenttitle>Sample Report with Photo</incidenttitle>
+    <incidentdescription>Sample report</incidentdescription>
+    <incidentdate>2008-01-09 01:00:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>0</incidentverified>
+    <locationid>7</locationid>
+    <locationname>kericho</locationname>
+    <locationlatitude>-0.366062</locationlatitude>
+    <locationlongitude>35.281799</locationlongitude>
+    <category>
+      <categoryid>5</categoryid>
+      <categorytitle>INTERNALLY DISPLACED PEOPLE </categorytitle>
+    </category>
+    <media>
+      <mediaid>2</mediaid>
+      <mediatitle />
+      <mediatype>1</mediatype>
+      <medialink>7_1_1238686053.jpg</medialink>
+      <mediathumb>7_1_1238686053_t.jpg</mediathumb>
+    </media>
+  </incident>
+  <incident>
+    <incidentid>14</incidentid>
+    <incidenttitle>Public Looting</incidenttitle>
+    <incidentdescription>Various public looting</incidentdescription>
+    <incidentdate>2009-04-04 07:45:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>1</incidentverified>
+    <locationid>14</locationid>
+    <locationname>Pacet</locationname>
+    <locationlatitude>-1.2873</locationlatitude>
+    <locationlongitude>36.821451</locationlongitude>
+    <category />
+  </incident>
+  <incident>
+    <incidentid>15</incidentid>
+    <incidenttitle>Public Looting</incidenttitle>
+    <incidentdescription>Various public looting</incidentdescription>
+    <incidentdate>2009-04-04 07:45:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>0</incidentverified>
+    <locationid>15</locationid>
+    <locationname>Pacet</locationname>
+    <locationlatitude>-1.2873</locationlatitude>
+    <locationlongitude>36.821451</locationlongitude>
+    <category>
+      <categoryid>1</categoryid>
+      <categorytitle>RIOTS</categorytitle>
+      <categoryid>2</categoryid>
+      <categorytitle>DEATHS</categorytitle>
+      <categoryid>3</categoryid>
+      <categorytitle>PROPERTY LOSS</categorytitle>
+      <categoryid>4</categoryid>
+      <categorytitle>SEXUAL ASSAULT</categorytitle>
+      <categoryid>5</categoryid>
+      <categorytitle>INTERNALLY DISPLACED PEOPLE </categorytitle>
+    </category>
+  </incident>
+  <incident>
+    <incidentid>16</incidentid>
+    <incidenttitle>Public Looting</incidenttitle>
+    <incidentdescription>Various public looting</incidentdescription>
+    <incidentdate>2009-04-04 07:45:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>0</incidentverified>
+    <locationid>16</locationid>
+    <locationname>Pacet</locationname>
+    <locationlatitude>-1.2873</locationlatitude>
+    <locationlongitude>36.821451</locationlongitude>
+    <category>
+      <categoryid>1</categoryid>
+      <categorytitle>RIOTS</categorytitle>
+      <categoryid>2</categoryid>
+      <categorytitle>DEATHS</categorytitle>
+      <categoryid>3</categoryid>
+      <categorytitle>PROPERTY LOSS</categorytitle>
+      <categoryid>4</categoryid>
+      <categorytitle>SEXUAL ASSAULT</categorytitle>
+      <categoryid>5</categoryid>
+      <categorytitle>INTERNALLY DISPLACED PEOPLE </categorytitle>
+    </category>
+  </incident>
+  <incident>
+    <incidentid>17</incidentid>
+    <incidenttitle>Test</incidenttitle>
+    <incidentdescription>Test</incidentdescription>
+    <incidentdate>2009-04-09 01:00:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>1</incidentverified>
+    <locationid>17</locationid>
+    <locationname>Dar es Salaam</locationname>
+    <locationlatitude>-2.52094</locationlatitude>
+    <locationlongitude>35.15625</locationlongitude>
+    <category>
+      <categoryid>1</categoryid>
+      <categorytitle>RIOTS</categorytitle>
+    </category>
+  </incident>
+  <incident>
+    <incidentid>18</incidentid>
+    <incidenttitle>testing alerts</incidenttitle>
+    <incidentdescription>testing alerts</incidentdescription>
+    <incidentdate>2009-04-09 01:00:00</incidentdate>
+    <incidentmode>1</incidentmode>
+    <incidentactive>1</incidentactive>
+    <incidentverified>0</incidentverified>
+    <locationid>18</locationid>
+    <locationname>Naivasha</locationname>
+    <locationlatitude>-0.725078</locationlatitude>
+    <locationlongitude>36.45813</locationlongitude>
+    <category>
+      <categoryid>10</categoryid>
+      <categorytitle>MISC</categorytitle>
+    </category>
+  </incident>
 </incidents>

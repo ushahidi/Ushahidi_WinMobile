@@ -69,9 +69,10 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         /// <param name="type">view controller type</param>
         /// <param name="clearStack">should clear stack?</param>
-        public void Push(Type type, bool clearStack)
+        /// <param name="parameters">parameters</param>
+        public void Push(Type type, bool clearStack, params object [] parameters)
         {
-            Log.Info("NavigationController.Push", "type={0} clearStack={1}", type.Name, clearStack);
+            Log.Info("NavigationController.Push", "type={0} clearStack={1} parameters={2}", type.Name, clearStack, parameters.Length);
             IViewController currentViewController = (Depth > 0) ? Stack.Peek() : null;
             IViewController viewController;
             using (new WaitCursor())
@@ -93,6 +94,7 @@ namespace Ushahidi.Common.MVC
                     viewController.Back += Pop;
                     viewController.Forward += Push;
                     viewController.Exit += Exit;
+                    viewController.Initialize();
                     Cache.Add(type, viewController);
                     if (RootViewController == null)
                     {
@@ -112,8 +114,9 @@ namespace Ushahidi.Common.MVC
                     }
                 }
                 Stack.Push(viewController);
-                viewController.Load();
+                viewController.Load(parameters);
                 viewController.Render();
+                viewController.Translate();
             }
             viewController.Show();
             if (currentViewController != null)
@@ -157,6 +160,7 @@ namespace Ushahidi.Common.MVC
                         IViewController viewController = Stack.Peek();
                         viewController.Load();
                         viewController.Render();
+                        viewController.Translate();
                         viewController.Show();
                     }
                     if (currentViewController != null)

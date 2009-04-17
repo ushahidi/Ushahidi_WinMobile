@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.label = new System.Windows.Forms.Label();
-            this.labelDescription = new System.Windows.Forms.Label();
+            this.labelHomeDescription = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // pictureBoxLogo
@@ -54,21 +54,21 @@
             // 
             // labelDescription
             // 
-            this.labelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.labelHomeDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDescription.Font = new System.Drawing.Font("Segoe Condensed", 8F, System.Drawing.FontStyle.Bold);
-            this.labelDescription.Location = new System.Drawing.Point(4, 101);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(169, 119);
-            this.labelDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelHomeDescription.Font = new System.Drawing.Font("Segoe Condensed", 8F, System.Drawing.FontStyle.Bold);
+            this.labelHomeDescription.Location = new System.Drawing.Point(4, 101);
+            this.labelHomeDescription.Name = "labelHomeDescription";
+            this.labelHomeDescription.Size = new System.Drawing.Size(169, 119);
+            this.labelHomeDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // HomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(176, 220);
-            this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.labelHomeDescription);
             this.Controls.Add(this.label);
             this.Controls.Add(this.pictureBoxLogo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -84,6 +84,6 @@
 
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Label label;
-        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.Label labelHomeDescription;
     }
 }

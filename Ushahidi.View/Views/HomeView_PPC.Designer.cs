@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
             this.panelContent = new System.Windows.Forms.Panel();
-            this.labelDescription = new System.Windows.Forms.Label();
+            this.labelHomeDescription = new System.Windows.Forms.Label();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
@@ -42,20 +42,20 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.AutoScroll = true;
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContent.Controls.Add(this.labelDescription);
+            this.panelContent.Controls.Add(this.labelHomeDescription);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(240, 294);
             // 
-            // labelDescription
+            // labelHomeDescription
             // 
-            this.labelDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.labelHomeDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDescription.Location = new System.Drawing.Point(4, 148);
-            this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(233, 120);
-            this.labelDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelHomeDescription.Location = new System.Drawing.Point(4, 148);
+            this.labelHomeDescription.Name = "labelHomeDescription";
+            this.labelHomeDescription.Size = new System.Drawing.Size(233, 120);
+            this.labelHomeDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBoxLogo
             // 
@@ -86,7 +86,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panelContent;
-        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.Label labelHomeDescription;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
 
     }

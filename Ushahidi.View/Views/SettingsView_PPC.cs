@@ -20,7 +20,7 @@ namespace Ushahidi.View.Views
 
         private void OnKeyboardAutoShow(object sender, System.EventArgs e)
         {
-            Keyboard.AutoShowHideKeyboard = checkBoxKeyboard.Checked;
+            Keyboard.AutoShowHideKeyboard = checkBoxSettingsKeyboard.Checked;
         }
     }
 }

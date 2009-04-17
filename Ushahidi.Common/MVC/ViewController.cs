@@ -82,7 +82,8 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Load view with model data
         /// </summary>
-        public virtual void Load()
+        /// <param name="parameters">parameters</param>
+        public virtual void Load(params object [] parameters)
         {
             //implementing view controller can provide their own load logic
         }
@@ -98,11 +99,27 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
+        /// Initialize the view
+        /// </summary>
+        public void Initialize()
+        {
+            View.Initialize();
+        }
+
+        /// <summary>
         /// Render the view
         /// </summary>
         public void Render()
         {
             View.Render();
+        }
+
+        /// <summary>
+        /// Translate the view
+        /// </summary>
+        public void Translate()
+        {
+            View.Translate();
         }
 
         /// <summary>
@@ -171,11 +188,12 @@ namespace Ushahidi.Common.MVC
         /// Move forward
         /// </summary>
         /// <param name="type">view controller type</param>
-        protected void OnForward(Type type)
+        /// <param name="parameters">parameters</param>
+        protected void OnForward(Type type, params object[] parameters)
         {
             if (Forward != null)
             {
-                Forward(type, false);
+                Forward(type, false, parameters);
             }
         }
 
@@ -184,11 +202,12 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         /// <param name="type">view controller type</param>
         /// <param name="clearStack">should clear stack?</param>
-        protected void OnForward(Type type, bool clearStack)
+        /// <param name="parameters">parameters</param>
+        protected void OnForward(Type type, bool clearStack, params object [] parameters)
         {
             if (Forward != null)
             {
-                Forward(type, clearStack);
+                Forward(type, clearStack, parameters);
             }
         }
 

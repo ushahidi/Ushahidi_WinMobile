@@ -1,1 +1,122 @@
-<countries><country><id>1</id><iso>AD</iso><name>Andorra</name><capital>Andorra la Vella</capital></country><country><id>2</id><iso>AE</iso><name>United Arab Emirates</name><capital>Abu Dhabi</capital></country><country><id>3</id><iso>AF</iso><name>Afghanistan</name><capital>Kabul</capital></country><country><id>4</id><iso>AG</iso><name>Antigua and Barbuda</name><capital>St. John's</capital></country><country><id>5</id><iso>AI</iso><name>Anguilla</name><capital>The Valley</capital></country><country><id>6</id><iso>AL</iso><name>Albania</name><capital>Tirana</capital></country><country><id>7</id><iso>AM</iso><name>Armenia</name><capital>Yerevan</capital></country><country><id>8</id><iso>AN</iso><name>Netherlands Antilles</name><capital>Willemstad</capital></country><country><id>9</id><iso>AO</iso><name>Angola</name><capital>Luanda</capital></country><country><id>10</id><iso>AQ</iso><name>Antarctica</name><capital></capital></country><country><id>11</id><iso>AR</iso><name>Argentina</name><capital>Buenos Aires</capital></country><country><id>12</id><iso>AS</iso><name>American Samoa</name><capital>Pago Pago</capital></country><country><id>13</id><iso>AT</iso><name>Austria</name><capital>Vienna</capital></country><country><id>14</id><iso>AU</iso><name>Australia</name><capital>Canberra</capital></country><country><id>15</id><iso>AW</iso><name>Aruba</name><capital>Oranjestad</capital></country><country><id>16</id><iso>AX</iso><name>Aland Islands</name><capital>Mariehamn</capital></country><country><id>17</id><iso>AZ</iso><name>Azerbaijan</name><capital>Baku</capital></country><country><id>18</id><iso>BA</iso><name>Bosnia and Herzegovina</name><capital>Sarajevo</capital></country><country><id>19</id><iso>BB</iso><name>Barbados</name><capital>Bridgetown</capital></country><country><id>20</id><iso>BD</iso><name>Bangladesh</name><capital>Dhaka</capital></country></countries>
+<countries>
+  <country>
+    <id>1</id>
+    <iso>AD</iso>
+    <name>Andorra</name>
+    <capital>Andorra la Vella</capital>
+  </country>
+  <country>
+    <id>2</id>
+    <iso>AE</iso>
+    <name>United Arab Emirates</name>
+    <capital>Abu Dhabi</capital>
+  </country>
+  <country>
+    <id>3</id>
+    <iso>AF</iso>
+    <name>Afghanistan</name>
+    <capital>Kabul</capital>
+  </country>
+  <country>
+    <id>4</id>
+    <iso>AG</iso>
+    <name>Antigua and Barbuda</name>
+    <capital>St. John's</capital>
+  </country>
+  <country>
+    <id>5</id>
+    <iso>AI</iso>
+    <name>Anguilla</name>
+    <capital>The Valley</capital>
+  </country>
+  <country>
+    <id>6</id>
+    <iso>AL</iso>
+    <name>Albania</name>
+    <capital>Tirana</capital>
+  </country>
+  <country>
+    <id>7</id>
+    <iso>AM</iso>
+    <name>Armenia</name>
+    <capital>Yerevan</capital>
+  </country>
+  <country>
+    <id>8</id>
+    <iso>AN</iso>
+    <name>Netherlands Antilles</name>
+    <capital>Willemstad</capital>
+  </country>
+  <country>
+    <id>9</id>
+    <iso>AO</iso>
+    <name>Angola</name>
+    <capital>Luanda</capital>
+  </country>
+  <country>
+    <id>10</id>
+    <iso>AQ</iso>
+    <name>Antarctica</name>
+    <capital></capital>
+  </country>
+  <country>
+    <id>11</id>
+    <iso>AR</iso>
+    <name>Argentina</name>
+    <capital>Buenos Aires</capital>
+  </country>
+  <country>
+    <id>12</id>
+    <iso>AS</iso>
+    <name>American Samoa</name>
+    <capital>Pago Pago</capital>
+  </country>
+  <country>
+    <id>13</id>
+    <iso>AT</iso>
+    <name>Austria</name>
+    <capital>Vienna</capital>
+  </country>
+  <country>
+    <id>14</id>
+    <iso>AU</iso>
+    <name>Australia</name>
+    <capital>Canberra</capital>
+  </country>
+  <country>
+    <id>15</id>
+    <iso>AW</iso>
+    <name>Aruba</name>
+    <capital>Oranjestad</capital>
+  </country>
+  <country>
+    <id>16</id>
+    <iso>AX</iso>
+    <name>Aland Islands</name>
+    <capital>Mariehamn</capital>
+  </country>
+  <country>
+    <id>17</id>
+    <iso>AZ</iso>
+    <name>Azerbaijan</name>
+    <capital>Baku</capital>
+  </country>
+  <country>
+    <id>18</id>
+    <iso>BA</iso>
+    <name>Bosnia and Herzegovina</name>
+    <capital>Sarajevo</capital>
+  </country>
+  <country>
+    <id>19</id>
+    <iso>BB</iso>
+    <name>Barbados</name>
+    <capital>Bridgetown</capital>
+  </country>
+  <country>
+    <id>20</id>
+    <iso>BD</iso>
+    <name>Bangladesh</name>
+    <capital>Dhaka</capital>
+  </country>
+</countries>

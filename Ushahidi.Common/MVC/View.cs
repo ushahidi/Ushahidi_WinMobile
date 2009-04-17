@@ -10,11 +10,27 @@ namespace Ushahidi.Common.MVC
     public class View : Form, IView
     {
         /// <summary>
+        /// Initialize view
+        /// </summary>
+        public virtual void Initialize()
+        {
+            //implementing view can override and provide initialize code
+        }
+
+        /// <summary>
         /// Render view
         /// </summary>
         public virtual void Render()
         {
             //implementing view can override and provide render code
+        }
+
+        /// <summary>
+        /// Translate view
+        /// </summary>
+        public virtual void Translate()
+        {
+            //implementing view can override and provide translation code
         }
 
         /// <summary>
@@ -26,9 +42,10 @@ namespace Ushahidi.Common.MVC
         /// Move forward
         /// </summary>
         /// <param name="type">view controller type</param>
-        protected void OnForward(Type type)
+        /// <param name="parameters">parameters</param>
+        protected void OnForward(Type type, params object[] parameters)
         {
-            OnForward(type, false);
+            OnForward(type, false, parameters);
         }
 
         /// <summary>
@@ -36,11 +53,12 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         /// <param name="type">view controller type</param>
         /// <param name="clearStack">clear stack</param>
-        protected void OnForward(Type type, bool clearStack)
+        /// <param name="parameters">parameters</param>
+        protected void OnForward(Type type, bool clearStack, params object [] parameters)
         {
             if (Forward != null)
             {
-                Forward(type, clearStack);
+                Forward(type, clearStack, parameters);
             }
         }
 

@@ -19,6 +19,11 @@ namespace Ushahidi.Model
     {
         static DataManager()
         {
+            if (Directory.Exists(DataDirectory) == false)
+            {
+                Log.Info("DataManager()", "Data Directory Created:{0}", DataDirectory);
+                Directory.CreateDirectory(DataDirectory);
+            }
             Load();
         }
 
@@ -30,9 +35,9 @@ namespace Ushahidi.Model
         public static string ServerAddress { get; set; }
 
         /// <summary>
-        /// Locale
+        /// Language
         /// </summary>
-        public static string DefaultLocale { get; set; }
+        public static string Language { get; set; }
 
         /// <summary>
         /// Last sync date
@@ -62,14 +67,14 @@ namespace Ushahidi.Model
         /// <summary>
         /// Data Directory
         /// </summary>
-        private static string DataDirectory
+        public static string DataDirectory
         {
             get { return Path.Combine(Runtime.AppDirectory, "Data"); }   
         }
 
         private const string RegKeyUshahidi = "Ushahidi";
         private const string RegKeyServer = "Server";
-        private const string RegKeyLocale = "Locale";
+        private const string RegKeyLanguage = "Language";
         private const string RegKeyLastSync = "LastSync";
         private const string RegKeyShowKeyboard = "ShowKeyboard";
         private const string RegKeyFirstName = "FirstName";
@@ -89,8 +94,8 @@ namespace Ushahidi.Model
                 ServerAddress = registryKey.GetValue(RegKeyServer, "http://demo.ushahidi.com").ToString();
                 Log.Info("DataManager.LoadSettings", "ServerAddress:{0}", ServerAddress);
 
-                DefaultLocale = registryKey.GetValue(RegKeyLocale, "").ToString();
-                Log.Info("DataManager.LoadSettings", "DefaultLocale:{0}", DefaultLocale);
+                Language = registryKey.GetValue(RegKeyLanguage, "en-US").ToString();
+                Log.Info("DataManager.LoadSettings", "Language:{0}", Language);
                 
                 string lastSyncDate = (string)registryKey.GetValue(RegKeyLastSync, "");
                 LastSyncDate = string.IsNullOrEmpty(lastSyncDate) ? DateTime.MinValue : DateTime.Parse(lastSyncDate);
@@ -123,7 +128,7 @@ namespace Ushahidi.Model
             if (registryKey != null)
             {
                 registryKey.SetValue(RegKeyServer, ServerAddress);
-                registryKey.SetValue(RegKeyLocale, DefaultLocale);
+                registryKey.SetValue(RegKeyLanguage, Language);
                 registryKey.SetValue(RegKeyLastSync, LastSyncDate.ToString());
                 registryKey.SetValue(RegKeyShowKeyboard, ShowKeyboard.ToString());
                 registryKey.SetValue(RegKeyFirstName, FirstName);
@@ -333,7 +338,7 @@ namespace Ushahidi.Model
         /// </summary>
         private static string IncidentsURL
         {
-            get { return string.Format("{0}/api?task=incidents&by=locid&id=3&resp=xml", ServerAddress); }
+            get { return string.Format("{0}/api?task=incidents&by=all&resp=xml", ServerAddress); }
         }
 
         /// <summary>
@@ -415,7 +420,7 @@ namespace Ushahidi.Model
                     param.AppendFormat("&incident_hour={0}", incident.Date.ToString("hh"));
                     param.AppendFormat("&incident_minute={0}", incident.Date.ToString("mm"));
                     param.AppendFormat("&incident_ampm={0}", incident.Date.ToString("tt").ToLower());
-                    param.AppendFormat("&incident_category={0}", Http.UrlEncode(incident.CategoryTitle));
+                    param.AppendFormat("&incident_category={0}", Http.UrlEncode(incident.Category.ID.ToString()));
                     param.AppendFormat("&latitude={0}", incident.Latitude);
                     param.AppendFormat("&longitude={0}", incident.Longitude);
                     param.AppendFormat("&location_name={0}", incident.LocationName);
@@ -498,11 +503,6 @@ namespace Ushahidi.Model
         private static bool DownloadAndSaveXml(string url, string filepath)
         {
             Log.Info("DataManager.DownloadJSON", "URL:{0} FilePath:{1}", url, filepath);
-            if (Directory.Exists(DataDirectory) == false)
-            {
-                Log.Info("DataManager.DownloadJSON", "Directory Created:{0}", DataDirectory);
-                Directory.CreateDirectory(DataDirectory);
-            }
             string xmlString = DownloadXml(url);
             if (string.IsNullOrEmpty(xmlString) == false)
             {
@@ -540,13 +540,6 @@ namespace Ushahidi.Model
                     if (reader.ReadToDescendant("payload"))
                     {
                         return reader.ReadInnerXml();
-                        //string xmlString = reader.ReadInnerXml();
-                        //for (int i = 0; i < 10; i++)
-                        //{
-                        //    xmlString = xmlString.Replace(string.Format("<incident{0}>", i), "");
-                        //    xmlString = xmlString.Replace(string.Format("</incident{0}>", i), "");
-                        //}
-                        //return xmlString;
                     }
                 }
             }

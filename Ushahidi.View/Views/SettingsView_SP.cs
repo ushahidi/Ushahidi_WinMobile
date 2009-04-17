@@ -10,7 +10,7 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Dummy checkbox placeholder
         /// </summary>
-        private readonly LabelCheckBox checkBoxKeyboard = new LabelCheckBox();
+        private readonly LabelCheckBox checkBoxSettingsKeyboard = new LabelCheckBox();
 
         public SettingsView()
         {

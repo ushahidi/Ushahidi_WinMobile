@@ -23,7 +23,8 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         /// <param name="type">view controller type</param>
         /// <param name="clearStack">should clear stack?</param>
-        void Push(Type type, bool clearStack);
+        /// <param name="parameters">parameters</param>
+        void Push(Type type, bool clearStack, params object [] parameters);
 
         /// <summary>
         /// Pop top view from stack

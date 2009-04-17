@@ -1,6 +1,9 @@
-﻿using Ushahidi.Common.Extensions;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using Ushahidi.Common.Extensions;
 using Ushahidi.Common.Logging;
 using Ushahidi.Model;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Models
 {
@@ -17,15 +20,6 @@ namespace Ushahidi.View.Models
             get { return DataManager.ServerAddress; }
             set { _ServerAdress = value; }
         }private string _ServerAdress;
-
-        /// <summary>
-        /// Default Locale
-        /// </summary>
-        public string DefaultLocale
-        {
-            get { return DataManager.DefaultLocale; }
-            set { _DefaultLocale = value; }
-        }private string _DefaultLocale;
 
         /// <summary>
         /// Show keyboard?
@@ -55,6 +49,23 @@ namespace Ushahidi.View.Models
         }
 
         /// <summary>
+        /// Languages
+        /// </summary>
+        public IEnumerable<CultureInfo> Languages
+        {
+            get { return LanguageManager.Languages; }
+        }
+
+        /// <summary>
+        /// Language
+        /// </summary>
+        public CultureInfo Language
+        {
+            get { return LanguageManager.Language; }
+            set { LanguageManager.Language = value; }
+        }
+
+        /// <summary>
         /// Email
         /// </summary>
         public string Email
@@ -66,10 +77,10 @@ namespace Ushahidi.View.Models
         public override bool Save()
         {
             Log.Info("SettingsModel.Save()");
-            if (_ServerAdress.HasText())
+            if (_ServerAdress.HasText() && Language != null)
             {
                 DataManager.ServerAddress = _ServerAdress;
-                DataManager.DefaultLocale = _DefaultLocale;
+                DataManager.Language = Language.Name;
                 return DataManager.Save();
             }
             return false;

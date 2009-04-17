@@ -1,4 +1,5 @@
 ﻿using System;
+using Ushahidi.Model.Models;
 using Ushahidi.View.Models;
 using Ushahidi.View.Views;
 
@@ -6,39 +7,33 @@ namespace Ushahidi.View.Controllers
 {
     public class IncidentDetailsViewController : BaseViewController<IncidentDetailsView, IncidentDetailsModel>
     {
-        public IncidentDetailsViewController()
-        {
-            View.ViewMap += OnViewMap;
-            View.AddPhoto += OnAddPhoto;
-        }
-
         /// <summary>
         /// Load the view
         /// </summary>
-        public override void Load()
+        public override void Load(object[] parameters)
         {
-            View.Image = Model.Images.Length > 0 ? Model.Images[0] : null;
-            View.Title = Model.Title;
-            View.Locale = Model.Location;
-            View.Date = Model.Date;
-            View.Verified = Model.Verified;
-            View.Description = Model.Description;
+            if (parameters == null || parameters.Length == 0 || (parameters[0] is Incident) == false)
+            {
+                throw new ArgumentNullException("parameters", "Parameters can not be null");
+            }
+            Incident incident = parameters[0] as Incident;
+            if (incident != null)
+            {
+                View.MedaItems = incident.MediaItems;
+                View.Title = incident.Title;
+                View.Locale = incident.LocationName;
+                View.Date = incident.Date;
+                View.Verified = incident.Verified;
+                View.Active = incident.Active;
+                View.Description = incident.Description;
+                View.Latitude = incident.Longitude;
+                View.Longitude = incident.Longitude;
+            }
         }
 
-        /// <summary>
-        /// On view map
-        /// </summary>
-        private void OnViewMap(object sender, EventArgs e)
+        public override bool Save()
         {
-            //TODO show map
-        }
-
-        /// <summary>
-        /// On add photo
-        /// </summary>
-        private void OnAddPhoto(object sender, EventArgs e)
-        {
-            //TODO add photo
+            return base.Save();
         }
     }
 }

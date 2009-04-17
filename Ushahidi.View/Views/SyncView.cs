@@ -5,6 +5,7 @@ using Ushahidi.Common.Controls;
 using Ushahidi.Common.Logging;
 using Ushahidi.Common.Net;
 using Ushahidi.Model;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
 {
@@ -13,13 +14,26 @@ namespace Ushahidi.View.Views
     /// </summary>
     partial class SyncView
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+            menuItemAction.Click += OnSynchronize;
+        }
+
+        public override void Translate()
+        {
+            base.Translate();
+            menuItemAction.Translate("menuItemSyncSynchronize");
+            columnHeaderSyncProgress.Translate("columnHeaderSyncProgress");
+        }
+
         /// <summary>
         /// Last sync
         /// </summary>
         public DateTime LastSync
         {
-            get { return dateBox.Date; }
-            set { dateBox.Date = value;}
+            get { return dateBoxSyncLastSync.Date; }
+            set { dateBoxSyncLastSync.Date = value;}
         }
 
         /// <summary>
@@ -36,7 +50,7 @@ namespace Ushahidi.View.Views
             progressBox.Value = 0;
             progressBox.Maximum = 7;
             listView.Items.Clear();
-            columnHeader.Width = -2;
+            columnHeaderSyncProgress.Width = -2;
             StartTime = DateTime.Now;
             Internet.TestURL = string.Format("{0}/help", DataManager.ServerAddress);
             new Thread(SyncInternal).Start();
@@ -50,32 +64,32 @@ namespace Ushahidi.View.Views
             Log.Info("SyncView.SyncInternal");
             try
             {
-                if (Download(Internet.HasNetworkConnection, "Testing Network Connection", 0) == false)
+                if (Download(Internet.HasNetworkConnection, "testingNetworkConnection".Translate(), 0) == false)
                 {
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoNetwork, "No Network Connection", 0);
                 }
-                else if (Download(Internet.HasInternetConnection, "Testing Internet Connection", 1) == false)
+                else if (Download(Internet.HasInternetConnection, "testingInternetConnection".Translate(), 1) == false)
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "No Internet Connection", 1);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "noInternetConnection".Translate(), 1);
                 }
-                else if (Download(DataManager.UploadIncidents, "Uploading Incidents", 2) &&
-                         Download(DataManager.RefreshIncidents, "Refreshing Incidents", 3) &&
-                         Download(DataManager.RefreshCountries, "Refreshing Countries", 4) &&
-                         Download(DataManager.RefreshLocales, "Refreshing Locales", 5) &&
-                         Download(DataManager.RefreshCategories, "Refreshing Categories", 6))
+                else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
+                         Download(DataManager.RefreshIncidents, "refreshingIncidents".Translate(), 3) &&
+                         Download(DataManager.RefreshCountries, "refreshingCountries".Translate(), 4) &&
+                         Download(DataManager.RefreshLocales, "refreshingLocales".Translate(), 5) &&
+                         Download(DataManager.RefreshCategories, "refreshingCategories".Translate(), 6))
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "Refresh Complete", 7);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "refreshComplete".Translate(), 7);
                 }
                 else
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 7);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "refreshFailure".Translate(), 7);
                 }
 
             }
             catch (Exception ex)
             {
                 Log.Exception("SyncView.SyncInternal", "Exception: {0}", ex.Message);
-                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "Refresh Failure", 7);
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "refreshFailure".Translate(), 7);
             }
         }
 
@@ -126,25 +140,25 @@ namespace Ushahidi.View.Views
             {
                 Cursor.Current = Cursors.WaitCursor;    
             }
-            else if (status == Status.NoNetwork && Dialog.Warning("No Network Connection", "Please verify your device has a network connection"))
+            else if (status == Status.NoNetwork && Dialog.Warning("noNetworkConnection".Translate(), "verifyNetworkConnection".Translate()))
             {
                 progressBox.Value = 0;
                 progressBox.Text = "";
                 Cursor.Current = Cursors.Default;
             }
-            else if (status == Status.NoInternet && Dialog.Warning("No Internet Connection", "Please verify your device has an internet connection"))
+            else if (status == Status.NoInternet && Dialog.Warning("noInternetConnection".Translate(), "verifyInternetConnection".Translate()))
             {
                 progressBox.Value = 0;
                 progressBox.Text = "";
                 Cursor.Current = Cursors.Default;
             }
-            else if (status == Status.Failure && Dialog.Warning("Refresh Failure", "{0} seconds", totalSeconds.ToString()))
+            else if (status == Status.Failure && Dialog.Warning("refreshFailure".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
             {
                 progressBox.Value = 0;
                 progressBox.Text = "";
                 Cursor.Current = Cursors.Default;
             }
-            else if (status == Status.Complete && Dialog.Info("Refresh Complete", "{0} seconds", totalSeconds.ToString()))
+            else if (status == Status.Complete && Dialog.Info("refreshComplete".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
             {
                 progressBox.Value = 0;
                 progressBox.Text = "";

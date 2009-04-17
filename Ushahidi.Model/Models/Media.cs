@@ -5,22 +5,22 @@ using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("mediaitem")]
+    [XmlRoot("media")]
     public class Media : Model, IDisposable
     {
-        [XmlElement("id")]
+        [XmlElement("mediaid")]
         public int ID { get; set; }
 
-        [XmlElement("title", IsNullable = true)]
+        [XmlElement("mediatitle", IsNullable = true)]
         public string Title { get; set; }
 
-        [XmlElement("type")]
+        [XmlElement("mediatype")]
         public int Type { get; set; }
 
-        [XmlElement("link")]
+        [XmlElement("medialink")]
         public string OriginalFileName { get; set; }
 
-        [XmlElement("thumb")]
+        [XmlElement("mediathumb")]
         public string ThumbnailFileName { get; set; }
 
         public override string ToString()

@@ -8,7 +8,7 @@ namespace Ushahidi.View.Controllers
         /// <summary>
         /// Load the view
         /// </summary>
-        public override void Load()
+        public override void Load(params object[] parameters)
         {
             View.Categories = Model.Categories;
         }
