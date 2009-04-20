@@ -36,6 +36,11 @@ namespace Ushahidi.View.Views
             menuItemAddIncidentAddPhoto.Translate(this);
         }
 
+        public override void Render()
+        {
+            ShouldSave = true;
+        }
+
         /// <summary>
         /// Incident title
         /// </summary>
@@ -110,11 +115,6 @@ namespace Ushahidi.View.Views
         /// Is the process cancelled?
         /// </summary>
         public bool ShouldSave { get; private set; }
-
-        public override void Render()
-        {
-            ShouldSave = true;
-        }
 
         private void OnAddPhoto(object sender, EventArgs e)
         {

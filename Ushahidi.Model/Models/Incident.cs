@@ -1,10 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Xml.Serialization;
+using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Model.Models
 {
+    /// <summary>
+    /// <incident>
+    ///     <incidentid>1</incidentid>
+    ///     <incidenttitle>Test</incidenttitle>
+    ///     <incidentdescription>Test by E.</incidentdescription>
+    ///     <incidentdate>2009-01-13 01:00:00</incidentdate>
+    ///     <incidentmode>1</incidentmode>
+    ///     <incidentactive>1</incidentactive>
+    ///     <incidentverified>0</incidentverified>
+    ///     <locationid>1</locationid>
+    ///     <locationname>puwokerto</locationname>
+    ///     <locationlatitude>-7.431518</locationlatitude>
+    ///     <locationlongitude>109.247398</locationlongitude>
+    ///     <category>
+    ///         <categoryid>7</categoryid>
+    ///         <categorytitle>CIVILIANS</categorytitle>
+    ///         <categoryid>8</categoryid>
+    ///         <categorytitle>LOOTING</categorytitle>
+    ///     </category>
+    /// </incident>
+    /// </summary>
     [XmlRoot("incident")]
     public class Incident : Model
     {
@@ -18,7 +39,13 @@ namespace Ushahidi.Model.Models
         public string Description { get; set; }
 
         [XmlElement("incidentdate")]
-        public DateTime Date { get; set; }
+        public string DateString { get; set; }
+
+        public DateTime Date
+        {
+            get { return DateString.ToDateTime(); }
+            set { DateString = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+        }
 
         [XmlElement("incidentmode")]
         public int Mode { get; set; }
@@ -44,8 +71,9 @@ namespace Ushahidi.Model.Models
         [XmlElement("category")]
         public Category Category { get; set; }
 
-        [XmlArray("media", IsNullable = true)]
-        [XmlArrayItem("media")] 
+        //[XmlArray("media", IsNullable = true)]
+        //[XmlArrayItem("media")]
+        [XmlElement("media")]
         public Media[] MediaItems
         {
             get { return _Media.ToArray(); }

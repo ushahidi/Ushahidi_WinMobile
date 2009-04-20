@@ -29,6 +29,10 @@ namespace Ushahidi.View.Controllers
                 View.Latitude = incident.Longitude;
                 View.Longitude = incident.Longitude;
             }
+            else
+            {
+                throw new ArgumentException("First argument must be an Incident", "parameters");
+            }
         }
 
         public override bool Save()

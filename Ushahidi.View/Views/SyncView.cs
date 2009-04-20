@@ -48,7 +48,7 @@ namespace Ushahidi.View.Views
         {
             Log.Info("SyncView.OnSynchronize");
             progressBox.Value = 0;
-            progressBox.Maximum = 7;
+            progressBox.Maximum = 8;
             listView.Items.Clear();
             columnHeaderSyncProgress.Width = -2;
             StartTime = DateTime.Now;
@@ -73,23 +73,24 @@ namespace Ushahidi.View.Views
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "noInternetConnection".Translate(), 1);
                 }
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
-                         Download(DataManager.RefreshIncidents, "refreshingIncidents".Translate(), 3) &&
-                         Download(DataManager.RefreshCountries, "refreshingCountries".Translate(), 4) &&
-                         Download(DataManager.RefreshLocales, "refreshingLocales".Translate(), 5) &&
-                         Download(DataManager.RefreshCategories, "refreshingCategories".Translate(), 6))
+                         Download(DataManager.RefreshIncidents, "downloadingIncidents".Translate(), 3) &&
+                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 4) &&
+                         Download(DataManager.RefreshCountries, "downloadingCountries".Translate(), 5) &&
+                         Download(DataManager.RefreshLocales, "downloadingLocales".Translate(), 6) &&
+                         Download(DataManager.RefreshCategories, "downloadingCategories".Translate(), 7))
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "refreshComplete".Translate(), 7);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 8);
                 }
                 else
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "refreshFailure".Translate(), 7);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 8);
                 }
 
             }
             catch (Exception ex)
             {
                 Log.Exception("SyncView.SyncInternal", "Exception: {0}", ex.Message);
-                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "refreshFailure".Translate(), 7);
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 8);
             }
         }
 
@@ -152,13 +153,13 @@ namespace Ushahidi.View.Views
                 progressBox.Text = "";
                 Cursor.Current = Cursors.Default;
             }
-            else if (status == Status.Failure && Dialog.Warning("refreshFailure".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
+            else if (status == Status.Failure && Dialog.Warning("synchronizationFailure".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
             {
                 progressBox.Value = 0;
                 progressBox.Text = "";
                 Cursor.Current = Cursors.Default;
             }
-            else if (status == Status.Complete && Dialog.Info("refreshComplete".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
+            else if (status == Status.Complete && Dialog.Info("synchronizationComplete".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
             {
                 progressBox.Value = 0;
                 progressBox.Text = "";

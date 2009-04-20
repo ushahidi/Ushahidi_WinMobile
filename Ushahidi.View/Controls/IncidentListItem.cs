@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Model.Models;
+using Ushahidi.View.Resources;
 
 namespace Ushahidi.View.Controls
 {
@@ -43,7 +44,17 @@ namespace Ushahidi.View.Controls
 
         public readonly int RowCount = 4;
 
-        public Image Image { get; set; }
+        public Image Image
+        {
+            get
+            {
+                if (Incident.MediaItems != null && Incident.MediaItems.Length > 0)
+                {
+                    return Incident.MediaItems[0].Thumbnail;
+                }
+                return null;
+            }
+        }
 
         /// <summary>
         /// Draw text onto the control
@@ -58,6 +69,12 @@ namespace Ushahidi.View.Controls
                     Rectangle destRect = new Rectangle(0, 0, Height, Height);
                     Rectangle srcRect = new Rectangle(0, 0, Image.Width, Image.Height);
                     e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
+                }
+                else
+                {
+                    Rectangle destRect = new Rectangle(0, 0, Height, Height);
+                    Rectangle srcRect = new Rectangle(0, 0, DefaultImage.Width, DefaultImage.Height);
+                    e.Graphics.DrawImage(DefaultImage, destRect, srcRect, GraphicsUnit.Pixel);
                 }
                 Rectangle rectangle = new Rectangle(Height + 5, 0, Width - Height - 5, rowHeight);
                 e.Graphics.DrawString(Incident.Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
@@ -80,5 +97,18 @@ namespace Ushahidi.View.Controls
                 e.Graphics.DrawLine(pen, 0, Height - 1, Width, Height - 1);
             }
         }
+
+        public Image DefaultImage
+        {
+            get
+            {
+                if (_DefaultImage == null)
+                {
+
+                    _DefaultImage = ResourcesManager.LoadImageResource("no_photo.jpg");
+                }
+                return _DefaultImage;
+            }
+        }private Image _DefaultImage;
     }
 }

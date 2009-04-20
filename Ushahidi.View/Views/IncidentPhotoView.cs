@@ -14,14 +14,7 @@ namespace Ushahidi.View.Views
             Menu = null;
         }
 
-        public Image Image
-        {
-            get { return pictureBox.Image; }
-            set
-            {
-                pictureBox.Image = value;
-            }
-        }
+        public Image Image { get; set; }
 
         private void pictureBox_KeyDown(object sender, KeyEventArgs e)
         {
@@ -36,9 +29,20 @@ namespace Ushahidi.View.Views
             OnBack();
         }
 
-        public override void Translate()
+        protected override void OnPaint(PaintEventArgs e)
         {
-            base.Translate();
+            if (Image != null)
+            {
+                
+                if (Image.Width > Image.Height && Width < Height)
+                {
+                    //TODO implement drawing of photo
+                }
+                else
+                {
+                    
+                }
+            }
         }
     }
 }

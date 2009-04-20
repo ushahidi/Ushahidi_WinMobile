@@ -1,10 +1,18 @@
 ﻿using System;
 using System.Drawing;
 using System.Xml.Serialization;
-using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Model.Models
 {
+    /// <summary>
+    /// <media>
+    ///     <mediaid>1</mediaid>
+    ///     <mediatitle/>
+    ///     <mediatype>1</mediatype>
+    ///     <medialink>3_1_1231886194.jpg</medialink>
+    ///     <mediathumb>3_1_1231886194_t.jpg</mediathumb>
+    ///</media>
+    /// </summary>
     [XmlRoot("media")]
     public class Media : Model, IDisposable
     {
@@ -70,7 +78,6 @@ namespace Ushahidi.Model.Models
 
         public static Media Parse(string xml)
         {
-            Log.Info("MEDIA", xml);
             return Parse<Media>(xml);
         }
 

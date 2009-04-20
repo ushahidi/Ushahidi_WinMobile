@@ -87,6 +87,7 @@ namespace Ushahidi.View.Views
                 {
                     _MedaItems.AddRange(value);
                     pictureBoxImage.Image = value.ElementAt(0).Thumbnail;
+                    imageListBox.ClearImages();
                     foreach(Media media in value)
                     {
                         imageListBox.AddImage(media.Original);

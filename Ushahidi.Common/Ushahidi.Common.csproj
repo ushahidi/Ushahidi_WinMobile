@@ -20,6 +20,8 @@
     </FormFactorID>
     <ApplicationIcon>
     </ApplicationIcon>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Ushahidi.Common.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +63,12 @@
   <ItemGroup>
     <Compile Include="Controls\Constants.cs" />
     <Compile Include="Controls\Dialog.cs" />
+    <Compile Include="Controls\ImageBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageBox.Designer.cs">
+      <DependentUpon>ImageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Keyboard.cs" />
     <Compile Include="Controls\LabelCheckBox.cs">
       <SubType>UserControl</SubType>
@@ -169,6 +177,9 @@
     <EmbeddedResource Include="Controls\ProgressBox.resx">
       <DependentUpon>ProgressBox.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ushahidi.Common.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>

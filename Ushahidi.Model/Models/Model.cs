@@ -39,6 +39,7 @@ namespace Ushahidi.Model.Models
 
         protected static TModel Parse<TModel>(string xml) where TModel : Model
         {
+            Log.Info("Model.Parse", xml);
             try
             {
                 UTF8Encoding encoding = new UTF8Encoding();

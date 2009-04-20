@@ -237,23 +237,23 @@
   <data name="noNetworkConnection" xml:space="preserve">
     <value>No Network Connection</value>
   </data>
-  <data name="refreshComplete" xml:space="preserve">
-    <value>Refresh Complete</value>
+  <data name="synchronizationComplete" xml:space="preserve">
+    <value>Synchronization Complete</value>
   </data>
-  <data name="refreshFailure" xml:space="preserve">
-    <value>Refresh Failure</value>
+  <data name="synchronizationFailure" xml:space="preserve">
+    <value>Synchronization Failure</value>
   </data>
-  <data name="refreshingCategories" xml:space="preserve">
-    <value>Refreshing Categories</value>
+  <data name="downloadingCategories" xml:space="preserve">
+    <value>Downloading Categories</value>
   </data>
-  <data name="refreshingCountries" xml:space="preserve">
-    <value>Refreshing Countries</value>
+  <data name="downloadingCountries" xml:space="preserve">
+    <value>Downloading Countries</value>
   </data>
-  <data name="refreshingIncidents" xml:space="preserve">
-    <value>Refreshing Incidents</value>
+  <data name="downloadingIncidents" xml:space="preserve">
+    <value>Downloading Incidents</value>
   </data>
-  <data name="refreshingLocales" xml:space="preserve">
-    <value>Refreshing Locales</value>
+  <data name="downloadingLocales" xml:space="preserve">
+    <value>Downloading Locales</value>
   </data>
   <data name="seconds" xml:space="preserve">
     <value>seconds</value>
@@ -308,5 +308,11 @@
   </data>
   <data name="AddIncidentView" xml:space="preserve">
     <value>Add Incident</value>
+  </data>
+  <data name="downloadingMedia" xml:space="preserve">
+    <value>Downloading Media</value>
+  </data>
+  <data name="noPhoto" xml:space="preserve">
+    <value>No Photo</value>
   </data>
 </root>

@@ -57,9 +57,16 @@ namespace Ushahidi.View.Languages
 
         public static string Translate(this string name)
         {
-            string translation = ResourceManager.GetString(name, Language);
-            Log.Info("LanguageManager.Translate", "{0} = {1}", name, translation);
-            return translation;
+            try
+            {
+                string translation = ResourceManager.GetString(name, Language);
+                Log.Info("LanguageManager.Translate", "{0} = {1}", name, translation);
+                return translation;
+            }
+            catch
+            {
+                return string.Format("[{0}]", name);
+            }
         }
 
         public static string Translate(this Control control)

@@ -21,6 +21,12 @@ namespace Ushahidi.Common.Controls
         {
             InitializeComponent();
         }
+
+        public void ClearImages()
+        {
+            _Images.Clear();    
+        }
+
         public void AddImage(Image image)
         {
             if (image != null)
@@ -39,6 +45,12 @@ namespace Ushahidi.Common.Controls
                 if (value != null)
                 {
                     _Images.AddRange(value);
+                    Height = 0;
+                    foreach(Image image in value)
+                    {
+                        int thumbnailWidth = Width / (int)ThumbnailSize;
+                        Height += image.Height * thumbnailWidth / image.Width;
+                    }
                     Height = (int)Math.Floor(((Width / (int)ThumbnailSize) * Images.Count()) + 0.5);
                 }
                 else
@@ -88,8 +100,9 @@ namespace Ushahidi.Common.Controls
             foreach(Image image in Images)
             {
                 int thumbnailWidth = Width / (int)ThumbnailSize;
+                int thumbnailHeight = image.Height * thumbnailWidth / image.Width;
                 Rectangle srcRect = new Rectangle(0, 0, image.Width, image.Height);
-                Rectangle destRect = new Rectangle(posX, posY, thumbnailWidth, thumbnailWidth);
+                Rectangle destRect = new Rectangle(posX, posY, thumbnailWidth, thumbnailHeight);
                 if (posX + thumbnailWidth >= Width)
                 {
                     posX += 0;
@@ -100,7 +113,6 @@ namespace Ushahidi.Common.Controls
                     posX += thumbnailWidth;
                 }
                 e.Graphics.DrawImage(image, destRect, srcRect, GraphicsUnit.Pixel);
-                    
             }
         }
     }

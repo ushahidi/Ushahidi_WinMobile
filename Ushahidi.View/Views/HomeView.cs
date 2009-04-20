@@ -8,6 +8,11 @@ namespace Ushahidi.View.Views
     /// </summary>
     partial class HomeView
     {
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
         public override void Translate()
         {
             base.Translate();

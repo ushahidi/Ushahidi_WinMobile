@@ -17,33 +17,6 @@ namespace Ushahidi.View.Controllers
         {
             Keyboard.AutoShowHideKeyboard = DataManager.ShowKeyboard;
             View.Logo = Model.Logo;
-            //try
-            //{
-            //    foreach (Incident incident in DataManager.Incidents)
-            //    {
-            //        Log.Info("", "Incident: {0}", incident);
-            //        foreach (Media media in incident.MediaItems)
-            //        {
-            //            Log.Info("", " Media: {0}", media);
-            //        }
-            //    }
-            //    foreach (Category category in DataManager.Categories)
-            //    {
-            //        Log.Info("", "Category: {0}", category);
-            //    }
-            //    foreach (Country country in DataManager.Countries)
-            //    {
-            //        Log.Info("", "Country: {0}", country);
-            //    }
-            //    foreach (Locale locale in DataManager.Locales)
-            //    {
-            //        Log.Info("", "Locale: {0}", locale);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Log.Exception("HomeViewController.Load", "Exception {0}", ex.Message);
-            //}
         }
     }
 }

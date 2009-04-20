@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -480,6 +481,33 @@ namespace Ushahidi.Model
         #region Media
 
         /// <summary>
+        /// Download Media and file JSON to disk
+        /// </summary>
+        /// <returns>true, if successful</returns>
+        public static bool DownloadMedia()
+        {
+            foreach(Incident incident in Incidents)
+            {
+                foreach(Media media in incident.MediaItems)
+                {
+                   if (string.IsNullOrEmpty(media.ThumbnailFileName) == false)
+                   {
+                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.ThumbnailFileName);
+                       string filePath = Path.Combine(DataDirectory, media.ThumbnailFileName);
+                       DownloadImage(url, filePath);
+                   }
+                   if (string.IsNullOrEmpty(media.OriginalFileName) == false)
+                   {
+                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.OriginalFileName);
+                       string filePath = Path.Combine(DataDirectory, media.OriginalFileName);
+                       DownloadImage(url, filePath);
+                   }
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Load image from disk
         /// </summary>
         /// <param name="fileName">filename</param>
@@ -531,6 +559,7 @@ namespace Ushahidi.Model
             Log.Info("DataManager.DownloadXml", "URL: {0}", url);
             Uri uri = new Uri(url, UriKind.Absolute);
             WebRequest request = WebRequest.Create(uri);
+            request.Timeout = 5000; 
             request.Credentials = CredentialCache.DefaultCredentials;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             using (Stream dataStream = response.GetResponseStream())
@@ -544,6 +573,35 @@ namespace Ushahidi.Model
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Download image from server
+        /// </summary>
+        /// <param name="sourceURL">source url</param>
+        /// <param name="destinationFilePath">destination filepath</param>
+        /// <returns>true, if successful</returns>
+        private static bool DownloadImage(string sourceURL, string destinationFilePath)
+        {
+            Log.Info("DataManager.DownloadImage", "Source: {0} Destination: {1}", sourceURL, destinationFilePath);
+            FileInfo fileInfo = new FileInfo(destinationFilePath);
+            if (fileInfo.Exists == false || fileInfo.Length == 0)
+            {
+                Uri uri = new Uri(sourceURL, UriKind.Absolute);
+                WebRequest request = WebRequest.Create(uri);
+                request.Timeout = 5000;
+                request.Credentials = CredentialCache.DefaultCredentials;
+                HttpWebResponse response = (HttpWebResponse) request.GetResponse();
+                using (Stream stream = response.GetResponseStream())
+                {
+                    using (Image image = new Bitmap(stream))
+                    {
+                        image.Save(destinationFilePath, ImageFormat.Jpeg);
+                    }
+                }
+                return true;
+            }
+            return false;
         }
 
         #endregion

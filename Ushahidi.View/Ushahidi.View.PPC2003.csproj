@@ -20,6 +20,8 @@
     </FormFactorID>
     <StartupObject>Ushahidi.View.Program</StartupObject>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Ushahidi.View.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -239,6 +241,9 @@
     <EmbeddedResource Include="Views\IncidentPhotoView_PPC.resx">
       <DependentUpon>IncidentPhotoView_PPC.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Ushahidi.View.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
