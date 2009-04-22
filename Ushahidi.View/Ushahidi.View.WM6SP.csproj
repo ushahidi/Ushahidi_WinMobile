@@ -78,7 +78,8 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PhotoSelector_WM6.cs" />
-    <Compile Include="Languages\Language.en-US.Designer.cs" />
+    <Compile Include="Languages\Language.en.Designer.cs" />
+    <Compile Include="Languages\Language.fr.Designer.cs" />
     <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Models\AddIncidentModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -233,10 +234,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <EmbeddedResource Include="Languages\Language.en.resx" />
+    <EmbeddedResource Include="Languages\Language.fr.resx" />
     <EmbeddedResource Include="Resources\no_photo.jpg" />
-    <EmbeddedResource Include="Languages\Language.en-US.resx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />

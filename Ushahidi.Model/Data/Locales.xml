@@ -1,135 +1,142 @@
 <locations>
   <location>
-    <id>1</id>
-    <location_name>puwokerto</location_name>
-    <country_id>101</country_id>
-    <latitude>-7.431518</latitude>
-    <longitude>109.247398</longitude>
-  </location>
-  <location>
-    <id>2</id>
-    <location_name>Pacet</location_name>
-    <country_id>101</country_id>
-    <latitude>-6.7378385</latitude>
-    <longitude>107.0480378</longitude>
-  </location>
-  <location>
-    <id>3</id>
-    <location_name>Bogor</location_name>
-    <country_id>101</country_id>
-    <latitude>-6.59599</latitude>
-    <longitude>106.792</longitude>
-  </location>
-  <location>
-    <id>4</id>
-    <location_name>Chilachap</location_name>
-    <country_id>101</country_id>
-    <latitude>-7.74365134526334</latitude>
-    <longitude>109.00634765625</longitude>
-  </location>
-  <location>
-    <id>5</id>
-    <location_name>Balong</location_name>
+    <id>26</id>
+    <name>Athi River</name>
     <country_id />
-    <latitude>-6.17468897974815</latitude>
-    <longitude>107.118072509766</longitude>
+    <latitude>-1.45</latitude>
+    <longitude>36.983333</longitude>
   </location>
   <location>
-    <id>6</id>
-    <location_name>migori</location_name>
-    <country_id>227</country_id>
-    <latitude>-1.066667</latitude>
-    <longitude>34.466667</longitude>
+    <id>25</id>
+    <name>dukhan</name>
+    <country_id>187</country_id>
+    <latitude>25.424959</latitude>
+    <longitude>50.790359</longitude>
   </location>
   <location>
-    <id>7</id>
-    <location_name>kericho</location_name>
-    <country_id>115</country_id>
-    <latitude>-0.366062</latitude>
-    <longitude>35.281799</longitude>
+    <id>24</id>
+    <name>doh</name>
+    <country_id>187</country_id>
+    <latitude>25.453301</latitude>
+    <longitude>51.49292</longitude>
   </location>
   <location>
-    <id>8</id>
-    <location_name>accra</location_name>
+    <id>23</id>
+    <name>doha</name>
+    <country_id>187</country_id>
+    <latitude>25.281892</latitude>
+    <longitude>51.517541</longitude>
+  </location>
+  <location>
+    <id>22</id>
+    <name>doha</name>
+    <country_id>187</country_id>
+    <latitude>25.281892</latitude>
+    <longitude>51.517541</longitude>
+  </location>
+  <location>
+    <id>21</id>
+    <name>al kawr</name>
+    <country_id>187</country_id>
+    <latitude>25.76916</latitude>
+    <longitude>51.508713</longitude>
+  </location>
+  <location>
+    <id>20</id>
+    <name>Nairobi</name>
     <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
+    <latitude>-1.283333</latitude>
+    <longitude>36.816667</longitude>
   </location>
   <location>
-    <id>9</id>
-    <location_name>accra</location_name>
-    <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
+    <id>19</id>
+    <name>ar rufayq</name>
+    <country_id>187</country_id>
+    <latitude>25.53006</latitude>
+    <longitude>50.977749</longitude>
   </location>
   <location>
-    <id>10</id>
-    <location_name>Pacet</location_name>
-    <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
+    <id>18</id>
+    <name>doha</name>
+    <country_id>3</country_id>
+    <latitude>-0.725078</latitude>
+    <longitude>36.45813</longitude>
   </location>
   <location>
-    <id>11</id>
-    <location_name>Pacet</location_name>
-    <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
+    <id>17</id>
+    <name>ar rayyan</name>
+    <country_id>187</country_id>
+    <latitude>25.281892</latitude>
+    <longitude>51.517541</longitude>
   </location>
   <location>
-    <id>12</id>
-    <location_name>Pacet</location_name>
-    <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
-  </location>
-  <location>
-    <id>13</id>
-    <location_name>Pacet</location_name>
-    <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
-  </location>
-  <location>
-    <id>14</id>
-    <location_name>Pacet</location_name>
-    <country_id />
+    <id>16</id>
+    <name>doha</name>
+    <country_id>187</country_id>
     <latitude>-1.2873</latitude>
     <longitude>36.821451</longitude>
   </location>
   <location>
     <id>15</id>
-    <location_name>Pacet</location_name>
-    <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
+    <name>umm al afa'i</name>
+    <country_id>187</country_id>
+    <latitude>25.35</latitude>
+    <longitude>51.333333</longitude>
   </location>
   <location>
-    <id>16</id>
-    <location_name>Pacet</location_name>
-    <country_id />
-    <latitude>-1.2873</latitude>
-    <longitude>36.821451</longitude>
+    <id>14</id>
+    <name>doha</name>
+    <country_id>187</country_id>
+    <latitude>25.281892</latitude>
+    <longitude>51.517541</longitude>
   </location>
   <location>
-    <id>17</id>
-    <location_name>Dar es Salaam</location_name>
-    <country_id>227</country_id>
-    <latitude>-2.52094</latitude>
-    <longitude>35.15625</longitude>
+    <id>13</id>
+    <name>al khawr</name>
+    <country_id>187</country_id>
+    <latitude>25.76916</latitude>
+    <longitude>51.508713</longitude>
   </location>
   <location>
-    <id>18</id>
-    <location_name>Naivasha</location_name>
-    <country_id />
-    <latitude>-0.725078</latitude>
-    <longitude>36.45813</longitude>
+    <id>12</id>
+    <name>umm said</name>
+    <country_id>187</country_id>
+    <latitude>24.982241</latitude>
+    <longitude>51.55249</longitude>
   </location>
   <location>
-    <id>19</id>
-    <location_name>Los Angeles, California, USA</location_name>
-    <country_id />
-    <latitude>-2.52094</latitude>
-    <longitude>35.15625</longitude>
+    <id>11</id>
+    <name>doha</name>
+    <country_id>187</country_id>
+    <latitude>25.281892</latitude>
+    <longitude>51.517541</longitude>
+  </location>
+  <location>
+    <id>10</id>
+    <name>al khawr</name>
+    <country_id>187</country_id>
+    <latitude>25.76916</latitude>
+    <longitude>51.508713</longitude>
+  </location>
+  <location>
+    <id>9</id>
+    <name>nabat al usayl</name>
+    <country_id>187</country_id>
+    <latitude>25.1</latitude>
+    <longitude>51.516667</longitude>
+  </location>
+  <location>
+    <id>8</id>
+    <name>doha</name>
+    <country_id>187</country_id>
+    <latitude>25.281892</latitude>
+    <longitude>51.517541</longitude>
+  </location>
+  <location>
+    <id>7</id>
+    <name>kericho</name>
+    <country_id>115</country_id>
+    <latitude>-0.366062</latitude>
+    <longitude>35.281799</longitude>
   </location>
 </locations>

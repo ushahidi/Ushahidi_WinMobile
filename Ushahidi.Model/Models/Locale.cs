@@ -8,10 +8,10 @@ namespace Ushahidi.Model.Models
         [XmlElement("id")]
         public int ID { get; set; }
 
-        [XmlElement("location_name")]
+        [XmlElement("name")]
         public string Name { get; set; }
 
-        [XmlElement("country_id")]
+        [XmlElement("country_id", IsNullable = true)]
         public string CountryID { get; set;}
         
         [XmlElement("latitude", IsNullable=true)]

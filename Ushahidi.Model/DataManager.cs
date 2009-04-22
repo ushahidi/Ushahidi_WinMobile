@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -235,7 +236,7 @@ namespace Ushahidi.Model
             Log.Info("DataManager.RefreshCountries");
             if (DownloadAndSaveXml(CountriesURL, CountriesFilepath))
             {
-                _Countries = Countries.Load(CategoriesFilepath);
+                _Countries = Countries.Load(CountriesFilepath);
                 return true;
             }
             return false;
@@ -421,10 +422,10 @@ namespace Ushahidi.Model
                     param.AppendFormat("&incident_hour={0}", incident.Date.ToString("hh"));
                     param.AppendFormat("&incident_minute={0}", incident.Date.ToString("mm"));
                     param.AppendFormat("&incident_ampm={0}", incident.Date.ToString("tt").ToLower());
-                    param.AppendFormat("&incident_category={0}", Http.UrlEncode(incident.Category.ID.ToString()));
-                    param.AppendFormat("&latitude={0}", incident.Latitude);
-                    param.AppendFormat("&longitude={0}", incident.Longitude);
-                    param.AppendFormat("&location_name={0}", incident.LocationName);
+                    //param.AppendFormat("&incident_category={0}", Http.UrlEncode(incident.Category.ID.ToString()));
+                    param.AppendFormat("&latitude={0}", incident.Locale.Latitude);
+                    param.AppendFormat("&longitude={0}", incident.Locale.Longitude);
+                    param.AppendFormat("&location_name={0}", incident.Locale.Name);
                     param.AppendFormat("&person_first={0}", Http.UrlEncode(FirstName));
                     param.AppendFormat("&person_last={0}", Http.UrlEncode(LastName));
                     param.AppendFormat("&person_email={0}", Http.UrlEncode(Email));
@@ -488,7 +489,7 @@ namespace Ushahidi.Model
         {
             foreach(Incident incident in Incidents)
             {
-                foreach(Media media in incident.MediaItems)
+                foreach(Media media in incident.MediaItems.Where(m => m.MediaType == MediaType.Photo))
                 {
                    if (string.IsNullOrEmpty(media.ThumbnailFileName) == false)
                    {
@@ -514,8 +515,12 @@ namespace Ushahidi.Model
         /// <returns>Image, if filepath exists</returns>
         public static Image LoadImage(string fileName)
         {
-            string filePath = Path.Combine(DataDirectory, fileName);
-            return File.Exists(filePath) ? new Bitmap(filePath) : null;
+            if (string.IsNullOrEmpty(fileName) == false)
+            {
+                string filePath = Path.Combine(DataDirectory, fileName);
+                return File.Exists(filePath) ? new Bitmap(filePath) : null;
+            }
+            return null;
         }
 
         #endregion

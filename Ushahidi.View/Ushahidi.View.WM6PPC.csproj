@@ -79,10 +79,15 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\PhotoSelector_WM6.cs" />
-    <Compile Include="Languages\Language.en-US.Designer.cs">
+    <Compile Include="Languages\Language.fr.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Language.en-US.resx</DependentUpon>
+      <DependentUpon>Language.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Languages\Language.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Language.en.resx</DependentUpon>
     </Compile>
     <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Models\AddIncidentModel.cs" />
@@ -238,10 +243,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <EmbeddedResource Include="Resources\no_photo.jpg" />
-    <EmbeddedResource Include="Languages\Language.en-US.resx">
+    <EmbeddedResource Include="Languages\Language.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Language.en-US.Designer.cs</LastGenOutput>
+      <LastGenOutput>Language.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\no_photo.jpg" />
+    <EmbeddedResource Include="Languages\Language.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Language.en.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />

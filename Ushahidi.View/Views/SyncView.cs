@@ -74,10 +74,10 @@ namespace Ushahidi.View.Views
                 }
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
                          Download(DataManager.RefreshIncidents, "downloadingIncidents".Translate(), 3) &&
-                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 4) &&
-                         Download(DataManager.RefreshCountries, "downloadingCountries".Translate(), 5) &&
-                         Download(DataManager.RefreshLocales, "downloadingLocales".Translate(), 6) &&
-                         Download(DataManager.RefreshCategories, "downloadingCategories".Translate(), 7))
+                         Download(DataManager.RefreshCountries, "downloadingCountries".Translate(), 4) &&
+                         Download(DataManager.RefreshLocales, "downloadingLocales".Translate(), 5) &&
+                         Download(DataManager.RefreshCategories, "downloadingCategories".Translate(), 6) &&
+                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 7))
                 {
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 8);
                 }

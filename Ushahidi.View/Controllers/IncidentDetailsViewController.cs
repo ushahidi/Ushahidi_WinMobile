@@ -21,13 +21,13 @@ namespace Ushahidi.View.Controllers
             {
                 View.MedaItems = incident.MediaItems;
                 View.Title = incident.Title;
-                View.Locale = incident.LocationName;
+                View.Locale = incident.Locale.Name;
                 View.Date = incident.Date;
                 View.Verified = incident.Verified;
                 View.Active = incident.Active;
                 View.Description = incident.Description;
-                View.Latitude = incident.Longitude;
-                View.Longitude = incident.Longitude;
+                View.Latitude = incident.Locale.Latitude;
+                View.Longitude = incident.Locale.Longitude;
             }
             else
             {

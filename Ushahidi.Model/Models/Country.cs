@@ -14,7 +14,7 @@ namespace Ushahidi.Model.Models
         [XmlElement("name")]
         public string Name { get; set; }
 
-        [XmlElement("capital")]
+        [XmlElement("capital", IsNullable = true)]
         public string Capital { get; set; }
 
         public override string ToString()

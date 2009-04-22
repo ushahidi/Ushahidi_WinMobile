@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Ushahidi.Common.Extensions
 {
@@ -7,6 +8,11 @@ namespace Ushahidi.Common.Extensions
         public static DateTime ToDateTime(this string dateAsString)
         {
             return string.IsNullOrEmpty(dateAsString) ? DateTime.MinValue : DateTime.Parse(dateAsString);
+        }
+
+        public static DateTime ToDateTime(this string dateAsString, string format)
+        {
+            return string.IsNullOrEmpty(dateAsString) ? DateTime.MinValue : DateTime.ParseExact(dateAsString, format, CultureInfo.InvariantCulture);
         }
     }
 }

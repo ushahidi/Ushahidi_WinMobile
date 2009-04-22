@@ -85,6 +85,7 @@
     <Compile Include="Models\Locale.cs" />
     <Compile Include="Models\Locales.cs" />
     <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\MediaType.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\Models.cs" />
     <Compile Include="Models\Response.cs" />

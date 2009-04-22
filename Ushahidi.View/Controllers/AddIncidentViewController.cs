@@ -1,5 +1,4 @@
 ﻿using System;
-using Ushahidi.Common.Geo;
 using Ushahidi.View.Models;
 using Ushahidi.View.Views;
 
@@ -55,8 +54,6 @@ namespace Ushahidi.View.Controllers
                 Model.Date = View.Date;
                 Model.Description = View.Description;
                 Model.Images = View.Images;
-                Model.Longitude = GeoManager.GetLongitude();
-                Model.Latitude = GeoManager.GetLatitude();
                 return Model.Save();
             }
             return true;

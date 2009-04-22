@@ -5,11 +5,14 @@ namespace Ushahidi.Model.Models
     [XmlRoot("category")]
     public class Category : Model
     {
-        [XmlElement("categoryid")]
+        [XmlElement("id")]
         public int ID { get; set; }
 
-        [XmlElement("categorytitle")]
+        [XmlElement("title")]
         public string Title { get; set; }
+
+        [XmlElement("description", IsNullable = true)]
+        public string Description { get; set; }
 
         public override string ToString()
         {

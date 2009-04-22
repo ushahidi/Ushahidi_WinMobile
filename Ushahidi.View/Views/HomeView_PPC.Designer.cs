@@ -50,11 +50,12 @@
             // 
             // labelHomeDescription
             // 
-            this.labelHomeDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.labelHomeDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.labelHomeDescription.Location = new System.Drawing.Point(4, 148);
             this.labelHomeDescription.Name = "labelHomeDescription";
-            this.labelHomeDescription.Size = new System.Drawing.Size(233, 120);
+            this.labelHomeDescription.Size = new System.Drawing.Size(233, 146);
             this.labelHomeDescription.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pictureBoxLogo

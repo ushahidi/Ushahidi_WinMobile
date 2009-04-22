@@ -6,30 +6,36 @@ namespace Ushahidi.Model.Models
 {
     /// <summary>
     /// <media>
-    ///     <mediaid>1</mediaid>
-    ///     <mediatitle/>
-    ///     <mediatype>1</mediatype>
-    ///     <medialink>3_1_1231886194.jpg</medialink>
-    ///     <mediathumb>3_1_1231886194_t.jpg</mediathumb>
+    ///     <id>1</id>
+    ///     <title/>
+    ///     <type>1</type>
+    ///     <link>3_1_1231886194.jpg</link>
+    ///     <thumb>3_1_1231886194_t.jpg</thumb>
     ///</media>
     /// </summary>
     [XmlRoot("media")]
     public class Media : Model, IDisposable
     {
-        [XmlElement("mediaid")]
+        [XmlElement("id")]
         public int ID { get; set; }
 
-        [XmlElement("mediatitle", IsNullable = true)]
+        [XmlElement("title", IsNullable = true)]
         public string Title { get; set; }
 
-        [XmlElement("mediatype")]
+        [XmlElement("type")]
         public int Type { get; set; }
 
-        [XmlElement("medialink")]
+        [XmlElement("link")]
         public string OriginalFileName { get; set; }
 
-        [XmlElement("mediathumb")]
+        [XmlElement("thumb", IsNullable = true)]
         public string ThumbnailFileName { get; set; }
+
+        [XmlIgnore]
+        public MediaType MediaType
+        {
+            get { return (MediaType)Type; }
+        }
 
         public override string ToString()
         {

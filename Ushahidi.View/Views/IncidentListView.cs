@@ -67,7 +67,7 @@ namespace Ushahidi.View.Views
             {
                 foreach (Incident incident in SelectedCategory.ID != -1
                                                 ? Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false &&
-                                                                       i.Category.ID == SelectedCategory.ID)
+                                                                       i.HasCategory(SelectedCategory.ID))
                                                 : Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false))
                 {
                     listBoxIncidentListIncidents.AddItem(new IncidentListItem(incident));

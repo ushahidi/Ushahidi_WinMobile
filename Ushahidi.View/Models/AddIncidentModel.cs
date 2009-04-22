@@ -38,16 +38,6 @@ namespace Ushahidi.View.Models
         public Locale Locale { get; set; }
 
         /// <summary>
-        /// Latitude
-        /// </summary>
-        public double Latitude { get; set; }
-
-        /// <summary>
-        /// Longitude
-        /// </summary>
-        public double Longitude { get; set; }
-
-        /// <summary>
         /// Incident images
         /// </summary>
         public IEnumerable<Image> Images { get; set; }
@@ -82,11 +72,8 @@ namespace Ushahidi.View.Models
                     Date = Date,
                     Title = Title,
                     Description = Description,
-                    Category = Category,
-                    LocationName = Locale.Name,
-                    LocationID = Locale.ID,
-                    Longitude = Longitude,
-                    Latitude = Latitude
+                    Categories = new[] {Category},
+                    Locale = Locale
                 };
                 return DataManager.AddIncident(incident);
             }

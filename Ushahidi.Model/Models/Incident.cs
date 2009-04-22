@@ -1,79 +1,91 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Serialization;
 using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Model.Models
 {
-    /// <summary>
-    /// <incident>
-    ///     <incidentid>1</incidentid>
-    ///     <incidenttitle>Test</incidenttitle>
-    ///     <incidentdescription>Test by E.</incidentdescription>
-    ///     <incidentdate>2009-01-13 01:00:00</incidentdate>
-    ///     <incidentmode>1</incidentmode>
-    ///     <incidentactive>1</incidentactive>
-    ///     <incidentverified>0</incidentverified>
-    ///     <locationid>1</locationid>
-    ///     <locationname>puwokerto</locationname>
-    ///     <locationlatitude>-7.431518</locationlatitude>
-    ///     <locationlongitude>109.247398</locationlongitude>
-    ///     <category>
-    ///         <categoryid>7</categoryid>
-    ///         <categorytitle>CIVILIANS</categorytitle>
-    ///         <categoryid>8</categoryid>
-    ///         <categorytitle>LOOTING</categorytitle>
-    ///     </category>
-    /// </incident>
-    /// </summary>
     [XmlRoot("incident")]
     public class Incident : Model
     {
-        [XmlElement("incidentid")]
+        [XmlElement("id")]
         public int ID { get; set; }
 
-        [XmlElement("incidenttitle")]
+        [XmlElement("title")]
         public string Title { get; set; }
 
-        [XmlElement("incidentdescription")]
+        [XmlElement("description", IsNullable = true)]
         public string Description { get; set; }
 
-        [XmlElement("incidentdate")]
+        [XmlElement("date")]
         public string DateString { get; set; }
 
+        [XmlIgnore]
         public DateTime Date
         {
-            get { return DateString.ToDateTime(); }
+            get { return DateString.ToDateTime("yyyy-MM-dd hh:mm:ss"); }
             set { DateString = value.ToString("yyyy-MM-dd hh:mm:ss"); }
         }
 
-        [XmlElement("incidentmode")]
+        [XmlElement("mode")]
         public int Mode { get; set; }
 
-        [XmlElement("incidentactive")]
+        [XmlElement("active")]
         public bool Active { get; set; }
 
-        [XmlElement("incidentverified")]
+        [XmlElement("verified")]
         public bool Verified { get; set; }
 
-        [XmlElement("locationid")]
-        public int LocationID { get; set; }
+        [XmlElement("location", Type = typeof(Locale))]
+        public Locale Locale { get; set; }
 
-        [XmlElement("locationname")]
-        public string LocationName { get; set; }
+        [XmlIgnore]
+        public string LocaleName
+        {
+            get { return Locale != null ? Locale.Name : string.Empty; }
+        }
 
-        [XmlElement("locationlatitude")]
-        public double Latitude { get; set; }
+        [XmlIgnore]
+        public string LocaleLatitude
+        {
+            get { return Locale != null ? Locale.Latitude : string.Empty; }
+        }
 
-        [XmlElement("locationlongitude")]
-        public double Longitude { get; set; }
+        [XmlIgnore]
+        public string LocaleLongitude
+        {
+            get { return Locale != null ? Locale.Longitude : string.Empty; }
+        }
 
-        [XmlElement("category")]
-        public Category Category { get; set; }
+        [XmlArray("categories")]
+        [XmlArrayItem("category")]
+        public Category[] Categories
+        {
+            get { return _Categories.ToArray(); }
+            set
+            {
+                _Categories.Clear();
+                if (value != null)
+                {
+                    _Categories.AddRange(value);
+                }
+            }
+        }private readonly List<Category> _Categories = new List<Category>();
 
-        //[XmlArray("media", IsNullable = true)]
-        //[XmlArrayItem("media")]
-        [XmlElement("media")]
+        [XmlIgnore]
+        public string CategoryTitle
+        {
+            get { return Categories != null && Categories.Length > 0 ? Categories[0].Title : string.Empty; }
+        }
+
+        public bool HasCategory(int categoryID)
+        {
+            return Categories.Any(c => c.ID == categoryID);
+        }
+
+        [XmlArray("mediaItems", IsNullable = true)]
+        [XmlArrayItem("media", Type = typeof(Media))]
         public Media[] MediaItems
         {
             get { return _Media.ToArray(); }

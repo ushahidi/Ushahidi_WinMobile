@@ -83,10 +83,10 @@ namespace Ushahidi.View.Controls
                 e.Graphics.DrawString(Incident.Description, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.LocationName, Font, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.LocaleName, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.Category.Title, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.CategoryTitle, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
             }
             using (Pen pen = new Pen(Color.Black))
             {

@@ -1,122 +1,122 @@
 <countries>
   <country>
-    <id>1</id>
-    <iso>AD</iso>
-    <name>Andorra</name>
-    <capital>Andorra la Vella</capital>
+    <id>247</id>
+    <iso>ZW</iso>
+    <name>Zimbabwe</name>
+    <capital>Harare</capital>
   </country>
   <country>
-    <id>2</id>
-    <iso>AE</iso>
-    <name>United Arab Emirates</name>
-    <capital>Abu Dhabi</capital>
+    <id>246</id>
+    <iso>ZM</iso>
+    <name>Zambia</name>
+    <capital>Lusaka</capital>
   </country>
   <country>
-    <id>3</id>
-    <iso>AF</iso>
-    <name>Afghanistan</name>
-    <capital>Kabul</capital>
+    <id>245</id>
+    <iso>ZA</iso>
+    <name>South Africa</name>
+    <capital>Pretoria</capital>
   </country>
   <country>
-    <id>4</id>
-    <iso>AG</iso>
-    <name>Antigua and Barbuda</name>
-    <capital>St. John's</capital>
+    <id>244</id>
+    <iso>YT</iso>
+    <name>Mayotte</name>
+    <capital>Mamoudzou</capital>
   </country>
   <country>
-    <id>5</id>
-    <iso>AI</iso>
-    <name>Anguilla</name>
-    <capital>The Valley</capital>
+    <id>243</id>
+    <iso>YE</iso>
+    <name>Yemen</name>
+    <capital>San‘a’</capital>
   </country>
   <country>
-    <id>6</id>
-    <iso>AL</iso>
-    <name>Albania</name>
-    <capital>Tirana</capital>
+    <id>242</id>
+    <iso>WS</iso>
+    <name>Samoa</name>
+    <capital>Apia</capital>
   </country>
   <country>
-    <id>7</id>
-    <iso>AM</iso>
-    <name>Armenia</name>
-    <capital>Yerevan</capital>
+    <id>241</id>
+    <iso>WF</iso>
+    <name>Wallis and Futuna</name>
+    <capital>Matâ'Utu</capital>
   </country>
   <country>
-    <id>8</id>
-    <iso>AN</iso>
-    <name>Netherlands Antilles</name>
-    <capital>Willemstad</capital>
+    <id>240</id>
+    <iso>VU</iso>
+    <name>Vanuatu</name>
+    <capital>Port Vila</capital>
   </country>
   <country>
-    <id>9</id>
-    <iso>AO</iso>
-    <name>Angola</name>
-    <capital>Luanda</capital>
+    <id>239</id>
+    <iso>VN</iso>
+    <name>Vietnam</name>
+    <capital>Hanoi</capital>
   </country>
   <country>
-    <id>10</id>
-    <iso>AQ</iso>
-    <name>Antarctica</name>
+    <id>238</id>
+    <iso>VI</iso>
+    <name>U.S. Virgin Islands</name>
+    <capital>Charlotte Amalie</capital>
+  </country>
+  <country>
+    <id>237</id>
+    <iso>VG</iso>
+    <name>British Virgin Islands</name>
+    <capital>Road Town</capital>
+  </country>
+  <country>
+    <id>236</id>
+    <iso>VE</iso>
+    <name>Venezuela</name>
+    <capital>Caracas</capital>
+  </country>
+  <country>
+    <id>235</id>
+    <iso>VC</iso>
+    <name>Saint Vincent and the Grenadines</name>
+    <capital>Kingstown</capital>
+  </country>
+  <country>
+    <id>234</id>
+    <iso>VA</iso>
+    <name>Vatican</name>
+    <capital>Vatican City</capital>
+  </country>
+  <country>
+    <id>233</id>
+    <iso>UZ</iso>
+    <name>Uzbekistan</name>
+    <capital>Tashkent</capital>
+  </country>
+  <country>
+    <id>232</id>
+    <iso>UY</iso>
+    <name>Uruguay</name>
+    <capital>Montevideo</capital>
+  </country>
+  <country>
+    <id>231</id>
+    <iso>US</iso>
+    <name>United States</name>
+    <capital>Washington</capital>
+  </country>
+  <country>
+    <id>230</id>
+    <iso>UM</iso>
+    <name>United States Minor Outlying Islands</name>
     <capital></capital>
   </country>
   <country>
-    <id>11</id>
-    <iso>AR</iso>
-    <name>Argentina</name>
-    <capital>Buenos Aires</capital>
+    <id>229</id>
+    <iso>UG</iso>
+    <name>Uganda</name>
+    <capital>Kampala</capital>
   </country>
   <country>
-    <id>12</id>
-    <iso>AS</iso>
-    <name>American Samoa</name>
-    <capital>Pago Pago</capital>
-  </country>
-  <country>
-    <id>13</id>
-    <iso>AT</iso>
-    <name>Austria</name>
-    <capital>Vienna</capital>
-  </country>
-  <country>
-    <id>14</id>
-    <iso>AU</iso>
-    <name>Australia</name>
-    <capital>Canberra</capital>
-  </country>
-  <country>
-    <id>15</id>
-    <iso>AW</iso>
-    <name>Aruba</name>
-    <capital>Oranjestad</capital>
-  </country>
-  <country>
-    <id>16</id>
-    <iso>AX</iso>
-    <name>Aland Islands</name>
-    <capital>Mariehamn</capital>
-  </country>
-  <country>
-    <id>17</id>
-    <iso>AZ</iso>
-    <name>Azerbaijan</name>
-    <capital>Baku</capital>
-  </country>
-  <country>
-    <id>18</id>
-    <iso>BA</iso>
-    <name>Bosnia and Herzegovina</name>
-    <capital>Sarajevo</capital>
-  </country>
-  <country>
-    <id>19</id>
-    <iso>BB</iso>
-    <name>Barbados</name>
-    <capital>Bridgetown</capital>
-  </country>
-  <country>
-    <id>20</id>
-    <iso>BD</iso>
-    <name>Bangladesh</name>
-    <capital>Dhaka</capital>
+    <id>228</id>
+    <iso>UA</iso>
+    <name>Ukraine</name>
+    <capital>Kiev</capital>
   </country>
 </countries>

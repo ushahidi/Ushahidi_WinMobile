@@ -15,6 +15,7 @@ namespace Ushahidi.View.Views
             base.Initialize();
             menuItemSettingsDone.Click += OnDone;
             menuItemSettingsCancel.Click += OnCancel;
+            comboBoxSettingsLanguages.SelectedIndexChanged += OnLanguageChanged;
         }
 
         public override void Translate()
@@ -122,6 +123,12 @@ namespace Ushahidi.View.Views
         {
             ShouldSave = true;
             base.OnClosing(e);
+        }
+
+        private void OnLanguageChanged(object sender, EventArgs e)
+        {
+            LanguageManager.Language = comboBoxSettingsLanguages.SelectedValue<CultureInfo>();
+            Translate();
         }
     }
 }

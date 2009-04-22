@@ -1,62 +1,62 @@
 <categories>
   <category>
-    <id>1</id>
-    <category_title>RIOTS</category_title>
-    <category_description>RIOTS</category_description>
-    <category_color>9900CC</category_color>
-  </category>
-  <category>
-    <id>2</id>
-    <category_title>DEATHS</category_title>
-    <category_description>DEATHS</category_description>
-    <category_color>3300FF</category_color>
-  </category>
-  <category>
-    <id>3</id>
-    <category_title>PROPERTY LOSS</category_title>
-    <category_description>PROPERTY LOSS</category_description>
-    <category_color>663300</category_color>
-  </category>
-  <category>
-    <id>4</id>
-    <category_title>SEXUAL ASSAULT</category_title>
-    <category_description>SEXUAL ASSAULT</category_description>
-    <category_color>CC0000</category_color>
-  </category>
-  <category>
-    <id>5</id>
-    <category_title>INTERNALLY DISPLACED PEOPLE </category_title>
-    <category_description>INTERNALLY DISPLACED PEOPLE 	</category_description>
-    <category_color>CC9933</category_color>
-  </category>
-  <category>
-    <id>6</id>
-    <category_title>GOVERNMENT FORCESS</category_title>
-    <category_description>GOVERNMENT FORCESS</category_description>
-    <category_color>9999FF</category_color>
-  </category>
-  <category>
-    <id>7</id>
-    <category_title>CIVILIANS</category_title>
-    <category_description>CIVILIANS</category_description>
-    <category_color>66CC00</category_color>
-  </category>
-  <category>
-    <id>8</id>
-    <category_title>LOOTING</category_title>
-    <category_description>LOOTING</category_description>
-    <category_color>FFCC00</category_color>
+    <id>10</id>
+    <title>MISC</title>
+    <description>MISC</description>
+    <color>8C8C8C</color>
   </category>
   <category>
     <id>9</id>
-    <category_title>PEACE EFFORTS</category_title>
-    <category_description>PEACE EFFORTS</category_description>
-    <category_color>FAEBD7</category_color>
+    <title>PEACE EFFORTS</title>
+    <description>PEACE EFFORTS</description>
+    <color>FAEBD7</color>
   </category>
   <category>
-    <id>10</id>
-    <category_title>MISC</category_title>
-    <category_description>MISC</category_description>
-    <category_color>8C8C8C</category_color>
+    <id>8</id>
+    <title>LOOTING</title>
+    <description>LOOTING</description>
+    <color>FFCC00</color>
+  </category>
+  <category>
+    <id>7</id>
+    <title>CIVILIANS</title>
+    <description>CIVILIANS</description>
+    <color>66CC00</color>
+  </category>
+  <category>
+    <id>6</id>
+    <title>GOVERNMENT FORCESS</title>
+    <description>GOVERNMENT FORCESS</description>
+    <color>9999FF</color>
+  </category>
+  <category>
+    <id>5</id>
+    <title>INTERNALLY DISPLACED PEOPLE </title>
+    <description>INTERNALLY DISPLACED PEOPLE 	</description>
+    <color>CC9933</color>
+  </category>
+  <category>
+    <id>4</id>
+    <title>SEXUAL ASSAULT</title>
+    <description>SEXUAL ASSAULT</description>
+    <color>CC0000</color>
+  </category>
+  <category>
+    <id>3</id>
+    <title>PROPERTY LOSS</title>
+    <description>PROPERTY LOSS</description>
+    <color>663300</color>
+  </category>
+  <category>
+    <id>2</id>
+    <title>DEATHS</title>
+    <description>DEATHS</description>
+    <color>3300FF</color>
+  </category>
+  <category>
+    <id>1</id>
+    <title>RIOTS</title>
+    <description>RIOTS</description>
+    <color>9900CC</color>
   </category>
 </categories>
