@@ -48,7 +48,7 @@ namespace Ushahidi.View.Languages
             {
                 if (_Language == null)
                 {
-                    _Language = _Languages.First(c => c.Name == "en-US");
+                    _Language = _Languages.First(c => c.Name == "en");
                 }
                 return _Language;
             }
