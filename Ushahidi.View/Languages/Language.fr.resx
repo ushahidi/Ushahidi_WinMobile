@@ -315,4 +315,40 @@
   <data name="WebsiteView" xml:space="preserve">
     <value>Site Web Ushahidi</value>
   </data>
+  <data name="audio" xml:space="preserve">
+    <value>Acoustique</value>
+  </data>
+  <data name="news" xml:space="preserve">
+    <value>Nouvelle</value>
+  </data>
+  <data name="photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="video" xml:space="preserve">
+    <value>Vidéo</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Catégorie</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="locale" xml:space="preserve">
+    <value>Lieu</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="verifiedAndActive" xml:space="preserve">
+    <value>Vérification et active</value>
+  </data>
+  <data name="IncidentPhotoView" xml:space="preserve">
+    <value>Incident Photo</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>Fait</value>
+  </data>
 </root>

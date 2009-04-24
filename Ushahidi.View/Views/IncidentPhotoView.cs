@@ -1,22 +1,35 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
 {
     public partial class IncidentPhotoView
     {
+        public override void Translate()
+        {
+            base.Translate();
+            menuItemAction.Translate("Done");
+        }
         public override void Initialize()
         {
             base.Initialize();
-            pictureBox.Click += pictureBox_Click;
-            pictureBox.KeyDown += pictureBox_KeyDown;
-            Menu = null;
+            //TopMost = true;
+            //FormBorderStyle = FormBorderStyle.None;
+            //MinimizeBox = false;
+            //MaximizeBox = false;
+            //ControlBox = false;
+            //WindowState = FormWindowState.Maximized;
+            Click += OnClick;
+            DoubleClick += OnClick;
+            KeyDown += OnKeyDown;
+            menuItemAction.Click += OnClick;
         }
 
         public Image Image { get; set; }
 
-        private void pictureBox_KeyDown(object sender, KeyEventArgs e)
+        private void OnKeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Back)
             {
@@ -24,7 +37,7 @@ namespace Ushahidi.View.Views
             }
         }
 
-        private void pictureBox_Click(object sender, EventArgs e)
+        private void OnClick(object sender, EventArgs e)
         {
             OnBack();
         }
@@ -33,15 +46,11 @@ namespace Ushahidi.View.Views
         {
             if (Image != null)
             {
-                
-                if (Image.Width > Image.Height && Width < Height)
-                {
-                    //TODO implement drawing of photo
-                }
-                else
-                {
-                    
-                }
+                int height = Width * Image.Height / Image.Width;
+                int posY = Height > height ? (Height - height)/2 : 0;
+                Rectangle destRect = new Rectangle(0, posY, Width, height);
+                Rectangle srcRect = new Rectangle(0, 0, Image.Width, Image.Height);
+                e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
             }
         }
     }

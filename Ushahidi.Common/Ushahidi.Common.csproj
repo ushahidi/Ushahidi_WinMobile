@@ -121,6 +121,9 @@
     <Compile Include="Controls\ScrollListBoxItem.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\TextBlock.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Extensions\FontExtensions.cs" />

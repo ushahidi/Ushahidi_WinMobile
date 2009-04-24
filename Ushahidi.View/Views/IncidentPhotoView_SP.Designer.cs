@@ -28,23 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
-            // pictureBox
+            // menuItemAction
             // 
-            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(176, 180);
+            this.menuItemAction.Text = "Done";
             // 
-            // PictureView
+            // menuItemMenu
+            // 
+            this.menuItemMenu.Enabled = false;
+            // 
+            // IncidentPhotoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(176, 180);
-            this.Controls.Add(this.pictureBox);
-            this.Name = "PictureView";
+            this.Name = "IncidentPhotoView";
+            this.Text = "Incident Photo";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
@@ -52,6 +53,5 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox;
     }
 }

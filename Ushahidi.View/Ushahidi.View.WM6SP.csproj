@@ -77,7 +77,16 @@
     <Compile Include="Controls\IncidentListItem.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\LinkListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PhotoListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\PhotoSelector_WM6.cs" />
+    <Compile Include="Controls\TextListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Languages\Language.en.Designer.cs" />
     <Compile Include="Languages\Language.fr.Designer.cs" />
     <Compile Include="Languages\LanguageManager.cs" />

@@ -43,5 +43,12 @@ namespace Ushahidi.Common.Extensions
             }
             return DateTime.MinValue;
         }
+
+        public static string ToTitleCase(this string text)
+        {
+            return string.IsNullOrEmpty(text) ? text : English.TextInfo.ToTitleCase(text.ToLower());
+        }
+
+        private readonly static CultureInfo English = new CultureInfo("en-US", false);
     }
 }

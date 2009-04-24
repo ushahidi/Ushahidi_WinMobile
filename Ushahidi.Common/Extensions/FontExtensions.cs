@@ -37,6 +37,14 @@ namespace Ushahidi.Common.Extensions
         }
 
         /// <summary>
+        /// Font to Underline
+        /// </summary>
+        public static Font ToUnderline(this Font font)
+        {
+            return new Font(font.Name, font.Size, FontStyle.Underline);
+        }
+
+        /// <summary>
         /// Increase the font size by the specified amount
         /// </summary>
         public static Font IncreaseSize(this Font font, int sizeToIncrease)

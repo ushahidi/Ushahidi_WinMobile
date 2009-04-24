@@ -13,7 +13,12 @@ namespace Ushahidi.View.Models
         /// </summary>
         public Categories Categories
         {
-            get { return DataManager.Categories; }
+            get
+            {
+                Categories categories = DataManager.Categories;
+                categories.Insert(0, new Category(-1, null, null));
+                return categories;
+            }
         }
 
         /// <summary>

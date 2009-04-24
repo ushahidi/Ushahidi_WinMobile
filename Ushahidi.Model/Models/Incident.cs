@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -41,6 +42,9 @@ namespace Ushahidi.Model.Models
         public Locale Locale { get; set; }
 
         [XmlIgnore]
+        public bool IsNew { get; set; }
+
+        [XmlIgnore]
         public string LocaleName
         {
             get { return Locale != null ? Locale.Name : string.Empty; }
@@ -76,7 +80,12 @@ namespace Ushahidi.Model.Models
         [XmlIgnore]
         public string CategoryTitle
         {
-            get { return Categories != null && Categories.Length > 0 ? Categories[0].Title : string.Empty; }
+            get { return Categories != null && Categories.Length > 0 ? string.Join(",", Categories.Select(c => c.Title).ToArray()) : string.Empty; }
+        }
+
+        public string LocaleAndDate
+        {
+            get { return string.Join(" - ", new[] {LocaleName, Date.ToShortDateString()}); }
         }
 
         public bool HasCategory(int categoryID)
@@ -100,12 +109,21 @@ namespace Ushahidi.Model.Models
         }private readonly List<Media> _Media = new List<Media>();
 
         [XmlIgnore]
-        public bool IsNew { get; set; }
-
-        public void AddMedia(Media media)
+        public Image Thumbnail
         {
-            _Media.Add(media);
-        }
+            get
+            {
+                if (_Thumbnail == null && _Media.Any(m => m.MediaType == MediaType.Photo))
+                {
+                    Media media = _Media.FirstOrDefault(m => m.MediaType == MediaType.Photo);
+                    if(media != null)
+                    {
+                        _Thumbnail = DataManager.LoadImage(media.ThumbnailLink);
+                    }
+                }
+                return _Thumbnail;
+            }
+        }private Image _Thumbnail;
 
         public override string ToString()
         {

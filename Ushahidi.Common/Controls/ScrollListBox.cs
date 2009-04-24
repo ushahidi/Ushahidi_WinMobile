@@ -65,6 +65,10 @@ namespace Ushahidi.Common.Controls
             return base.Focus();
         }
 
+        public int Count
+        {
+            get { return Controls.Count; }
+        }
         /// <summary>
         /// Clear all items
         /// </summary>
@@ -143,6 +147,21 @@ namespace Ushahidi.Common.Controls
                 Refresh();
             }
         }
+
+        public bool AutoHeight
+        {
+            get { return _AutoHeight; }
+            set
+            {
+                _AutoHeight = value;
+                if (value)
+                {
+                    Height = MaxBottom(Controls);
+                }
+            }
+        }
+
+        private bool _AutoHeight = false;
 
         /// <summary>
         /// The number of items
@@ -344,21 +363,34 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         private void EnhancedListBox_KeyDown(object sender, KeyEventArgs e)
         {
-            Log.Info("ScrollListBox.EnhancedListBox_KeyDown", "KeyCode: ", e.KeyCode);
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    int indexDown = Controls.GetChildIndex(SelectedItem) + 1;
-                    if (indexDown > -1 && ItemCount > indexDown)
+                    if (SelectedItem != null)
                     {
-                        SelectedIndex = indexDown;
+                        int indexDown = Controls.GetChildIndex(SelectedItem) + 1;
+                        if (indexDown > -1 && ItemCount > indexDown)
+                        {
+                            SelectedIndex = indexDown;
+                        }
+                    }
+                    else if (ItemCount > 0)
+                    {
+                        SelectedIndex = 0;
                     }
                     break;
                 case Keys.Up:
-                    int indexUp = Controls.GetChildIndex(SelectedItem) - 1;
-                    if (indexUp > -1 && ItemCount > indexUp)
+                    if (SelectedItem != null)
                     {
-                        SelectedIndex = indexUp;
+                        int indexUp = Controls.GetChildIndex(SelectedItem) - 1;
+                        if (indexUp > -1 && ItemCount > indexUp)
+                        {
+                            SelectedIndex = indexUp;
+                        }
+                    }
+                    else
+                    {
+                        SelectedIndex = ItemCount - 1;
                     }
                     break;
                 case Keys.PageUp:

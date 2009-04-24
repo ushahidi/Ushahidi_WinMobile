@@ -491,16 +491,16 @@ namespace Ushahidi.Model
             {
                 foreach(Media media in incident.MediaItems.Where(m => m.MediaType == MediaType.Photo))
                 {
-                   if (string.IsNullOrEmpty(media.ThumbnailFileName) == false)
+                   if (string.IsNullOrEmpty(media.ThumbnailLink) == false)
                    {
-                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.ThumbnailFileName);
-                       string filePath = Path.Combine(DataDirectory, media.ThumbnailFileName);
+                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.ThumbnailLink);
+                       string filePath = Path.Combine(DataDirectory, media.ThumbnailLink);
                        DownloadImage(url, filePath);
                    }
-                   if (string.IsNullOrEmpty(media.OriginalFileName) == false)
+                   if (string.IsNullOrEmpty(media.Link) == false)
                    {
-                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.OriginalFileName);
-                       string filePath = Path.Combine(DataDirectory, media.OriginalFileName);
+                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.Link);
+                       string filePath = Path.Combine(DataDirectory, media.Link);
                        DownloadImage(url, filePath);
                    }
                 }
@@ -521,6 +521,11 @@ namespace Ushahidi.Model
                 return File.Exists(filePath) ? new Bitmap(filePath) : null;
             }
             return null;
+        }
+
+        public static bool HasImage(string fileName)
+        {
+            return File.Exists(Path.Combine(DataDirectory, fileName));
         }
 
         #endregion

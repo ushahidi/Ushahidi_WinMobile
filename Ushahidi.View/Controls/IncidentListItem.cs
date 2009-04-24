@@ -15,8 +15,8 @@ namespace Ushahidi.View.Controls
         public IncidentListItem(Incident incident)
         {
             Incident = incident;
-            CalculateHeight(Font);
-            BoldFont = Font.ToBold();
+            CalculateHeight(base.Font);
+            BoldFont = base.Font.ToBold();
         }
 
         public override Font Font
@@ -40,21 +40,7 @@ namespace Ushahidi.View.Controls
             {
                 Height = (int)(graphic.MeasureString("A", font).Height * 1.2) * RowCount;
             }
-        }
-
-        public readonly int RowCount = 4;
-
-        public Image Image
-        {
-            get
-            {
-                if (Incident.MediaItems != null && Incident.MediaItems.Length > 0)
-                {
-                    return Incident.MediaItems[0].Thumbnail;
-                }
-                return null;
-            }
-        }
+        }public readonly int RowCount = 4;
 
         /// <summary>
         /// Draw text onto the control
@@ -64,29 +50,34 @@ namespace Ushahidi.View.Controls
             using (SolidBrush fontBrush = new SolidBrush(IsSelected ? Color.White : Color.Black))
             {
                 int rowHeight = Height/RowCount;
-                if (Image != null)
+                if (Incident.Thumbnail != null)
                 {
-                    Rectangle destRect = new Rectangle(0, 0, Height, Height);
-                    Rectangle srcRect = new Rectangle(0, 0, Image.Width, Image.Height);
-                    e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
+                    int width = Height;
+                    int height = Height * Incident.Thumbnail.Height / Incident.Thumbnail.Width;
+                    int posX = 0;
+                    int posY = Height > height ? (Height - height)/2 : 0;
+                    Rectangle destRect = new Rectangle(posX, posY, width, height);
+                    Rectangle srcRect = new Rectangle(0, 0, Incident.Thumbnail.Width, Incident.Thumbnail.Height);
+                    e.Graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Height, Height);
+                    e.Graphics.DrawImage(Incident.Thumbnail, destRect, srcRect, GraphicsUnit.Pixel);
                 }
                 else
                 {
                     Rectangle destRect = new Rectangle(0, 0, Height, Height);
-                    Rectangle srcRect = new Rectangle(0, 0, DefaultImage.Width, DefaultImage.Height);
-                    e.Graphics.DrawImage(DefaultImage, destRect, srcRect, GraphicsUnit.Pixel);
+                    Rectangle srcRect = new Rectangle(0, 0, NoPhotoImage.Width, NoPhotoImage.Height);
+                    e.Graphics.DrawImage(NoPhotoImage, destRect, srcRect, GraphicsUnit.Pixel);
                 }
                 Rectangle rectangle = new Rectangle(Height + 5, 0, Width - Height - 5, rowHeight);
                 e.Graphics.DrawString(Incident.Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.Description, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.Description, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.LocaleName, Font, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.LocaleAndDate, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.CategoryTitle, Font.ToBold(), fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Incident.CategoryTitle, Font, fontBrush, rectangle, Constants.LeftAligned);
             }
             using (Pen pen = new Pen(Color.Black))
             {
@@ -98,17 +89,17 @@ namespace Ushahidi.View.Controls
             }
         }
 
-        public Image DefaultImage
+        public static Image NoPhotoImage
         {
             get
             {
-                if (_DefaultImage == null)
+                if (_NoPhotoImage == null)
                 {
 
-                    _DefaultImage = ResourcesManager.LoadImageResource("no_photo.jpg");
+                    _NoPhotoImage = ResourcesManager.LoadImageResource("no_photo.jpg");
                 }
-                return _DefaultImage;
+                return _NoPhotoImage;
             }
-        }private Image _DefaultImage;
+        }private static Image _NoPhotoImage;
     }
 }

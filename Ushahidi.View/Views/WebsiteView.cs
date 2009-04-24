@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Forms;
+using Ushahidi.Common.Logging;
 using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
@@ -11,7 +13,21 @@ namespace Ushahidi.View.Views
         public override void Initialize()
         {
             base.Initialize();
+            webBrowser.Navigating += OnNavigating;
+            webBrowser.Navigated += OnNavigated;
             menuItemAction.Click += OnDone;
+        }
+
+        private static void OnNavigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            Log.Info("OnNavigating");
+            Cursor.Current = Cursors.WaitCursor;
+        }
+
+        private static void OnNavigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            Log.Info("OnNavigated");
+            Cursor.Current = Cursors.Default;
         }
 
         public override void Translate()
@@ -23,10 +39,10 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Website URL
         /// </summary>
-        public Uri WebsiteURL 
+        public string WebsiteURL 
         { 
-            get { return webBrowser.Url; }
-            set { webBrowser.Url = value;}
+            get { return webBrowser.Url != null ? webBrowser.Url.AbsolutePath : string.Empty; }
+            set { webBrowser.Url = string.IsNullOrEmpty(value) ? null : new Uri(value); }
         }
 
         private void OnDone(object sender, EventArgs e)

@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Ushahidi.Common.Controls;
-using Ushahidi.Common.Extensions;
+using Ushahidi.Model;
 using Ushahidi.Model.Models;
 using Ushahidi.View.Controllers;
+using Ushahidi.View.Controls;
 using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
@@ -22,8 +20,7 @@ namespace Ushahidi.View.Views
             base.Initialize();
             menuItemIncidentDetailAddPhoto.Click += OnAddPhoto;
             menuItemIncidentDetailViewMap.Click += OnViewMap;
-            imageListBox.ImageSelected += OnImageSelected;
-            imageListBox.ThumbnailSize = ThumbnailSizes.FullWidth;
+            scrollListBoxMediaItems.ItemSelected += OnItemSelected;
         }
 
         public override void Translate()
@@ -33,88 +30,58 @@ namespace Ushahidi.View.Views
             menuItemIncidentDetailViewMap.Translate(this);
         }
 
-        /// <summary>
-        /// Incident title
-        /// </summary>
-        public string Title
+        public override void Render()
         {
-            set { labelIncidentDetailTitle.Text = value; }
-        }
-
-        /// <summary>
-        /// Incident location
-        /// </summary>
-        public string Locale
-        {
-            set { labelIncidentDetailLocale.Text = value; }
-        }
-
-        /// <summary>
-        /// Incident description
-        /// </summary>
-        public string Description
-        {
-            set 
-            { 
-                labelIncidentDetailDescription.Text = value;
-                labelIncidentDetailDescription.Height = labelIncidentDetailDescription.GetRequiredHeight(labelIncidentDetailDescription.Font, value);
-                imageListBox.Top = labelIncidentDetailDescription.Bottom + labelIncidentDetailDescription.Left;
+            base.Render();
+            scrollListBoxMediaItems.AddItem(new TextListItem("title".Translate(), Title) {Bold = true});
+            scrollListBoxMediaItems.AddItem(new TextListItem("category".Translate(), Category));
+            scrollListBoxMediaItems.AddItem(new TextListItem("locale".Translate(), string.Format("{0} ({1}, {2})", Locale, Latitude, Longitude)));
+            scrollListBoxMediaItems.AddItem(new TextListItem("date".Translate(), Date.ToString("MMMM d, yyyy h:mm tt")));
+            string verified = Verified ? "verified".Translate() : "notVerified".Translate();
+            string active = Active ? "active".Translate() : "notActive".Translate();
+            scrollListBoxMediaItems.AddItem(new TextListItem("verifiedAndActive".Translate(), string.Format("{0} - {1}", verified, active)));
+            scrollListBoxMediaItems.AddItem(new TextListItem("description".Translate(), Description));
+            foreach (Media media in MediaItems.Where(m => m.MediaType != MediaType.Photo))
+            {
+                if (media.MediaType == MediaType.News)
+                {
+                    scrollListBoxMediaItems.AddItem(new LinkListItem("news".Translate(), media.Link));    
+                }
+                else if (media.MediaType == MediaType.Audio)
+                {
+                    scrollListBoxMediaItems.AddItem(new LinkListItem("audio".Translate(), media.Link));
+                }
+                else if (media.MediaType == MediaType.Video)
+                {
+                    scrollListBoxMediaItems.AddItem(new LinkListItem("video".Translate(), media.Link));
+                }
+            }
+            foreach (Media media in MediaItems.Where(m => m.MediaType == MediaType.Photo))
+            {
+                scrollListBoxMediaItems.AddItem(new PhotoListItem(DataManager.LoadImage(media.Link)));
             }
         }
 
-        /// <summary>
-        /// Incident date
-        /// </summary>
-        public DateTime Date
-        {
-            set { labelIncidentDetailDate.Text = value.ToString(); }
-        }
+        public string Title { get; set; }
+
+        public string Category { get; set; }
+
+        public string Locale { get; set; }
+
+        public string Description { get; set; }
+
+        public DateTime Date { get; set; }
 
         public string Latitude { get; set; }
 
         public string Longitude { get; set; }
-
-        /// <summary>
-        /// Incident image
-        /// </summary>
-        public IEnumerable<Media> MedaItems
-        {
-            get { return _MedaItems; }
-            set
-            {
-                _MedaItems.Clear();
-                if (value != null && value.Count() > 0)
-                {
-                    _MedaItems.AddRange(value);
-                    pictureBoxImage.Image = value.ElementAt(0).Thumbnail;
-                    imageListBox.ClearImages();
-                    foreach(Media media in value)
-                    {
-                        imageListBox.AddImage(media.Original);
-                    }
-                }
-                else
-                {
-                    pictureBoxImage.Image = DefaultImage;
-                    imageListBox.Images = null;
-                }
-            }
-        }private readonly List<Media> _MedaItems = new List<Media>();
-
-        /// <summary>
-        /// Incident verified?
-        /// </summary>
-        public bool Verified
-        {
-            set
-            {
-                labelIncidentDetailVerified.Text = value ? "verified".Translate() : "notVerified".Translate();
-                labelIncidentDetailVerified.ForeColor = value ? Color.Green : Color.Red;
-            }
-        }
+        
+        public bool Verified { get; set; }
 
         public bool Active { get; set; }
 
+        public Media[] MediaItems { get; set; }
+        
         private void OnViewMap(object sender, EventArgs e)
         {
             //TODO
@@ -122,35 +89,36 @@ namespace Ushahidi.View.Views
 
         private void OnAddPhoto(object sender, EventArgs e)
         {
-            //TODO
-        }
-
-        private void OnImageSelected(object sender, Common.Controls.ImageSelectedEventArgs args)
-        {
-            OnForward(typeof(IncidentPhotoViewController), args.Image);
-        }
-
-        protected Image DefaultImage
-        {
-            get
+            FileInfo fileInfo = PhotoSelector.ShowDialog(this);
+            if (fileInfo != null && fileInfo.Exists)
             {
-                if (_DefaultImage == null)
+                using (new WaitCursor())
                 {
-                    foreach (string resource in Assembly.GetExecutingAssembly().GetManifestResourceNames())
-                    {
-                        if (!resource.EndsWith("no_photo.jpg")) continue;
-                        using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource))
-                        {
-                            if (stream != null)
-                            {
-                                _DefaultImage = new Bitmap(stream);
-                            }
-                            break;
-                        }
-                    }
+                    string filePath = Path.Combine(DataManager.DataDirectory, fileInfo.Name);
+                    fileInfo.MoveTo(filePath);
+                    //TODO add photo to incident   
                 }
-                return _DefaultImage;
             }
-        }private Image _DefaultImage;
+        }
+
+        private void OnItemSelected(ScrollListBoxItem control)
+        {
+            PhotoListItem mediaPhotoListItem = control as PhotoListItem;
+            TextListItem textListItem = control as TextListItem;
+            LinkListItem linkListItem = control as LinkListItem;
+            if (mediaPhotoListItem != null)
+            {
+                OnForward(typeof(IncidentPhotoViewController), false, mediaPhotoListItem.Image);
+            }
+            else if (linkListItem != null)
+            {
+                OnForward(typeof(WebsiteViewController), false, linkListItem.Link, null);
+            }
+            else if (textListItem != null)
+            {
+                Dialog.Help(textListItem.Label, textListItem.Text);
+            }
+            
+        }
     }
 }

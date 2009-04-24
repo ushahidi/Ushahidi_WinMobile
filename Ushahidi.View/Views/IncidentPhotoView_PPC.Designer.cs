@@ -28,34 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.SuspendLayout();
             // 
-            // pictureBox
+            // menuItemAction
             // 
-            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(240, 320);
-            this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.menuItemAction.Enabled = false;
+            this.menuItemAction.Text = "Done";
             // 
-            // PictureView
+            // menuItemMenu
+            // 
+            this.menuItemMenu.Enabled = false;
+            // 
+            // IncidentPhotoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(240, 320);
-            this.Controls.Add(this.pictureBox);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.AutoScroll = false;
+            this.BackColor = System.Drawing.Color.Black;
+            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.KeyPreview = true;
             this.Menu = null;
-            this.Name = "PictureView";
-            this.Text = "PictureView_PPC";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Name = "IncidentPhotoView";
+            this.Text = "Incident Photo";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox;
     }
 }
