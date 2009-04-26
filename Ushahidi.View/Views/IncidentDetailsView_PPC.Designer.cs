@@ -64,15 +64,15 @@
             // 
             // scrollListBoxMediaItems
             // 
-            this.scrollListBoxMediaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.scrollListBoxMediaItems.AutoHeight = true;
+            this.scrollListBoxMediaItems.AutoScroll = true;
             this.scrollListBoxMediaItems.BackColor = System.Drawing.Color.WhiteSmoke;
             this.scrollListBoxMediaItems.BackColorEven = System.Drawing.Color.Gainsboro;
             this.scrollListBoxMediaItems.BackColorOdd = System.Drawing.Color.WhiteSmoke;
             this.scrollListBoxMediaItems.BackSelectedColor = System.Drawing.Color.Black;
+            this.scrollListBoxMediaItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.scrollListBoxMediaItems.Location = new System.Drawing.Point(0, 0);
             this.scrollListBoxMediaItems.Name = "scrollListBoxMediaItems";
+            this.scrollListBoxMediaItems.SelectedIndex = -1;
             this.scrollListBoxMediaItems.Size = new System.Drawing.Size(240, 294);
             this.scrollListBoxMediaItems.TabIndex = 0;
             // 
@@ -80,6 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = false;
             this.ClientSize = new System.Drawing.Size(240, 294);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

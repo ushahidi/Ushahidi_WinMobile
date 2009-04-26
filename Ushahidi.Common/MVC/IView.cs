@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Ushahidi.Common.MVC
 {
@@ -8,6 +9,11 @@ namespace Ushahidi.Common.MVC
     public interface IView : IDisposable
     {
         /// <summary>
+        /// Visibility
+        /// </summary>
+        bool Visible { get; set; }
+
+        /// <summary>
         /// Initialize view
         /// </summary>
         void Initialize();
@@ -15,6 +21,12 @@ namespace Ushahidi.Common.MVC
         /// Show view
         /// </summary>
         void Show();
+
+        /// <summary>
+        /// Show modal view
+        /// </summary>
+        /// <returns></returns>
+        DialogResult ShowDialog();
 
         /// <summary>
         /// Hide view
@@ -50,5 +62,11 @@ namespace Ushahidi.Common.MVC
         /// The exit event
         /// </summary>
         event BackHandler Exit;
+
+        /// <summary>
+        /// Focus View
+        /// </summary>
+        /// <returns>true, is focus set</returns>
+        bool Focus();
     }
 }

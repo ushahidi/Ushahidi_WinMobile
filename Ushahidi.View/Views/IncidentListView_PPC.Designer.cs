@@ -44,6 +44,18 @@
             // 
             this.menuItemIncidentList.Enabled = false;
             // 
+            // panelContent
+            // 
+            this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.comboBoxIncidentListCategories);
+            this.panelContent.Controls.Add(this.listBoxIncidentListIncidents);
+            this.panelContent.Location = new System.Drawing.Point(0, 0);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(240, 294);
+            // 
             // comboBoxIncidentListCategories
             // 
             this.comboBoxIncidentListCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -71,20 +83,9 @@
             this.listBoxIncidentListIncidents.BackSelectedColor = System.Drawing.Color.Black;
             this.listBoxIncidentListIncidents.Location = new System.Drawing.Point(0, 28);
             this.listBoxIncidentListIncidents.Name = "listBoxIncidentListIncidents";
+            this.listBoxIncidentListIncidents.SelectedIndex = -1;
             this.listBoxIncidentListIncidents.Size = new System.Drawing.Size(240, 266);
-            this.listBoxIncidentListIncidents.TabIndex = 2;
-            // 
-            // panelContent
-            // 
-            this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContent.Controls.Add(this.comboBoxIncidentListCategories);
-            this.panelContent.Controls.Add(this.listBoxIncidentListIncidents);
-            this.panelContent.Location = new System.Drawing.Point(0, 0);
-            this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(240, 294);
+            this.listBoxIncidentListIncidents.TabIndex = 0;
             // 
             // IncidentListView
             // 

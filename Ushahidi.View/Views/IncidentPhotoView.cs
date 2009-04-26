@@ -1,37 +1,51 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Ushahidi.View.Languages;
+using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.View.Views
 {
+    /// <summary>
+    /// Incident Photo View
+    /// </summary>
     public partial class IncidentPhotoView
     {
-        public override void Translate()
-        {
-            base.Translate();
-            menuItemAction.Translate("Done");
-        }
         public override void Initialize()
         {
             base.Initialize();
-            //TopMost = true;
-            //FormBorderStyle = FormBorderStyle.None;
-            //MinimizeBox = false;
-            //MaximizeBox = false;
-            //ControlBox = false;
-            //WindowState = FormWindowState.Maximized;
+            WindowState = FormWindowState.Maximized;
+            Menu = null;
+            menuItemMenu.Enabled = false;
             Click += OnClick;
             DoubleClick += OnClick;
             KeyDown += OnKeyDown;
-            menuItemAction.Click += OnClick;
         }
 
-        public Image Image { get; set; }
+        public Bitmap Image
+        {
+            get { return _Image; }
+            set
+            {
+                if (value != null)
+                {
+                    _Image = Height > Width && value.Width > value.Height
+                        ? value.Rotate90Unsafe() : value;
+                }
+                else
+                {
+                    _Image = null;
+                } 
+            }
+        }private Bitmap _Image;
+
+        private void OnLoad(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Back)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Back || e.KeyCode == Keys.Return)
             {
                 OnBack();
             }
@@ -44,12 +58,15 @@ namespace Ushahidi.View.Views
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            base.OnPaint(e);
             if (Image != null)
             {
                 int height = Width * Image.Height / Image.Width;
-                int posY = Height > height ? (Height - height)/2 : 0;
-                Rectangle destRect = new Rectangle(0, posY, Width, height);
+                int width = Height * Image.Width / Image.Height;
+                int posY = Height > height ? (Height - height) / 2 : 0;
+                int posX = Width > width ? (Width - width) / 2 : 0;
                 Rectangle srcRect = new Rectangle(0, 0, Image.Width, Image.Height);
+                Rectangle destRect = new Rectangle(posX, posY, width, height);
                 e.Graphics.DrawImage(Image, destRect, srcRect, GraphicsUnit.Pixel);
             }
         }

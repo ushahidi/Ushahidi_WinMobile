@@ -30,28 +30,22 @@
         {
             this.SuspendLayout();
             // 
-            // menuItemAction
-            // 
-            this.menuItemAction.Text = "Done";
-            // 
-            // menuItemMenu
-            // 
-            this.menuItemMenu.Enabled = false;
-            // 
             // IncidentPhotoView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = false;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(176, 180);
+            this.KeyPreview = true;
             this.Name = "IncidentPhotoView";
             this.Text = "Incident Photo";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
 
     }
 }

@@ -60,7 +60,7 @@
             // 
             this.scrollListBoxMediaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.scrollListBoxMediaItems.AutoHeight = true;
+            this.scrollListBoxMediaItems.AutoScroll = true;
             this.scrollListBoxMediaItems.BackColor = System.Drawing.Color.WhiteSmoke;
             this.scrollListBoxMediaItems.BackColorEven = System.Drawing.Color.Gainsboro;
             this.scrollListBoxMediaItems.BackColorOdd = System.Drawing.Color.WhiteSmoke;

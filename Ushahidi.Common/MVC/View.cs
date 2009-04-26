@@ -114,5 +114,18 @@ namespace Ushahidi.Common.MVC
         {
             return Text;
         }
+
+        /// <summary>
+        /// Focus view
+        /// </summary>
+        /// <returns></returns>
+        public new bool Focus()
+        {
+            if (Visible)
+            {
+                return base.Focus();
+            }
+            return false;
+        }
     }
 }

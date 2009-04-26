@@ -47,14 +47,6 @@ namespace Ushahidi.Common.Extensions
             return -1;
         }
 
-        /// <summary>
-        /// Get text height
-        /// </summary>
-        /// <param name="control">control</param>
-        /// <param name="font">font</param>
-        /// <param name="width">width</param>
-        /// <param name="text">text</param>
-        /// <returns>Height</returns>
         public static int GetRequiredHeight(this Control control, Font font, int width, string text)
         {
             if (control != null && string.IsNullOrEmpty(text) == false)
@@ -118,6 +110,21 @@ namespace Ushahidi.Common.Extensions
 
         [DllImport("coredll.dll")]
         private static extern int DrawText(IntPtr hdc, string lpStr, int count, ref RECT lpRect, int format);
+
+        [DllImport("coredll.dll")]
+        extern private static IntPtr FindWindowW(string lpClassName, string lpWindowName);
+
+        [DllImport("coredll.dll")]
+        extern private static int MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, int bRepaint);
+
+        [DllImport("coredll.dll")]
+        extern private static int SetRect(ref RECT lprc, int xLeft, int yTop, int xRight, int yBottom);
+
+        [DllImport("coredll.dll")]
+        extern public static int GetWindowRect(IntPtr hWnd, ref RECT lpRect);
+
+        [DllImport("coredll.dll")]
+        extern private static int SystemParametersInfo(int uiAction, int uiParam, ref RECT pvParam, int fWinIni);
 
         private const int DT_TOP = 0x00000000;
         private const int DT_LEFT = 0x00000000;

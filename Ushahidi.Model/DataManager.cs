@@ -513,7 +513,7 @@ namespace Ushahidi.Model
         /// </summary>
         /// <param name="fileName">filename</param>
         /// <returns>Image, if filepath exists</returns>
-        public static Image LoadImage(string fileName)
+        public static Bitmap LoadImage(string fileName)
         {
             if (string.IsNullOrEmpty(fileName) == false)
             {

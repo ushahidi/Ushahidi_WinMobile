@@ -33,33 +33,32 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             base.Render();
-            scrollListBoxMediaItems.AddItem(new TextListItem("title".Translate(), Title) {Bold = true});
-            scrollListBoxMediaItems.AddItem(new TextListItem("category".Translate(), Category));
-            scrollListBoxMediaItems.AddItem(new TextListItem("locale".Translate(), string.Format("{0} ({1}, {2})", Locale, Latitude, Longitude)));
-            scrollListBoxMediaItems.AddItem(new TextListItem("date".Translate(), Date.ToString("MMMM d, yyyy h:mm tt")));
+            scrollListBoxMediaItems.Clear();
+            scrollListBoxMediaItems.Add(new TextListItem("title".Translate(), Title) {Bold = true}, false);
+            scrollListBoxMediaItems.Add(new TextListItem("description".Translate(), Description), false);
+            scrollListBoxMediaItems.Add(new TextListItem("category".Translate(), Category), false);
+            scrollListBoxMediaItems.Add(new TextListItem("locale".Translate(), string.Format("{0} ({1}, {2})", Locale, Latitude, Longitude)), false);
+            scrollListBoxMediaItems.Add(new TextListItem("date".Translate(), Date.ToString("MMMM d, yyyy h:mm tt")), false);
             string verified = Verified ? "verified".Translate() : "notVerified".Translate();
             string active = Active ? "active".Translate() : "notActive".Translate();
-            scrollListBoxMediaItems.AddItem(new TextListItem("verifiedAndActive".Translate(), string.Format("{0} - {1}", verified, active)));
-            scrollListBoxMediaItems.AddItem(new TextListItem("description".Translate(), Description));
+            scrollListBoxMediaItems.Add(new TextListItem("verifiedAndActive".Translate(), string.Format("{0} - {1}", verified, active)), false);
             foreach (Media media in MediaItems.Where(m => m.MediaType != MediaType.Photo))
             {
-                if (media.MediaType == MediaType.News)
-                {
-                    scrollListBoxMediaItems.AddItem(new LinkListItem("news".Translate(), media.Link));    
-                }
-                else if (media.MediaType == MediaType.Audio)
-                {
-                    scrollListBoxMediaItems.AddItem(new LinkListItem("audio".Translate(), media.Link));
-                }
-                else if (media.MediaType == MediaType.Video)
-                {
-                    scrollListBoxMediaItems.AddItem(new LinkListItem("video".Translate(), media.Link));
-                }
+                scrollListBoxMediaItems.Add(new LinkListItem(GetMediaTypeLabel(media.MediaType), media.Link), false);
             }
             foreach (Media media in MediaItems.Where(m => m.MediaType == MediaType.Photo))
             {
-                scrollListBoxMediaItems.AddItem(new PhotoListItem(DataManager.LoadImage(media.Link)));
+                scrollListBoxMediaItems.Add(new PhotoListItem(DataManager.LoadImage(media.Link)), false);
             }
+            scrollListBoxMediaItems.Refresh();
+        }
+
+        private static string GetMediaTypeLabel(MediaType mediaType)
+        {
+            if (mediaType == MediaType.News) return "news".Translate();
+            if (mediaType == MediaType.Audio) return "audio".Translate();
+            if (mediaType == MediaType.Video) return "video".Translate();
+            return string.Empty;
         }
 
         public string Title { get; set; }
@@ -94,8 +93,6 @@ namespace Ushahidi.View.Views
             {
                 using (new WaitCursor())
                 {
-                    string filePath = Path.Combine(DataManager.DataDirectory, fileInfo.Name);
-                    fileInfo.MoveTo(filePath);
                     //TODO add photo to incident   
                 }
             }

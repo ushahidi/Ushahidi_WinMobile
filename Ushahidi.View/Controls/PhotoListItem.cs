@@ -9,6 +9,7 @@ namespace Ushahidi.View.Controls
         public PhotoListItem(Image image)
         {
             Image = image;
+            Height = ClientRectangle.Width * image.Height / image.Width;
         }
 
         public Image Image { get; private set; }

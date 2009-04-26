@@ -57,7 +57,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         public new bool Focus()
         {
-            if (ItemCount > 0 && SelectedIndex == -1 && SelectedItem == null)
+            if (Count > 0 && SelectedIndex == -1 && SelectedItem == null)
             {
                 SelectedIndex = 0;
                 SelectedItem = Controls[0] as ScrollListBoxItem;
@@ -72,7 +72,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Clear all items
         /// </summary>
-        public void ClearItems()
+        public void Clear()
         {
             Controls.Clear();
             SelectedIndex = -1;
@@ -83,9 +83,9 @@ namespace Ushahidi.Common.Controls
         /// Add new item
         /// </summary>
         /// <param name="control">item to add</param>
-        public void AddItem(ScrollListBoxItem control)
+        public void Add(ScrollListBoxItem control)
         {
-            AddItem(control, true);
+            Add(control, true);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         /// <param name="control">item to add</param>
         /// <param name="refresh">should refresh list?</param>
-        public void AddItem(ScrollListBoxItem control, bool refresh)
+        public void Add(ScrollListBoxItem control, bool refresh)
         {
             control.Index = Controls.Count;
             control.TabStop = false;
@@ -101,12 +101,10 @@ namespace Ushahidi.Common.Controls
             control.Width = Width;
             control.Top = MaxBottom(Controls);
             control.Anchor = AnchorStyles.Left | AnchorStyles.Top | AnchorStyles.Right;
+            control.BackColor = (control.Index % 2 == 0) ? BackColorEven : BackColorOdd;
 
             control.Click += control_Click;
             control.DoubleClick += control_DoubleClick;
-
-            control.BackColor = (control.Index % 2 == 0) ? BackColorEven : BackColorOdd;
-
             control.MouseDown += OnMouseDown;
             control.MouseUp += OnMouseUp;
             control.MouseMove += OnMouseMove;
@@ -122,7 +120,7 @@ namespace Ushahidi.Common.Controls
         /// Remove an item
         /// </summary>
         /// <param name="control">list box item to remove</param>
-        public void RemoveItem(ScrollListBoxItem control)
+        public void Remove(ScrollListBoxItem control)
         {
             if (Controls.Contains(control))
             {
@@ -148,26 +146,6 @@ namespace Ushahidi.Common.Controls
             }
         }
 
-        public bool AutoHeight
-        {
-            get { return _AutoHeight; }
-            set
-            {
-                _AutoHeight = value;
-                if (value)
-                {
-                    Height = MaxBottom(Controls);
-                }
-            }
-        }
-
-        private bool _AutoHeight = false;
-
-        /// <summary>
-        /// The number of items
-        /// </summary>
-        public int ItemCount { get { return Controls.Count; } }
-
         /// <summary>
         /// The selected index
         /// </summary>
@@ -176,7 +154,7 @@ namespace Ushahidi.Common.Controls
             get{ return _SelectedIndex; }
             set
             {
-                if (value >= 0 && ItemCount > value)
+                if (value >= 0 && Count > value)
                 {
                     SelectedItem = Controls[value] as ScrollListBoxItem;
                     _SelectedIndex = value;
@@ -209,14 +187,17 @@ namespace Ushahidi.Common.Controls
                     value.BackColor = BackSelectedColor;
                     _SelectedIndex = GetSelectedIndex(value);
                     int scrollPosition = Math.Abs(AutoScrollPosition.Y);
-                    if (value.Bottom + 1 > Height)
+                    if (value.Bottom > ClientRectangle.Height)
                     {
-                        AutoScrollPosition = new Point(0, scrollPosition + value.Height);
+                        int difference = Math.Abs(ClientRectangle.Bottom - value.Bottom);
+                        AutoScrollPosition = new Point(0, scrollPosition + difference);
                     }
-                    else if (value.Top + 1 < 0)
+                    else if (value.Top < 0)
                     {
-                        AutoScrollPosition = new Point(0, scrollPosition - value.Height);
+                        int difference = Math.Abs(value.Top);
+                        AutoScrollPosition = new Point(0, scrollPosition - difference);
                     }
+                    Focus();
                 }
                 else
                 {
@@ -226,7 +207,6 @@ namespace Ushahidi.Common.Controls
                 {
                     IndexChanged(value);
                 }
-                Focus();
             }
         }private ScrollListBoxItem _SelectedItem;
 
@@ -252,7 +232,6 @@ namespace Ushahidi.Common.Controls
         /// <param name="item">selected item</param>
         private void OnItemSelected(ScrollListBoxItem item)
         {
-            Log.Info("ScrollListBox.OnItemSelected", "Item: {0}", item);
             if (item == null) return;
             SelectedIndex = Controls.GetChildIndex(item);
             SelectedItem = item;
@@ -260,7 +239,6 @@ namespace Ushahidi.Common.Controls
             {
                 ItemSelected(item);
             }
-            Focus();
         }
 
         /// <summary>
@@ -276,7 +254,7 @@ namespace Ushahidi.Common.Controls
             }
             catch (Exception ex)
             {
-                Log.Exception("ScrollListBox.GetSelectedIndex", "Exception=", ex);
+                Log.Exception("ScrollListBox.GetSelectedIndex", "Exception={0}", ex);
                 for (int index = 0; index < Controls.Count; index++)
                 {
                     if (item == Controls[index])
@@ -369,12 +347,12 @@ namespace Ushahidi.Common.Controls
                     if (SelectedItem != null)
                     {
                         int indexDown = Controls.GetChildIndex(SelectedItem) + 1;
-                        if (indexDown > -1 && ItemCount > indexDown)
+                        if (indexDown > -1 && Count > indexDown)
                         {
                             SelectedIndex = indexDown;
                         }
                     }
-                    else if (ItemCount > 0)
+                    else if (Count > 0)
                     {
                         SelectedIndex = 0;
                     }
@@ -383,14 +361,14 @@ namespace Ushahidi.Common.Controls
                     if (SelectedItem != null)
                     {
                         int indexUp = Controls.GetChildIndex(SelectedItem) - 1;
-                        if (indexUp > -1 && ItemCount > indexUp)
+                        if (indexUp > -1 && Count > indexUp)
                         {
                             SelectedIndex = indexUp;
                         }
                     }
                     else
                     {
-                        SelectedIndex = ItemCount - 1;
+                        SelectedIndex = Count - 1;
                     }
                     break;
                 case Keys.PageUp:

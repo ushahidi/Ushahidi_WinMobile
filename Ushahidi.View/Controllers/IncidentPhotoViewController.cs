@@ -13,7 +13,17 @@ namespace Ushahidi.View.Controllers
             {
                 throw new ArgumentNullException("parameters", "Parameters can not be null");
             }
-            View.Image = parameters[0] as Image;
+            View.Image = parameters[0] as Bitmap;
+        }
+
+        public override bool Save()
+        {
+            if (View.Image != null)
+            {
+                View.Image.Dispose();
+                View.Image = null;
+            }
+            return base.Save();
         }
     }
 }

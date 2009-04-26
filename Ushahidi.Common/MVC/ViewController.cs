@@ -128,6 +128,7 @@ namespace Ushahidi.Common.MVC
         public void Show()
         {
             View.Show();
+            View.Focus();
         }
 
         /// <summary>

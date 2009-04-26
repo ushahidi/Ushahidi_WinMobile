@@ -51,12 +51,12 @@ namespace Ushahidi.View.Views
             set
             {
                 _Incidents = value;
-                listBoxIncidentListIncidents.ClearItems();
+                listBoxIncidentListIncidents.Clear();
                 if (value != null)
                 {
                     foreach (Incident incident in value.Where(i => string.IsNullOrEmpty(i.Title) == false))
                     {
-                        listBoxIncidentListIncidents.AddItem(new IncidentListItem(incident));
+                        listBoxIncidentListIncidents.Add(new IncidentListItem(incident));
                     }
                 }
             }
@@ -66,7 +66,7 @@ namespace Ushahidi.View.Views
         {
             using (new WaitCursor())
             {
-                listBoxIncidentListIncidents.ClearItems();
+                listBoxIncidentListIncidents.Clear();
                 if (Incidents != null)
                 {
                     foreach (Incident incident in SelectedCategory.ID != -1
@@ -74,7 +74,7 @@ namespace Ushahidi.View.Views
                                                                              i.HasCategory(SelectedCategory.ID))
                                                       : Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false))
                     {
-                        listBoxIncidentListIncidents.AddItem(new IncidentListItem(incident), false);
+                        listBoxIncidentListIncidents.Add(new IncidentListItem(incident), false);
                     }
                     listBoxIncidentListIncidents.Refresh();
                 }

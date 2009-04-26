@@ -28,16 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentPhotoView));
             this.SuspendLayout();
-            // 
-            // menuItemAction
-            // 
-            this.menuItemAction.Enabled = false;
-            this.menuItemAction.Text = "Done";
-            // 
-            // menuItemMenu
-            // 
-            this.menuItemMenu.Enabled = false;
             // 
             // IncidentPhotoView
             // 
@@ -46,15 +38,19 @@
             this.AutoScroll = false;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(240, 294);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Menu = null;
             this.Name = "IncidentPhotoView";
             this.Text = "Incident Photo";
+            this.Load += new System.EventHandler(this.OnLoad);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+
+
 
     }
 }
