@@ -199,7 +199,7 @@
     <value>Effacer</value>
   </data>
   <data name="menuItemAddIncidentSave" xml:space="preserve">
-    <value>Enregistrer</value>
+    <value>Enregistrer Incident</value>
   </data>
   <data name="menuItemExit" xml:space="preserve">
     <value>Sortir</value>
@@ -313,7 +313,7 @@
     <value>Prière de vérifier que votre appareil dispose d'une connexion Réseau</value>
   </data>
   <data name="WebsiteView" xml:space="preserve">
-    <value>Site Web Ushahidi</value>
+    <value>Site Web</value>
   </data>
   <data name="audio" xml:space="preserve">
     <value>Acoustique</value>
@@ -350,5 +350,26 @@
   </data>
   <data name="done" xml:space="preserve">
     <value>Fait</value>
+  </data>
+  <data name="menuItemAddIncidentAddNews" xml:space="preserve">
+    <value>Ajouter News Link</value>
+  </data>
+  <data name="menuItemAddIncidentAddVideo" xml:space="preserve">
+    <value>Ajouter la vidéo Lien</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddNews" xml:space="preserve">
+    <value>Ajouter News Link</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddPhoto" xml:space="preserve">
+    <value>Ajouter une photo</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddVideo" xml:space="preserve">
+    <value>Ajouter la vidéo Lien</value>
+  </data>
+  <data name="menuItemIncidentDetailsViewMap" xml:space="preserve">
+    <value>Voir la carte</value>
+  </data>
+  <data name="textBoxSyncServer" xml:space="preserve">
+    <value>Serveur</value>
   </data>
 </root>

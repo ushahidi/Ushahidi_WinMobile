@@ -88,6 +88,7 @@
     <Compile Include="Models\MediaType.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\Models.cs" />
+    <Compile Include="Models\Payload.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

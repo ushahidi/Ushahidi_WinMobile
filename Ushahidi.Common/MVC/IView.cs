@@ -23,12 +23,6 @@ namespace Ushahidi.Common.MVC
         void Show();
 
         /// <summary>
-        /// Show modal view
-        /// </summary>
-        /// <returns></returns>
-        DialogResult ShowDialog();
-
-        /// <summary>
         /// Hide view
         /// </summary>
         void Hide();

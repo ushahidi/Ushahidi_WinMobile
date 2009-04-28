@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace Ushahidi.Common.MVC
@@ -41,24 +40,22 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Move forward
         /// </summary>
-        /// <param name="type">view controller type</param>
         /// <param name="parameters">parameters</param>
-        protected void OnForward(Type type, params object[] parameters)
+        protected void OnForward<TViewController>(params object[] parameters) where TViewController : IViewController
         {
-            OnForward(type, false, parameters);
+            OnForward<TViewController>(false, parameters);
         }
 
         /// <summary>
         /// Move forward
         /// </summary>
-        /// <param name="type">view controller type</param>
         /// <param name="clearStack">clear stack</param>
         /// <param name="parameters">parameters</param>
-        protected void OnForward(Type type, bool clearStack, params object [] parameters)
+        protected void OnForward<TViewController>(bool clearStack, params object [] parameters) where TViewController : IViewController
         {
             if (Forward != null)
             {
-                Forward(type, clearStack, parameters);
+                Forward(typeof(TViewController), clearStack, parameters);
             }
         }
 

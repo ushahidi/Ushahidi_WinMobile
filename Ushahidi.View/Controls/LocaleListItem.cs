@@ -5,12 +5,13 @@ using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.View.Controls
 {
-    public class LinkListItem : ScrollListBoxItem
+    public class LocaleListItem : ScrollListBoxItem
     {
-        public LinkListItem(string type, string link)
+        public LocaleListItem(string locale, string latitude, string longitude)
         {
-            Type = type;
-            Link = link;
+            Locale = locale;
+            Latitude = latitude;
+            Longitude = longitude;
             CalculateHeight(base.Font);
             BoldFont = base.Font.ToBold();
             UnderlineFont = base.Font.ToUnderline();
@@ -28,9 +29,11 @@ namespace Ushahidi.View.Controls
             }
         }
 
-        public string Type { get; private set; }
+        public string Locale { get; private set; }
 
-        public string Link { get; private set; }
+        public string Latitude { get; private set; }
+
+        public string Longitude { get; private set; }
 
         public Font BoldFont { get; private set; }
 
@@ -52,13 +55,13 @@ namespace Ushahidi.View.Controls
         {
             using (SolidBrush fontBrush = new SolidBrush(IsSelected ? Color.White : Color.Black))
             {
-                int width = (int)e.Graphics.MeasureString(Type, Font).Width;
+                int width = (int)e.Graphics.MeasureString(Locale, Font).Width;
                 Rectangle rectangle = new Rectangle(Padding, Padding, width, ClientRectangle.Height - Padding - Padding);
-                e.Graphics.DrawString(Type, Font, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(Locale, Font, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.X = rectangle.Right + Padding;
                 rectangle.Width = ClientRectangle.Width - width - Padding - Padding - Padding;
-                e.Graphics.DrawString(Link, UnderlineFont, fontBrush, rectangle, Constants.LeftAligned);
+                e.Graphics.DrawString(string.Format("({0}, {1})", Latitude, Longitude), UnderlineFont, fontBrush, rectangle, Constants.LeftAligned);
             }
         }
     }

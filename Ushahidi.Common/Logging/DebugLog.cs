@@ -4,19 +4,19 @@ namespace Ushahidi.Common.Logging
 {
     public class DebugLog : ILog
     {
-        public void Info(string text, params object[] parameters)
+        public void Info(string format, params object[] parameters)
         {
-            Debug.WriteLine(string.Format(text, parameters), "Info");
+            Debug.WriteLine(string.Format(format, parameters), "Info");
         }
 
-        public void Exception(string text, params object[] parameters)
+        public void Exception(string format, params object[] parameters)
         {
-            Debug.WriteLine(string.Format(text, parameters), "Exception");
+            Debug.WriteLine(string.Format(format, parameters), "Exception");
         }
 
-        public void Critical(string text, params object[] parameters)
+        public void Critical(string format, params object[] parameters)
         {
-            Debug.WriteLine(string.Format(text, parameters), "Critical");
+            Debug.WriteLine(string.Format(format, parameters), "Critical");
         }
 
     }

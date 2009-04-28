@@ -91,7 +91,7 @@ namespace Ushahidi.View.Views
             IncidentListItem listItem = control as IncidentListItem;
             if (listItem != null)
             {
-                OnForward(typeof(IncidentDetailsViewController), false, listItem.Incident);
+                OnForward<IncidentDetailsViewController>(false, listItem.Incident);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Ushahidi.View.Views
             IncidentListItem listItem = listBoxIncidentListIncidents.SelectedItem as IncidentListItem;
             if (listItem != null)
             {
-                OnForward(typeof(IncidentDetailsViewController), false, listItem.Incident);
+                OnForward<IncidentDetailsViewController>(false, listItem.Incident);
             }
         }
 

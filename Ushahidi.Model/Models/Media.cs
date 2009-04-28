@@ -35,6 +35,30 @@ namespace Ushahidi.Model.Models
             get { return (MediaType)Type; }
         }
 
+        [XmlIgnore]
+        public bool IsPhoto
+        {
+            get { return MediaType == MediaType.Photo; }
+        }
+
+        [XmlIgnore]
+        public bool IsNews
+        {
+            get { return MediaType == MediaType.News; }
+        }
+
+        [XmlIgnore]
+        public bool IsAudio
+        {
+            get { return MediaType == MediaType.Audio; }
+        }
+
+        [XmlIgnore]
+        public bool IsVideo
+        {
+            get { return MediaType == MediaType.Video; }
+        }
+
         public override string ToString()
         {
             return string.Format("{0}", Link).Trim();
@@ -43,6 +67,17 @@ namespace Ushahidi.Model.Models
         public static Media Parse(string xml)
         {
             return Parse<Media>(xml);
+        }
+
+        public static Media NewPhoto(string fileName)
+        {
+            return new Media
+            {
+              ID = (-1),
+              Type = ((int) MediaType.Photo),
+              Link = fileName,
+              ThumbnailLink = fileName
+            };
         }
     }
 }

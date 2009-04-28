@@ -166,7 +166,7 @@
     <value>Cancel</value>
   </data>
   <data name="menuItemAddIncidentSave" xml:space="preserve">
-    <value>Save</value>
+    <value>Save Incident</value>
   </data>
   <data name="menuItemExit" xml:space="preserve">
     <value>Exit</value>
@@ -280,7 +280,7 @@
     <value>Done</value>
   </data>
   <data name="WebsiteView" xml:space="preserve">
-    <value>Ushahidi Website</value>
+    <value>Website</value>
   </data>
   <data name="active" xml:space="preserve">
     <value>Active</value>
@@ -350,5 +350,26 @@
   </data>
   <data name="done" xml:space="preserve">
     <value>Done</value>
+  </data>
+  <data name="menuItemAddIncidentAddNews" xml:space="preserve">
+    <value>Add News Link</value>
+  </data>
+  <data name="menuItemAddIncidentAddVideo" xml:space="preserve">
+    <value>Add Video Link</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddNews" xml:space="preserve">
+    <value>Add Video Link</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddPhoto" xml:space="preserve">
+    <value>Add Photo</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddVideo" xml:space="preserve">
+    <value>Add Video Link</value>
+  </data>
+  <data name="menuItemIncidentDetailsViewMap" xml:space="preserve">
+    <value>View Map</value>
+  </data>
+  <data name="textBoxSyncServer" xml:space="preserve">
+    <value>Server</value>
   </data>
 </root>

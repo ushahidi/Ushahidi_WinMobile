@@ -52,7 +52,7 @@ namespace Ushahidi.Common.Controls
             set
             {
                 textBox.Enabled = textBox.ReadOnly = value;
-                textBox.BackColor = value ? Color.WhiteSmoke : Color.LightGray;
+                textBox.BackColor = value ? Color.WhiteSmoke : Color.WhiteSmoke;
             }
         }
 

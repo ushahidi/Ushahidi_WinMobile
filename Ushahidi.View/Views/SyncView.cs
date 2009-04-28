@@ -23,8 +23,16 @@ namespace Ushahidi.View.Views
         public override void Translate()
         {
             base.Translate();
+            dateBoxSyncLastSync.Translate();
+            textBoxSyncServer.Translate();
             menuItemAction.Translate("menuItemSyncSynchronize");
             columnHeaderSyncProgress.Translate("columnHeaderSyncProgress");
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            progressBox.Value = 0;
         }
 
         /// <summary>
@@ -34,6 +42,15 @@ namespace Ushahidi.View.Views
         {
             get { return dateBoxSyncLastSync.Date; }
             set { dateBoxSyncLastSync.Date = value;}
+        }
+
+        /// <summary>
+        /// Server Address
+        /// </summary>
+        public string ServerAddress
+        {
+            get { return textBoxSyncServer.Text; }
+            set { textBoxSyncServer.Text = value; }
         }
 
         /// <summary>

@@ -15,8 +15,14 @@ namespace Ushahidi.View.Models
         {
             get
             {
-                Categories categories = DataManager.Categories;
-                categories.Insert(0, new Category(-1, null, null));
+                Categories categories = new Categories
+                {
+                    new Category(-1, null, null)
+                };
+                foreach (Category category in DataManager.Categories)
+                {
+                    categories.Add(category);
+                }
                 return categories;
             }
         }

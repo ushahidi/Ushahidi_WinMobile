@@ -5,6 +5,7 @@ using System.IO;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
+using Ushahidi.View.Controllers;
 using Ushahidi.View.Controls;
 using Ushahidi.View.Languages;
 
@@ -19,9 +20,10 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             menuItemAddIncidentAddPhoto.Click += OnAddPhoto;
+            menuItemAddIncidentAddNews.Click += OnAddNews;
+            menuItemAddIncidentAddVideo.Click += OnAddVideo;
             menuItemAddIncidentCancel.Click += OnCancel;
             menuItemAddIncidentSave.Click += OnSave;
-            imageListBox.ThumbnailSize = ThumbnailSizes.HalfWidth;
         }
 
         public override void Translate()
@@ -34,6 +36,8 @@ namespace Ushahidi.View.Views
             menuItemAddIncidentSave.Translate(this);
             menuItemAddIncidentCancel.Translate(this);
             menuItemAddIncidentAddPhoto.Translate(this);
+            menuItemAddIncidentAddNews.Translate(this);
+            menuItemAddIncidentAddVideo.Translate(this);
         }
 
         public override void Render()
@@ -102,14 +106,18 @@ namespace Ushahidi.View.Views
             set { textBoxAddIncidentDescription.Text = value; }
         }
 
-        /// <summary>
-        /// Incident images
-        /// </summary>
-        public IEnumerable<Image> Images
+        public Media[] MediaItems
         {
-            get { return imageListBox.Images; }
-            set { imageListBox.Images = value; }
-        }
+            get { return _MediaItems.ToArray(); }
+            set
+            {
+                _MediaItems.Clear();
+                if (value != null)
+                {
+                    _MediaItems.AddRange(value);
+                }
+            }
+        }private readonly List<Media> _MediaItems = new List<Media>();
 
         /// <summary>
         /// Is the process cancelled?
@@ -123,13 +131,26 @@ namespace Ushahidi.View.Views
             {
                 using (new WaitCursor())
                 {
-                    string filePath = Path.Combine(DataManager.DataDirectory, fileInfo.Name);
-                    fileInfo.MoveTo(Path.Combine(DataManager.DataDirectory, fileInfo.Name));
-                    imageListBox.AddImage(new Bitmap(filePath));
+                    string fileName = string.Format("{0}.jpg", DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss"));
+                    string filePath = Path.Combine(DataManager.DataDirectory, fileName);
+                    fileInfo.CopyTo(filePath, true);
+                    _MediaItems.Add(Media.NewPhoto(fileName));
+                    scrollListBoxMediaItems.Add(new PhotoListItem(new Bitmap(filePath)));
+                    scrollListBoxMediaItems.AdjustHeight();
                 }
             }
         }
-        
+
+        private void OnAddNews(object sender, EventArgs e)
+        {
+            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddIncidentAddNews.Text);
+        }
+
+        private void OnAddVideo(object sender, EventArgs e)
+        {
+            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddIncidentAddVideo.Text);
+        }
+
         private void OnSave(object sender, EventArgs e)
         {
             ShouldSave = true;

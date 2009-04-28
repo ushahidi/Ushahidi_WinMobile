@@ -20,13 +20,13 @@ namespace Ushahidi.View.Views
 
         private static void OnNavigating(object sender, WebBrowserNavigatingEventArgs e)
         {
-            Log.Info("OnNavigating");
+            Log.Info("WebsiteView.OnNavigating");
             Cursor.Current = Cursors.WaitCursor;
         }
 
         private static void OnNavigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            Log.Info("OnNavigated");
+            Log.Info("WebsiteView.OnNavigated");
             Cursor.Current = Cursors.Default;
         }
 
@@ -41,7 +41,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string WebsiteURL 
         { 
-            get { return webBrowser.Url != null ? webBrowser.Url.AbsolutePath : string.Empty; }
+            get { return webBrowser.Url != null ? webBrowser.Url.ToString() : string.Empty; }
             set { webBrowser.Url = string.IsNullOrEmpty(value) ? null : new Uri(value); }
         }
 
@@ -49,6 +49,5 @@ namespace Ushahidi.View.Views
         {
             OnBack();
         }
-
     }
 }

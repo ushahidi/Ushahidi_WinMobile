@@ -65,6 +65,11 @@ namespace Ushahidi.Common.Controls
             return base.Focus();
         }
 
+        public void AdjustHeight()
+        {
+            Height = MaxBottom(Controls);
+        }
+
         public int Count
         {
             get { return Controls.Count; }

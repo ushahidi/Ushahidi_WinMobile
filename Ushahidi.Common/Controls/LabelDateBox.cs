@@ -69,7 +69,7 @@ namespace Ushahidi.Common.Controls
             set
             {
                 dateTimePicker.Enabled = value;
-                dateTimePicker.BackColor = value ? Color.White : Color.WhiteSmoke;
+                dateTimePicker.BackColor = value ? Color.WhiteSmoke : Color.WhiteSmoke;
             }
         }
 

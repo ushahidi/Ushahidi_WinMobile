@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Model.Models;
-using Ushahidi.View.Resources;
 
 namespace Ushahidi.View.Controls
 {
@@ -50,24 +49,30 @@ namespace Ushahidi.View.Controls
             using (SolidBrush fontBrush = new SolidBrush(IsSelected ? Color.White : Color.Black))
             {
                 int rowHeight = Height/RowCount;
+                Rectangle destRect = Rectangle.Empty;
                 if (Incident.Thumbnail != null)
                 {
-                    int width = Height;
-                    int height = Height * Incident.Thumbnail.Height / Incident.Thumbnail.Width;
-                    int posX = 0;
-                    int posY = Height > height ? (Height - height)/2 : 0;
-                    Rectangle destRect = new Rectangle(posX, posY, width, height);
+                    if (Incident.Thumbnail.Width > Incident.Thumbnail.Height)
+                    {
+                        int width = Height;
+                        int height = Height * Incident.Thumbnail.Height / Incident.Thumbnail.Width;
+                        const int posX = 0;
+                        int posY = Height > height ? (Height - height) / 2 : 0;
+                        destRect = new Rectangle(posX, posY, width, height);
+                    }
+                    else
+                    {
+                        int width = Height * Incident.Thumbnail.Width / Incident.Thumbnail.Height;
+                        int height = Height;
+                        int posX = Height > width ? (Height - width) / 2 : 0;
+                        const int posY = 0;
+                        destRect = new Rectangle(posX, posY, width, height);
+                    }
                     Rectangle srcRect = new Rectangle(0, 0, Incident.Thumbnail.Width, Incident.Thumbnail.Height);
                     e.Graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Height, Height);
                     e.Graphics.DrawImage(Incident.Thumbnail, destRect, srcRect, GraphicsUnit.Pixel);
                 }
-                else
-                {
-                    Rectangle destRect = new Rectangle(0, 0, Height, Height);
-                    Rectangle srcRect = new Rectangle(0, 0, NoPhotoImage.Width, NoPhotoImage.Height);
-                    e.Graphics.DrawImage(NoPhotoImage, destRect, srcRect, GraphicsUnit.Pixel);
-                }
-                Rectangle rectangle = new Rectangle(Height + 5, 0, Width - Height - 5, rowHeight);
+                Rectangle rectangle = new Rectangle(destRect.Right + 5, 0, Width - destRect.Right - 5, rowHeight);
                 e.Graphics.DrawString(Incident.Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
                 rectangle.Offset(0, rowHeight);
@@ -88,18 +93,5 @@ namespace Ushahidi.View.Controls
                 e.Graphics.DrawLine(pen, 0, Height - 1, Width, Height - 1);
             }
         }
-
-        public static Image NoPhotoImage
-        {
-            get
-            {
-                if (_NoPhotoImage == null)
-                {
-
-                    _NoPhotoImage = ResourcesManager.LoadImageResource("no_photo.jpg");
-                }
-                return _NoPhotoImage;
-            }
-        }private static Image _NoPhotoImage;
     }
 }

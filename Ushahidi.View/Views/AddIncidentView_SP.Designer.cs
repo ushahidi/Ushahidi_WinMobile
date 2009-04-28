@@ -37,12 +37,16 @@
             this.menuItemAddIncidentCancel = new System.Windows.Forms.MenuItem();
             this.dateBoxAddIncidentDate = new Ushahidi.Common.Controls.LabelDateBox();
             this.menuItemAddIncidentSave = new System.Windows.Forms.MenuItem();
-            this.imageListBox = new Ushahidi.Common.Controls.ImageListBox();
+            this.menuItemAddIncidentAddNews = new System.Windows.Forms.MenuItem();
+            this.scrollListBoxMediaItems = new Ushahidi.Common.Controls.ScrollListBox();
+            this.menuItemAddIncidentAddVideo = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
             this.menuItemAction.MenuItems.Add(this.menuItemAddIncidentAddPhoto);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddIncidentAddNews);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddIncidentAddVideo);
             this.menuItemAction.MenuItems.Add(this.menuItemAddIncidentSave);
             this.menuItemAction.MenuItems.Add(this.menuItemAddIncidentCancel);
             this.menuItemAction.Text = "Action";
@@ -62,7 +66,7 @@
             this.textBoxAddIncidentTitle.Location = new System.Drawing.Point(0, 0);
             this.textBoxAddIncidentTitle.Multiline = false;
             this.textBoxAddIncidentTitle.Name = "textBoxAddIncidentTitle";
-            this.textBoxAddIncidentTitle.Size = new System.Drawing.Size(176, 28);
+            this.textBoxAddIncidentTitle.Size = new System.Drawing.Size(169, 28);
             this.textBoxAddIncidentTitle.TabIndex = 20;
             // 
             // comboBoxAddIncidentCategories
@@ -78,7 +82,7 @@
             this.comboBoxAddIncidentCategories.Name = "comboBoxAddIncidentCategories";
             this.comboBoxAddIncidentCategories.SelectedIndex = -1;
             this.comboBoxAddIncidentCategories.SelectedText = "";
-            this.comboBoxAddIncidentCategories.Size = new System.Drawing.Size(176, 28);
+            this.comboBoxAddIncidentCategories.Size = new System.Drawing.Size(169, 28);
             this.comboBoxAddIncidentCategories.TabIndex = 21;
             this.comboBoxAddIncidentCategories.ValueMember = "ID";
             // 
@@ -95,7 +99,7 @@
             this.comboBoxAddIncidentLocales.Name = "comboBoxAddIncidentLocales";
             this.comboBoxAddIncidentLocales.SelectedIndex = -1;
             this.comboBoxAddIncidentLocales.SelectedText = "";
-            this.comboBoxAddIncidentLocales.Size = new System.Drawing.Size(176, 28);
+            this.comboBoxAddIncidentLocales.Size = new System.Drawing.Size(169, 28);
             this.comboBoxAddIncidentLocales.TabIndex = 22;
             this.comboBoxAddIncidentLocales.ValueMember = "ID";
             // 
@@ -110,12 +114,11 @@
             this.textBoxAddIncidentDescription.Location = new System.Drawing.Point(0, 112);
             this.textBoxAddIncidentDescription.Multiline = true;
             this.textBoxAddIncidentDescription.Name = "textBoxAddIncidentDescription";
-            this.textBoxAddIncidentDescription.Size = new System.Drawing.Size(176, 80);
+            this.textBoxAddIncidentDescription.Size = new System.Drawing.Size(169, 80);
             this.textBoxAddIncidentDescription.TabIndex = 28;
             // 
             // menuItemAddIncidentAddPhoto
             // 
-            this.menuItemAddIncidentAddPhoto.Enabled = false;
             this.menuItemAddIncidentAddPhoto.Text = "Add Photo";
             // 
             // menuItemAddIncidentCancel
@@ -134,29 +137,40 @@
             this.dateBoxAddIncidentDate.Label = "Date";
             this.dateBoxAddIncidentDate.Location = new System.Drawing.Point(0, 84);
             this.dateBoxAddIncidentDate.Name = "dateBoxAddIncidentDate";
-            this.dateBoxAddIncidentDate.Size = new System.Drawing.Size(176, 28);
+            this.dateBoxAddIncidentDate.Size = new System.Drawing.Size(169, 28);
             this.dateBoxAddIncidentDate.TabIndex = 30;
             // 
             // menuItemAddIncidentSave
             // 
-            this.menuItemAddIncidentSave.Text = "Save";
+            this.menuItemAddIncidentSave.Text = "Save Incident";
             // 
-            // imageListBox
+            // menuItemAddIncidentAddNews
             // 
-            this.imageListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.menuItemAddIncidentAddNews.Text = "Add News Link";
+            // 
+            // scrollListBoxMediaItems
+            // 
+            this.scrollListBoxMediaItems.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.imageListBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.imageListBox.Location = new System.Drawing.Point(0, 192);
-            this.imageListBox.Name = "imageListBox";
-            this.imageListBox.Size = new System.Drawing.Size(176, 58);
-            this.imageListBox.TabIndex = 37;
+            this.scrollListBoxMediaItems.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.scrollListBoxMediaItems.BackColorEven = System.Drawing.Color.Gainsboro;
+            this.scrollListBoxMediaItems.BackColorOdd = System.Drawing.Color.WhiteSmoke;
+            this.scrollListBoxMediaItems.BackSelectedColor = System.Drawing.Color.Black;
+            this.scrollListBoxMediaItems.Location = new System.Drawing.Point(0, 192);
+            this.scrollListBoxMediaItems.Name = "scrollListBoxMediaItems";
+            this.scrollListBoxMediaItems.Size = new System.Drawing.Size(169, 68);
+            this.scrollListBoxMediaItems.TabIndex = 31;
+            // 
+            // menuItemAddIncidentAddVideo
+            // 
+            this.menuItemAddIncidentAddVideo.Text = "Add Video Link";
             // 
             // AddIncidentView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 250);
-            this.Controls.Add(this.imageListBox);
+            this.ClientSize = new System.Drawing.Size(169, 180);
+            this.Controls.Add(this.scrollListBoxMediaItems);
             this.Controls.Add(this.dateBoxAddIncidentDate);
             this.Controls.Add(this.textBoxAddIncidentDescription);
             this.Controls.Add(this.comboBoxAddIncidentLocales);
@@ -179,7 +193,9 @@
         private System.Windows.Forms.MenuItem menuItemAddIncidentCancel;
         private Ushahidi.Common.Controls.LabelDateBox dateBoxAddIncidentDate;
         private System.Windows.Forms.MenuItem menuItemAddIncidentSave;
-        private Ushahidi.Common.Controls.ImageListBox imageListBox;
+        private System.Windows.Forms.MenuItem menuItemAddIncidentAddNews;
+        private Ushahidi.Common.Controls.ScrollListBox scrollListBoxMediaItems;
+        private System.Windows.Forms.MenuItem menuItemAddIncidentAddVideo;
 
     }
 }

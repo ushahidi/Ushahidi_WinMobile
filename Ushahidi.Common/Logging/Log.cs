@@ -15,34 +15,34 @@
             set { _Instance = value;}
         }private static ILog _Instance;
 
-        public static void Info(string text, params object[] parameters)
+        public static void Info(string format, params object[] parameters)
         {
-            Instance.Info(text, parameters);
+            Instance.Info(format, parameters);
         }
 
-        public static void Info(string sender, string text, params object[] parameters)
+        public static void Info(string sender, string format, params object[] parameters)
         {
-            Instance.Info(string.Format("{0} {1}", sender, text), parameters);
+            Instance.Info(string.Format("{0} {1}", sender, format), parameters);
         }
 
-        public static void Exception(string text, params object[] parameters)
+        public static void Exception(string format, params object[] parameters)
         {
-            Instance.Exception(text, parameters);
+            Instance.Exception(format, parameters);
         }
 
-        public static void Exception(string sender, string text, params object[] parameters)
+        public static void Exception(string sender, string format, params object[] parameters)
         {
-            Instance.Exception(string.Format("{0} {1}", sender, text), parameters);
+            Instance.Exception(string.Format("{0} {1}", sender, format), parameters);
         }
 
-        public static void Critical(string text, params object[] parameters)
+        public static void Critical(string format, params object[] parameters)
         {
-            Instance.Critical(text, parameters);
+            Instance.Critical(format, parameters);
         }
 
-        public static void Critical(string sender, string text, params object[] parameters)
+        public static void Critical(string sender, string format, params object[] parameters)
         {
-            Instance.Critical(string.Format("{0} {1}", sender, text), parameters);
+            Instance.Critical(string.Format("{0} {1}", sender, format), parameters);
         }
     }
 }

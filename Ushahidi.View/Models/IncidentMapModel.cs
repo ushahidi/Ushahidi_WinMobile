@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Ushahidi.Model;
+﻿using Ushahidi.Model;
 using Ushahidi.Model.Models;
 
 namespace Ushahidi.View.Models
@@ -11,7 +10,18 @@ namespace Ushahidi.View.Models
         /// </summary>
         public Categories Categories
         {
-            get { return DataManager.Categories; }
+            get
+            {
+                Categories categories = new Categories
+                {
+                    new Category(-1, null, null)
+                };
+                foreach (Category category in DataManager.Categories)
+                {
+                    categories.Add(category);
+                }
+                return categories;
+            }
         }
 
         /// <summary>

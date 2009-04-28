@@ -10,8 +10,8 @@ namespace Ushahidi.View.Controls
         public TextListItem(string label, string text)
         {
             Label = label;
-            base.Text = text;
-            Height = this.GetRequiredHeight(base.Font, ClientRectangle.Width - Padding * 2, text) + Padding + Padding;
+            base.Text = string.IsNullOrEmpty(text) ? "" : text.Trim();
+            Height = this.GetRequiredHeight(base.Font, ClientRectangle.Width - Padding * 2, base.Text) + Padding + Padding;
         }
 
         public string Label { get; private set; }
@@ -20,8 +20,8 @@ namespace Ushahidi.View.Controls
             get { return base.Text; }
             set
             {
-                base.Text = value;
-                Height = this.GetRequiredHeight(base.Font, ClientRectangle.Width - Padding * 2, value) + Padding + Padding;
+                base.Text = string.IsNullOrEmpty(value) ? "" : value.Trim();
+                Height = this.GetRequiredHeight(base.Font, ClientRectangle.Width - Padding * 2, base.Text) + Padding + Padding;
             }
         }
 

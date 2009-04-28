@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using Ushahidi.Common.Controls;
@@ -18,16 +20,18 @@ namespace Ushahidi.View.Views
         public override void Initialize()
         {
             base.Initialize();
-            menuItemIncidentDetailAddPhoto.Click += OnAddPhoto;
-            menuItemIncidentDetailViewMap.Click += OnViewMap;
+            menuItemIncidentDetailsAddPhoto.Click += OnAddPhoto;
+            menuItemIncidentDetailsAddNews.Click += OnAddNews;
+            menuItemIncidentDetailsAddVideo.Click += OnAddVideo;
+            menuItemIncidentDetailsViewMap.Click += OnViewMap;
             scrollListBoxMediaItems.ItemSelected += OnItemSelected;
         }
 
         public override void Translate()
         {
             base.Translate();
-            menuItemIncidentDetailAddPhoto.Translate(this);
-            menuItemIncidentDetailViewMap.Translate(this);
+            menuItemIncidentDetailsAddPhoto.Translate(this);
+            menuItemIncidentDetailsViewMap.Translate(this);
         }
 
         public override void Render()
@@ -37,7 +41,7 @@ namespace Ushahidi.View.Views
             scrollListBoxMediaItems.Add(new TextListItem("title".Translate(), Title) {Bold = true}, false);
             scrollListBoxMediaItems.Add(new TextListItem("description".Translate(), Description), false);
             scrollListBoxMediaItems.Add(new TextListItem("category".Translate(), Category), false);
-            scrollListBoxMediaItems.Add(new TextListItem("locale".Translate(), string.Format("{0} ({1}, {2})", Locale, Latitude, Longitude)), false);
+            scrollListBoxMediaItems.Add(new LocaleListItem(Locale, Latitude, Longitude));
             scrollListBoxMediaItems.Add(new TextListItem("date".Translate(), Date.ToString("MMMM d, yyyy h:mm tt")), false);
             string verified = Verified ? "verified".Translate() : "notVerified".Translate();
             string active = Active ? "active".Translate() : "notActive".Translate();
@@ -55,9 +59,10 @@ namespace Ushahidi.View.Views
 
         private static string GetMediaTypeLabel(MediaType mediaType)
         {
-            if (mediaType == MediaType.News) return "news".Translate();
+            if (mediaType == MediaType.News)  return "news".Translate();
             if (mediaType == MediaType.Audio) return "audio".Translate();
             if (mediaType == MediaType.Video) return "video".Translate();
+            if (mediaType == MediaType.Photo) return "photo".Translate();
             return string.Empty;
         }
 
@@ -79,11 +84,22 @@ namespace Ushahidi.View.Views
 
         public bool Active { get; set; }
 
-        public Media[] MediaItems { get; set; }
+        public Media[] MediaItems
+        {
+            get { return _MediaItems.ToArray(); }
+            set
+            {
+                _MediaItems.Clear();
+                if (value != null)
+                {
+                    _MediaItems.AddRange(value);
+                }
+            }
+        }private readonly List<Media> _MediaItems = new List<Media>();
         
         private void OnViewMap(object sender, EventArgs e)
         {
-            //TODO
+            OnForward<IncidentMapViewController>(false);
         }
 
         private void OnAddPhoto(object sender, EventArgs e)
@@ -93,9 +109,24 @@ namespace Ushahidi.View.Views
             {
                 using (new WaitCursor())
                 {
-                    //TODO add photo to incident   
+                    string fileName = string.Format("{0}.jpg", DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss"));
+                    string filePath = Path.Combine(DataManager.DataDirectory, fileName);
+                    fileInfo.CopyTo(filePath, true);
+                    _MediaItems.Add(Media.NewPhoto(fileName));
+                    scrollListBoxMediaItems.Add(new PhotoListItem(new Bitmap(filePath)));
+                    scrollListBoxMediaItems.AdjustHeight();
                 }
             }
+        }
+
+        private void OnAddNews(object sender, EventArgs e)
+        {
+            OnForward<WebsiteViewController>(false, string.Empty, menuItemIncidentDetailsAddNews.Text);
+        }
+
+        private void OnAddVideo(object sender, EventArgs e)
+        {
+            OnForward<WebsiteViewController>(false, string.Empty, menuItemIncidentDetailsAddVideo.Text);
         }
 
         private void OnItemSelected(ScrollListBoxItem control)
@@ -103,19 +134,23 @@ namespace Ushahidi.View.Views
             PhotoListItem mediaPhotoListItem = control as PhotoListItem;
             TextListItem textListItem = control as TextListItem;
             LinkListItem linkListItem = control as LinkListItem;
-            if (mediaPhotoListItem != null)
-            {
-                OnForward(typeof(IncidentPhotoViewController), false, mediaPhotoListItem.Image);
-            }
-            else if (linkListItem != null)
-            {
-                OnForward(typeof(WebsiteViewController), false, linkListItem.Link, null);
-            }
-            else if (textListItem != null)
+            LocaleListItem mapListItem = control as LocaleListItem;
+            if (textListItem != null)
             {
                 Dialog.Help(textListItem.Label, textListItem.Text);
             }
-            
+            else if (mediaPhotoListItem != null)
+            {
+                OnForward<IncidentPhotoViewController>(false, mediaPhotoListItem.Image);
+            }
+            else if (linkListItem != null)
+            {
+                OnForward<WebsiteViewController>(false, linkListItem.Link);
+            }
+            else if (mapListItem != null)
+            {
+                OnForward<IncidentMapViewController>(false);
+            }
         }
     }
 }

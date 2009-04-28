@@ -28,7 +28,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnAddIncident(object sender, EventArgs e)
         {
-            OnForward(typeof(AddIncidentViewController), true);
+            OnForward<AddIncidentViewController>(true);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnIncidentList(object sender, EventArgs e)
         {
-            OnForward(typeof(IncidentListViewController), true);
+            OnForward<IncidentListViewController>(true);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnIncidentMap(object sender, EventArgs e)
         {
-            OnForward(typeof(IncidentMapViewController), true);
+            OnForward<IncidentMapViewController>(true);
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnSync(object sender, EventArgs e)
         {
-            OnForward(typeof(SyncViewController), true);
+            OnForward<SyncViewController>(true);
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnSettings(object sender, EventArgs e)
         {
-            OnForward(typeof(SettingsViewController), true);
+            OnForward<SettingsViewController>(true);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnWebsite(object sender, EventArgs e)
         {
-            OnForward(typeof(WebsiteViewController), true, DataManager.ServerAddress, "WebsiteView".Translate());  
+            OnForward<WebsiteViewController>(true, DataManager.ServerAddress, "WebsiteView".Translate());  
         }
 
         /// <summary>
@@ -81,13 +81,14 @@ namespace Ushahidi.View.Views
 
         private void OnMenuPopup(object sender, EventArgs e)
         {
-            menuItemAddIncident.Enabled =
-            menuItemIncidentList.Enabled =
-            menuItemIncidentMap.Enabled =
-                DataManager.HasCategories &&
-                DataManager.HasCountries &&
-                DataManager.HasLocales &&
-                DataManager.HasIncidents;
+            bool hasData = DataManager.HasCategories &&
+                           DataManager.HasCountries &&
+                           DataManager.HasLocales &&
+                           DataManager.HasIncidents;
+            Type type = GetType();
+            menuItemAddIncident.Enabled = hasData && type != typeof(AddIncidentView);
+            menuItemIncidentList.Enabled = hasData && type != typeof(IncidentListView);
+            menuItemIncidentMap.Enabled = hasData && type != typeof(IncidentMapView);
         }
     }
 }

@@ -14,5 +14,10 @@ namespace Ushahidi.Common.Extensions
         {
             return string.IsNullOrEmpty(dateAsString) ? DateTime.MinValue : DateTime.ParseExact(dateAsString, format, CultureInfo.InvariantCulture);
         }
+
+        public static DateTime ToDateTime(this string dateAsString, params string [] formats)
+        {
+            return string.IsNullOrEmpty(dateAsString) ? DateTime.MinValue : DateTime.ParseExact(dateAsString, formats, CultureInfo.InvariantCulture, DateTimeStyles.None);
+        }
     }
 }

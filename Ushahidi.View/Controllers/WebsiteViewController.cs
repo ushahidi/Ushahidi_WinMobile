@@ -20,11 +20,7 @@ namespace Ushahidi.View.Controllers
             }
             if (parameters.Length > 0)
             {
-                View.WebsiteURL = View.Text = parameters[0].ToString();   
-            }
-            if (parameters.Length > 1)
-            {
-                View.Text = string.Format("{0}", parameters[1]);   
+                View.WebsiteURL = string.Format("{0}", parameters[0]);   
             }
         }
     }

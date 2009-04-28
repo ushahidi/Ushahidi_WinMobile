@@ -37,7 +37,7 @@ namespace Ushahidi.View.Controllers
             View.Locale = null;
             View.Date = DateTime.Now;
             View.Description = string.Empty;
-            View.Images = null;
+            View.MediaItems = null;
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace Ushahidi.View.Controllers
                 Model.Locale = View.Locale;
                 Model.Date = View.Date;
                 Model.Description = View.Description;
-                Model.Images = View.Images;
+                Model.MediaItems = View.MediaItems;
                 return Model.Save();
             }
             return true;

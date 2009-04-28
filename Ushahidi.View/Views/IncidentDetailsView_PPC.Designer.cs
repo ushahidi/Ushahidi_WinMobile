@@ -29,26 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentDetailsView));
-            this.menuItemIncidentDetailAddPhoto = new System.Windows.Forms.MenuItem();
-            this.menuItemIncidentDetailViewMap = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentDetailsAddPhoto = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentDetailsViewMap = new System.Windows.Forms.MenuItem();
             this.panelContent = new System.Windows.Forms.Panel();
             this.scrollListBoxMediaItems = new Ushahidi.Common.Controls.ScrollListBox();
+            this.menuItemIncidentDetailsAddNews = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentDetailsAddVideo = new System.Windows.Forms.MenuItem();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailAddPhoto);
-            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailViewMap);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddPhoto);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddNews);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddVideo);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsViewMap);
             this.menuItemAction.Text = "Action";
             // 
             // menuItemIncidentDetailAddPhoto
             // 
-            this.menuItemIncidentDetailAddPhoto.Text = "Add Photo";
+            this.menuItemIncidentDetailsAddPhoto.Text = "Add Photo";
             // 
             // menuItemIncidentDetailViewMap
             // 
-            this.menuItemIncidentDetailViewMap.Text = "View Map";
+            this.menuItemIncidentDetailsViewMap.Text = "View Map";
             // 
             // panelContent
             // 
@@ -76,6 +80,14 @@
             this.scrollListBoxMediaItems.Size = new System.Drawing.Size(240, 294);
             this.scrollListBoxMediaItems.TabIndex = 0;
             // 
+            // menuItemIncidentDetailsAddNews
+            // 
+            this.menuItemIncidentDetailsAddNews.Text = "Add News Link";
+            // 
+            // menuItemIncidentDetailsAddVideo
+            // 
+            this.menuItemIncidentDetailsAddVideo.Text = "Add Video Link";
+            // 
             // IncidentDetailsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -93,9 +105,11 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuItem menuItemIncidentDetailAddPhoto;
-        private System.Windows.Forms.MenuItem menuItemIncidentDetailViewMap;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddPhoto;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsViewMap;
         private System.Windows.Forms.Panel panelContent;
         private Ushahidi.Common.Controls.ScrollListBox scrollListBoxMediaItems;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddNews;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddVideo;
     }
 }

@@ -33,7 +33,7 @@
             this.columnHeaderSyncProgress = new System.Windows.Forms.ColumnHeader();
             this.progressBox = new Ushahidi.Common.Controls.ProgressBox();
             this.dateBoxSyncLastSync = new Ushahidi.Common.Controls.LabelDateBox();
-            this.listViewProgress = new System.Windows.Forms.ListView();
+            this.textBoxSyncServer = new Ushahidi.Common.Controls.LabelTextBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,10 +47,10 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.textBoxSyncServer);
             this.panelContent.Controls.Add(this.listView);
             this.panelContent.Controls.Add(this.progressBox);
             this.panelContent.Controls.Add(this.dateBoxSyncLastSync);
-            this.panelContent.Controls.Add(this.listViewProgress);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 180);
@@ -62,9 +62,9 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listView.Columns.Add(this.columnHeaderSyncProgress);
             this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView.Location = new System.Drawing.Point(4, 56);
+            this.listView.Location = new System.Drawing.Point(4, 88);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(169, 121);
+            this.listView.Size = new System.Drawing.Size(169, 89);
             this.listView.TabIndex = 17;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
@@ -77,8 +77,8 @@
             // 
             this.progressBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.progressBox.Location = new System.Drawing.Point(0, 28);
+            this.progressBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.progressBox.Location = new System.Drawing.Point(3, 56);
             this.progressBox.Maximum = 6;
             this.progressBox.Minimum = 0;
             this.progressBox.Name = "progressBox";
@@ -86,30 +86,34 @@
             this.progressBox.TabIndex = 2;
             this.progressBox.Value = 0;
             // 
-            // dateBox
+            // dateBoxSyncLastSync
             // 
             this.dateBoxSyncLastSync.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateBoxSyncLastSync.BackColor = System.Drawing.Color.Gainsboro;
+            this.dateBoxSyncLastSync.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dateBoxSyncLastSync.Bold = true;
             this.dateBoxSyncLastSync.Date = new System.DateTime(2009, 3, 26, 21, 24, 37, 697);
             this.dateBoxSyncLastSync.Enabled = false;
             this.dateBoxSyncLastSync.IsRequired = false;
             this.dateBoxSyncLastSync.Label = "Last Sync";
-            this.dateBoxSyncLastSync.Location = new System.Drawing.Point(0, 0);
-            this.dateBoxSyncLastSync.Name = "dateBox";
+            this.dateBoxSyncLastSync.Location = new System.Drawing.Point(0, 28);
+            this.dateBoxSyncLastSync.Name = "dateBoxSyncLastSync";
             this.dateBoxSyncLastSync.Size = new System.Drawing.Size(176, 28);
             this.dateBoxSyncLastSync.TabIndex = 1;
             // 
-            // listViewProgress
+            // textBoxSyncServer
             // 
-            this.listViewProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxSyncServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewProgress.Location = new System.Drawing.Point(0, 0);
-            this.listViewProgress.Name = "listViewProgress";
-            this.listViewProgress.Size = new System.Drawing.Size(170, 28);
-            this.listViewProgress.TabIndex = 3;
+            this.textBoxSyncServer.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxSyncServer.Bold = true;
+            this.textBoxSyncServer.Enabled = false;
+            this.textBoxSyncServer.Label = "Server";
+            this.textBoxSyncServer.Location = new System.Drawing.Point(0, 0);
+            this.textBoxSyncServer.Name = "labelTextBoxSyncServer";
+            this.textBoxSyncServer.Size = new System.Drawing.Size(179, 28);
+            this.textBoxSyncServer.TabIndex = 18;
+            this.textBoxSyncServer.TabStop = false;
             // 
             // SyncView
             // 
@@ -127,11 +131,11 @@
         #endregion
 
         private System.Windows.Forms.Panel panelContent;
-        private System.Windows.Forms.ListView listViewProgress;
         private Ushahidi.Common.Controls.LabelDateBox dateBoxSyncLastSync;
         private Ushahidi.Common.Controls.ProgressBox progressBox;
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader columnHeaderSyncProgress;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxSyncServer;
 
     }
 }

@@ -17,6 +17,11 @@ namespace Ushahidi.View.Models
             set { DataManager.LastSyncDate = value; }
         }
 
+        public string ServerAddress
+        {
+            get { return DataManager.ServerAddress; }
+        }
+
         public override bool Save()
         {
             return DataManager.Save();

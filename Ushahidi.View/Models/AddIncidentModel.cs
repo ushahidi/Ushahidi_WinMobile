@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Linq;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
@@ -37,10 +37,7 @@ namespace Ushahidi.View.Models
         /// </summary>
         public Locale Locale { get; set; }
 
-        /// <summary>
-        /// Incident images
-        /// </summary>
-        public IEnumerable<Image> Images { get; set; }
+        public IEnumerable<Media> MediaItems { get; set; }
 
         /// <summary>
         /// Categories
@@ -73,6 +70,7 @@ namespace Ushahidi.View.Models
                     Title = Title,
                     Description = Description,
                     Categories = new[] {Category},
+                    MediaItems = MediaItems.ToArray(),
                     Locale = Locale
                 };
                 return DataManager.AddIncident(incident);

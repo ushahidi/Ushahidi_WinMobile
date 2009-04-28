@@ -14,6 +14,7 @@ namespace Ushahidi.View.Controllers
         public override void Load(object[] parameters)
         {
             View.LastSync = Model.LastSync;
+            View.ServerAddress = Model.ServerAddress;
         }
 
         /// <summary>

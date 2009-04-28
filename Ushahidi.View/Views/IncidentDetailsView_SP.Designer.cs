@@ -30,15 +30,19 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IncidentDetailsView));
             this.pictureBoxImage = new System.Windows.Forms.PictureBox();
-            this.menuItemIncidentDetailAddPhoto = new System.Windows.Forms.MenuItem();
-            this.menuItemIncidentDetailViewMap = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentDetailsAddPhoto = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentDetailsViewMap = new System.Windows.Forms.MenuItem();
             this.scrollListBoxMediaItems = new Ushahidi.Common.Controls.ScrollListBox();
+            this.menuItemIncidentDetailsAddNews = new System.Windows.Forms.MenuItem();
+            this.menuItemIncidentDetailsAddVideo = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailAddPhoto);
-            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailViewMap);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddPhoto);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsViewMap);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddNews);
+            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddVideo);
             this.menuItemAction.Text = "Action";
             // 
             // pictureBoxImage
@@ -48,13 +52,13 @@
             this.pictureBoxImage.Name = "pictureBoxImage";
             this.pictureBoxImage.Size = new System.Drawing.Size(0, 0);
             // 
-            // menuItemIncidentDetailAddPhoto
+            // menuItemIncidentDetailsAddPhoto
             // 
-            this.menuItemIncidentDetailAddPhoto.Text = "Add Photo";
+            this.menuItemIncidentDetailsAddPhoto.Text = "Add Photo";
             // 
-            // menuItemIncidentDetailViewMap
+            // menuItemIncidentDetailsViewMap
             // 
-            this.menuItemIncidentDetailViewMap.Text = "View Map";
+            this.menuItemIncidentDetailsViewMap.Text = "View Map";
             // 
             // scrollListBoxMediaItems
             // 
@@ -69,6 +73,14 @@
             this.scrollListBoxMediaItems.Name = "scrollListBoxMediaItems";
             this.scrollListBoxMediaItems.Size = new System.Drawing.Size(176, 180);
             this.scrollListBoxMediaItems.TabIndex = 0;
+            // 
+            // menuItemIncidentDetailsAddNews
+            // 
+            this.menuItemIncidentDetailsAddNews.Text = "Add News Link";
+            // 
+            // menuItemIncidentDetailsAddVideo
+            // 
+            this.menuItemIncidentDetailsAddVideo.Text = "Add Video Link";
             // 
             // IncidentDetailsView
             // 
@@ -88,8 +100,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxImage;
-        private System.Windows.Forms.MenuItem menuItemIncidentDetailAddPhoto;
-        private System.Windows.Forms.MenuItem menuItemIncidentDetailViewMap;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddPhoto;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsViewMap;
         private Ushahidi.Common.Controls.ScrollListBox scrollListBoxMediaItems;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddNews;
+        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddVideo;
     }
 }

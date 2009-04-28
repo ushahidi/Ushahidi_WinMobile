@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Ushahidi.Common.Controls;
 
 namespace Ushahidi.Common.MVC
 {
@@ -127,6 +128,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public void Show()
         {
+            Keyboard.KeyboardVisible = false;
             View.Show();
             View.Focus();
         }

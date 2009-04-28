@@ -19,16 +19,6 @@ namespace Ushahidi.Model
     /// </summary>
     public class DataManager
     {
-        static DataManager()
-        {
-            if (Directory.Exists(DataDirectory) == false)
-            {
-                Log.Info("DataManager()", "Data Directory Created:{0}", DataDirectory);
-                Directory.CreateDirectory(DataDirectory);
-            }
-            Load();
-        }
-
         #region Settings
 
         /// <summary>
@@ -71,7 +61,7 @@ namespace Ushahidi.Model
         /// </summary>
         public static string DataDirectory
         {
-            get { return Path.Combine(Runtime.AppDirectory, "Data"); }   
+            get { return Path.Combine(Runtime.AppDirectory, "Data"); }
         }
 
         private const string RegKeyUshahidi = "Ushahidi";
@@ -83,12 +73,13 @@ namespace Ushahidi.Model
         private const string RegKeyLastName = "LastName";
         private const string RegKeyEmail = "Email";
         
-        /// <summary>
-        /// Load
-        /// </summary>
-        /// <returns>true, if successful</returns>
-        private static void Load()
+        static DataManager()
         {
+            if (Directory.Exists(DataDirectory) == false)
+            {
+                Log.Info("DataManager()", "Data Directory Created:{0}", DataDirectory);
+                Directory.CreateDirectory(DataDirectory);
+            }
             Log.Info("DataManager.LoadSettings");
             RegistryKey registryKey = Registry.LocalMachine.CreateSubKey(RegKeyUshahidi);
             if (registryKey != null)
@@ -98,7 +89,7 @@ namespace Ushahidi.Model
 
                 Language = registryKey.GetValue(RegKeyLanguage, "en-US").ToString();
                 Log.Info("DataManager.LoadSettings", "Language:{0}", Language);
-                
+
                 string lastSyncDate = (string)registryKey.GetValue(RegKeyLastSync, "");
                 LastSyncDate = string.IsNullOrEmpty(lastSyncDate) ? DateTime.MinValue : DateTime.Parse(lastSyncDate);
                 Log.Info("DataManager.LoadSettings", "LastSyncDate:{0}", LastSyncDate);
@@ -401,6 +392,14 @@ namespace Ushahidi.Model
         }
 
         /// <summary>
+        /// Upload URL
+        /// </summary>
+        private static string UploadURL
+        {
+            get { return string.Format("{0}{1}{2}", ServerAddress, ServerAddress.EndsWith("/") ? "" : "/", "api"); }
+        }
+
+        /// <summary>
         /// Upload all new incidents
         /// </summary>
         /// <returns>true, if successful</returns>
@@ -411,52 +410,51 @@ namespace Ushahidi.Model
                 Incident incident = Incident.Load(filePath);
                 if (incident != null)
                 {
-                    string url = string.Format("{0}/api?task=report", ServerAddress);
-                    Log.Info("DataManager.UploadIncidents", url);
-
-                    StringBuilder param = new StringBuilder();
-                    param.AppendFormat("resp={0}", "xml");
-                    param.AppendFormat("&incident_title={0}", Http.UrlEncode(incident.Title));
-                    param.AppendFormat("&incident_description={0}", Http.UrlEncode(incident.Description));
-                    param.AppendFormat("&incident_date={0}", incident.Date.ToString("dd/MM/yy"));
-                    param.AppendFormat("&incident_hour={0}", incident.Date.ToString("hh"));
-                    param.AppendFormat("&incident_minute={0}", incident.Date.ToString("mm"));
-                    param.AppendFormat("&incident_ampm={0}", incident.Date.ToString("tt").ToLower());
-                    //param.AppendFormat("&incident_category={0}", Http.UrlEncode(incident.Category.ID.ToString()));
-                    param.AppendFormat("&latitude={0}", incident.Locale.Latitude);
-                    param.AppendFormat("&longitude={0}", incident.Locale.Longitude);
-                    param.AppendFormat("&location_name={0}", incident.Locale.Name);
-                    param.AppendFormat("&person_first={0}", Http.UrlEncode(FirstName));
-                    param.AppendFormat("&person_last={0}", Http.UrlEncode(LastName));
-                    param.AppendFormat("&person_email={0}", Http.UrlEncode(Email));
-
-                    Log.Info("DataManager.UploadIncidents", param.ToString());
-
                     try
                     {
-                        byte[] postBytes = Encoding.ASCII.GetBytes(param.ToString());
-                        Uri uri = new Uri(url, UriKind.Absolute);
-                        HttpWebRequest webRequest = (HttpWebRequest) WebRequest.Create(uri);
+                        PostData postData = new PostData(Encoding.UTF8);
+                        postData.Add("task", "report");
+                        postData.Add("resp", "xml");
+                        postData.Add("incident_title", incident.Title);
+                        postData.Add("incident_description", incident.Description);
+                        postData.Add("incident_date", incident.Date.ToString("MM/dd/yyyy"));
+                        postData.Add("incident_hour", incident.Date.ToString("hh"));
+                        postData.Add("incident_minute", incident.Date.ToString("mm"));
+                        postData.Add("incident_ampm", incident.Date.ToString("tt").ToLower());
+                        postData.Add("incident_category", incident.Categories.Select(c => c.ID));
+                        postData.Add("latitude", incident.Locale.Latitude);
+                        postData.Add("longitude", incident.Locale.Longitude);
+                        postData.Add("location_name", incident.Locale.Name);
+                        postData.Add("person_first", FirstName);
+                        postData.Add("person_last", LastName);
+                        postData.Add("person_email", Email);
+                        postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
+                        postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
+                        Log.Info("DataManager.UploadIncidents", "{0}", postData.ToString());
+
+                        HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(UploadURL);
                         webRequest.Method = "POST";
                         webRequest.ContentType = "application/x-www-form-urlencoded";
-                        webRequest.ContentLength = postBytes.Length;
+                        webRequest.KeepAlive = false;
+                        webRequest.AllowAutoRedirect = true;
+                        webRequest.Timeout = 15000;
+                        byte[] bytes = postData.ToUrlEncodedData();
+                        webRequest.ContentLength = bytes.Length;
                         using (Stream requestStream = webRequest.GetRequestStream())
                         {
-                            requestStream.Write(postBytes, 0, postBytes.Length);
+                            requestStream.Write(bytes, 0, bytes.Length);
                             requestStream.Close();
                         }
                         using (HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse())
                         {
                             using (Stream responseStream = webResponse.GetResponseStream())
                             {
-                                using (StreamReader responseStreamReader = new StreamReader(responseStream))
+                                using (StreamReader responseReader = new StreamReader(responseStream))
                                 {
-                                    string responseText = responseStreamReader.ReadToEnd();
-                                    Log.Info("DataManager.UploadIncidents", responseText);
+                                    string responseText = responseReader.ReadToEnd();
                                     Response result = Response.Parse(responseText);
                                     if (result != null && result.Success)
                                     {
-                                        //if upload successful, delete file form disk
                                         Log.Info("DataManager.UploadIncidents", "Deleting {0}", filePath);
                                         File.Delete(filePath);
                                     }
@@ -471,6 +469,10 @@ namespace Ushahidi.Model
                     catch(WebException ex)
                     {
                         Log.Exception("DataManager.UploadIncidents", "WebException {0} {1)", ex.Status, ex.Message);
+                    }
+                    catch(Exception ex)
+                    {
+                        Log.Exception("DataManager.UploadIncidents", "Exception {0}", ex.Message);
                     }
                 }
             }
@@ -567,8 +569,7 @@ namespace Ushahidi.Model
         private static string DownloadXml(string url)
         {
             Log.Info("DataManager.DownloadXml", "URL: {0}", url);
-            Uri uri = new Uri(url, UriKind.Absolute);
-            WebRequest request = WebRequest.Create(uri);
+            WebRequest request = WebRequest.Create(url);
             request.Timeout = 5000; 
             request.Credentials = CredentialCache.DefaultCredentials;
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -597,8 +598,7 @@ namespace Ushahidi.Model
             FileInfo fileInfo = new FileInfo(destinationFilePath);
             if (fileInfo.Exists == false || fileInfo.Length == 0)
             {
-                Uri uri = new Uri(sourceURL, UriKind.Absolute);
-                WebRequest request = WebRequest.Create(uri);
+                WebRequest request = WebRequest.Create(sourceURL);
                 request.Timeout = 5000;
                 request.Credentials = CredentialCache.DefaultCredentials;
                 HttpWebResponse response = (HttpWebResponse) request.GetResponse();

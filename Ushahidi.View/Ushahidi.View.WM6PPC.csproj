@@ -81,6 +81,9 @@
     <Compile Include="Controls\LinkListItem.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\LocaleListItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\PhotoListItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -256,7 +259,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.fr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\no_photo.jpg" />
     <EmbeddedResource Include="Languages\Language.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.en.Designer.cs</LastGenOutput>

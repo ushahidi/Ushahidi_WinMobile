@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Serialization;
@@ -25,8 +26,8 @@ namespace Ushahidi.Model.Models
         [XmlIgnore]
         public DateTime Date
         {
-            get { return DateString.ToDateTime("yyyy-MM-dd hh:mm:ss"); }
-            set { DateString = value.ToString("yyyy-MM-dd hh:mm:ss"); }
+            get { return DateString.ToDateTime("yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd hh:mm:ss"); }
+            set { DateString = value.ToString("yyyy-MM-dd HH:mm:ss"); }
         }
 
         [XmlElement("mode")]
@@ -83,6 +84,7 @@ namespace Ushahidi.Model.Models
             get { return Categories != null && Categories.Length > 0 ? string.Join(",", Categories.Select(c => c.Title).ToArray()) : string.Empty; }
         }
 
+        [XmlIgnore]
         public string LocaleAndDate
         {
             get { return string.Join(" - ", new[] {LocaleName, Date.ToShortDateString()}); }
@@ -97,25 +99,62 @@ namespace Ushahidi.Model.Models
         [XmlArrayItem("media", Type = typeof(Media))]
         public Media[] MediaItems
         {
-            get { return _Media.ToArray(); }
+            get { return _MediaItems.ToArray(); }
             set
             {
-                _Media.Clear();
+                _MediaItems.Clear();
                 if (value != null)
                 {
-                    _Media.AddRange(value);
+                    _MediaItems.AddRange(value);
                 }
             }
-        }private readonly List<Media> _Media = new List<Media>();
+        }private readonly List<Media> _MediaItems = new List<Media>();
+
+        [XmlIgnore]
+        public IEnumerable<Media> Photos
+        {
+            get { return _MediaItems.Where(m => m.IsPhoto); }
+        }
+
+        [XmlIgnore]
+        public IEnumerable<Media> NewsLinks
+        {
+            get { return _MediaItems.Where(m => m.IsNews); }
+        }
+
+        [XmlIgnore]
+        public IEnumerable<Media> AudioLinks
+        {
+            get { return _MediaItems.Where(m => m.IsAudio); }
+        }
+
+        [XmlIgnore]
+        public IEnumerable<Media> VideoLinks
+        {
+            get { return _MediaItems.Where(m => m.IsVideo); }
+        }
+
+        public void AddPhoto(string imagePath)
+        {
+            Media media = new Media
+            {
+                ID = (-1),
+                Title = null,
+                Type = ((int) MediaType.Photo),
+                Link = Path.GetFileName(imagePath),
+                ThumbnailLink = Path.GetFileName(imagePath)
+            };
+            _MediaItems.Add(media);
+        }
 
         [XmlIgnore]
         public Image Thumbnail
         {
             get
             {
-                if (_Thumbnail == null && _Media.Any(m => m.MediaType == MediaType.Photo))
+                if (_Thumbnail == null && _MediaItems.Any(m => m.MediaType == MediaType.Photo))
                 {
-                    Media media = _Media.FirstOrDefault(m => m.MediaType == MediaType.Photo);
+                    Media media = _MediaItems.FirstOrDefault(m => m.MediaType == MediaType.Photo);
                     if(media != null)
                     {
                         _Thumbnail = DataManager.LoadImage(media.ThumbnailLink);
