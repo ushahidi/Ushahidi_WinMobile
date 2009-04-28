@@ -1,0 +1,375 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="active" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="AddIncidentView" xml:space="preserve">
+    <value>Agregar Incidente</value>
+  </data>
+  <data name="allCategories" xml:space="preserve">
+    <value>Todas las Categorías</value>
+  </data>
+  <data name="audio" xml:space="preserve">
+    <value>Audio</value>
+  </data>
+  <data name="BaseView" xml:space="preserve">
+    <value>Ushahidi</value>
+  </data>
+  <data name="category" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="checkBoxSettingsKeyboard" xml:space="preserve">
+    <value>Teclado</value>
+  </data>
+  <data name="columnHeaderSyncProgress" xml:space="preserve">
+    <value>Progreso</value>
+  </data>
+  <data name="comboBoxAddIncidentCategories" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="comboBoxAddIncidentLocales" xml:space="preserve">
+    <value>Lugar</value>
+  </data>
+  <data name="comboBoxIncidentListCategories" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="comboBoxSettingsLanguages" xml:space="preserve">
+    <value>Lenguaje</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="dateBoxAddIncidentDate" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="dateBoxSyncLastSync" xml:space="preserve">
+    <value>Ultima Sincronización</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="done" xml:space="preserve">
+    <value>Finalizado</value>
+  </data>
+  <data name="downloadingCategories" xml:space="preserve">
+    <value>Descargando Categorías</value>
+  </data>
+  <data name="downloadingCountries" xml:space="preserve">
+    <value>Descargando Paises</value>
+  </data>
+  <data name="downloadingIncidents" xml:space="preserve">
+    <value>Descargando Incidentes</value>
+  </data>
+  <data name="downloadingLocales" xml:space="preserve">
+    <value>Descargando Locales</value>
+  </data>
+  <data name="downloadingMedia" xml:space="preserve">
+    <value>Descargando Media</value>
+  </data>
+  <data name="HomeView" xml:space="preserve">
+    <value>Ushahidi</value>
+  </data>
+  <data name="IncidentDetailsView" xml:space="preserve">
+    <value>Detalles de Incidentes</value>
+  </data>
+  <data name="IncidentListView" xml:space="preserve">
+    <value>Lista de Incidentes</value>
+  </data>
+  <data name="IncidentMapView" xml:space="preserve">
+    <value>Mapa de Incidentes</value>
+  </data>
+  <data name="IncidentPhotoView" xml:space="preserve">
+    <value>Foto de Incidentes</value>
+  </data>
+  <data name="labelHomeDescription" xml:space="preserve">
+    <value>Bienvenido a Ushahidi, que significa "testimonio" en Swahili. Aquí estamos construyendo una plataforma que utiliza la sabiduría de las masas (crowdsourcing) en la información de crisis. Ushahidi permite a cualquier persona reportar incidentes en tiempos de crisis a través de mensajes de texto (SMS) usando un teléfono celular, e-mail o un formulario Web.</value>
+  </data>
+  <data name="labelTextBoxSyncServer" xml:space="preserve">
+    <value>Servidor</value>
+  </data>
+  <data name="locale" xml:space="preserve">
+    <value>Lugar</value>
+  </data>
+  <data name="menuItemAbout" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="menuItemAction" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="menuItemAddIncident" xml:space="preserve">
+    <value>Agregar Incidente</value>
+  </data>
+  <data name="menuItemAddIncidentAddNews" xml:space="preserve">
+    <value>Agregar Nueva Liga</value>
+  </data>
+  <data name="menuItemAddIncidentAddPhoto" xml:space="preserve">
+    <value>Agregar Foto</value>
+  </data>
+  <data name="menuItemAddIncidentAddVideo" xml:space="preserve">
+    <value>Agregar Nueva Liga de Video</value>
+  </data>
+  <data name="menuItemAddIncidentCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menuItemAddIncidentSave" xml:space="preserve">
+    <value>Guardar Incidente</value>
+  </data>
+  <data name="menuItemExit" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddNews" xml:space="preserve">
+    <value>Agregar Liga de Noticias</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddPhoto" xml:space="preserve">
+    <value>Agregar Foto</value>
+  </data>
+  <data name="menuItemIncidentDetailsAddVideo" xml:space="preserve">
+    <value>Agregar Liga de Video</value>
+  </data>
+  <data name="menuItemIncidentDetailsViewMap" xml:space="preserve">
+    <value>Ver Mapa</value>
+  </data>
+  <data name="menuItemIncidentList" xml:space="preserve">
+    <value>Lista de Incidentes</value>
+  </data>
+  <data name="menuItemIncidentMap" xml:space="preserve">
+    <value>Mapa de Incidentes</value>
+  </data>
+  <data name="menuItemMenu" xml:space="preserve">
+    <value>Menú</value>
+  </data>
+  <data name="menuItemSettings" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="menuItemSettingsCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="menuItemSettingsDone" xml:space="preserve">
+    <value>Finalizado</value>
+  </data>
+  <data name="menuItemSettingsSelect" xml:space="preserve">
+    <value>Seleccionar</value>
+  </data>
+  <data name="menuItemSynchronize" xml:space="preserve">
+    <value>Sincronizar</value>
+  </data>
+  <data name="menuItemSyncSynchronize" xml:space="preserve">
+    <value>Sincronizar</value>
+  </data>
+  <data name="menuItemWebsite" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="menuItemWebsiteDone" xml:space="preserve">
+    <value>Finalizado</value>
+  </data>
+  <data name="news" xml:space="preserve">
+    <value>Noticias</value>
+  </data>
+  <data name="noInternetConnection" xml:space="preserve">
+    <value>Conexión a Internet no encontrada</value>
+  </data>
+  <data name="noNetworkConnection" xml:space="preserve">
+    <value>Conexión a la red no encontrada</value>
+  </data>
+  <data name="noPhoto" xml:space="preserve">
+    <value>Foto no encontrada</value>
+  </data>
+  <data name="notActive" xml:space="preserve">
+    <value>Sin Activar</value>
+  </data>
+  <data name="notVerified" xml:space="preserve">
+    <value>Sin Verificar</value>
+  </data>
+  <data name="photo" xml:space="preserve">
+    <value>Foto</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>segundos</value>
+  </data>
+  <data name="SettingsView" xml:space="preserve">
+    <value>Configuración</value>
+  </data>
+  <data name="String" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="synchronizationComplete" xml:space="preserve">
+    <value>Sincronización Terminada</value>
+  </data>
+  <data name="synchronizationFailure" xml:space="preserve">
+    <value>Fallo en la Sincronización</value>
+  </data>
+  <data name="SyncView" xml:space="preserve">
+    <value>Sincronizar</value>
+  </data>
+  <data name="takeIncidentPhoto" xml:space="preserve">
+    <value>Tomar una foto del Incidente</value>
+  </data>
+  <data name="testingInternetConnection" xml:space="preserve">
+    <value>Probando conexión a Internet</value>
+  </data>
+  <data name="testingNetworkConnection" xml:space="preserve">
+    <value>Probando conexión a la red</value>
+  </data>
+  <data name="textBoxAddIncidentDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="textBoxAddIncidentTitle" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="textBoxSettingsEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="textBoxSettingsFirstName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="textBoxSettingsLastName" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="textBoxSettingsServer" xml:space="preserve">
+    <value>Servidor</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Título</value>
+  </data>
+  <data name="uploadingIncidents" xml:space="preserve">
+    <value>Cargando Incidentes</value>
+  </data>
+  <data name="verified" xml:space="preserve">
+    <value>Verificado</value>
+  </data>
+  <data name="verifiedAndActive" xml:space="preserve">
+    <value>Verificado &amp; Activo</value>
+  </data>
+  <data name="verifyInternetConnection" xml:space="preserve">
+    <value>Por favor verifique que su dispositivo cuente con conexión a Internet</value>
+  </data>
+  <data name="verifyNetworkConnection" xml:space="preserve">
+    <value>Por favor verifique que su dispositivo cuente con conexión a la red</value>
+  </data>
+  <data name="video" xml:space="preserve">
+    <value>Vídeo</value>
+  </data>
+  <data name="WebsiteView" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="autoShow" xml:space="preserve">
+    <value>Auto Show</value>
+  </data>
+</root>
