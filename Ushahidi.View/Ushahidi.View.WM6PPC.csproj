@@ -255,6 +255,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <EmbeddedResource Include="Languages\Language.de.resx" />
+    <EmbeddedResource Include="Languages\Language.es.resx" />
     <EmbeddedResource Include="Languages\Language.fr.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Language.fr.Designer.cs</LastGenOutput>

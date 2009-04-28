@@ -243,7 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <EmbeddedResource Include="Languages\Language.de.resx" />
     <EmbeddedResource Include="Languages\Language.en.resx" />
+    <EmbeddedResource Include="Languages\Language.es.resx" />
     <EmbeddedResource Include="Languages\Language.fr.resx" />
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />

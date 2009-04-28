@@ -113,6 +113,22 @@ namespace Ushahidi.View.Languages
             return string.Empty;
         }
 
+        public static string Translate(this LabelCheckBox labelCheckBox, string valueKey)
+        {
+            string translationValue = Translate(valueKey);
+            if (string.IsNullOrEmpty(translationValue) == false)
+            {
+                labelCheckBox.Text = translationValue;
+            }
+            string translationLabel = Translate(labelCheckBox.Name);
+            if (string.IsNullOrEmpty(translationLabel) == false)
+            {
+                labelCheckBox.Label = translationLabel;
+                return translationLabel;
+            }
+            return string.Empty;
+        }
+
         public static string Translate(this Form form, Form instance)
         {
             string translation = Translate(form.Name);

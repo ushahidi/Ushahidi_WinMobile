@@ -27,6 +27,7 @@ namespace Ushahidi.View.Views
             textBoxSettingsFirstName.Translate();
             textBoxSettingsLastName.Translate();
             comboBoxSettingsLanguages.Translate();
+            checkBoxSettingsKeyboard.Translate("autoShow");
         }
         /// <summary>
         /// Server Address

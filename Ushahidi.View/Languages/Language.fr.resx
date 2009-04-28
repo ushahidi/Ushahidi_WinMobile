@@ -372,4 +372,7 @@
   <data name="textBoxSyncServer" xml:space="preserve">
     <value>Serveur</value>
   </data>
+  <data name="autoShow" xml:space="preserve">
+    <value>Salon de l'auto</value>
+  </data>
 </root>
