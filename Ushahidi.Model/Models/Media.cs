@@ -69,14 +69,14 @@ namespace Ushahidi.Model.Models
             return Parse<Media>(xml);
         }
 
-        public static Media NewPhoto(string fileName)
+        public static Media New(string imageName, string thumbnailName)
         {
             return new Media
             {
               ID = (-1),
               Type = ((int) MediaType.Photo),
-              Link = fileName,
-              ThumbnailLink = fileName
+              Link = imageName,
+              ThumbnailLink = thumbnailName
             };
         }
     }

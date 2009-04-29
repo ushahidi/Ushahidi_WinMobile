@@ -266,6 +266,7 @@
       <LastGenOutput>Language.en.Designer.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Languages\Language.pl.resx" />
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />

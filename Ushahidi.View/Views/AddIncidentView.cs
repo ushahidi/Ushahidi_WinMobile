@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
 using Ushahidi.View.Controllers;
@@ -126,18 +123,12 @@ namespace Ushahidi.View.Views
 
         private void OnAddPhoto(object sender, EventArgs e)
         {
-            FileInfo fileInfo = PhotoSelector.ShowDialog(this);
-            if (fileInfo != null && fileInfo.Exists)
+            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this));
+            if (media != null)
             {
-                using (new WaitCursor())
-                {
-                    string fileName = string.Format("{0}.jpg", DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss"));
-                    string filePath = Path.Combine(DataManager.DataDirectory, fileName);
-                    fileInfo.CopyTo(filePath, true);
-                    _MediaItems.Add(Media.NewPhoto(fileName));
-                    scrollListBoxMediaItems.Add(new PhotoListItem(new Bitmap(filePath)));
-                    scrollListBoxMediaItems.AdjustHeight();
-                }
+                _MediaItems.Add(media);
+                scrollListBoxMediaItems.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
+                scrollListBoxMediaItems.AdjustHeight();
             }
         }
 

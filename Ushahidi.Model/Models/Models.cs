@@ -51,10 +51,10 @@ namespace Ushahidi.Model.Models
         /// Save
         /// </summary>
         /// <typeparam name="TModels">Models</typeparam>
-        /// <param name="model">model</param>
+        /// <param name="models">models</param>
         /// <param name="filePath">xml file path</param>
         /// <returns>true, if successful</returns>
-        protected static bool Save<TModels>(TModel model, string filePath) where TModels : Models<TModel>
+        protected static bool Save<TModels>(TModels models, string filePath) where TModels : Models<TModel>
         {
             try
             {
@@ -63,10 +63,10 @@ namespace Ushahidi.Model.Models
                     using (MemoryStream stream = new MemoryStream())
                     {
                         UTF8Encoding encoding = new UTF8Encoding();
-                        XmlSerializer serializer = new XmlSerializer(typeof(TModels));
+                        XmlSerializer serializer = new XmlSerializer(typeof(TModels), new[] { typeof(TModel) });
                         using (XmlTextWriter xmlTextWriter = new XmlTextWriter(stream, Encoding.UTF8))
                         {
-                            serializer.Serialize(xmlTextWriter, model);
+                            serializer.Serialize(xmlTextWriter, models);
                             using (MemoryStream writeStream = (MemoryStream)xmlTextWriter.BaseStream)
                             {
                                 Byte[] data = writeStream.ToArray();

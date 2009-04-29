@@ -64,6 +64,14 @@ namespace Ushahidi.Model
             get { return Path.Combine(Runtime.AppDirectory, "Data"); }
         }
 
+        /// <summary>
+        /// Upload Directory
+        /// </summary>
+        public static string UploadDirectory
+        {
+            get { return Path.Combine(Runtime.AppDirectory, "Upload"); }
+        }
+
         private const string RegKeyUshahidi = "Ushahidi";
         private const string RegKeyServer = "Server";
         private const string RegKeyLanguage = "Language";
@@ -79,6 +87,11 @@ namespace Ushahidi.Model
             {
                 Log.Info("DataManager()", "Data Directory Created:{0}", DataDirectory);
                 Directory.CreateDirectory(DataDirectory);
+            }
+            if (Directory.Exists(UploadDirectory) == false)
+            {
+                Log.Info("DataManager()", "Upload Directory Created:{0}", UploadDirectory);
+                Directory.CreateDirectory(UploadDirectory);
             }
             Log.Info("DataManager.LoadSettings");
             RegistryKey registryKey = Registry.LocalMachine.CreateSubKey(RegKeyUshahidi);
@@ -358,21 +371,34 @@ namespace Ushahidi.Model
             {
                 if (_Incidents == null)
                 {
-                    _Incidents = new Incidents();
-                    //Load user created incidents
-                    foreach (string filePath in Directory.GetFiles(DataDirectory, "*.inc"))
-                    {
-                        Incident incident = Incident.Load(filePath);
-                        if (incident != null)
-                        {
-                            incident.IsNew = true;
-                            _Incidents.Add(incident);
-                        }
-                    }
-                    //Load existing incidents downloaded from server
+                    Incidents incidents = new Incidents();
                     foreach (Incident incident in Incidents.Load(IncidentsFilepath))
                     {
-                        _Incidents.Add(incident);
+                        //incidents downloaded from server
+                        incidents.Add(incident);
+                    }
+                    foreach (Incident incident in IncidentsNotUploaded)
+                    {
+                        //user created incidents not uploaded
+                        incidents.Add(incident);
+                    }
+                    foreach (Incident incident in IncidentsNotPurged)
+                    {
+                        //user created incidents uploaded, but not purged
+                        Incident incidentNotPurged = incident;
+                        if (incidents.Any(i => i.Equals(incidentNotPurged)))
+                        {
+                            PurgeIncident(incident, incident.FilePath);
+                        }
+                        else
+                        {
+                            incidents.Add(incident);   
+                        }
+                    }
+                    _Incidents = new Incidents();
+                    foreach (Incident incident in incidents.OrderBy(i => i.Date))
+                    {
+                        _Incidents.Add(incident); 
                     }
                 }
                 return _Incidents;
@@ -380,13 +406,64 @@ namespace Ushahidi.Model
         }private static Incidents _Incidents;
 
         /// <summary>
+        /// User-Created Incidents not yet uploaded
+        /// </summary>
+        protected static Incidents IncidentsNotUploaded
+        {
+            get
+            {
+                if (_IncidentsNotUploaded == null)
+                {
+                    _IncidentsNotUploaded = new Incidents();
+                    foreach (string filePath in Directory.GetFiles(UploadDirectory, "*.inc"))
+                    {
+                        Incident incident = Incident.Load(filePath);
+                        if (incident != null)
+                        {
+                            incident.FilePath = filePath;
+                            incident.IsNew = true;
+                            _IncidentsNotUploaded.Add(incident);
+                        }
+                    }
+                }
+                return _IncidentsNotUploaded;
+            }
+        }private static Incidents _IncidentsNotUploaded;
+
+        /// <summary>
+        /// User-Created Incidents, uploaded but not purged yet
+        /// </summary>
+        protected static Incidents IncidentsNotPurged
+        {
+            get
+            {
+                if (_IncidentsNotPurged == null)
+                {
+                    _IncidentsNotPurged = new Incidents();
+                    foreach (string filePath in Directory.GetFiles(DataDirectory, "*.inc"))
+                    {
+                        Incident incident = Incident.Load(filePath);
+                        if (incident != null)
+                        {
+                            incident.FilePath = filePath;
+                            incident.IsNew = true;
+                            _IncidentsNotPurged.Add(incident);
+                        }
+                    }
+                }
+                return _IncidentsNotPurged;
+            }
+        }private static Incidents _IncidentsNotPurged;
+
+        /// <summary>
         /// Add a new incident
         /// </summary>
         /// <param name="incident">incident</param>
         public static bool AddIncident(Incident incident)
         {
+            IncidentsNotUploaded.Add(incident);
             Incidents.Add(incident);
-            string filePath = Path.Combine(DataDirectory, string.Format("{0}.inc", Guid.NewGuid()));
+            string filePath = Path.Combine(UploadDirectory, string.Format("{0}.inc", Guid.NewGuid()));
             Log.Info("DataManager.AddIncident", "{0}", filePath);
             return incident.Save(filePath);
         }
@@ -405,78 +482,117 @@ namespace Ushahidi.Model
         /// <returns>true, if successful</returns>
         public static bool UploadIncidents()
         {
-            foreach(string filePath in Directory.GetFiles(DataDirectory, "*.inc"))
+            foreach(Incident incident in IncidentsNotUploaded)
             {
-                Incident incident = Incident.Load(filePath);
-                if (incident != null)
+                try
                 {
-                    try
-                    {
-                        PostData postData = new PostData(Encoding.UTF8);
-                        postData.Add("task", "report");
-                        postData.Add("resp", "xml");
-                        postData.Add("incident_title", incident.Title);
-                        postData.Add("incident_description", incident.Description);
-                        postData.Add("incident_date", incident.Date.ToString("MM/dd/yyyy"));
-                        postData.Add("incident_hour", incident.Date.ToString("hh"));
-                        postData.Add("incident_minute", incident.Date.ToString("mm"));
-                        postData.Add("incident_ampm", incident.Date.ToString("tt").ToLower());
-                        postData.Add("incident_category", incident.Categories.Select(c => c.ID));
-                        postData.Add("latitude", incident.Locale.Latitude);
-                        postData.Add("longitude", incident.Locale.Longitude);
-                        postData.Add("location_name", incident.Locale.Name);
-                        postData.Add("person_first", FirstName);
-                        postData.Add("person_last", LastName);
-                        postData.Add("person_email", Email);
-                        postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
-                        postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
-                        Log.Info("DataManager.UploadIncidents", "{0}", postData.ToString());
+                    PostData postData = new PostData(Encoding.UTF8);
+                    postData.Add("task", "report");
+                    postData.Add("resp", "xml");
+                    postData.Add("incident_title", incident.Title);
+                    postData.Add("incident_description", incident.Description);
+                    postData.Add("incident_date", incident.Date.ToString("MM/dd/yyyy"));
+                    postData.Add("incident_hour", incident.Date.ToString("hh"));
+                    postData.Add("incident_minute", incident.Date.ToString("mm"));
+                    postData.Add("incident_ampm", incident.Date.ToString("tt").ToLower());
+                    postData.Add("incident_category", incident.Categories.Select(c => c.ID));
+                    postData.Add("latitude", incident.Locale.Latitude);
+                    postData.Add("longitude", incident.Locale.Longitude);
+                    postData.Add("location_name", incident.Locale.Name);
+                    postData.Add("person_first", FirstName);
+                    postData.Add("person_last", LastName);
+                    postData.Add("person_email", Email);
+                    postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
+                    postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
+                    Log.Info("DataManager.UploadIncidents", "{0}", postData.ToString());
 
-                        HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(UploadURL);
-                        webRequest.Method = "POST";
-                        webRequest.ContentType = "application/x-www-form-urlencoded";
-                        webRequest.KeepAlive = false;
-                        webRequest.AllowAutoRedirect = true;
-                        webRequest.Timeout = 15000;
-                        byte[] bytes = postData.ToUrlEncodedData();
-                        webRequest.ContentLength = bytes.Length;
-                        using (Stream requestStream = webRequest.GetRequestStream())
+                    HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(UploadURL);
+                    webRequest.Method = "POST";
+                    webRequest.ContentType = "application/x-www-form-urlencoded";
+                    webRequest.KeepAlive = false;
+                    webRequest.AllowAutoRedirect = true;
+                    webRequest.Timeout = 15000;
+                    byte[] bytes = postData.ToUrlEncodedData();
+                    webRequest.ContentLength = bytes.Length;
+                    using (Stream requestStream = webRequest.GetRequestStream())
+                    {
+                        requestStream.Write(bytes, 0, bytes.Length);
+                        requestStream.Close();
+                    }
+                    using (HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse())
+                    {
+                        using (Stream responseStream = webResponse.GetResponseStream())
                         {
-                            requestStream.Write(bytes, 0, bytes.Length);
-                            requestStream.Close();
-                        }
-                        using (HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse())
-                        {
-                            using (Stream responseStream = webResponse.GetResponseStream())
+                            using (StreamReader responseReader = new StreamReader(responseStream))
                             {
-                                using (StreamReader responseReader = new StreamReader(responseStream))
+                                string responseText = responseReader.ReadToEnd();
+                                Log.Info("DataManager.UploadIncidents", "{0}", responseText);
+                                Response result = Response.Parse(responseText);
+                                if (result != null && result.Success)
                                 {
-                                    string responseText = responseReader.ReadToEnd();
-                                    Response result = Response.Parse(responseText);
-                                    if (result != null && result.Success)
-                                    {
-                                        Log.Info("DataManager.UploadIncidents", "Deleting {0}", filePath);
-                                        File.Delete(filePath);
-                                    }
-                                    else
-                                    {
-                                        Log.Critical("DataManager.UploadIncidents", "Failure {0}", filePath);
-                                    }
+                                    Log.Info("DataManager.UploadIncidents", "Deleting {0}", incident.FilePath);
+                                    string destinationPath = Path.Combine(DataDirectory, Path.GetFileName(incident.FilePath));
+                                    File.Move(incident.FilePath, destinationPath);
+                                }
+                                else
+                                {
+                                    Log.Critical("DataManager.UploadIncidents", "Failure {0}", incident.FilePath);
                                 }
                             }
                         }
                     }
-                    catch(WebException ex)
-                    {
-                        Log.Exception("DataManager.UploadIncidents", "WebException {0} {1)", ex.Status, ex.Message);
-                    }
-                    catch(Exception ex)
-                    {
-                        Log.Exception("DataManager.UploadIncidents", "Exception {0}", ex.Message);
-                    }
+                }
+                catch(WebException ex)
+                {
+                    Log.Exception("DataManager.UploadIncidents", "WebException {0} {1)", ex.Status, ex.Message);
+                }
+                catch(Exception ex)
+                {
+                    Log.Exception("DataManager.UploadIncidents", "Exception {0}", ex.Message);
                 }
             }
             return true;
+        }
+
+        #endregion
+
+        #region Uploads
+
+        /// <summary>
+        /// Uploads Filepath
+        /// </summary>
+        private static string UploadsFilepath
+        {
+            get { return Path.Combine(UploadDirectory, "Uploads.xml"); }
+        }
+
+        /// <summary>
+        /// Uploads
+        /// </summary>
+        public static Uploads Uploads
+        {
+            get
+            {
+                if (_Uploads == null)
+                {
+                    _Uploads = Uploads.Load(UploadsFilepath) ?? new Uploads();
+                }
+                return _Uploads;
+            }
+        }private static Uploads _Uploads;
+
+        public static bool AddMedia(int id, Media media)
+        {
+            if (id > -1)
+            {
+                Uploads.Add(id, media);
+                return Uploads.Save(UploadsFilepath);
+            }
+            else
+            {
+                //TODO implement adding photos to newly created incident not yet uploaded
+                return false;
+            }
         }
 
         #endregion
@@ -511,6 +627,30 @@ namespace Ushahidi.Model
         }
 
         /// <summary>
+        /// Import Photo
+        /// </summary>
+        /// <param name="fileInfo">source image path</param>
+        /// <returns>destination image path</returns>
+        public static Media ImportPhoto(FileInfo fileInfo)
+        {
+            if (fileInfo != null && fileInfo.Exists)
+            {
+                string dateString = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
+                string imageName = string.Format("{0}.jpg", dateString);
+                string thumbnailName = string.Format("{0}_t.jpg", dateString);
+                string imagePath = Path.Combine(UploadDirectory, imageName);
+                fileInfo.CopyTo(imagePath, true);
+                string thumbnailPath = Path.Combine(UploadDirectory, thumbnailName);
+                using(Bitmap thumbnail = CreateThumbnail(imagePath, 100))
+                {
+                    thumbnail.Save(thumbnailPath, ImageFormat.Jpeg);
+                }
+                return Media.New(imageName, thumbnailName);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// Load image from disk
         /// </summary>
         /// <param name="fileName">filename</param>
@@ -519,15 +659,23 @@ namespace Ushahidi.Model
         {
             if (string.IsNullOrEmpty(fileName) == false)
             {
-                string filePath = Path.Combine(DataDirectory, fileName);
-                return File.Exists(filePath) ? new Bitmap(filePath) : null;
+                string dataPath = Path.Combine(DataDirectory, fileName);
+                if (File.Exists(dataPath))
+                {
+                    return new Bitmap(dataPath);
+                }
+                string uploadPath = Path.Combine(UploadDirectory, fileName);
+                if (File.Exists(uploadPath))
+                {
+                    return new Bitmap(uploadPath);
+                }
             }
             return null;
         }
 
         public static bool HasImage(string fileName)
         {
-            return File.Exists(Path.Combine(DataDirectory, fileName));
+            return File.Exists(Path.Combine(DataDirectory, fileName)) || File.Exists(Path.Combine(UploadDirectory, fileName));
         }
 
         #endregion
@@ -612,6 +760,79 @@ namespace Ushahidi.Model
                 return true;
             }
             return false;
+        }
+
+        private static Bitmap CreateThumbnail(string filePath, int widthOrHeight)
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    using (Bitmap original = new Bitmap(filePath))
+                    {
+                        if (original.Width < widthOrHeight && original.Height < widthOrHeight) return original;
+                        Rectangle srcRect = new Rectangle(0, 0, original.Width, original.Height);
+                        Rectangle destRect = (original.Width > original.Height)
+                                 ? new Rectangle(0, 0, widthOrHeight, widthOrHeight*original.Height/original.Width)
+                                 : new Rectangle(0, 0, widthOrHeight*original.Width/original.Height, widthOrHeight);
+
+                        Bitmap thumbnail = new Bitmap(destRect.Width, destRect.Height);
+                        using (Graphics graphics = Graphics.FromImage(thumbnail))
+                        {
+                            using (Brush brush = new SolidBrush(Color.White))
+                            {
+                                graphics.FillRectangle(brush, 0, 0, destRect.Width, destRect.Height);
+                                graphics.DrawImage(original, destRect, srcRect, GraphicsUnit.Pixel);
+                            }
+                        }
+                        return thumbnail;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Exception("DataManager.CreateThumbnail", "Exception: {0}", ex.Message);
+            }
+            return null;
+        }
+
+        private static void PurgeIncident(Incident incident, string filePath)
+        {
+            foreach (Media media in incident.MediaItems.Where(m => m.IsPhoto))
+            {
+                try
+                {
+                    string imagePath = Path.Combine(DataDirectory, media.Link);
+                    if (File.Exists(imagePath))
+                    {
+                        File.Delete(imagePath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Exception("DataManager.PurgeIncident", "Exception Delete Image: {0} {1}", media.Link, ex.Message);
+                }
+                try
+                {
+                    string thumbnailPath = Path.Combine(DataDirectory, media.ThumbnailLink);
+                    if (File.Exists(thumbnailPath))
+                    {
+                        File.Delete(thumbnailPath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Exception("DataManager.PurgeIncident", "Exception Delete Thumbnail: {0} {1}", media.Link, ex.Message);
+                }
+            }
+            try
+            {
+                File.Delete(filePath);
+            }
+            catch (Exception ex)
+            {
+                Log.Exception("DataManager.PurgeIncident", "Exception Delete Incident: {0} {1}", filePath, ex.Message);
+            }
         }
 
         #endregion

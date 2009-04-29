@@ -46,6 +46,9 @@ namespace Ushahidi.Model.Models
         public bool IsNew { get; set; }
 
         [XmlIgnore]
+        public string FilePath { get; set; }
+
+        [XmlIgnore]
         public string LocaleName
         {
             get { return Locale != null ? Locale.Name : string.Empty; }
@@ -182,6 +185,17 @@ namespace Ushahidi.Model.Models
         public static Incident Parse(string xml)
         {
             return Parse<Incident>(xml);
+        }
+
+        public bool Equals(Incident incident)
+        {
+            return Title == incident.Title &&
+                   Description == incident.Description &&
+                   DateString == incident.DateString &&
+                   LocaleName == incident.LocaleName &&
+                   CategoryTitle == incident.CategoryTitle &&
+                   LocaleLatitude == incident.LocaleLatitude &&
+                   LocaleLongitude == incident.LocaleLongitude;
         }
     }
 }

@@ -250,6 +250,7 @@
     <EmbeddedResource Include="Languages\Language.en.resx" />
     <EmbeddedResource Include="Languages\Language.es.resx" />
     <EmbeddedResource Include="Languages\Language.fr.resx" />
+    <EmbeddedResource Include="Languages\Language.pl.resx" />
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />

@@ -3,12 +3,12 @@ using Ushahidi.View.Models;
 
 namespace Ushahidi.View.Controllers
 {
+    /// <summary>
+    /// Incident Map View Controller
+    /// </summary>
     public class IncidentMapViewController : BaseViewController<IncidentMapView, IncidentMapModel>
     {
-        /// <summary>
-        /// Load the view
-        /// </summary>
-        public override void Load(params object[] parameters)
+        public override void Load(object[] parameters)
         {
             View.Categories = Model.Categories;
         }

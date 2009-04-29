@@ -71,6 +71,7 @@ namespace Ushahidi.View.Controls
                     Rectangle srcRect = new Rectangle(0, 0, Incident.Thumbnail.Width, Incident.Thumbnail.Height);
                     e.Graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Height, Height);
                     e.Graphics.DrawImage(Incident.Thumbnail, destRect, srcRect, GraphicsUnit.Pixel);
+                    destRect = new Rectangle(0, 0, Height, Height);
                 }
                 Rectangle rectangle = new Rectangle(destRect.Right + 5, 0, Width - destRect.Right - 5, rowHeight);
                 e.Graphics.DrawString(Incident.Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);

@@ -16,6 +16,7 @@ namespace Ushahidi.View.Controllers
                 Incident = parameters[0] as Incident;
                 if (Incident != null)
                 {
+                    View.ID = Incident.ID;
                     View.MediaItems = Incident.MediaItems;
                     View.Title = Incident.Title;
                     View.Category = Incident.CategoryTitle;

@@ -90,6 +90,8 @@
     <Compile Include="Models\Models.cs" />
     <Compile Include="Models\Payload.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\Upload.cs" />
+    <Compile Include="Models\Uploads.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
