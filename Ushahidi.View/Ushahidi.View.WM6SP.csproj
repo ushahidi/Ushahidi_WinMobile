@@ -90,8 +90,6 @@
     <Compile Include="Controls\TextListItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Languages\Language.en.Designer.cs" />
-    <Compile Include="Languages\Language.fr.Designer.cs" />
     <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Models\AddIncidentModel.cs" />
     <Compile Include="Models\BaseModel.cs" />
@@ -250,7 +248,10 @@
     <EmbeddedResource Include="Languages\Language.en.resx" />
     <EmbeddedResource Include="Languages\Language.es.resx" />
     <EmbeddedResource Include="Languages\Language.fr.resx" />
+    <EmbeddedResource Include="Languages\Language.it.resx" />
+    <EmbeddedResource Include="Languages\Language.nl.resx" />
     <EmbeddedResource Include="Languages\Language.pl.resx" />
+    <EmbeddedResource Include="Languages\Language.pt.resx" />
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
