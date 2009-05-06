@@ -20,13 +20,11 @@ namespace Ushahidi.View.Controllers
                     View.MediaItems = Incident.MediaItems;
                     View.Title = Incident.Title;
                     View.Category = Incident.CategoryTitle;
-                    View.Locale = Incident.Locale.Name;
+                    View.Locale = Incident.Locale;
                     View.Date = Incident.Date;
                     View.Verified = Incident.Verified;
                     View.Active = Incident.Active;
                     View.Description = Incident.Description;
-                    View.Latitude = Incident.Locale.Latitude;
-                    View.Longitude = Incident.Locale.Longitude;
                 }
             }
         }

@@ -52,6 +52,7 @@
             this.listBoxIncidentListIncidents.BackColorEven = System.Drawing.Color.WhiteSmoke;
             this.listBoxIncidentListIncidents.BackColorOdd = System.Drawing.Color.Gainsboro;
             this.listBoxIncidentListIncidents.BackSelectedColor = System.Drawing.Color.Black;
+            this.listBoxIncidentListIncidents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBoxIncidentListIncidents.Location = new System.Drawing.Point(0, 28);
             this.listBoxIncidentListIncidents.Name = "listBoxIncidentListIncidents";
             this.listBoxIncidentListIncidents.SelectedIndex = -1;

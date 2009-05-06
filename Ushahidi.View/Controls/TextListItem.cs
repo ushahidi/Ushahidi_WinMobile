@@ -5,11 +5,13 @@ using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.View.Controls
 {
-    public class TextListItem : ScrollListBoxItem
+    public class TextListItem : ScrollListBoxItem<string>
     {
-        public TextListItem(string label, string text)
+        public TextListItem(string label, string text) : this(label, text, false){}
+        public TextListItem(string label, string text, bool bold) : base(1)
         {
             Label = label;
+            base.Font = bold ? base.Font.ToBold() : base.Font;
             base.Text = string.IsNullOrEmpty(text) ? "" : text.Trim();
             Height = this.GetRequiredHeight(base.Font, ClientRectangle.Width - Padding * 2, base.Text) + Padding + Padding;
         }
@@ -22,26 +24,6 @@ namespace Ushahidi.View.Controls
             {
                 base.Text = string.IsNullOrEmpty(value) ? "" : value.Trim();
                 Height = this.GetRequiredHeight(base.Font, ClientRectangle.Width - Padding * 2, base.Text) + Padding + Padding;
-            }
-        }
-
-        public int Padding
-        {
-            get { return _Padding; }
-            set
-            {
-                _Padding = value;
-                Invalidate();
-            }
-        }private int _Padding = 4;
-
-        public bool Bold
-        {
-            get { return Font.Style == FontStyle.Bold; }
-            set
-            {
-                Font = Font.ToBold();
-                Invalidate();
             }
         }
 
@@ -70,10 +52,10 @@ namespace Ushahidi.View.Controls
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            using (SolidBrush fontBrush = new SolidBrush(IsSelected ? Color.White : Color.Black))
+            using (SolidBrush fontBrush = new SolidBrush(ForeColor))
             {
-                Rectangle rectangle = new Rectangle(Padding, Padding, ClientRectangle.Width - Padding*2,
-                                                    ClientRectangle.Height - Padding*2);
+                Rectangle rectangle = new Rectangle(Padding, Padding, ClientRectangle.Width - Padding - Padding,
+                                                    ClientRectangle.Height - Padding - Padding);
                 e.Graphics.DrawString(Text, Font, fontBrush, rectangle, Alignment);
             }
         }

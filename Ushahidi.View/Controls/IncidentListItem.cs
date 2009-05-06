@@ -1,98 +1,68 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
-using Ushahidi.Common.Extensions;
 using Ushahidi.Model.Models;
 
 namespace Ushahidi.View.Controls
 {
     /// <summary>
-    /// Incident list item
+    /// Incident List Item
     /// </summary>
-    public class IncidentListItem : ScrollListBoxItem
+    public class IncidentListItem : ScrollListBoxItem<Incident>
     {
-        public IncidentListItem(Incident incident)
+        /// <summary>
+        /// Incident List Item
+        /// </summary>
+        /// <param name="incident">incident</param>
+        public IncidentListItem(Incident incident) : base(4)
         {
-            Incident = incident;
-            CalculateHeight(base.Font);
-            BoldFont = base.Font.ToBold();
+            Item = incident;
         }
-
-        public override Font Font
-        {
-            get { return base.Font; }
-            set
-            {
-                base.Font = value;
-                BoldFont = value.ToBold();
-                CalculateHeight(value);
-            }
-        }
-
-        public Incident Incident { get; private set; }
-
-        public Font BoldFont { get; set; }
-
-        private void CalculateHeight(Font font)
-        {
-            using (Graphics graphic = CreateGraphics())
-            {
-                Height = (int)(graphic.MeasureString("A", font).Height * 1.2) * RowCount;
-            }
-        }public readonly int RowCount = 4;
 
         /// <summary>
-        /// Draw text onto the control
+        /// Render Incident Information
         /// </summary>
         protected override void OnPaint(PaintEventArgs e)
         {
-            using (SolidBrush fontBrush = new SolidBrush(IsSelected ? Color.White : Color.Black))
+            using (SolidBrush fontBrush = new SolidBrush(ForeColor))
             {
-                int rowHeight = Height/RowCount;
                 Rectangle destRect = Rectangle.Empty;
-                if (Incident.Thumbnail != null)
+                if (Item.Thumbnail != null)
                 {
-                    if (Incident.Thumbnail.Width > Incident.Thumbnail.Height)
+                    if (Item.Thumbnail.Width > Item.Thumbnail.Height)
                     {
                         int width = Height;
-                        int height = Height * Incident.Thumbnail.Height / Incident.Thumbnail.Width;
+                        int height = Height * Item.Thumbnail.Height / Item.Thumbnail.Width;
                         const int posX = 0;
                         int posY = Height > height ? (Height - height) / 2 : 0;
                         destRect = new Rectangle(posX, posY, width, height);
                     }
                     else
                     {
-                        int width = Height * Incident.Thumbnail.Width / Incident.Thumbnail.Height;
+                        int width = Height * Item.Thumbnail.Width / Item.Thumbnail.Height;
                         int height = Height;
                         int posX = Height > width ? (Height - width) / 2 : 0;
                         const int posY = 0;
                         destRect = new Rectangle(posX, posY, width, height);
                     }
-                    Rectangle srcRect = new Rectangle(0, 0, Incident.Thumbnail.Width, Incident.Thumbnail.Height);
+                    Rectangle srcRect = new Rectangle(0, 0, Item.Thumbnail.Width, Item.Thumbnail.Height);
                     e.Graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Height, Height);
-                    e.Graphics.DrawImage(Incident.Thumbnail, destRect, srcRect, GraphicsUnit.Pixel);
+                    e.Graphics.DrawImage(Item.Thumbnail, destRect, srcRect, GraphicsUnit.Pixel);
                     destRect = new Rectangle(0, 0, Height, Height);
                 }
-                Rectangle rectangle = new Rectangle(destRect.Right + 5, 0, Width - destRect.Right - 5, rowHeight);
-                e.Graphics.DrawString(Incident.Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
+                Rectangle rectangle = new Rectangle(destRect.Right + Padding, 0, ClientRectangle.Width - destRect.Right - Padding - Padding, RowHeight);
+                e.Graphics.DrawString(Item.Title, BoldFont, fontBrush, rectangle, Constants.LeftAligned);
 
-                rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.Description, Font, fontBrush, rectangle, Constants.LeftAligned);
+                rectangle.Offset(0, RowHeight);
+                e.Graphics.DrawString(Item.Description, Font, fontBrush, rectangle, Constants.LeftAligned);
 
-                rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.LocaleAndDate, Font, fontBrush, rectangle, Constants.LeftAligned);
+                rectangle.Offset(0, RowHeight);
+                e.Graphics.DrawString(Item.LocaleAndDate, Font, fontBrush, rectangle, Constants.LeftAligned);
 
-                rectangle.Offset(0, rowHeight);
-                e.Graphics.DrawString(Incident.CategoryTitle, Font, fontBrush, rectangle, Constants.LeftAligned);
+                rectangle.Offset(0, RowHeight);
+                e.Graphics.DrawString(Item.CategoryTitle, Font, fontBrush, rectangle, Constants.LeftAligned);
             }
-            using (Pen pen = new Pen(Color.Black))
-            {
-                if (Index == 0)
-                {
-                    e.Graphics.DrawLine(pen, 0, 0, Width, 0);
-                }
-                e.Graphics.DrawLine(pen, 0, Height - 1, Width, Height - 1);
-            }
+            e.Graphics.DrawLine(LinePen, 0, Height - 1, Width, Height - 1);
         }
     }
 }

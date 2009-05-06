@@ -36,10 +36,10 @@ namespace Ushahidi.View.Views
         {
             base.Render();
             scrollListBoxMediaItems.Clear();
-            scrollListBoxMediaItems.Add(new TextListItem("title".Translate(), Title) {Bold = true}, false);
+            scrollListBoxMediaItems.Add(new TextListItem("title".Translate(), Title, true), false);
             scrollListBoxMediaItems.Add(new TextListItem("description".Translate(), Description), false);
             scrollListBoxMediaItems.Add(new TextListItem("category".Translate(), Category), false);
-            scrollListBoxMediaItems.Add(new LocaleListItem(Locale, Latitude, Longitude));
+            scrollListBoxMediaItems.Add(new LocaleListItem(Locale));
             scrollListBoxMediaItems.Add(new TextListItem("date".Translate(), Date.ToString("MMMM d, yyyy h:mm tt")), false);
             string verified = Verified ? "verified".Translate() : "notVerified".Translate();
             string active = Active ? "active".Translate() : "notActive".Translate();
@@ -70,16 +70,12 @@ namespace Ushahidi.View.Views
 
         public string Category { get; set; }
 
-        public string Locale { get; set; }
-
         public string Description { get; set; }
 
         public DateTime Date { get; set; }
 
-        public string Latitude { get; set; }
-
-        public string Longitude { get; set; }
-        
+        public Locale Locale { get; set; }
+ 
         public bool Verified { get; set; }
 
         public bool Active { get; set; }
@@ -124,12 +120,12 @@ namespace Ushahidi.View.Views
             OnForward<WebsiteViewController>(false, string.Empty, menuItemIncidentDetailsAddVideo.Text);
         }
 
-        private void OnItemSelected(ScrollListBoxItem control)
+        private void OnItemSelected(object sender, ScrollEventArgs args)
         {
-            PhotoListItem mediaPhotoListItem = control as PhotoListItem;
-            TextListItem textListItem = control as TextListItem;
-            LinkListItem linkListItem = control as LinkListItem;
-            LocaleListItem mapListItem = control as LocaleListItem;
+            PhotoListItem mediaPhotoListItem = args.Item as PhotoListItem;
+            TextListItem textListItem = args.Item as TextListItem;
+            LinkListItem linkListItem = args.Item as LinkListItem;
+            LocaleListItem mapListItem = args.Item as LocaleListItem;
             if (textListItem != null)
             {
                 Dialog.Help(textListItem.Label, textListItem.Text);
@@ -144,7 +140,7 @@ namespace Ushahidi.View.Views
             }
             else if (mapListItem != null)
             {
-                OnForward<IncidentMapViewController>(false, Latitude, Longitude);
+                OnForward<IncidentMapViewController>(false, Locale.Latitude, Locale.Longitude);
             }
         }
     }

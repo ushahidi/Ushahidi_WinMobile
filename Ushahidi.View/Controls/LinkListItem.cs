@@ -1,56 +1,41 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
-using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.View.Controls
 {
-    public class LinkListItem : ScrollListBoxItem
+    /// <summary>
+    /// Link List Item
+    /// </summary>
+    public class LinkListItem : ScrollListBoxItem<string>
     {
-        public LinkListItem(string type, string link)
+        /// <summary>
+        /// Link List Item
+        /// </summary>
+        /// <param name="type">link type</param>
+        /// <param name="link">link url</param>
+        public LinkListItem(string type, string link) : base(1)
         {
             Type = type;
             Link = link;
-            CalculateHeight(base.Font);
-            BoldFont = base.Font.ToBold();
-            UnderlineFont = base.Font.ToUnderline();
         }
 
-        public override Font Font
-        {
-            get { return base.Font; }
-            set
-            {
-                base.Font = value;
-                BoldFont = value.ToBold();
-                UnderlineFont = value.ToUnderline();
-                CalculateHeight(value);
-            }
-        }
-
+        /// <summary>
+        /// Link Type
+        /// </summary>
         public string Type { get; private set; }
 
+        /// <summary>
+        /// Link URL
+        /// </summary>
         public string Link { get; private set; }
 
-        public Font BoldFont { get; private set; }
-
-        public Font UnderlineFont { get; private set; }
-
-        public int Padding = 4;
-
-        private void CalculateHeight(Font font)
-        {
-            using (Graphics graphic = CreateGraphics())
-            {
-                Height = (int)(graphic.MeasureString("A", font).Height * 1.2) + Padding + Padding;
-            }
-        }
         /// <summary>
         /// Draw text onto the control
         /// </summary>
         protected override void OnPaint(PaintEventArgs e)
         {
-            using (SolidBrush fontBrush = new SolidBrush(IsSelected ? Color.White : Color.Black))
+            using (SolidBrush fontBrush = new SolidBrush(ForeColor))
             {
                 int width = (int)e.Graphics.MeasureString(Type, Font).Width;
                 Rectangle rectangle = new Rectangle(Padding, Padding, width, ClientRectangle.Height - Padding - Padding);

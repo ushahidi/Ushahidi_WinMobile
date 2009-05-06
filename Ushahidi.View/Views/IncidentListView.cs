@@ -18,8 +18,8 @@ namespace Ushahidi.View.Views
             base.Initialize();
             comboBoxIncidentListCategories.SelectedIndexChanged += OnCategoryChanged;
             menuItemAction.Click += OnViewIncident;
-            listBoxIncidentListIncidents.IndexChanged += OnSelectedIncidentChanged;
-            listBoxIncidentListIncidents.ItemSelected += OnItemSelected;
+            listBoxIncidentListIncidents.IndexChanged += OnIncidentChanged;
+            listBoxIncidentListIncidents.ItemSelected += OnIncidentSelected;
         }
 
         public override void Translate()
@@ -81,17 +81,17 @@ namespace Ushahidi.View.Views
             }
         }
 
-        private void OnSelectedIncidentChanged(ScrollListBoxItem control)
+        private void OnIncidentChanged(object sender, ScrollEventArgs args)
         {
-            menuItemAction.Enabled = (control != null);
+            menuItemAction.Enabled = (args.Item != null);
         }
 
-        private void OnItemSelected(ScrollListBoxItem control)
+        private void OnIncidentSelected(object sender, ScrollEventArgs args)
         {
-            IncidentListItem listItem = control as IncidentListItem;
+            IncidentListItem listItem = args.Item as IncidentListItem;
             if (listItem != null)
             {
-                OnForward<IncidentDetailsViewController>(false, listItem.Incident);
+                OnForward<IncidentDetailsViewController>(false, listItem.Item);
             }
         }
 
@@ -100,7 +100,7 @@ namespace Ushahidi.View.Views
             IncidentListItem listItem = listBoxIncidentListIncidents.SelectedItem as IncidentListItem;
             if (listItem != null)
             {
-                OnForward<IncidentDetailsViewController>(false, listItem.Incident);
+                OnForward<IncidentDetailsViewController>(false, listItem.Item);
             }
         }
 
