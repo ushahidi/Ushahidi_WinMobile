@@ -13,13 +13,13 @@ namespace Ushahidi.View
         [MTAThread]
         static void Main()
         {
-            Log.Info("Program.Main", "Starting...");
+            Log.Info("Ushahidi.View.Program.Main", "Starting...");
             using (INavigationController navigationController = new NavigationController())
             {
                 navigationController.Push(typeof(HomeViewController));
                 navigationController.Run();
             }
-            Log.Info("Program.Main", "...Exiting");
+            Log.Info("Ushahidi.View.Program.Main", "...Exiting");
         }
     }
 }
