@@ -117,215 +117,38 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BaseView" xml:space="preserve">
-    <value>Ushahidi</value>
+  <data name="about" xml:space="preserve">
+    <value>About</value>
   </data>
-  <data name="checkBoxSettingsKeyboard" xml:space="preserve">
-    <value>Keyboard</value>
-  </data>
-  <data name="comboBoxAddIncidentCategories" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="comboBoxAddIncidentLocales" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="comboBoxIncidentListCategories" xml:space="preserve">
-    <value>Category</value>
-  </data>
-  <data name="comboBoxSettingsLanguages" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="dateBoxAddIncidentDate" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="HomeView" xml:space="preserve">
-    <value>Ushahidi</value>
-  </data>
-  <data name="ListView" xml:space="preserve">
-    <value>Incident List</value>
-  </data>
-  <data name="MapView" xml:space="preserve">
-    <value>Incident Map</value>
-  </data>
-  <data name="labelHomeDescription" xml:space="preserve">
-    <value>Welcome to Ushahidi, which means "testimony" in Swahili, where we are building a platform that crowdsources crisis information. Allowing anyone to submit crisis information through text messaging using a mobile phone, email or web form.</value>
-  </data>
-  <data name="menuItemAbout" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="menuItemAction" xml:space="preserve">
+  <data name="action" xml:space="preserve">
     <value>Action</value>
-  </data>
-  <data name="menuItemAddIncident" xml:space="preserve">
-    <value>Add Incident</value>
-  </data>
-  <data name="menuItemAddIncidentAddPhoto" xml:space="preserve">
-    <value>Add Photo</value>
-  </data>
-  <data name="menuItemAddIncidentCancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="menuItemAddIncidentSave" xml:space="preserve">
-    <value>Save Incident</value>
-  </data>
-  <data name="menuItemExit" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="menuItemIncidentList" xml:space="preserve">
-    <value>Incident List</value>
-  </data>
-  <data name="menuItemIncidentMap" xml:space="preserve">
-    <value>Incident Map</value>
-  </data>
-  <data name="menuItemMenu" xml:space="preserve">
-    <value>Menu</value>
-  </data>
-  <data name="menuItemSettings" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="menuItemSettingsCancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="menuItemSettingsDone" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="menuItemSynchronize" xml:space="preserve">
-    <value>Synchronize</value>
-  </data>
-  <data name="menuItemWebsite" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="SettingsView" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="SyncView" xml:space="preserve">
-    <value>Synchronize</value>
-  </data>
-  <data name="textBoxAddIncidentDescription" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="textBoxAddIncidentTitle" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="textBoxSettingsEmail" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="textBoxSettingsFirstName" xml:space="preserve">
-    <value>First Name</value>
-  </data>
-  <data name="textBoxSettingsLastName" xml:space="preserve">
-    <value>Last Name</value>
-  </data>
-  <data name="textBoxSettingsServer" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="columnHeaderSyncProgress" xml:space="preserve">
-    <value>Progress</value>
-  </data>
-  <data name="dateBoxSyncLastSync" xml:space="preserve">
-    <value>Last Sync</value>
-  </data>
-  <data name="menuItemSettingsSelect" xml:space="preserve">
-    <value>Select</value>
-  </data>
-  <data name="menuItemSyncSynchronize" xml:space="preserve">
-    <value>Synchronize</value>
-  </data>
-  <data name="noInternetConnection" xml:space="preserve">
-    <value>No Internet Connection</value>
-  </data>
-  <data name="noNetworkConnection" xml:space="preserve">
-    <value>No Network Connection</value>
-  </data>
-  <data name="synchronizationComplete" xml:space="preserve">
-    <value>Synchronization Complete</value>
-  </data>
-  <data name="synchronizationFailure" xml:space="preserve">
-    <value>Synchronization Failure</value>
-  </data>
-  <data name="downloadingCategories" xml:space="preserve">
-    <value>Downloading Categories</value>
-  </data>
-  <data name="downloadingCountries" xml:space="preserve">
-    <value>Downloading Countries</value>
-  </data>
-  <data name="downloadingIncidents" xml:space="preserve">
-    <value>Downloading Incidents</value>
-  </data>
-  <data name="downloadingLocales" xml:space="preserve">
-    <value>Downloading Locales</value>
-  </data>
-  <data name="seconds" xml:space="preserve">
-    <value>seconds</value>
-  </data>
-  <data name="testingInternetConnection" xml:space="preserve">
-    <value>Testing Internet Connection</value>
-  </data>
-  <data name="testingNetworkConnection" xml:space="preserve">
-    <value>Testing Network Connection</value>
-  </data>
-  <data name="uploadingIncidents" xml:space="preserve">
-    <value>Uploading Incidents</value>
-  </data>
-  <data name="verifyInternetConnection" xml:space="preserve">
-    <value>Please verify your device has an internet connection</value>
-  </data>
-  <data name="verifyNetworkConnection" xml:space="preserve">
-    <value>Please verify your device has a network connection</value>
-  </data>
-  <data name="allCategories" xml:space="preserve">
-    <value>All Categories</value>
-  </data>
-  <data name="menuItemWebsiteDone" xml:space="preserve">
-    <value>Done</value>
-  </data>
-  <data name="WebsiteView" xml:space="preserve">
-    <value>Website</value>
   </data>
   <data name="active" xml:space="preserve">
     <value>Active</value>
   </data>
-  <data name="DetailsView" xml:space="preserve">
-    <value>Incident Details</value>
-  </data>
-  <data name="menuItemIncidentDetailAddPhoto" xml:space="preserve">
-    <value>Add Photo</value>
-  </data>
-  <data name="menuItemIncidentDetailViewMap" xml:space="preserve">
-    <value>View Map</value>
-  </data>
-  <data name="notActive" xml:space="preserve">
-    <value>Not Active</value>
-  </data>
-  <data name="notVerified" xml:space="preserve">
-    <value>Not Verified</value>
-  </data>
-  <data name="verified" xml:space="preserve">
-    <value>Verified</value>
-  </data>
-  <data name="takeIncidentPhoto" xml:space="preserve">
-    <value>Take Incident Photo</value>
-  </data>
-  <data name="AddView" xml:space="preserve">
+  <data name="addIncident" xml:space="preserve">
     <value>Add Incident</value>
   </data>
-  <data name="downloadingMedia" xml:space="preserve">
-    <value>Downloading Media</value>
+  <data name="addNewsLink" xml:space="preserve">
+    <value>Add News Link</value>
   </data>
-  <data name="noPhoto" xml:space="preserve">
-    <value>No Photo</value>
+  <data name="addPhoto" xml:space="preserve">
+    <value>Add Photo</value>
+  </data>
+  <data name="addVideoLink" xml:space="preserve">
+    <value>Add Video Link</value>
+  </data>
+  <data name="allCategories" xml:space="preserve">
+    <value>All Categories</value>
   </data>
   <data name="audio" xml:space="preserve">
     <value>Audio</value>
   </data>
-  <data name="news" xml:space="preserve">
-    <value>News</value>
+  <data name="autoShow" xml:space="preserve">
+    <value>Auto Show</value>
   </data>
-  <data name="photo" xml:space="preserve">
-    <value>Photo</value>
-  </data>
-  <data name="video" xml:space="preserve">
-    <value>Video</value>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="category" xml:space="preserve">
     <value>Category</value>
@@ -336,46 +159,160 @@
   <data name="description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="locale" xml:space="preserve">
+  <data name="done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="downloadingCategories" xml:space="preserve">
+    <value>Downloading Categories</value>
+  </data>
+  <data name="downloadingCountries" xml:space="preserve">
+    <value>Downloading Countries</value>
+  </data>
+  <data name="downloadingIncidents" xml:space="preserve">
+    <value>Downloading Incidents</value>
+  </data>
+  <data name="downloadingLocations" xml:space="preserve">
+    <value>Downloading Locations</value>
+  </data>
+  <data name="downloadingMedia" xml:space="preserve">
+    <value>Downloading Media</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="firstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="incidentDetails" xml:space="preserve">
+    <value>Incident Details</value>
+  </data>
+  <data name="incidentList" xml:space="preserve">
+    <value>Incident List</value>
+  </data>
+  <data name="incidentMap" xml:space="preserve">
+    <value>Incident Map</value>
+  </data>
+  <data name="incidentPhoto" xml:space="preserve">
+    <value>Incident Photo</value>
+  </data>
+  <data name="keyboard" xml:space="preserve">
+    <value>Keyboard</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="lastSynchronization" xml:space="preserve">
+    <value>Last Synchronization</value>
+  </data>
+  <data name="location" xml:space="preserve">
     <value>Location</value>
+  </data>
+  <data name="menu" xml:space="preserve">
+    <value>Menu</value>
+  </data>
+  <data name="missingFields" xml:space="preserve">
+    <value>Missing Fields</value>
+  </data>
+  <data name="missingFieldsVerify" xml:space="preserve">
+    <value>Please verify all required fields are entered</value>
+  </data>
+  <data name="news" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="noInternetConnection" xml:space="preserve">
+    <value>No Internet Connection</value>
+  </data>
+  <data name="noNetworkConnection" xml:space="preserve">
+    <value>No Network Connection</value>
+  </data>
+  <data name="noPhoto" xml:space="preserve">
+    <value>No Photo</value>
+  </data>
+  <data name="notActive" xml:space="preserve">
+    <value>Not Active</value>
+  </data>
+  <data name="notVerified" xml:space="preserve">
+    <value>Not Verified</value>
+  </data>
+  <data name="photo" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="progress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="saveIncident" xml:space="preserve">
+    <value>Save Incident</value>
+  </data>
+  <data name="seconds" xml:space="preserve">
+    <value>seconds</value>
+  </data>
+  <data name="select" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="synchronizationComplete" xml:space="preserve">
+    <value>Synchronization Complete</value>
+  </data>
+  <data name="synchronizationFailure" xml:space="preserve">
+    <value>Synchronization Failure</value>
+  </data>
+  <data name="synchronize" xml:space="preserve">
+    <value>Synchronize</value>
+  </data>
+  <data name="takeIncidentPhoto" xml:space="preserve">
+    <value>Take Incident Photo</value>
+  </data>
+  <data name="testingInternetConnection" xml:space="preserve">
+    <value>Testing Internet Connection</value>
+  </data>
+  <data name="testingNetworkConnection" xml:space="preserve">
+    <value>Testing Network Connection</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="title1" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="uploadingIncidents" xml:space="preserve">
+    <value>Uploading Incidents</value>
+  </data>
+  <data name="ushahidi" xml:space="preserve">
+    <value>Ushahidi</value>
+  </data>
+  <data name="ushahidiDescription" xml:space="preserve">
+    <value>Welcome to Ushahidi, which means "testimony" in Swahili, where we are building a platform that crowdsources crisis information. Allowing anyone to submit crisis information through text messaging using a mobile phone, email or web form.</value>
+  </data>
+  <data name="verified" xml:space="preserve">
+    <value>Verified</value>
+  </data>
   <data name="verifiedAndActive" xml:space="preserve">
     <value>Verified &amp; Active</value>
   </data>
-  <data name="PhotoView" xml:space="preserve">
-    <value>Incident Photo</value>
+  <data name="verifyInternetConnection" xml:space="preserve">
+    <value>Please verify your device has an internet connection</value>
   </data>
-  <data name="done" xml:space="preserve">
-    <value>Done</value>
+  <data name="verifyNetworkConnection" xml:space="preserve">
+    <value>Please verify your device has a network connection</value>
   </data>
-  <data name="menuItemAddIncidentAddNews" xml:space="preserve">
-    <value>Add News Link</value>
+  <data name="video" xml:space="preserve">
+    <value>Video</value>
   </data>
-  <data name="menuItemAddIncidentAddVideo" xml:space="preserve">
-    <value>Add Video Link</value>
-  </data>
-  <data name="menuItemIncidentDetailsAddNews" xml:space="preserve">
-    <value>Add Video Link</value>
-  </data>
-  <data name="menuItemIncidentDetailsAddPhoto" xml:space="preserve">
-    <value>Add Photo</value>
-  </data>
-  <data name="menuItemIncidentDetailsAddVideo" xml:space="preserve">
-    <value>Add Video Link</value>
-  </data>
-  <data name="menuItemIncidentDetailsViewMap" xml:space="preserve">
+  <data name="viewMap" xml:space="preserve">
     <value>View Map</value>
   </data>
-  <data name="textBoxSyncServer" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="autoShow" xml:space="preserve">
-    <value>Auto Show</value>
-  </data>
-  <data name="missingFields" xml:space="preserve">
-    <value>Missing Fields</value>
+  <data name="website" xml:space="preserve">
+    <value>Website</value>
   </data>
 </root>

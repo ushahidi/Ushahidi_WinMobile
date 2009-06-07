@@ -40,6 +40,7 @@ namespace Ushahidi.View.Controllers
             if (View.ShouldSave)
             {
                 LanguageManager.Language = View.Language;
+                DataManager.Language = View.Language.Name;
                 DataManager.ShowKeyboard = View.ShowKeyboard;
                 DataManager.FirstName = View.FirstName;
                 DataManager.LastName = View.LastName;

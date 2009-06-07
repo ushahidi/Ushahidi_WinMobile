@@ -24,25 +24,26 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            menuItemAddIncidentAddPhoto.Click += OnAddPhoto;
-            menuItemAddIncidentAddNews.Click += OnAddNews;
-            menuItemAddIncidentAddVideo.Click += OnAddVideo;
-            menuItemAddIncidentCancel.Click += OnCancel;
-            menuItemAddIncidentSave.Click += OnSave;
+            menuItemAddPhoto.Click += OnAddPhoto;
+            menuItemAddNews.Click += OnAddNews;
+            menuItemAddVideo.Click += OnAddVideo;
+            menuItemCancel.Click += OnCancel;
+            menuItemSave.Click += OnSave;
         }
 
         public override void Translate()
         {
             base.Translate();
-            textBoxAddIncidentTitle.Translate();
-            dateBoxAddIncidentDate.Translate();
-            comboBoxAddIncidentCategories.Translate();
-            comboBoxAddIncidentLocales.Translate();
-            menuItemAddIncidentSave.Translate(this);
-            menuItemAddIncidentCancel.Translate(this);
-            menuItemAddIncidentAddPhoto.Translate(this);
-            menuItemAddIncidentAddNews.Translate(this);
-            menuItemAddIncidentAddVideo.Translate(this);
+            this.Translate("addIncident");
+            textBoxTitle.Translate("title");
+            dateBoxDate.Translate("date");
+            comboBoxCategories.Translate("category");
+            comboBoxLocales.Translate("location");
+            menuItemSave.Translate("saveIncident");
+            menuItemCancel.Translate("cancel");
+            menuItemAddPhoto.Translate("addPhoto");
+            menuItemAddNews.Translate("addNewLink");
+            menuItemAddVideo.Translate("addVideoLink");
         }
 
         public override void Render()
@@ -55,8 +56,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string Title
         {
-            get { return textBoxAddIncidentTitle.Text; }
-            set { textBoxAddIncidentTitle.Text = value; }
+            get { return textBoxTitle.Value; }
+            set { textBoxTitle.Value = value; }
         }
 
         /// <summary>
@@ -64,8 +65,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public DateTime Date
         {
-            get { return dateBoxAddIncidentDate.Date; }
-            set { dateBoxAddIncidentDate.Date = value; }
+            get { return dateBoxDate.Value; }
+            set { dateBoxDate.Value = value; }
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         public Models<Category> Categories
         {
-            set { comboBoxAddIncidentCategories.DataSource = value; }
+            set { comboBoxCategories.DataSource = value; }
         }
 
         /// <summary>
@@ -81,8 +82,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public Category Category
         {
-            get { return comboBoxAddIncidentCategories.SelectedValue<Category>(); }
-            set { comboBoxAddIncidentCategories.SelectedItem = value; }
+            get { return comboBoxCategories.SelectedValue<Category>(); }
+            set { comboBoxCategories.SelectedItem = value; }
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         public Models<Locale> Locales
         {
-            set { comboBoxAddIncidentLocales.DataSource = value; }
+            set { comboBoxLocales.DataSource = value; }
         }
 
         /// <summary>
@@ -98,8 +99,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public Locale Locale
         {
-            get { return comboBoxAddIncidentLocales.SelectedValue<Locale>(); }
-            set { comboBoxAddIncidentLocales.SelectedItem = value; }
+            get { return comboBoxLocales.SelectedValue<Locale>(); }
+            set { comboBoxLocales.SelectedItem = value; }
         }
 
         /// <summary>
@@ -107,8 +108,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string Description
         {
-            get { return textBoxAddIncidentDescription.Text; }
-            set { textBoxAddIncidentDescription.Text = value; }
+            get { return textBoxDescription.Value; }
+            set { textBoxDescription.Value = value; }
         }
 
         public Media[] MediaItems
@@ -135,19 +136,19 @@ namespace Ushahidi.View.Views
             if (media != null)
             {
                 _MediaItems.Add(media);
-                scrollListBoxMediaItems.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
-                scrollListBoxMediaItems.AdjustHeight();
+                scrollListBox.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
+                scrollListBox.AdjustHeight();
             }
         }
 
         private void OnAddNews(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddIncidentAddNews.Text);
+            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddNews.Text);
         }
 
         private void OnAddVideo(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddIncidentAddVideo.Text);
+            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddVideo.Text);
         }
 
         private void OnSave(object sender, EventArgs e)

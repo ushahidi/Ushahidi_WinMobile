@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about" xml:space="preserve">
+    <value>Circa</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Azione</value>
+  </data>
   <data name="active" xml:space="preserve">
     <value>Attivo</value>
   </data>
-  <data name="AddView" xml:space="preserve">
+  <data name="addIncident" xml:space="preserve">
     <value>Aggiungi Evento</value>
+  </data>
+  <data name="addNewsLink" xml:space="preserve">
+    <value>Aggiungi link a una notizia</value>
+  </data>
+  <data name="addPhoto" xml:space="preserve">
+    <value>Aggiungi una Foto</value>
+  </data>
+  <data name="addVideoLink" xml:space="preserve">
+    <value>Aggiungi un link a un Video</value>
   </data>
   <data name="allCategories" xml:space="preserve">
     <value>Tutte le categorie</value>
@@ -132,38 +147,14 @@
   <data name="autoShow" xml:space="preserve">
     <value>Mostra in automatico</value>
   </data>
-  <data name="BaseView" xml:space="preserve">
-    <value>Ushahidi</value>
+  <data name="cancel" xml:space="preserve">
+    <value>Cancella</value>
   </data>
   <data name="category" xml:space="preserve">
     <value>Categoria</value>
   </data>
-  <data name="checkBoxSettingsKeyboard" xml:space="preserve">
-    <value>Tastiera</value>
-  </data>
-  <data name="columnHeaderSyncProgress" xml:space="preserve">
-    <value>Progresso</value>
-  </data>
-  <data name="comboBoxAddIncidentCategories" xml:space="preserve">
-    <value>Categoria</value>
-  </data>
-  <data name="comboBoxAddIncidentLocales" xml:space="preserve">
-    <value>Luogo</value>
-  </data>
-  <data name="comboBoxIncidentListCategories" xml:space="preserve">
-    <value>Categoria</value>
-  </data>
-  <data name="comboBoxSettingsLanguages" xml:space="preserve">
-    <value>Lingua</value>
-  </data>
   <data name="date" xml:space="preserve">
     <value>Data</value>
-  </data>
-  <data name="dateBoxAddIncidentDate" xml:space="preserve">
-    <value>Data</value>
-  </data>
-  <data name="dateBoxSyncLastSync" xml:space="preserve">
-    <value>Ultima Sincronizzazione</value>
   </data>
   <data name="description" xml:space="preserve">
     <value>Descrizione</value>
@@ -180,107 +171,56 @@
   <data name="downloadingIncidents" xml:space="preserve">
     <value>Sincronizzazione degli Eventi</value>
   </data>
-  <data name="downloadingLocales" xml:space="preserve">
+  <data name="downloadingLocations" xml:space="preserve">
     <value>Sincronizzazione delle Impostazioni Locali</value>
   </data>
   <data name="downloadingMedia" xml:space="preserve">
     <value>Sincronizzazione dei Media</value>
   </data>
-  <data name="HomeView" xml:space="preserve">
-    <value>Ushahidi</value>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="DetailsView" xml:space="preserve">
-    <value>Dettagli dell'evento</value>
-  </data>
-  <data name="ListView" xml:space="preserve">
-    <value>Lista degli eventi</value>
-  </data>
-  <data name="MapView" xml:space="preserve">
-    <value>Mappa degli eventi</value>
-  </data>
-  <data name="PhotoView" xml:space="preserve">
-    <value>Foto dell'evento</value>
-  </data>
-  <data name="labelHomeDescription" xml:space="preserve">
-    <value>Benvenuti a Ushahidi -"testimonianza", in Swahili- una piattaforma che aggrega informazioni sulle emergenze. Chiunque può contribuirvi, inviando messaggi sulle situazioni di crisi tramite cellulare, email, o con un modulo online.</value>
-  </data>
-  <data name="labelTextBoxSyncServer" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="locale" xml:space="preserve">
-    <value>Luogo</value>
-  </data>
-  <data name="menuItemAbout" xml:space="preserve">
-    <value>Sito Web</value>
-  </data>
-  <data name="menuItemAction" xml:space="preserve">
-    <value>Azione</value>
-  </data>
-  <data name="menuItemAddIncident" xml:space="preserve">
-    <value>Aggiungi evento</value>
-  </data>
-  <data name="menuItemAddIncidentAddNews" xml:space="preserve">
-    <value>Aggiungi link a una notizia</value>
-  </data>
-  <data name="menuItemAddIncidentAddPhoto" xml:space="preserve">
-    <value>Aggiungi una Foto</value>
-  </data>
-  <data name="menuItemAddIncidentAddVideo" xml:space="preserve">
-    <value>Aggiungi un link a un Video</value>
-  </data>
-  <data name="menuItemAddIncidentCancel" xml:space="preserve">
-    <value>Cancella</value>
-  </data>
-  <data name="menuItemAddIncidentSave" xml:space="preserve">
-    <value>Salva evento</value>
-  </data>
-  <data name="menuItemExit" xml:space="preserve">
+  <data name="exit" xml:space="preserve">
     <value>Esci</value>
   </data>
-  <data name="menuItemIncidentDetailsAddNews" xml:space="preserve">
-    <value>Aggiungi un link a una notizia</value>
+  <data name="firstName" xml:space="preserve">
+    <value>Nome</value>
   </data>
-  <data name="menuItemIncidentDetailsAddPhoto" xml:space="preserve">
-    <value>Aggiungi una Foto</value>
+  <data name="incidentDetails" xml:space="preserve">
+    <value>Dettagli dell'evento</value>
   </data>
-  <data name="menuItemIncidentDetailsAddVideo" xml:space="preserve">
-    <value>Aggiungi un link a un Video</value>
-  </data>
-  <data name="menuItemIncidentDetailsViewMap" xml:space="preserve">
-    <value>Visualizza mappa</value>
-  </data>
-  <data name="menuItemIncidentList" xml:space="preserve">
+  <data name="incidentList" xml:space="preserve">
     <value>Lista degli eventi</value>
   </data>
-  <data name="menuItemIncidentMap" xml:space="preserve">
+  <data name="incidentMap" xml:space="preserve">
     <value>Mappa degli eventi</value>
   </data>
-  <data name="menuItemMenu" xml:space="preserve">
+  <data name="incidentPhoto" xml:space="preserve">
+    <value>Foto dell'evento</value>
+  </data>
+  <data name="keyboard" xml:space="preserve">
+    <value>Tastiera</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Cognome</value>
+  </data>
+  <data name="lastSynchronization" xml:space="preserve">
+    <value>Ultima Sincronizzazione</value>
+  </data>
+  <data name="location" xml:space="preserve">
+    <value>Luogo</value>
+  </data>
+  <data name="menu" xml:space="preserve">
     <value>Menu</value>
   </data>
-  <data name="menuItemSettings" xml:space="preserve">
-    <value>Impostazioni</value>
+  <data name="missingFields" xml:space="preserve">
+    <value>Valori mancanti</value>
   </data>
-  <data name="menuItemSettingsCancel" xml:space="preserve">
-    <value>Cancella</value>
-  </data>
-  <data name="menuItemSettingsDone" xml:space="preserve">
-    <value>Completato</value>
-  </data>
-  <data name="menuItemSettingsSelect" xml:space="preserve">
-    <value>Seleziona</value>
-  </data>
-  <data name="menuItemSynchronize" xml:space="preserve">
-    <value>Sincronizza</value>
-  </data>
-  <data name="menuItemSyncSynchronize" xml:space="preserve">
-    <value>Sincronizza</value>
-  </data>
-  <data name="menuItemWebsite" xml:space="preserve">
-    <value>Sito web</value>
-  </data>
-  <data name="menuItemWebsiteDone" xml:space="preserve">
-    <value>Completato</value>
+  <data name="missingFieldsVerify" xml:space="preserve">
+    <value>Si prega di verificare tutti i campi richiesti sono iscritti</value>
   </data>
   <data name="news" xml:space="preserve">
     <value>Notizie</value>
@@ -303,10 +243,22 @@
   <data name="photo" xml:space="preserve">
     <value>Foto</value>
   </data>
+  <data name="progress" xml:space="preserve">
+    <value>Progresso</value>
+  </data>
+  <data name="saveIncident" xml:space="preserve">
+    <value>Salva evento</value>
+  </data>
   <data name="seconds" xml:space="preserve">
     <value>secondi</value>
   </data>
-  <data name="SettingsView" xml:space="preserve">
+  <data name="select" xml:space="preserve">
+    <value>Seleziona</value>
+  </data>
+  <data name="server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="settings" xml:space="preserve">
     <value>Impostazioni</value>
   </data>
   <data name="synchronizationComplete" xml:space="preserve">
@@ -315,7 +267,7 @@
   <data name="synchronizationFailure" xml:space="preserve">
     <value>Errore nella sincronizzazione</value>
   </data>
-  <data name="SyncView" xml:space="preserve">
+  <data name="synchronize" xml:space="preserve">
     <value>Sincronizza</value>
   </data>
   <data name="takeIncidentPhoto" xml:space="preserve">
@@ -327,29 +279,20 @@
   <data name="testingNetworkConnection" xml:space="preserve">
     <value>Verifica della connessione al network</value>
   </data>
-  <data name="textBoxAddIncidentDescription" xml:space="preserve">
-    <value>Descrizione</value>
-  </data>
-  <data name="textBoxAddIncidentTitle" xml:space="preserve">
+  <data name="title" xml:space="preserve">
     <value>Titolo</value>
   </data>
-  <data name="textBoxSettingsEmail" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="textBoxSettingsFirstName" xml:space="preserve">
-    <value>Nome</value>
-  </data>
-  <data name="textBoxSettingsLastName" xml:space="preserve">
-    <value>Cognome</value>
-  </data>
-  <data name="textBoxSettingsServer" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="title" xml:space="preserve">
+  <data name="title1" xml:space="preserve">
     <value>Titolo</value>
   </data>
   <data name="uploadingIncidents" xml:space="preserve">
     <value>Upload degli eventi</value>
+  </data>
+  <data name="ushahidi" xml:space="preserve">
+    <value>Ushahidi</value>
+  </data>
+  <data name="ushahidiDescription" xml:space="preserve">
+    <value>Benvenuti a Ushahidi -"testimonianza", in Swahili- una piattaforma che aggrega informazioni sulle emergenze. Chiunque può contribuirvi, inviando messaggi sulle situazioni di crisi tramite cellulare, email, o con un modulo online.</value>
   </data>
   <data name="verified" xml:space="preserve">
     <value>Verificato</value>
@@ -366,7 +309,10 @@
   <data name="video" xml:space="preserve">
     <value>Video</value>
   </data>
-  <data name="WebsiteView" xml:space="preserve">
+  <data name="viewMap" xml:space="preserve">
+    <value>Visualizza mappa</value>
+  </data>
+  <data name="website" xml:space="preserve">
     <value>Sito Web</value>
   </data>
 </root>

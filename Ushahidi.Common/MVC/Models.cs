@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -11,6 +12,14 @@ namespace Ushahidi.Common.MVC
 {
     public class Models<TModel> : BindingList<TModel>, IDisposable where TModel : Model
     {
+        public void Add(IEnumerable<TModel> models)
+        {
+            foreach (TModel model in models)
+            {
+                Add(model);
+            }    
+        }
+
         /// <summary>
         /// Load
         /// </summary>

@@ -42,6 +42,7 @@
             this.menuItemWebsite = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator3 = new System.Windows.Forms.MenuItem();
             this.menuItemExit = new System.Windows.Forms.MenuItem();
+            this.menuItemAbout = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -61,6 +62,7 @@
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator1);
             this.menuItemMenu.MenuItems.Add(this.menuItemSynchronize);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator2);
+            this.menuItemMenu.MenuItems.Add(this.menuItemAbout);
             this.menuItemMenu.MenuItems.Add(this.menuItemSettings);
             this.menuItemMenu.MenuItems.Add(this.menuItemWebsite);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator3);
@@ -115,16 +117,20 @@
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.OnExit);
             // 
+            // menuItemAbout
+            // 
+            this.menuItemAbout.Text = "About";
+            this.menuItemAbout.Click += new System.EventHandler(this.OnAbout);
+            // 
             // BaseView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(240, 268);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mainMenu;
-            this.MinimizeBox = false;
             this.Name = "BaseView";
             this.Text = "Ushahidi";
             this.ResumeLayout(false);
@@ -146,5 +152,6 @@
         public System.Windows.Forms.MainMenu mainMenu;
         private System.Windows.Forms.MenuItem menuItemSynchronize;
         private System.Windows.Forms.MenuItem menuItemSeparator3;
+        private System.Windows.Forms.MenuItem menuItemAbout;
     }
 }

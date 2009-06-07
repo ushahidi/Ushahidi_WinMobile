@@ -1,5 +1,6 @@
 ﻿using Ushahidi.Common.MVC;
 using Ushahidi.Model.Models;
+using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
 {
@@ -11,6 +12,18 @@ namespace Ushahidi.View.Views
         public MapView()
         {
             InitializeComponent();    
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+        }
+
+        public override void Translate()
+        {
+            base.Translate();
+            this.Translate("incidentMap");
+            comboBoxCategories.Translate("category");
         }
 
         /// <summary>

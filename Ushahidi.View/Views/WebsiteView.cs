@@ -18,9 +18,15 @@ namespace Ushahidi.View.Views
         public override void Initialize()
         {
             base.Initialize();
+            this.Translate("website");
             webBrowser.Navigating += OnNavigating;
             webBrowser.Navigated += OnNavigated;
             menuItemAction.Click += OnDone;
+        }
+        public override void Translate()
+        {
+            base.Translate();
+            menuItemAction.Translate("done");
         }
 
         private static void OnNavigating(object sender, WebBrowserNavigatingEventArgs e)
@@ -33,12 +39,6 @@ namespace Ushahidi.View.Views
         {
             Log.Info("WebsiteView.OnNavigated");
             Cursor.Current = Cursors.Default;
-        }
-
-        public override void Translate()
-        {
-            base.Translate();
-            menuItemAction.Translate("menuItemWebsiteDone");
         }
 
         public bool ViewOnly

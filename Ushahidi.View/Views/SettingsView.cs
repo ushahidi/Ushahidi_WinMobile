@@ -25,21 +25,27 @@ namespace Ushahidi.View.Views
         public override void Translate()
         {
             base.Translate();
-            menuItemAction.Translate(this);
-            textBoxSettingsEmail.Translate();
-            textBoxSettingsFirstName.Translate();
-            textBoxSettingsLastName.Translate();
-            comboBoxSettingsLanguages.Translate();
-            checkBoxSettingsKeyboard.Translate("autoShow");
+            this.Translate("settings");
+            menuItemAction.Translate("action");
+            textBoxEmail.Translate("email");
+            textBoxFirstName.Translate("firstName");
+            textBoxLastName.Translate("lastName");
+            comboBoxLanguages.Translate("language");
+            checkBoxKeyboard.Translate("keyboard", "autoShow");
         }
-        
+
+        public override void Render()
+        {
+            ShouldSave = true;
+        }
+
         /// <summary>
         /// First Name
         /// </summary>
         public string FirstName
         {
-            get { return textBoxSettingsFirstName.Text; }
-            set { textBoxSettingsFirstName.Text = value; }
+            get { return textBoxFirstName.Value; }
+            set { textBoxFirstName.Value = value; }
         }
 
         /// <summary>
@@ -47,8 +53,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string LastName
         {
-            get { return textBoxSettingsLastName.Text; }
-            set { textBoxSettingsLastName.Text = value; }
+            get { return textBoxLastName.Value; }
+            set { textBoxLastName.Value = value; }
         }
 
         /// <summary>
@@ -56,8 +62,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public object Languages
         {
-            get { return comboBoxSettingsLanguages.DataSource; }
-            set { comboBoxSettingsLanguages.DataSource = value; }
+            get { return comboBoxLanguages.DataSource; }
+            set { comboBoxLanguages.DataSource = value; }
         }
 
         /// <summary>
@@ -65,8 +71,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public CultureInfo Language
         {
-            get { return comboBoxSettingsLanguages.SelectedValue<CultureInfo>(); }
-            set { comboBoxSettingsLanguages.SelectedItem = value; }
+            get { return comboBoxLanguages.SelectedValue<CultureInfo>(); }
+            set { comboBoxLanguages.SelectedItem = value; }
         }
 
         /// <summary>
@@ -74,8 +80,8 @@ namespace Ushahidi.View.Views
         /// </summary>
         public string Email
         {
-            get { return textBoxSettingsEmail.Text; }
-            set { textBoxSettingsEmail.Text = value; }
+            get { return textBoxEmail.Value; }
+            set { textBoxEmail.Value = value; }
         }
 
         /// <summary>
@@ -83,19 +89,14 @@ namespace Ushahidi.View.Views
         /// </summary>
         public bool ShowKeyboard
         {
-            get { return checkBoxSettingsKeyboard.Checked; }
-            set { checkBoxSettingsKeyboard.Checked = value; }
+            get { return checkBoxKeyboard.Checked; }
+            set { checkBoxKeyboard.Checked = value; }
         }
 
         /// <summary>
         /// Is the process cancelled?
         /// </summary>
         public bool ShouldSave { get; private set; }
-
-        public override void Render()
-        {
-            ShouldSave = true;
-        }
 
         /// <summary>
         /// On Done
@@ -123,7 +124,7 @@ namespace Ushahidi.View.Views
 
         private void OnLanguageChanged(object sender, EventArgs e)
         {
-            LanguageManager.Language = comboBoxSettingsLanguages.SelectedValue<CultureInfo>();
+            LanguageManager.Language = comboBoxLanguages.SelectedValue<CultureInfo>();
             Translate();
         }
 

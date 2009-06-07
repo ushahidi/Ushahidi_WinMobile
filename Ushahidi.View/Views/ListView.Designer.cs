@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListView));
             this.panelContent = new System.Windows.Forms.Panel();
-            this.listBoxIncidentListIncidents = new Ushahidi.Common.Controls.ScrollListBox();
-            this.comboBoxIncidentListCategories = new Ushahidi.Common.Controls.LabelComboBox();
+            this.listBoxIncidents = new Ushahidi.Common.Controls.ScrollListBox();
+            this.comboBoxCategories = new Ushahidi.Common.Controls.LabelComboBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,51 +51,51 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContent.Controls.Add(this.comboBoxIncidentListCategories);
-            this.panelContent.Controls.Add(this.listBoxIncidentListIncidents);
+            this.panelContent.Controls.Add(this.comboBoxCategories);
+            this.panelContent.Controls.Add(this.listBoxIncidents);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(240, 268);
             // 
             // listBoxIncidentListIncidents
             // 
-            this.listBoxIncidentListIncidents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.listBoxIncidents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxIncidentListIncidents.AutoScroll = true;
-            this.listBoxIncidentListIncidents.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxIncidentListIncidents.BackColorEven = System.Drawing.Color.WhiteSmoke;
-            this.listBoxIncidentListIncidents.BackColorOdd = System.Drawing.Color.Gainsboro;
-            this.listBoxIncidentListIncidents.BackSelectedColor = System.Drawing.Color.Black;
-            this.listBoxIncidentListIncidents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBoxIncidentListIncidents.Location = new System.Drawing.Point(0, 45);
-            this.listBoxIncidentListIncidents.Name = "listBoxIncidentListIncidents";
-            this.listBoxIncidentListIncidents.SelectedIndex = -1;
-            this.listBoxIncidentListIncidents.SelectedItem = null;
-            this.listBoxIncidentListIncidents.Size = new System.Drawing.Size(240, 223);
-            this.listBoxIncidentListIncidents.TabIndex = 0;
-            this.listBoxIncidentListIncidents.IndexChanged += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentChanged);
-            this.listBoxIncidentListIncidents.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentSelected);
+            this.listBoxIncidents.AutoScroll = true;
+            this.listBoxIncidents.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxIncidents.BackColorEven = System.Drawing.Color.WhiteSmoke;
+            this.listBoxIncidents.BackColorOdd = System.Drawing.Color.Gainsboro;
+            this.listBoxIncidents.BackSelectedColor = System.Drawing.Color.Black;
+            this.listBoxIncidents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBoxIncidents.Location = new System.Drawing.Point(0, 45);
+            this.listBoxIncidents.Name = "listBoxIncidents";
+            this.listBoxIncidents.SelectedIndex = -1;
+            this.listBoxIncidents.SelectedItem = null;
+            this.listBoxIncidents.Size = new System.Drawing.Size(240, 223);
+            this.listBoxIncidents.TabIndex = 0;
+            this.listBoxIncidents.IndexChanged += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentChanged);
+            this.listBoxIncidents.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentSelected);
             // 
             // comboBoxIncidentListCategories
             // 
-            this.comboBoxIncidentListCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.comboBoxCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxIncidentListCategories.BackColor = System.Drawing.Color.Gainsboro;
-            this.comboBoxIncidentListCategories.Bold = true;
-            this.comboBoxIncidentListCategories.DataSource = null;
-            this.comboBoxIncidentListCategories.DisplayMember = "Title";
-            this.comboBoxIncidentListCategories.IsRequired = true;
-            this.comboBoxIncidentListCategories.Label = "Category";
-            this.comboBoxIncidentListCategories.Location = new System.Drawing.Point(0, 0);
-            this.comboBoxIncidentListCategories.Name = "comboBoxIncidentListCategories";
-            this.comboBoxIncidentListCategories.SelectedIndex = -1;
-            this.comboBoxIncidentListCategories.SelectedItem = null;
-            this.comboBoxIncidentListCategories.SelectedText = "";
-            this.comboBoxIncidentListCategories.Size = new System.Drawing.Size(240, 45);
-            this.comboBoxIncidentListCategories.TabIndex = 1;
-            this.comboBoxIncidentListCategories.ValueMember = "ID";
-            this.comboBoxIncidentListCategories.SelectedIndexChanged += new System.EventHandler(this.OnCategoryChanged);
+            this.comboBoxCategories.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBoxCategories.Bold = true;
+            this.comboBoxCategories.DataSource = null;
+            this.comboBoxCategories.DisplayMember = "Title";
+            this.comboBoxCategories.IsRequired = true;
+            this.comboBoxCategories.Text = "Category";
+            this.comboBoxCategories.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxCategories.Name = "comboBoxCategories";
+            this.comboBoxCategories.SelectedIndex = -1;
+            this.comboBoxCategories.SelectedItem = null;
+            this.comboBoxCategories.SelectedText = "";
+            this.comboBoxCategories.Size = new System.Drawing.Size(240, 45);
+            this.comboBoxCategories.TabIndex = 1;
+            this.comboBoxCategories.ValueMember = "ID";
+            this.comboBoxCategories.SelectedIndexChanged += new System.EventHandler(this.OnCategoryChanged);
             // 
             // ListView
             // 
@@ -114,8 +114,8 @@
         #endregion
 
         private System.Windows.Forms.Panel panelContent;
-        private Ushahidi.Common.Controls.LabelComboBox comboBoxIncidentListCategories;
-        private Ushahidi.Common.Controls.ScrollListBox listBoxIncidentListIncidents;
+        private Ushahidi.Common.Controls.LabelComboBox comboBoxCategories;
+        private Ushahidi.Common.Controls.ScrollListBox listBoxIncidents;
 
     }
 }

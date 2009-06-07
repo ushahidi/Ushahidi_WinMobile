@@ -23,7 +23,7 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         public bool IsValid
         {
-            get { return IsRequired && Date != DateTime.MinValue; }
+            get { return IsRequired && Value != DateTime.MinValue; }
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Label
         /// </summary>
-        public string Label
+        public override string Text
         {
             get { return label.Text; }
             set { label.Text = value; }
@@ -112,7 +112,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Date
         /// </summary>
-        public DateTime Date
+        public DateTime Value
         {
             get { return dateTimePicker.Value; }
             set

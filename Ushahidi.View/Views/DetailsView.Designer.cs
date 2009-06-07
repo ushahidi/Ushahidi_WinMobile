@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsView));
-            this.menuItemIncidentDetailsAddPhoto = new System.Windows.Forms.MenuItem();
+            this.menuItemAddPhoto = new System.Windows.Forms.MenuItem();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
-            this.menuItemIncidentDetailsAddNews = new System.Windows.Forms.MenuItem();
-            this.menuItemIncidentDetailsAddVideo = new System.Windows.Forms.MenuItem();
+            this.listBoxDetails = new Ushahidi.Common.Controls.ScrollListBox();
+            this.menuItemAddNews = new System.Windows.Forms.MenuItem();
+            this.menuItemAddVideo = new System.Windows.Forms.MenuItem();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddPhoto);
-            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddNews);
-            this.menuItemAction.MenuItems.Add(this.menuItemIncidentDetailsAddVideo);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddPhoto);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddNews);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddVideo);
             this.menuItemAction.Text = "Action";
             // 
             // menuItemIncidentDetailsAddPhoto
             // 
-            this.menuItemIncidentDetailsAddPhoto.Text = "Add Photo";
+            this.menuItemAddPhoto.Text = "Add Photo";
             // 
             // panelContent
             // 
@@ -55,32 +55,32 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.AutoScroll = true;
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContent.Controls.Add(this.scrollListBox);
+            this.panelContent.Controls.Add(this.listBoxDetails);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(240, 268);
             // 
             // scrollListBox
             // 
-            this.scrollListBox.AutoScroll = true;
-            this.scrollListBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.scrollListBox.BackColorEven = System.Drawing.Color.Gainsboro;
-            this.scrollListBox.BackColorOdd = System.Drawing.Color.WhiteSmoke;
-            this.scrollListBox.BackSelectedColor = System.Drawing.Color.Black;
-            this.scrollListBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scrollListBox.Location = new System.Drawing.Point(0, 0);
-            this.scrollListBox.Name = "scrollListBox";
-            this.scrollListBox.SelectedIndex = -1;
-            this.scrollListBox.Size = new System.Drawing.Size(240, 268);
-            this.scrollListBox.TabIndex = 0;
+            this.listBoxDetails.AutoScroll = true;
+            this.listBoxDetails.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxDetails.BackColorEven = System.Drawing.Color.Gainsboro;
+            this.listBoxDetails.BackColorOdd = System.Drawing.Color.WhiteSmoke;
+            this.listBoxDetails.BackSelectedColor = System.Drawing.Color.Black;
+            this.listBoxDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxDetails.Location = new System.Drawing.Point(0, 0);
+            this.listBoxDetails.Name = "listBoxDetails";
+            this.listBoxDetails.SelectedIndex = -1;
+            this.listBoxDetails.Size = new System.Drawing.Size(240, 268);
+            this.listBoxDetails.TabIndex = 0;
             // 
             // menuItemIncidentDetailsAddNews
             // 
-            this.menuItemIncidentDetailsAddNews.Text = "Add News Link";
+            this.menuItemAddNews.Text = "Add News Link";
             // 
             // menuItemIncidentDetailsAddVideo
             // 
-            this.menuItemIncidentDetailsAddVideo.Text = "Add Video Link";
+            this.menuItemAddVideo.Text = "Add Video Link";
             // 
             // IncidentDetailsView
             // 
@@ -99,10 +99,10 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddPhoto;
+        private System.Windows.Forms.MenuItem menuItemAddPhoto;
         private System.Windows.Forms.Panel panelContent;
-        private Ushahidi.Common.Controls.ScrollListBox scrollListBox;
-        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddNews;
-        private System.Windows.Forms.MenuItem menuItemIncidentDetailsAddVideo;
+        private Ushahidi.Common.Controls.ScrollListBox listBoxDetails;
+        private System.Windows.Forms.MenuItem menuItemAddNews;
+        private System.Windows.Forms.MenuItem menuItemAddVideo;
     }
 }

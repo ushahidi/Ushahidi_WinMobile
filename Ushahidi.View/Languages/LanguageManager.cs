@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Logging;
+using Ushahidi.Model;
 
 namespace Ushahidi.View.Languages
 {
@@ -21,9 +22,10 @@ namespace Ushahidi.View.Languages
         static LanguageManager()
         {
             DirectoryInfo appDirectory = new DirectoryInfo(Runtime.AppDirectory);
-            foreach(DirectoryInfo directoryInfo in appDirectory.GetDirectories())
+            string resourceName = string.Format("{0}.resources.dll", Assembly.GetExecutingAssembly().GetName().Name);
+            foreach(DirectoryInfo directoryInfo in appDirectory.GetDirectories().OrderBy(d => d.Name))
             {
-                if (directoryInfo.GetFiles("Ushahidi.resources.dll").Length > 0)
+                if (directoryInfo.GetFiles(resourceName).Length > 0)
                 {
                     Log.Info("LanguageManager", "Culture: {0}", directoryInfo.Name);
                     _Languages.Add(new CultureInfo(directoryInfo.Name));
@@ -48,11 +50,17 @@ namespace Ushahidi.View.Languages
             {
                 if (_Language == null)
                 {
-                    _Language = _Languages.FirstOrDefault(c => c.Name == "en");
+                    _Language = _Languages.First(c => c.Name == DataManager.Language);
                 }
                 return _Language;
             }
-            set { _Language = value; }
+            set
+            {
+                if (value != null)
+                {
+                    _Language = value;
+                }
+            }
         }private static CultureInfo _Language;
 
         public static string Translate(this string name)
@@ -65,123 +73,41 @@ namespace Ushahidi.View.Languages
             }
             catch
             {
-                return string.Format("[{0}]", name);
+                return string.Format("{0}", name);
             }
         }
 
-        public static string Translate(this Control control)
+        public static void Translate(this Control control)
         {
-            return control.Translate(control.Name);
+            control.Translate(control.Name);
         }
 
-        public static string Translate(this Control control, string name)
+        public static void Translate(this Control control, string name)
         {
-            string translation = ResourceManager.GetString(name, Language);
-            if (string.IsNullOrEmpty(translation) == false)
-            {
-                control.Text = translation;
-                return translation;
-            }
-            return string.Empty;
+            control.Text = Translate(name) ?? control.Text;
         }
 
-        public static string Translate(this LabelTextBox labelTextBox)
+        public static void Translate(this LabelCheckBox labelCheckBox, string name, string checkbox)
         {
-            string translation = Translate(labelTextBox.Name);
-            if (string.IsNullOrEmpty(translation) == false)
-            {
-                labelTextBox.Label = translation;
-                return translation;
-            }
-            return string.Empty;
+            labelCheckBox.Text = Translate(name) ?? labelCheckBox.Text;
+            labelCheckBox.CheckBox = Translate(checkbox) ?? labelCheckBox.CheckBox;
         }
 
-        public static string Translate(this LabelDateBox labelDateBox)
+        public static void Translate(this MenuItem menuItem, string name)
         {
-            string translation = Translate(labelDateBox.Name);
-            if (string.IsNullOrEmpty(translation) == false)
-            {
-                labelDateBox.Label = translation;
-                return translation;
-            }
-            return string.Empty;
+            menuItem.Text = Translate(name) ?? menuItem.Text;
         }
 
-        public static string Translate(this LabelComboBox labelComboBox)
-        {
-            string translation = Translate(labelComboBox.Name);
-            if (string.IsNullOrEmpty(translation) == false)
-            {
-                labelComboBox.Label = translation;
-                return translation;
-            }
-            return string.Empty;
-        }
-
-        public static string Translate(this LabelCheckBox labelCheckBox, string valueKey)
-        {
-            string translationValue = Translate(valueKey);
-            if (string.IsNullOrEmpty(translationValue) == false)
-            {
-                labelCheckBox.Text = translationValue;
-            }
-            string translationLabel = Translate(labelCheckBox.Name);
-            if (string.IsNullOrEmpty(translationLabel) == false)
-            {
-                labelCheckBox.Label = translationLabel;
-                return translationLabel;
-            }
-            return string.Empty;
-        }
-
-        public static string Translate(this Form form, Form instance)
-        {
-            string translation = Translate(form.Name);
-            if (string.IsNullOrEmpty(translation) == false)
-            {
-                form.Text = translation;
-                return translation;
-            }
-            return string.Empty;
-        }
-
-        public static string Translate(this ColumnHeader columnHeader, string name)
-        {
-            string translation = Translate(name);
-            if (string.IsNullOrEmpty(translation) == false)
-            {
-                columnHeader.Text = translation;
-                return translation;
-            }
-            return string.Empty;
-        }
-
-        public static string Translate(this MenuItem menuItem, string name)
-        {
-            string translation = Translate(name);
-            if (string.IsNullOrEmpty(translation) == false)
-            {
-                menuItem.Text = translation;
-                return translation;
-            }
-            return string.Empty;
-        }
-
-        public static string Translate(this MenuItem menuItem, Form form)
+        public static void Translate(this MenuItem menuItem, Form form)
         {
             foreach (FieldInfo field in form.GetType().GetFields(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance))
             {
                 if (field.GetValue(form) == menuItem)
                 {
-                    string translation = Translate(field.Name);
-                    if (string.IsNullOrEmpty(translation) == false)
-                    {
-                        menuItem.Text = translation;
-                        return translation;
-                    }
+                    menuItem.Text = Translate(field.Name) ?? menuItem.Text;
+                    return;
                 }
             }
-            return string.Empty;
         }
 
     }

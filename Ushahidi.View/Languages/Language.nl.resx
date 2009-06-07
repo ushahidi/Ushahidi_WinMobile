@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="about" xml:space="preserve">
+    <value>Over</value>
+  </data>
+  <data name="action" xml:space="preserve">
+    <value>Actie</value>
+  </data>
   <data name="active" xml:space="preserve">
     <value>Actief</value>
   </data>
-  <data name="AddView" xml:space="preserve">
+  <data name="addIncident" xml:space="preserve">
     <value>Incident Toevoegen</value>
+  </data>
+  <data name="addNewsLink" xml:space="preserve">
+    <value>Nieuws-link toevoegen</value>
+  </data>
+  <data name="addPhoto" xml:space="preserve">
+    <value>Foto toevoegen</value>
+  </data>
+  <data name="addVideoLink" xml:space="preserve">
+    <value>Video-link toevoegen</value>
   </data>
   <data name="allCategories" xml:space="preserve">
     <value>Alle categorieën.</value>
@@ -132,38 +147,14 @@
   <data name="autoShow" xml:space="preserve">
     <value>Automatisch tonen</value>
   </data>
-  <data name="BaseView" xml:space="preserve">
-    <value>Ushahidi</value>
+  <data name="cancel" xml:space="preserve">
+    <value>Annuleren</value>
   </data>
   <data name="category" xml:space="preserve">
     <value>Categorie</value>
   </data>
-  <data name="checkBoxSettingsKeyboard" xml:space="preserve">
-    <value>Toetsenbord</value>
-  </data>
-  <data name="columnHeaderSyncProgress" xml:space="preserve">
-    <value>Voortgang</value>
-  </data>
-  <data name="comboBoxAddIncidentCategories" xml:space="preserve">
-    <value>Categirue</value>
-  </data>
-  <data name="comboBoxAddIncidentLocales" xml:space="preserve">
-    <value>Locatie</value>
-  </data>
-  <data name="comboBoxIncidentListCategories" xml:space="preserve">
-    <value>Categorie</value>
-  </data>
-  <data name="comboBoxSettingsLanguages" xml:space="preserve">
-    <value>Taal</value>
-  </data>
   <data name="date" xml:space="preserve">
     <value>Datum</value>
-  </data>
-  <data name="dateBoxAddIncidentDate" xml:space="preserve">
-    <value>Datum</value>
-  </data>
-  <data name="dateBoxSyncLastSync" xml:space="preserve">
-    <value>Laatste synchronisatie</value>
   </data>
   <data name="description" xml:space="preserve">
     <value>Beschrijving</value>
@@ -180,107 +171,56 @@
   <data name="downloadingIncidents" xml:space="preserve">
     <value>Incidenten downloaden</value>
   </data>
-  <data name="downloadingLocales" xml:space="preserve">
+  <data name="downloadingLocations" xml:space="preserve">
     <value>Localisaties downloaden</value>
   </data>
   <data name="downloadingMedia" xml:space="preserve">
     <value>Media downloaden</value>
   </data>
-  <data name="HomeView" xml:space="preserve">
-    <value>Ushahidi</value>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="DetailsView" xml:space="preserve">
-    <value>Incidentdetails</value>
-  </data>
-  <data name="ListView" xml:space="preserve">
-    <value>Incidentenlijst</value>
-  </data>
-  <data name="MapView" xml:space="preserve">
-    <value>Incidentenkaart</value>
-  </data>
-  <data name="PhotoView" xml:space="preserve">
-    <value>Incidentfoto</value>
-  </data>
-  <data name="labelHomeDescription" xml:space="preserve">
-    <value>Welkom bij Ushahidi, - dit betekent getuigenis in het Swahili's - waar we een platform aan het bouwen zijn om crisis informatie te crowdsourcen. Hiermee stellen we een ieder in staat om crisis-informatie naar ons te versturen via tekstberichten met een mobiele telefoon, email of een webformulier.</value>
-  </data>
-  <data name="labelTextBoxSyncServer" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="locale" xml:space="preserve">
-    <value>Locatie</value>
-  </data>
-  <data name="menuItemAbout" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="menuItemAction" xml:space="preserve">
-    <value>Actie</value>
-  </data>
-  <data name="menuItemAddIncident" xml:space="preserve">
-    <value>Incident toevoegen</value>
-  </data>
-  <data name="menuItemAddIncidentAddNews" xml:space="preserve">
-    <value>Nieuws-link toevoegen</value>
-  </data>
-  <data name="menuItemAddIncidentAddPhoto" xml:space="preserve">
-    <value>Foto toevoegen</value>
-  </data>
-  <data name="menuItemAddIncidentAddVideo" xml:space="preserve">
-    <value>Video-link toevoegen</value>
-  </data>
-  <data name="menuItemAddIncidentCancel" xml:space="preserve">
-    <value>Annuleren</value>
-  </data>
-  <data name="menuItemAddIncidentSave" xml:space="preserve">
-    <value>Incident bewaren</value>
-  </data>
-  <data name="menuItemExit" xml:space="preserve">
+  <data name="exit" xml:space="preserve">
     <value>Verlaten</value>
   </data>
-  <data name="menuItemIncidentDetailsAddNews" xml:space="preserve">
-    <value>Nieuws-link toevoegen</value>
+  <data name="firstName" xml:space="preserve">
+    <value>Voornaam</value>
   </data>
-  <data name="menuItemIncidentDetailsAddPhoto" xml:space="preserve">
-    <value>Foto toevoegen</value>
+  <data name="incidentDetails" xml:space="preserve">
+    <value>Incidentdetails</value>
   </data>
-  <data name="menuItemIncidentDetailsAddVideo" xml:space="preserve">
-    <value>Video-link toevoegen</value>
-  </data>
-  <data name="menuItemIncidentDetailsViewMap" xml:space="preserve">
-    <value>Kaart bekijken</value>
-  </data>
-  <data name="menuItemIncidentList" xml:space="preserve">
+  <data name="incidentList" xml:space="preserve">
     <value>Incidentenlijst</value>
   </data>
-  <data name="menuItemIncidentMap" xml:space="preserve">
+  <data name="incidentMap" xml:space="preserve">
     <value>Incidentenkaart</value>
   </data>
-  <data name="menuItemMenu" xml:space="preserve">
+  <data name="incidentPhoto" xml:space="preserve">
+    <value>Incidentfoto</value>
+  </data>
+  <data name="keyboard" xml:space="preserve">
+    <value>Toetsenbord</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="lastName" xml:space="preserve">
+    <value>Achternaam</value>
+  </data>
+  <data name="lastSynchronization" xml:space="preserve">
+    <value>Laatste synchronisatie</value>
+  </data>
+  <data name="location" xml:space="preserve">
+    <value>Locatie</value>
+  </data>
+  <data name="menu" xml:space="preserve">
     <value>Menu</value>
   </data>
-  <data name="menuItemSettings" xml:space="preserve">
-    <value>Instellingen</value>
+  <data name="missingFields" xml:space="preserve">
+    <value>Ontbrekende waarden</value>
   </data>
-  <data name="menuItemSettingsCancel" xml:space="preserve">
-    <value>Annuleren</value>
-  </data>
-  <data name="menuItemSettingsDone" xml:space="preserve">
-    <value>Gereed</value>
-  </data>
-  <data name="menuItemSettingsSelect" xml:space="preserve">
-    <value>Selecteren</value>
-  </data>
-  <data name="menuItemSynchronize" xml:space="preserve">
-    <value>Synchroniseren</value>
-  </data>
-  <data name="menuItemSyncSynchronize" xml:space="preserve">
-    <value>Synchroniseren</value>
-  </data>
-  <data name="menuItemWebsite" xml:space="preserve">
-    <value>Website</value>
-  </data>
-  <data name="menuItemWebsiteDone" xml:space="preserve">
-    <value>Gereed</value>
+  <data name="missingFieldsVerify" xml:space="preserve">
+    <value>Controleer of alle verplichte velden zijn ingevuld</value>
   </data>
   <data name="news" xml:space="preserve">
     <value>Nieuws</value>
@@ -303,10 +243,22 @@
   <data name="photo" xml:space="preserve">
     <value>Foto</value>
   </data>
+  <data name="progress" xml:space="preserve">
+    <value>Voortgang</value>
+  </data>
+  <data name="saveIncident" xml:space="preserve">
+    <value>Incident bewaren</value>
+  </data>
   <data name="seconds" xml:space="preserve">
     <value>Seconden</value>
   </data>
-  <data name="SettingsView" xml:space="preserve">
+  <data name="select" xml:space="preserve">
+    <value>Selecteren</value>
+  </data>
+  <data name="server" xml:space="preserve">
+    <value>Server</value>
+  </data>
+  <data name="settings" xml:space="preserve">
     <value>Instellingen</value>
   </data>
   <data name="synchronizationComplete" xml:space="preserve">
@@ -315,7 +267,7 @@
   <data name="synchronizationFailure" xml:space="preserve">
     <value>Synchronisatie-fout</value>
   </data>
-  <data name="SyncView" xml:space="preserve">
+  <data name="synchronize" xml:space="preserve">
     <value>Synchroniseren</value>
   </data>
   <data name="takeIncidentPhoto" xml:space="preserve">
@@ -327,29 +279,20 @@
   <data name="testingNetworkConnection" xml:space="preserve">
     <value>Netwerkverbinding aan het testen</value>
   </data>
-  <data name="textBoxAddIncidentDescription" xml:space="preserve">
-    <value>Beschrijving</value>
-  </data>
-  <data name="textBoxAddIncidentTitle" xml:space="preserve">
+  <data name="title" xml:space="preserve">
     <value>Titel</value>
   </data>
-  <data name="textBoxSettingsEmail" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="textBoxSettingsFirstName" xml:space="preserve">
-    <value>Voornaam</value>
-  </data>
-  <data name="textBoxSettingsLastName" xml:space="preserve">
-    <value>Achternaam</value>
-  </data>
-  <data name="textBoxSettingsServer" xml:space="preserve">
-    <value>Server</value>
-  </data>
-  <data name="title" xml:space="preserve">
+  <data name="title1" xml:space="preserve">
     <value>Titel</value>
   </data>
   <data name="uploadingIncidents" xml:space="preserve">
     <value>Incidenten aan het uploaden</value>
+  </data>
+  <data name="ushahidi" xml:space="preserve">
+    <value>Ushahidi</value>
+  </data>
+  <data name="ushahidiDescription" xml:space="preserve">
+    <value>Welkom bij Ushahidi, - dit betekent getuigenis in het Swahili's - waar we een platform aan het bouwen zijn om crisis informatie te crowdsourcen. Hiermee stellen we een ieder in staat om crisis-informatie naar ons te versturen via tekstberichten met een mobiele telefoon, email of een webformulier.</value>
   </data>
   <data name="verified" xml:space="preserve">
     <value>Bevestigd</value>
@@ -366,7 +309,10 @@
   <data name="video" xml:space="preserve">
     <value>Video</value>
   </data>
-  <data name="WebsiteView" xml:space="preserve">
+  <data name="viewMap" xml:space="preserve">
+    <value>Kaart bekijken</value>
+  </data>
+  <data name="website" xml:space="preserve">
     <value>Website</value>
   </data>
 </root>

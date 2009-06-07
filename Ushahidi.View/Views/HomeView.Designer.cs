@@ -52,7 +52,7 @@
             this.panelContent.Controls.Add(this.pictureBoxLogo);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(240, 294);
+            this.panelContent.Size = new System.Drawing.Size(176, 240);
             // 
             // buttonSynchronize
             // 
@@ -67,8 +67,8 @@
             this.buttonSynchronize.Momentary = false;
             this.buttonSynchronize.Name = "buttonSynchronize";
             this.buttonSynchronize.Pressed = false;
-            this.buttonSynchronize.Size = new System.Drawing.Size(233, 28);
-            this.buttonSynchronize.TabIndex = 6;
+            this.buttonSynchronize.Size = new System.Drawing.Size(169, 28);
+            this.buttonSynchronize.TabIndex = 3;
             this.buttonSynchronize.Click += new System.EventHandler(this.OnSynchronize);
             // 
             // buttonAddIncident
@@ -84,8 +84,8 @@
             this.buttonAddIncident.Momentary = false;
             this.buttonAddIncident.Name = "buttonAddIncident";
             this.buttonAddIncident.Pressed = false;
-            this.buttonAddIncident.Size = new System.Drawing.Size(233, 28);
-            this.buttonAddIncident.TabIndex = 4;
+            this.buttonAddIncident.Size = new System.Drawing.Size(169, 28);
+            this.buttonAddIncident.TabIndex = 2;
             this.buttonAddIncident.Click += new System.EventHandler(this.OnAddIncident);
             // 
             // buttonMapIncident
@@ -101,8 +101,8 @@
             this.buttonMapIncident.Momentary = false;
             this.buttonMapIncident.Name = "buttonMapIncident";
             this.buttonMapIncident.Pressed = false;
-            this.buttonMapIncident.Size = new System.Drawing.Size(233, 28);
-            this.buttonMapIncident.TabIndex = 3;
+            this.buttonMapIncident.Size = new System.Drawing.Size(169, 28);
+            this.buttonMapIncident.TabIndex = 1;
             this.buttonMapIncident.Click += new System.EventHandler(this.OnMapIncident);
             // 
             // buttonListIncident
@@ -118,8 +118,8 @@
             this.buttonListIncident.Momentary = false;
             this.buttonListIncident.Name = "buttonListIncident";
             this.buttonListIncident.Pressed = false;
-            this.buttonListIncident.Size = new System.Drawing.Size(233, 28);
-            this.buttonListIncident.TabIndex = 2;
+            this.buttonListIncident.Size = new System.Drawing.Size(169, 28);
+            this.buttonListIncident.TabIndex = 0;
             this.buttonListIncident.Click += new System.EventHandler(this.OnListIncident);
             // 
             // pictureBoxLogo
@@ -129,17 +129,16 @@
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(234, 85);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(170, 85);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // HomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(176, 240);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "HomeView";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelContent.ResumeLayout(false);

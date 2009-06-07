@@ -36,19 +36,10 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Label
         /// </summary>
-        public string Label
+        public override string Text
         {
             get { return label.Text; }
             set { label.Text = value; }
-        }
-
-        /// <summary>
-        /// Text
-        /// </summary>
-        public override string Text
-        {
-            get { return checkBox.Text; }
-            set { checkBox.Text = value; }
         }
 
         /// <summary>

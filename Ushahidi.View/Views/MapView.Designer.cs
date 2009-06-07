@@ -59,7 +59,7 @@
             this.comboBoxCategories.Bold = true;
             this.comboBoxCategories.DisplayMember = "Title";
             this.comboBoxCategories.IsRequired = true;
-            this.comboBoxCategories.Label = "Category";
+            this.comboBoxCategories.Text = "Category";
             this.comboBoxCategories.Location = new System.Drawing.Point(0, 0);
             this.comboBoxCategories.Name = "comboBoxCategories";
             this.comboBoxCategories.Size = new System.Drawing.Size(240, 28);

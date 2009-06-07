@@ -68,7 +68,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Label
         /// </summary>
-        public string Label
+        public override string Text
         {
             get { return label.Text; }
             set { label.Text = value; }
@@ -98,8 +98,24 @@ namespace Ushahidi.Common.Controls
         public object DataSource
         {
             get { return comboBox.DataSource; }
-            set { comboBox.DataSource = value; }
-        }
+            set
+            {
+                if (value != null)
+                {
+                    DataSourceChanging = true;
+                    comboBox.SelectedIndex = -1;
+                    comboBox.DataSource = value;
+                    DataSourceChanging = false;
+                }
+                else
+                {
+                    comboBox.SelectedIndex = -1;
+                    comboBox.DataSource = null;
+                    comboBox.Items.Clear();
+                }
+                comboBox.SelectedIndex = -1;
+            }
+        }private bool DataSourceChanging;
 
         /// <summary>
         /// ComboBox display member
@@ -124,9 +140,9 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         public event EventHandler SelectedIndexChanged
         {
-            add { comboBox.SelectedIndexChanged += value; }
-            remove { comboBox.SelectedIndexChanged -= value; }
-        }
+            add { _SelectedIndexChanged += value; }
+            remove { _SelectedIndexChanged -= value; }
+        }private event EventHandler _SelectedIndexChanged;
 
         /// <summary>
         /// Get or set the background color
@@ -198,6 +214,10 @@ namespace Ushahidi.Common.Controls
             {
                 comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.LightSalmon : Color.White;
             }
+            if (_SelectedIndexChanged != null && DataSourceChanging == false)
+            {
+                _SelectedIndexChanged(this, e);
+            }
         }
 
         private void OnGotFocus(object sender, EventArgs e)
@@ -210,4 +230,5 @@ namespace Ushahidi.Common.Controls
             comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.LightSalmon : Color.White;
         }
     }
+
 }

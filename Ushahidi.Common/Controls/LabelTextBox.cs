@@ -68,7 +68,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Label
         /// </summary>
-        public string Label
+        public override string Text
         {
             get { return label.Text; }
             set { label.Text = value; }
@@ -77,7 +77,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Text
         /// </summary>
-        public new string Text
+        public string Value
         {
             get { return textBox.Text; }
             set { textBox.Text = value; }

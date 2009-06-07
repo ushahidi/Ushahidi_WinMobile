@@ -18,10 +18,11 @@ namespace Ushahidi.View.Views
         public override void Translate()
         {
             base.Translate();
-            buttonListIncident.Translate("menuItemIncidentList");
-            buttonMapIncident.Translate("menuItemIncidentDetailsViewMap");
-            buttonAddIncident.Translate("menuItemAddIncident");
-            buttonSynchronize.Translate("menuItemSynchronize");
+            this.Translate("ushahidi");
+            buttonListIncident.Translate("incidentList");
+            buttonMapIncident.Translate("incidentMap");
+            buttonAddIncident.Translate("addIncident");
+            buttonSynchronize.Translate("synchronize");
         }
 
         /// <summary>

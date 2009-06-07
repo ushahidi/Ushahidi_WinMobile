@@ -9,8 +9,11 @@ namespace Ushahidi.View.Controllers
     {
         public override void Load(object[] parameters)
         {
-            Models<Category> categories = DataManager.Categories;
-            categories.Add(new Category { ID = -1, Title = null, Description = null });
+            Models<Category> categories = new Models<Category>
+            {
+                new Category {ID = -1, Title = null, Description = null},
+                DataManager.Categories
+            };
             View.Categories = categories;
             View.Incidents = DataManager.Incidents;
         }

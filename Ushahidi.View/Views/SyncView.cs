@@ -28,10 +28,10 @@ namespace Ushahidi.View.Views
         public override void Translate()
         {
             base.Translate();
-            dateBoxSyncLastSync.Translate();
-            textBoxSyncServer.Translate();
-            menuItemAction.Translate("menuItemSyncSynchronize");
-            columnHeaderSyncProgress.Translate("columnHeaderSyncProgress");
+            this.Translate("synchronize");
+            dateBoxLastSync.Translate("lastSynchronization");
+            textBoxServer.Translate("server");
+            menuItemAction.Translate("action");
         }
 
         public override void Render()
@@ -45,14 +45,14 @@ namespace Ushahidi.View.Views
         /// </summary>
         public DateTime LastSyncDate
         {
-            get { return dateBoxSyncLastSync.Date; }
-            set { dateBoxSyncLastSync.Date = value;}
+            get { return dateBoxLastSync.Value; }
+            set { dateBoxLastSync.Value = value;}
         }
 
         public string ServerAddress
         {
-            get { return textBoxSyncServer.Text; }
-            set { textBoxSyncServer.Text = value; }
+            get { return textBoxServer.Value; }
+            set { textBoxServer.Value = value; }
         }
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace Ushahidi.View.Views
             progressBox.Value = 0;
             progressBox.Maximum = 8;
             listView.Items.Clear();
-            columnHeaderSyncProgress.Width = -2;
+            columnHeaderProgress.Width = -2;
             StartTime = DateTime.Now;
-            DataManager.ServerAddress = textBoxSyncServer.Text;
+            DataManager.ServerAddress = textBoxServer.Value;
             new Thread(SyncInternal).Start();
         }
 

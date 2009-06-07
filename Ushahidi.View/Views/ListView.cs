@@ -28,8 +28,9 @@ namespace Ushahidi.View.Views
         public override void Translate()
         {
             base.Translate();
-            menuItemAction.Translate("menuItemSettingsSelect");
-            comboBoxIncidentListCategories.Translate();
+            this.Translate("incidentList");
+            menuItemAction.Translate("select");
+            comboBoxCategories.Translate("category");
         }
 
         /// <summary>
@@ -37,12 +38,12 @@ namespace Ushahidi.View.Views
         /// </summary>
         public Models<Category> Categories
         {
-            set { comboBoxIncidentListCategories.DataSource = value; }
+            set { comboBoxCategories.DataSource = value; }
         }
 
         protected Category SelectedCategory
         {
-            get { return comboBoxIncidentListCategories.SelectedValue<Category>(); }
+            get { return comboBoxCategories.SelectedValue<Category>(); }
         }
 
         /// <summary>
@@ -54,12 +55,12 @@ namespace Ushahidi.View.Views
             set
             {
                 _Incidents = value;
-                listBoxIncidentListIncidents.Clear();
+                listBoxIncidents.Clear();
                 if (value != null)
                 {
                     foreach (Incident incident in value.Where(i => string.IsNullOrEmpty(i.Title) == false))
                     {
-                        listBoxIncidentListIncidents.Add(new IncidentListItem(incident));
+                        listBoxIncidents.Add(new IncidentListItem(incident));
                     }
                 }
             }
@@ -69,7 +70,7 @@ namespace Ushahidi.View.Views
         {
             using (new WaitCursor())
             {
-                listBoxIncidentListIncidents.Clear();
+                listBoxIncidents.Clear();
                 if (Incidents != null)
                 {
                     foreach (Incident incident in SelectedCategory.ID != -1
@@ -77,7 +78,7 @@ namespace Ushahidi.View.Views
                                                                              i.HasCategory(SelectedCategory.ID))
                                                       : Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false))
                     {
-                        listBoxIncidentListIncidents.Add(new IncidentListItem(incident));
+                        listBoxIncidents.Add(new IncidentListItem(incident));
                     }
                 }
             }
@@ -99,7 +100,7 @@ namespace Ushahidi.View.Views
 
         private void OnViewIncident(object sender, EventArgs e)
         {
-            IncidentListItem listItem = listBoxIncidentListIncidents.SelectedItem as IncidentListItem;
+            IncidentListItem listItem = listBoxIncidents.SelectedItem as IncidentListItem;
             if (listItem != null)
             {
                 OnForward<DetailsViewController>(false, listItem.Item);

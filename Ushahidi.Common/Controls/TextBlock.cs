@@ -8,7 +8,7 @@ namespace Ushahidi.Common.Controls
     {
         public TextBlock()
         {
-            base.TabStop = false;
+            TabStop = false;
         }
 
         public override string Text
@@ -23,6 +23,12 @@ namespace Ushahidi.Common.Controls
                 }
                 Invalidate();
             }
+        }
+
+        public int AdjustHeight()
+        {
+            Height = this.GetRequiredHeight(Font, ClientRectangle.Width - Padding * 2, Text) + Padding * 2;
+            return Height;
         }
 
         public int Padding
@@ -45,9 +51,10 @@ namespace Ushahidi.Common.Controls
             }
         }
 
-        public new bool TabStop
+        private new bool TabStop
         {
-            get { return false; }
+            get { return base.TabStop; }
+            set { base.TabStop = value; }
         }
 
         public bool Bold

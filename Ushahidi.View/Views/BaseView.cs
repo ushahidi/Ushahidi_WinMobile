@@ -1,5 +1,4 @@
 ﻿using System;
-using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.View.Controllers;
 using Ushahidi.View.Languages;
@@ -17,17 +16,23 @@ namespace Ushahidi.View.Views
             //Keyboard.KeyboardChanged += OnKeyboardChanged;
         }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            MinimizeBox = false;
+        }
+
         public override void Translate()
         {
-            this.Translate(this);
-            menuItemMenu.Translate(this);
-            menuItemWebsite.Translate(this);
-            menuItemAddIncident.Translate(this);
-            menuItemExit.Translate(this);
-            menuItemIncidentList.Translate(this);
-            menuItemIncidentMap.Translate(this);
-            menuItemSettings.Translate(this);
-            menuItemSynchronize.Translate(this);
+            menuItemMenu.Translate("menu");
+            menuItemWebsite.Translate("website");
+            menuItemAddIncident.Translate("addIncident");
+            menuItemExit.Translate("exit");
+            menuItemIncidentList.Translate("incidentList");
+            menuItemIncidentMap.Translate("incidentMap");
+            menuItemAbout.Translate("about");
+            menuItemSettings.Translate("settings");
+            menuItemSynchronize.Translate("synchronize");
         }
 
         /// <summary>
@@ -60,6 +65,11 @@ namespace Ushahidi.View.Views
         private void OnSync(object sender, EventArgs e)
         {
             OnForward<SyncViewController>(true);
+        }
+
+        private void OnAbout(object sender, EventArgs e)
+        {
+            OnForward<AboutViewController>(true);
         }
 
         /// <summary>
