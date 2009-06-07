@@ -14,7 +14,7 @@ namespace Ushahidi.Common.Controls
 
         static Keyboard()
         {
-            InputPanel.EnabledChanged += Keyboard_EnabledChanged;
+            InputPanel.EnabledChanged += OnKeyboardEnabledChanged;
         }
 
         /// <summary>
@@ -25,12 +25,12 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Auto show/hide keyboard?
         /// </summary>
-        public static bool AutoShowHideKeyboard { get; set; }
+        public static bool AutoShow { get; set; }
 
         /// <summary>
         /// Change keyboard visibility
         /// </summary>
-        public static bool KeyboardVisible
+        public static bool Visible
         {
             get { return InputPanel.Enabled; }
             set { InputPanel.Enabled = value; }
@@ -44,50 +44,50 @@ namespace Ushahidi.Common.Controls
         {
             if (control != null && Runtime.IsPocketPC)
             {
-                control.GotFocus += control_GotFocus;
-                control.LostFocus += control_LostFocus;
+                control.GotFocus += OnControlGotFocus;
+                control.LostFocus += OnControlLostFocus;
             }
         }
 
         /// <summary>
         /// GotFocus
         /// </summary>
-        private static void control_GotFocus(object sender, EventArgs e)
+        private static void OnControlGotFocus(object sender, EventArgs e)
         {
-            if (AutoShowHideKeyboard)
+            if (AutoShow)
             {
                 FocusedControl = sender as Control;
-                KeyboardVisible = true;
+                Visible = true;
             }
         }
 
         /// <summary>
         /// LostFocus
         /// </summary>
-        private static void control_LostFocus(object sender, EventArgs e)
+        private static void OnControlLostFocus(object sender, EventArgs e)
         {
-            if (AutoShowHideKeyboard)
+            if (AutoShow)
             {
                 FocusedControl = null;
-                KeyboardVisible = false;
+                Visible = false;
             }
         }
 
         /// <summary>
         /// KeyboardInputPanel EnabledChanged
         /// </summary>
-        private static void Keyboard_EnabledChanged(object sender, EventArgs e)
+        private static void OnKeyboardEnabledChanged(object sender, EventArgs e)
         {
             if (_KeyboardChanged != null)
             {
-                _KeyboardChanged(InputPanel, new KeyboardEventArgs(KeyboardVisible, KeyboardBounds, FocusedControl));
+                _KeyboardChanged(InputPanel, new KeyboardEventArgs(Visible, Bounds, FocusedControl));
             }
         }
 
         /// <summary>
         /// The keyboard bounds
         /// </summary>
-        public static Rectangle KeyboardBounds
+        public static Rectangle Bounds
         {
             get { return InputPanel.Enabled ? InputPanel.Bounds : Rectangle.Empty; }
         }
@@ -122,26 +122,26 @@ namespace Ushahidi.Common.Controls
     /// </summary>
     public class KeyboardEventArgs : EventArgs
     {
-        public KeyboardEventArgs(bool keyboardVisible, Rectangle bounds, Control focussedControl)
+        public KeyboardEventArgs(bool visible, Rectangle bounds, Control control)
         {
-            KeyboardVisible = keyboardVisible;
-            KeyboardBounds = bounds;
-            FocussedControl = focussedControl;
+            Visible = visible;
+            Bounds = bounds;
+            Control = control;
         }
 
         /// <summary>
         /// Is the keyboard visible?
         /// </summary>
-        public bool KeyboardVisible { get; private set; }
+        public bool Visible { get; private set; }
 
         /// <summary>
         /// The area of keyboard
         /// </summary>
-        public Rectangle KeyboardBounds { get; private set; }
+        public Rectangle Bounds { get; private set; }
 
         /// <summary>
         /// The focussed control
         /// </summary>
-        public Control FocussedControl { get; private set; }
+        public Control Control { get; private set; }
     }
 }

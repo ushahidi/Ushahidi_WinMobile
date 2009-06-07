@@ -120,7 +120,7 @@
   <data name="active" xml:space="preserve">
     <value>Aktiv</value>
   </data>
-  <data name="AddIncidentView" xml:space="preserve">
+  <data name="AddView" xml:space="preserve">
     <value>Ereignis hinzufügen</value>
   </data>
   <data name="allCategories" xml:space="preserve">
@@ -186,16 +186,16 @@
   <data name="HomeView" xml:space="preserve">
     <value>Ushahidi</value>
   </data>
-  <data name="IncidentDetailsView" xml:space="preserve">
+  <data name="DetailsView" xml:space="preserve">
     <value>Details zum Vorkommnis</value>
   </data>
-  <data name="IncidentListView" xml:space="preserve">
+  <data name="ListView" xml:space="preserve">
     <value>Liste der Vorkommnisse</value>
   </data>
-  <data name="IncidentMapView" xml:space="preserve">
+  <data name="MapView" xml:space="preserve">
     <value>Karte der Vorkommnisse</value>
   </data>
-  <data name="IncidentPhotoView" xml:space="preserve">
+  <data name="PhotoView" xml:space="preserve">
     <value>Photo des Vorkommnisses</value>
   </data>
   <data name="labelHomeDescription" xml:space="preserve">

@@ -12,12 +12,17 @@ namespace Ushahidi.View.Views
     /// <summary>
     /// Sync View
     /// </summary>
-    partial class SyncView
+    public partial class SyncView : BaseView
     {
+        public SyncView()
+        {
+            InitializeComponent();    
+        }
+
         public override void Initialize()
         {
             base.Initialize();
-            menuItemAction.Click += OnSynchronize;
+            Keyboard.KeyboardChanged += OnKeyboardChanged;
         }
 
         public override void Translate()
@@ -38,15 +43,12 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Last sync
         /// </summary>
-        public DateTime LastSync
+        public DateTime LastSyncDate
         {
             get { return dateBoxSyncLastSync.Date; }
             set { dateBoxSyncLastSync.Date = value;}
         }
 
-        /// <summary>
-        /// Server Address
-        /// </summary>
         public string ServerAddress
         {
             get { return textBoxSyncServer.Text; }
@@ -69,7 +71,7 @@ namespace Ushahidi.View.Views
             listView.Items.Clear();
             columnHeaderSyncProgress.Width = -2;
             StartTime = DateTime.Now;
-            Internet.TestURL = string.Format("{0}/help", DataManager.ServerAddress);
+            DataManager.ServerAddress = textBoxSyncServer.Text;
             new Thread(SyncInternal).Start();
         }
 
@@ -90,10 +92,10 @@ namespace Ushahidi.View.Views
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "noInternetConnection".Translate(), 1);
                 }
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
-                         Download(DataManager.RefreshIncidents, "downloadingIncidents".Translate(), 3) &&
-                         Download(DataManager.RefreshCountries, "downloadingCountries".Translate(), 4) &&
-                         Download(DataManager.RefreshLocales, "downloadingLocales".Translate(), 5) &&
-                         Download(DataManager.RefreshCategories, "downloadingCategories".Translate(), 6) &&
+                         Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 3) &&
+                         Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 4) &&
+                         Download(DataManager.DownloadLocales, "downloadingLocales".Translate(), 5) &&
+                         Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 6) &&
                          Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 7))
                 {
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 8);
@@ -120,12 +122,13 @@ namespace Ushahidi.View.Views
         /// <returns>true, if successful</returns>
         private bool Download(DownloadHandler downloadHandler, string taskName, int progress)
         {
-            Log.Info("SyncView.Download", "Task: {0}", taskName);
             Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, taskName, progress);
-            if (downloadHandler.Invoke())
+            if (downloadHandler.Invoke("http://demo.ushahidi.com"))
             {
+                 Log.Info("SyncView.Download", "Task {0} Successful", taskName);
                  return true;
             }
+            Log.Info("SyncView.Download", "Task {0} Failed", taskName);
             return false;
         }
 
@@ -133,7 +136,7 @@ namespace Ushahidi.View.Views
         /// The download handler delegate
         /// </summary>
         /// <returns></returns>
-        private delegate bool DownloadHandler();
+        private delegate bool DownloadHandler(string serverAddress);
 
         /// <summary>
         /// Progress handler delegate
@@ -180,9 +183,14 @@ namespace Ushahidi.View.Views
             {
                 progressBox.Value = 0;
                 progressBox.Text = "";
-                LastSync = DateTime.Now;
+                LastSyncDate = DateTime.Now;
                 Cursor.Current = Cursors.Default;
             }
+        }
+
+        private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
+        {
+            panelContent.Height = ClientRectangle.Height - args.Bounds.Height;
         }
 
         /// <summary>

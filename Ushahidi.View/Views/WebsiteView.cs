@@ -8,8 +8,13 @@ namespace Ushahidi.View.Views
     /// <summary>
     /// Website view
     /// </summary>
-    partial class WebsiteView
+    public partial class WebsiteView : BaseView
     {
+        public WebsiteView()
+        {
+            InitializeComponent();
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -36,6 +41,23 @@ namespace Ushahidi.View.Views
             menuItemAction.Translate("menuItemWebsiteDone");
         }
 
+        public bool ViewOnly
+        {
+            get { return _ViewOnly; }
+            set
+            {
+                _ViewOnly = value;
+                if (value)
+                {
+                    menuItemAction.Translate("menuItemWebsiteDone");
+                }
+                else
+                {
+                    menuItemAction.Text = Text;
+                }
+            }
+        }private bool _ViewOnly = false;
+
         /// <summary>
         /// Website URL
         /// </summary>
@@ -47,7 +69,7 @@ namespace Ushahidi.View.Views
 
         private void OnDone(object sender, EventArgs e)
         {
-            OnBack();
+            OnBack(webBrowser.Url);
         }
     }
 }

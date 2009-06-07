@@ -1,23 +1,33 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("location")]
-    public class Locale : Model
+    [Serializable]
+    [XmlType(Identifier)]
+    public class Locale : Common.MVC.Model
     {
+        public const string Identifier = "location";
+
         [XmlElement("id")]
-        public int ID { get; set; }
+        public override int ID { get; set; }
+
+        [XmlElement("upload")]
+        public override bool Upload { get; set; }
+
+        [XmlIgnore]
+        public override string FilePath { get; set; }
 
         [XmlElement("name")]
         public string Name { get; set; }
 
-        [XmlElement("country_id", IsNullable = true)]
+        [XmlElement("country_id")]
         public string CountryID { get; set;}
         
-        [XmlElement("latitude", IsNullable=true)]
+        [XmlElement("latitude")]
         public string Latitude { get; set; }
 
-        [XmlElement("longitude", IsNullable=true)]
+        [XmlElement("longitude")]
         public string Longitude { get; set; }
 
         public override string ToString()

@@ -8,26 +8,10 @@ namespace Ushahidi.Common.Net
     public static class Internet
     {
         /// <summary>
-        /// Test URL
-        /// </summary>
-        public static string TestURL
-        {
-            set { _TestURL = value; }
-            get
-            {
-                if (_TestURL == null)
-                {
-                    _TestURL = "http://www.google.com";
-                }
-                return _TestURL;
-            }
-        }private static string _TestURL;
-
-        /// <summary>
         /// Has network connection?
         /// </summary>
         /// <returns></returns>
-        public static bool HasNetworkConnection()
+        public static bool HasNetworkConnection(string url)
         {
             try
             {
@@ -45,11 +29,11 @@ namespace Ushahidi.Common.Net
         /// Has internet connection?
         /// </summary>
         /// <returns>true, if connected to internet</returns>
-        public static bool HasInternetConnection()
+        public static bool HasInternetConnection(string url)
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(TestURL);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 return response.StatusCode == HttpStatusCode.OK;
             }

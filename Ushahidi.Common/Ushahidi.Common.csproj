@@ -35,7 +35,7 @@
     <FileAlignment>512</FileAlignment>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -70,6 +70,12 @@
     <Compile Include="Controls\ImageBox.Designer.cs">
       <DependentUpon>ImageBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ImageButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageButton.Designer.cs">
+      <DependentUpon>ImageButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Keyboard.cs" />
     <Compile Include="Controls\LabelCheckBox.cs">
       <SubType>UserControl</SubType>
@@ -89,17 +95,17 @@
     <Compile Include="Controls\LabelDateBox.Designer.cs">
       <DependentUpon>LabelDateBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LabelListEntry.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LabelListEntry.Designer.cs">
+      <DependentUpon>LabelListEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LabelPictureBoxes.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\LabelPictureBoxes.Designer.cs">
       <DependentUpon>LabelPictureBoxes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\LabelTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\LabelTextBox.Designer.cs">
-      <DependentUpon>LabelTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\CenteredPictureBox.cs">
       <SubType>UserControl</SubType>
@@ -112,6 +118,12 @@
     </Compile>
     <Compile Include="Controls\ImageListBox.Designer.cs">
       <DependentUpon>ImageListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LabelTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LabelTextBox.Designer.cs">
+      <DependentUpon>LabelTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ProgressBox.cs">
       <SubType>UserControl</SubType>
@@ -129,8 +141,8 @@
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Extensions\FontExtensions.cs" />
-    <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\UrlExtensions.cs" />
     <Compile Include="Geo\GeoManager.cs" />
     <Compile Include="Logging\DebugLog.cs" />
     <Compile Include="Logging\ILog.cs" />
@@ -141,6 +153,7 @@
     <Compile Include="MVC\IView.cs" />
     <Compile Include="MVC\IViewController.cs" />
     <Compile Include="MVC\Model.cs" />
+    <Compile Include="MVC\Models.cs" />
     <Compile Include="MVC\NavigationController.cs" />
     <Compile Include="Controls\ScrollListBox.cs">
       <SubType>UserControl</SubType>
@@ -164,6 +177,9 @@
     <EmbeddedResource Include="Controls\CenteredPictureBox.resx">
       <DependentUpon>CenteredPictureBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageButton.resx">
+      <DependentUpon>ImageButton.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelCheckBox.resx">
       <DependentUpon>LabelCheckBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,14 +189,17 @@
     <EmbeddedResource Include="Controls\LabelDateBox.resx">
       <DependentUpon>LabelDateBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LabelListEntry.resx">
+      <DependentUpon>LabelListEntry.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelPictureBoxes.resx">
       <DependentUpon>LabelPictureBoxes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\LabelTextBox.resx">
-      <DependentUpon>LabelTextBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ImageListBox.resx">
       <DependentUpon>ImageListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LabelTextBox.resx">
+      <DependentUpon>LabelTextBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProgressBox.resx">
       <DependentUpon>ProgressBox.cs</DependentUpon>

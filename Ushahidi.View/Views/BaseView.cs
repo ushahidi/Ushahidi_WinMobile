@@ -1,4 +1,5 @@
 ﻿using System;
+using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.View.Controllers;
 using Ushahidi.View.Languages;
@@ -8,8 +9,14 @@ namespace Ushahidi.View.Views
     /// <summary>
     /// Base view
     /// </summary>
-    partial class BaseView
+    public partial class BaseView : Common.MVC.View
     {
+        public BaseView()
+        {
+            InitializeComponent();
+            //Keyboard.KeyboardChanged += OnKeyboardChanged;
+        }
+
         public override void Translate()
         {
             this.Translate(this);
@@ -28,7 +35,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnAddIncident(object sender, EventArgs e)
         {
-            OnForward<AddIncidentViewController>(true);
+            OnForward<AddViewController>(true);
         }
 
         /// <summary>
@@ -36,7 +43,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnIncidentList(object sender, EventArgs e)
         {
-            OnForward<IncidentListViewController>(true);
+            OnForward<ListViewController>(true);
         }
 
         /// <summary>
@@ -44,7 +51,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnIncidentMap(object sender, EventArgs e)
         {
-            OnForward<IncidentMapViewController>(true);
+            OnForward<MapViewController>(true);
         }
 
         /// <summary>
@@ -81,14 +88,11 @@ namespace Ushahidi.View.Views
 
         private void OnMenuPopup(object sender, EventArgs e)
         {
-            bool hasData = DataManager.HasCategories &&
-                           DataManager.HasCountries &&
-                           DataManager.HasLocales &&
-                           DataManager.HasIncidents;
             Type type = GetType();
-            menuItemAddIncident.Enabled = hasData && type != typeof(AddIncidentView);
-            menuItemIncidentList.Enabled = hasData && type != typeof(IncidentListView);
-            menuItemIncidentMap.Enabled = hasData && type != typeof(IncidentMapView);
+            menuItemAddIncident.Enabled =  type != typeof(AddView);
+            menuItemIncidentList.Enabled = type != typeof(ListView);
+            menuItemIncidentMap.Enabled = type != typeof(MapView);
         }
+
     }
 }

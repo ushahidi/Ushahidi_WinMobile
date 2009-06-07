@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Ushahidi.View")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Ushahidi")]
+[assembly: AssemblyDescription("Ushahidi is a platform that crowdsources crisis information, allowing anyone to submit crisis information through text messaging using a mobile phone, email or web form. Windows Mobile PocketPC 2003 - Windows Mobile 6 PocketPC - Windows Mobile 6 SmartPhone")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Ushahidi.View")]
+[assembly: AssemblyCompany("Ushahidi")]
+[assembly: AssemblyProduct("Ushahidi WindowsMobile")]
 [assembly: AssemblyCopyright("Copyright ©  2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

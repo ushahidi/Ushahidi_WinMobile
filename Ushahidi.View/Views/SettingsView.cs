@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using Ushahidi.Common.Controls;
 using Ushahidi.View.Languages;
 
 namespace Ushahidi.View.Views
@@ -8,36 +9,30 @@ namespace Ushahidi.View.Views
     /// <summary>
     /// Settings View
     /// </summary>
-    partial class SettingsView
+    public partial class SettingsView : BaseView
     {
+        public SettingsView()
+        {
+            InitializeComponent();    
+        }
+
         public override void Initialize()
         {
             base.Initialize();
-            menuItemSettingsDone.Click += OnDone;
-            menuItemSettingsCancel.Click += OnCancel;
-            comboBoxSettingsLanguages.SelectedIndexChanged += OnLanguageChanged;
+            Keyboard.KeyboardChanged += OnKeyboardChanged;
         }
 
         public override void Translate()
         {
             base.Translate();
             menuItemAction.Translate(this);
-            textBoxSettingsServer.Translate();
             textBoxSettingsEmail.Translate();
             textBoxSettingsFirstName.Translate();
             textBoxSettingsLastName.Translate();
             comboBoxSettingsLanguages.Translate();
             checkBoxSettingsKeyboard.Translate("autoShow");
         }
-        /// <summary>
-        /// Server Address
-        /// </summary>
-        public string ServerAddress
-        {
-            get { return textBoxSettingsServer.Text; }
-            set { textBoxSettingsServer.Text = value; }
-        }
-
+        
         /// <summary>
         /// First Name
         /// </summary>
@@ -130,6 +125,11 @@ namespace Ushahidi.View.Views
         {
             LanguageManager.Language = comboBoxSettingsLanguages.SelectedValue<CultureInfo>();
             Translate();
+        }
+
+        private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
+        {
+            panelContent.Height = ClientRectangle.Height - args.Bounds.Height;
         }
     }
 }

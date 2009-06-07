@@ -62,7 +62,6 @@ namespace Ushahidi.View.Controls
                 rectangle.Offset(0, RowHeight);
                 e.Graphics.DrawString(Item.CategoryTitle, Font, fontBrush, rectangle, Constants.LeftAligned);
             }
-            e.Graphics.DrawLine(LinePen, 0, Height - 1, Width, Height - 1);
         }
     }
 }

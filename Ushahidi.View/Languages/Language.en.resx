@@ -141,10 +141,10 @@
   <data name="HomeView" xml:space="preserve">
     <value>Ushahidi</value>
   </data>
-  <data name="IncidentListView" xml:space="preserve">
+  <data name="ListView" xml:space="preserve">
     <value>Incident List</value>
   </data>
-  <data name="IncidentMapView" xml:space="preserve">
+  <data name="MapView" xml:space="preserve">
     <value>Incident Map</value>
   </data>
   <data name="labelHomeDescription" xml:space="preserve">
@@ -285,7 +285,7 @@
   <data name="active" xml:space="preserve">
     <value>Active</value>
   </data>
-  <data name="IncidentDetailsView" xml:space="preserve">
+  <data name="DetailsView" xml:space="preserve">
     <value>Incident Details</value>
   </data>
   <data name="menuItemIncidentDetailAddPhoto" xml:space="preserve">
@@ -306,7 +306,7 @@
   <data name="takeIncidentPhoto" xml:space="preserve">
     <value>Take Incident Photo</value>
   </data>
-  <data name="AddIncidentView" xml:space="preserve">
+  <data name="AddView" xml:space="preserve">
     <value>Add Incident</value>
   </data>
   <data name="downloadingMedia" xml:space="preserve">
@@ -345,7 +345,7 @@
   <data name="verifiedAndActive" xml:space="preserve">
     <value>Verified &amp; Active</value>
   </data>
-  <data name="IncidentPhotoView" xml:space="preserve">
+  <data name="PhotoView" xml:space="preserve">
     <value>Incident Photo</value>
   </data>
   <data name="done" xml:space="preserve">
@@ -374,5 +374,8 @@
   </data>
   <data name="autoShow" xml:space="preserve">
     <value>Auto Show</value>
+  </data>
+  <data name="missingFields" xml:space="preserve">
+    <value>Missing Fields</value>
   </data>
 </root>

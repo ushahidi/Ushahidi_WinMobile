@@ -8,16 +8,25 @@ using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("incident")]
-    public class Incident : Model
+    [Serializable]
+    [XmlRoot(Identifier)]
+    public class Incident : Common.MVC.Model
     {
+        public const string Identifier = "incident";
+
         [XmlElement("id")]
-        public int ID { get; set; }
+        public override int ID { get; set; }
+
+        [XmlElement("upload")]
+        public override bool Upload { get; set; }
+
+        [XmlIgnore]
+        public override string FilePath { get; set; }
 
         [XmlElement("title")]
         public string Title { get; set; }
 
-        [XmlElement("description", IsNullable = true)]
+        [XmlElement("description")]
         public string Description { get; set; }
 
         [XmlElement("date")]
@@ -39,14 +48,8 @@ namespace Ushahidi.Model.Models
         [XmlElement("verified")]
         public bool Verified { get; set; }
 
-        [XmlElement("location", Type = typeof(Locale))]
+        [XmlElement("location")]
         public Locale Locale { get; set; }
-
-        [XmlIgnore]
-        public bool IsNew { get; set; }
-
-        [XmlIgnore]
-        public string FilePath { get; set; }
 
         [XmlIgnore]
         public string LocaleName
@@ -67,7 +70,7 @@ namespace Ushahidi.Model.Models
         }
 
         [XmlArray("categories")]
-        [XmlArrayItem("category")]
+        [XmlArrayItem("category", typeof(Category))]
         public Category[] Categories
         {
             get { return _Categories.ToArray(); }
@@ -98,8 +101,8 @@ namespace Ushahidi.Model.Models
             return Categories.Any(c => c.ID == categoryID);
         }
 
-        [XmlArray("mediaItems", IsNullable = true)]
-        [XmlArrayItem("media", Type = typeof(Media))]
+        [XmlArray("mediaItems")]
+        [XmlArrayItem("media", typeof(Media))]
         public Media[] MediaItems
         {
             get { return _MediaItems.ToArray(); }
@@ -150,6 +153,11 @@ namespace Ushahidi.Model.Models
             _MediaItems.Add(media);
         }
 
+        public void AddPhoto(Media media)
+        {
+            _MediaItems.Add(media);
+        }
+
         [XmlIgnore]
         public Image Thumbnail
         {
@@ -175,11 +183,6 @@ namespace Ushahidi.Model.Models
         public static Incident Load(string filePath)
         {
             return Load<Incident>(filePath);
-        }
-
-        public bool Save(string filePath)
-        {
-            return Save(this, filePath);
         }
 
         public static Incident Parse(string xml)

@@ -128,7 +128,7 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Pop off the specified number of views from stack
         /// </summary>
-        public void Pop()
+        public void Pop(params object [] parameters)
         {
             Log.Info("NavigationController.Pop", "StackCount={0}", Stack.Count);
             IViewController currentViewController = (Depth > 0) ? Stack.Peek() : null;
@@ -175,7 +175,7 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Exit application
         /// </summary>
-        private void Exit()
+        private void Exit(params object [] paremeters)
         {
             Log.Info("NavigationController.Exit");
             IViewController viewController = (Depth > 0) ? Stack.Peek() : null;

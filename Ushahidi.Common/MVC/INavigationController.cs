@@ -29,7 +29,7 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Pop top view from stack
         /// </summary>
-        void Pop();
+        void Pop(params object [] parameters);
 
         /// <summary>
         /// The stack depth

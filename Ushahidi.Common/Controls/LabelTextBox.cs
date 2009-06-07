@@ -16,7 +16,7 @@ namespace Ushahidi.Common.Controls
         public LabelTextBox()
         {
             InitializeComponent();
-            Keyboard.Register(textBox);
+            //Keyboard.Register(textBox);
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Ushahidi.Common.Controls
                 _IsRequired = value;
                 if (Enabled)
                 {
-                    textBox.BackColor = value ? Color.PeachPuff : Color.WhiteSmoke;    
+                    textBox.BackColor = value ? Color.PeachPuff : Color.White;
                 }
             }
         }private bool _IsRequired = false;
@@ -52,7 +52,7 @@ namespace Ushahidi.Common.Controls
             set
             {
                 textBox.Enabled = textBox.ReadOnly = value;
-                textBox.BackColor = value ? Color.WhiteSmoke : Color.WhiteSmoke;
+                textBox.BackColor = value ? Color.White : Color.WhiteSmoke;
             }
         }
 
@@ -68,10 +68,10 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Label
         /// </summary>
-        public string Label 
+        public string Label
         {
             get { return label.Text; }
-            set { label.Text = value;}
+            set { label.Text = value; }
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Ushahidi.Common.Controls
         public new Color BackColor
         {
             get { return base.BackColor; }
-            set { base.BackColor = label.BackColor =  value; }
+            set { base.BackColor = label.BackColor = value; }
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace Ushahidi.Common.Controls
         {
             if (!textBox.Focused && textBox.Enabled)
             {
-                textBox.BackColor = IsRequired && string.IsNullOrEmpty(textBox.Text) ? Color.PeachPuff : Color.WhiteSmoke;
+                textBox.BackColor = IsRequired && string.IsNullOrEmpty(textBox.Text) ? Color.LightSalmon : Color.White;
             }
         }
 
@@ -146,7 +146,7 @@ namespace Ushahidi.Common.Controls
 
         private void OnLostFocus(object sender, EventArgs e)
         {
-            textBox.BackColor = IsRequired && string.IsNullOrEmpty(textBox.Text) ? Color.PeachPuff : Color.WhiteSmoke;
+            textBox.BackColor = IsRequired && string.IsNullOrEmpty(textBox.Text) ? Color.LightSalmon : Color.White;
         }
     }
 }

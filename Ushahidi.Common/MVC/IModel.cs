@@ -1,12 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
+using System.Xml.Serialization;
 
 namespace Ushahidi.Common.MVC
 {
     /// <summary>
     /// Model interface
     /// </summary>
-    public interface IModel : IDisposable, INotifyPropertyChanged
+    public interface IModel : IDisposable
     {
         /// <summary>
         /// Save model
@@ -14,10 +14,14 @@ namespace Ushahidi.Common.MVC
         /// <returns>true, if save successful</returns>
         bool Save();
 
-        /// <summary>
-        /// Load model
-        /// </summary>
-        /// <returns>true, if load successful</returns>
-        bool Load();
+        bool Save(string filePath);
+
+        int ID { get; set; }
+
+        [XmlElement("upload")]
+        bool Upload { get; set; }
+
+        [XmlIgnore]
+        string FilePath { get; set; }
     }
 }

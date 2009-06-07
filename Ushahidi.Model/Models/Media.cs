@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace Ushahidi.Model.Models
 {
@@ -11,14 +12,20 @@ namespace Ushahidi.Model.Models
     ///     <thumb>3_1_1231886194_t.jpg</thumb>
     ///</media>
     /// </summary>
-    [XmlRoot("media")]
-    public class Media : Model
+    [Serializable]
+    [XmlType(Identifier)]
+    public class Media : Common.MVC.Model
     {
+        public const string Identifier = "media";
+        
         [XmlElement("id")]
-        public int ID { get; set; }
+        public override int ID { get; set; }
 
-        [XmlElement("title", IsNullable = true)]
-        public string Title { get; set; }
+        [XmlElement("upload")]
+        public override bool Upload { get; set; }
+
+        [XmlIgnore]
+        public override string FilePath { get; set; }
 
         [XmlElement("type")]
         public int Type { get; set; }
@@ -26,7 +33,10 @@ namespace Ushahidi.Model.Models
         [XmlElement("link")]
         public string Link { get; set; }
 
-        [XmlElement("thumb", IsNullable = true)]
+        [XmlElement("title")]
+        public string Title { get; set; }
+
+        [XmlElement("thumb")]
         public string ThumbnailLink { get; set; }
 
         [XmlIgnore]
@@ -76,7 +86,8 @@ namespace Ushahidi.Model.Models
               ID = (-1),
               Type = ((int) MediaType.Photo),
               Link = imageName,
-              ThumbnailLink = thumbnailName
+              ThumbnailLink = thumbnailName,
+              Upload = true
             };
         }
     }

@@ -102,7 +102,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Padding
         /// </summary>
-        protected readonly int Padding = 2;
+        protected readonly int Padding = 3;
 
         /// <summary>
         /// Line Pen

@@ -6,7 +6,7 @@ namespace Ushahidi.Common.MVC
     /// <summary>
     /// The back handler
     /// </summary>
-    public delegate void BackHandler();
+    public delegate void BackHandler(params object[] parameters);
 
     /// <summary>
     /// The forward handler

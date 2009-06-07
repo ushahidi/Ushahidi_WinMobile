@@ -8,10 +8,8 @@ namespace Ushahidi.Common.MVC
     /// View Controller
     /// </summary>
     /// <typeparam name="TView">view</typeparam>
-    /// <typeparam name="TModel">model</typeparam>
-    public abstract class ViewController<TView, TModel> : IViewController 
+    public abstract class ViewController<TView> : IViewController 
         where TView : IView, new()
-        where TModel : IModel, new()
     {
         /// <summary>
         /// View name
@@ -54,31 +52,6 @@ namespace Ushahidi.Common.MVC
                 return _View;
             }
         }private TView _View;
-
-        /// <summary>
-        /// The model
-        /// </summary>
-        protected TModel Model
-        {
-            get
-            {
-                if (Equals(_Model, default(TModel)))
-                {
-                    _Model = new TModel();
-                    _Model.PropertyChanged += OnModelChanged;
-                }
-                return _Model;
-            }
-            set
-            {
-                if (!Equals(_Model, default(TModel)))
-                {
-                    //remove old property changed handler
-                    _Model.PropertyChanged -= OnModelChanged;
-                }
-                _Model = value;
-            }
-        }private TModel _Model;
 
         /// <summary>
         /// Load view with model data
@@ -128,7 +101,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public void Show()
         {
-            Keyboard.KeyboardVisible = false;
+            Keyboard.Visible = false;
             View.Show();
             View.Focus();
         }
@@ -150,10 +123,6 @@ namespace Ushahidi.Common.MVC
             {
                 View.Dispose();    
             }
-            if (!Equals(Model, default(TModel)))
-            {
-                Model.Dispose();
-            }
         }
 
         /// <summary>
@@ -174,7 +143,7 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Return to previous form
         /// </summary>
-        protected void OnBack()
+        protected void OnBack(params object [] parameters)
         {
             if (Back != null)
             {
@@ -222,12 +191,13 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Exit application
         /// </summary>
-        protected void OnExit()
+        protected void OnExit(params object [] parameters)
         {
             if (Exit != null)
             {
                Exit();
             }
         }
+
     }
 }

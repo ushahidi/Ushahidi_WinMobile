@@ -37,9 +37,9 @@
             this.comboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBox.Location = new System.Drawing.Point(86, 3);
+            this.comboBox.Location = new System.Drawing.Point(3, 20);
             this.comboBox.Name = "comboBox";
-            this.comboBox.Size = new System.Drawing.Size(151, 22);
+            this.comboBox.Size = new System.Drawing.Size(234, 22);
             this.comboBox.TabIndex = 17;
             this.comboBox.LostFocus += new System.EventHandler(this.OnLostFocus);
             this.comboBox.SelectedIndexChanged += new System.EventHandler(this.OnIndexChanged);
@@ -47,9 +47,12 @@
             // 
             // label
             // 
-            this.label.Location = new System.Drawing.Point(5, 3);
+            this.label.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.label.Location = new System.Drawing.Point(4, 2);
             this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(75, 20);
+            this.label.Size = new System.Drawing.Size(232, 18);
+            this.label.Text = "Label";
             // 
             // LabelComboBox
             // 
@@ -58,7 +61,7 @@
             this.Controls.Add(this.comboBox);
             this.Controls.Add(this.label);
             this.Name = "LabelComboBox";
-            this.Size = new System.Drawing.Size(240, 28);
+            this.Size = new System.Drawing.Size(240, 45);
             this.ResumeLayout(false);
 
         }

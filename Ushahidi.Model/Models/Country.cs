@@ -2,11 +2,19 @@
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("country")]
-    public class Country : Model
+    [XmlRoot(Identifier)]
+    public class Country : Common.MVC.Model
     {
+        public const string Identifier = "country";
+
         [XmlElement("id")]
-        public int ID { get; set; }
+        public override int ID { get; set; }
+
+        [XmlElement("upload")]
+        public override bool Upload { get; set; }
+
+        [XmlIgnore]
+        public override string FilePath { get; set; }
 
         [XmlElement("iso")]
         public string ISO { get; set; }

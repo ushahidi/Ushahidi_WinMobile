@@ -1,4 +1,5 @@
 ﻿using System.Xml.Serialization;
+using Ushahidi.Common.MVC;
 
 namespace Ushahidi.Model.Models
 {

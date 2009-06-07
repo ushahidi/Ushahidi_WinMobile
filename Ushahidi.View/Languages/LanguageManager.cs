@@ -48,7 +48,7 @@ namespace Ushahidi.View.Languages
             {
                 if (_Language == null)
                 {
-                    _Language = _Languages.First(c => c.Name == "en");
+                    _Language = _Languages.FirstOrDefault(c => c.Name == "en");
                 }
                 return _Language;
             }
@@ -71,7 +71,12 @@ namespace Ushahidi.View.Languages
 
         public static string Translate(this Control control)
         {
-            string translation = ResourceManager.GetString(control.Name, Language);
+            return control.Translate(control.Name);
+        }
+
+        public static string Translate(this Control control, string name)
+        {
+            string translation = ResourceManager.GetString(name, Language);
             if (string.IsNullOrEmpty(translation) == false)
             {
                 control.Text = translation;

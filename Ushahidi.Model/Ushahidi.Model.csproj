@@ -36,6 +36,7 @@
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -74,24 +75,29 @@
   </Target>
   -->
   <ItemGroup>
-    <Compile Include="Models\Categories.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Models\Categories.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Category.cs" />
     <Compile Include="DataManager.cs" />
-    <Compile Include="Models\Countries.cs" />
+    <Compile Include="Models\Countries.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Incident.cs" />
-    <Compile Include="Models\Incidents.cs" />
+    <Compile Include="Models\Incidents.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Locale.cs" />
-    <Compile Include="Models\Locales.cs" />
+    <Compile Include="Models\Locales.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\Media.cs" />
     <Compile Include="Models\MediaType.cs" />
-    <Compile Include="Models\Model.cs" />
-    <Compile Include="Models\Models.cs" />
     <Compile Include="Models\Payload.cs" />
     <Compile Include="Models\Response.cs" />
-    <Compile Include="Models\Upload.cs" />
-    <Compile Include="Models\Uploads.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,20 +105,6 @@
       <Project>{41B1C26D-FA1C-4A6D-8F14-3E84D5BBDD6A}</Project>
       <Name>Ushahidi.Common</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Data\Categories.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Countries.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Incidents.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Locales.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="Ushahidi.Model.snk" />

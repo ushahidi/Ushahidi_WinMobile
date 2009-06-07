@@ -67,11 +67,11 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Back event handler
         /// </summary>
-        protected void OnBack()
+        protected void OnBack(params object [] parameters)
         {
             if (Back != null)
             {
-                Back();
+                Back(parameters);
             }
         }
 

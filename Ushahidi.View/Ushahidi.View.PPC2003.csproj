@@ -61,13 +61,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AddIncidentViewController.cs" />
+    <Compile Include="Controllers\AboutViewController.cs" />
+    <Compile Include="Controllers\AddViewController.cs" />
     <Compile Include="Controllers\BaseViewController.cs" />
+    <Compile Include="Controllers\DetailsViewController.cs" />
     <Compile Include="Controllers\HomeViewController.cs" />
-    <Compile Include="Controllers\IncidentDetailsViewController.cs" />
-    <Compile Include="Controllers\IncidentListViewController.cs" />
-    <Compile Include="Controllers\IncidentMapViewController.cs" />
-    <Compile Include="Controllers\IncidentPhotoViewController.cs" />
+    <Compile Include="Controllers\ListViewController.cs" />
+    <Compile Include="Controllers\MapViewController.cs" />
+    <Compile Include="Controllers\PhotoViewController.cs" />
     <Compile Include="Controllers\SettingsViewController.cs" />
     <Compile Include="Controllers\SyncViewController.cs" />
     <Compile Include="Controllers\WebsiteViewController.cs" />
@@ -83,21 +84,11 @@
     <Compile Include="Controls\PhotoListItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\PhotoSelector_2003.cs" />
+    <Compile Include="Controls\PhotoSelector_PPC2003.cs" />
     <Compile Include="Controls\TextListItem.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Languages\LanguageManager.cs" />
-    <Compile Include="Models\AddIncidentModel.cs" />
-    <Compile Include="Models\BaseModel.cs" />
-    <Compile Include="Models\HomeModel.cs" />
-    <Compile Include="Models\IncidentDetailsModel.cs" />
-    <Compile Include="Models\IncidentListModel.cs" />
-    <Compile Include="Models\IncidentMapModel.cs" />
-    <Compile Include="Models\IncidentPhotoModel.cs" />
-    <Compile Include="Models\SettingsModel.cs" />
-    <Compile Include="Models\SyncModel.cs" />
-    <Compile Include="Models\WebsiteModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -105,128 +96,77 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\AddIncidentView_PPC.resx">
-      <DependentUpon>AddIncidentView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\BaseView_PPC.resx">
-      <DependentUpon>BaseView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\HomeView_PPC.resx">
-      <DependentUpon>HomeView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\IncidentDetailsView_PPC.resx">
-      <DependentUpon>IncidentDetailsView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\IncidentListView_PPC.resx">
-      <DependentUpon>IncidentListView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\IncidentMapView_PPC.resx">
-      <DependentUpon>IncidentMapView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SettingsView_PPC.resx">
-      <DependentUpon>SettingsView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SyncView_PPC.resx">
-      <DependentUpon>SyncView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\WebsiteView_PPC.resx">
-      <DependentUpon>WebsiteView_PPC.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Resources\ResourcesManager.cs" />
-    <Compile Include="Views\AddIncidentView.cs">
+    <Compile Include="Views\AboutView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AddIncidentView_PPC.cs">
+    <Compile Include="Views\AboutView.Designer.cs">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\AddIncidentView_PPC.Designer.cs">
-      <DependentUpon>AddIncidentView_PPC.cs</DependentUpon>
+    <Compile Include="Views\AddView.Designer.cs">
+      <DependentUpon>AddView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\BaseView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\BaseView_PPC.cs">
+    <Compile Include="Views\BaseView.Designer.cs">
+      <DependentUpon>BaseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\BaseView_PPC.Designer.cs">
-      <DependentUpon>BaseView_PPC.cs</DependentUpon>
+    <Compile Include="Views\DetailsView.Designer.cs">
+      <DependentUpon>DetailsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\HomeView_PPC.cs">
+    <Compile Include="Views\HomeView.Designer.cs">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\HomeView_PPC.Designer.cs">
-      <DependentUpon>HomeView_PPC.cs</DependentUpon>
+    <Compile Include="Views\ListView.Designer.cs">
+      <DependentUpon>ListView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\IncidentDetailsView.cs">
+    <Compile Include="Views\MapView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\IncidentDetailsView_PPC.cs">
+    <Compile Include="Views\MapView.Designer.cs">
+      <DependentUpon>MapView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PhotoView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\IncidentDetailsView_PPC.Designer.cs">
-      <DependentUpon>IncidentDetailsView_PPC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IncidentListView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\IncidentListView_PPC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\IncidentListView_PPC.Designer.cs">
-      <DependentUpon>IncidentListView_PPC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IncidentMapView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\IncidentMapView_PPC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\IncidentMapView_PPC.Designer.cs">
-      <DependentUpon>IncidentMapView_PPC.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IncidentPhotoView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\IncidentPhotoView_PPC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\IncidentPhotoView_PPC.Designer.cs">
-      <DependentUpon>IncidentPhotoView_PPC.cs</DependentUpon>
+    <Compile Include="Views\PhotoView.Designer.cs">
+      <DependentUpon>PhotoView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\SettingsView_PPC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\SettingsView_PPC.Designer.cs">
-      <DependentUpon>SettingsView_PPC.cs</DependentUpon>
+    <Compile Include="Views\SettingsView.Designer.cs">
+      <DependentUpon>SettingsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\SyncView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\SyncView_PPC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\SyncView_PPC.Designer.cs">
-      <DependentUpon>SyncView_PPC.cs</DependentUpon>
+    <Compile Include="Views\SyncView.Designer.cs">
+      <DependentUpon>SyncView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\WebsiteView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\WebsiteView_PPC.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\WebsiteView_PPC.Designer.cs">
-      <DependentUpon>WebsiteView_PPC.cs</DependentUpon>
+    <Compile Include="Views\WebsiteView.Designer.cs">
+      <DependentUpon>WebsiteView.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -253,8 +193,38 @@
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
-    <EmbeddedResource Include="Views\IncidentPhotoView_PPC.resx">
-      <DependentUpon>IncidentPhotoView_PPC.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AboutView.resx">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddView.resx">
+      <DependentUpon>AddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\BaseView.resx">
+      <DependentUpon>BaseView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DetailsView.resx">
+      <DependentUpon>DetailsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HomeView.resx">
+      <DependentUpon>HomeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ListView.resx">
+      <DependentUpon>ListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MapView.resx">
+      <DependentUpon>MapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PhotoView.resx">
+      <DependentUpon>PhotoView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SettingsView.resx">
+      <DependentUpon>SettingsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SyncView.resx">
+      <DependentUpon>SyncView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\WebsiteView.resx">
+      <DependentUpon>WebsiteView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

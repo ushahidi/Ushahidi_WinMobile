@@ -1,0 +1,114 @@
+﻿using System;
+using System.Linq;
+using Ushahidi.Common.Controls;
+using Ushahidi.Common.MVC;
+using Ushahidi.Model.Models;
+using Ushahidi.View.Controllers;
+using Ushahidi.View.Controls;
+using Ushahidi.View.Languages;
+
+namespace Ushahidi.View.Views
+{
+    /// <summary>
+    /// Incidents List View
+    /// </summary>
+    public partial class ListView : BaseView
+    {
+        public ListView()
+        {
+            InitializeComponent();
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            Keyboard.KeyboardChanged += OnKeyboardChanged;
+        }
+
+        public override void Translate()
+        {
+            base.Translate();
+            menuItemAction.Translate("menuItemSettingsSelect");
+            comboBoxIncidentListCategories.Translate();
+        }
+
+        /// <summary>
+        /// Categories
+        /// </summary>
+        public Models<Category> Categories
+        {
+            set { comboBoxIncidentListCategories.DataSource = value; }
+        }
+
+        protected Category SelectedCategory
+        {
+            get { return comboBoxIncidentListCategories.SelectedValue<Category>(); }
+        }
+
+        /// <summary>
+        /// Incidents
+        /// </summary>
+        public Models<Incident> Incidents
+        {
+            get { return _Incidents; }
+            set
+            {
+                _Incidents = value;
+                listBoxIncidentListIncidents.Clear();
+                if (value != null)
+                {
+                    foreach (Incident incident in value.Where(i => string.IsNullOrEmpty(i.Title) == false))
+                    {
+                        listBoxIncidentListIncidents.Add(new IncidentListItem(incident));
+                    }
+                }
+            }
+        }private Models<Incident> _Incidents;
+
+        private void OnCategoryChanged(object sender, EventArgs e)
+        {
+            using (new WaitCursor())
+            {
+                listBoxIncidentListIncidents.Clear();
+                if (Incidents != null)
+                {
+                    foreach (Incident incident in SelectedCategory.ID != -1
+                                                      ? Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false &&
+                                                                             i.HasCategory(SelectedCategory.ID))
+                                                      : Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false))
+                    {
+                        listBoxIncidentListIncidents.Add(new IncidentListItem(incident));
+                    }
+                }
+            }
+        }
+
+        private void OnIncidentChanged(object sender, ScrollEventArgs args)
+        {
+            menuItemAction.Enabled = (args.Item != null);
+        }
+
+        private void OnIncidentSelected(object sender, ScrollEventArgs args)
+        {
+            IncidentListItem listItem = args.Item as IncidentListItem;
+            if (listItem != null)
+            {
+                OnForward<DetailsViewController>(false, listItem.Item);
+            }
+        }
+
+        private void OnViewIncident(object sender, EventArgs e)
+        {
+            IncidentListItem listItem = listBoxIncidentListIncidents.SelectedItem as IncidentListItem;
+            if (listItem != null)
+            {
+                OnForward<DetailsViewController>(false, listItem.Item);
+            }
+        }
+
+        private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
+        {
+            panelContent.Height = ClientRectangle.Height - args.Bounds.Height;
+        }
+    }
+}

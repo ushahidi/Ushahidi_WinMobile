@@ -16,6 +16,7 @@ namespace Ushahidi.Common.Controls
         public LabelComboBox()
         {
             InitializeComponent();
+            //comboBox.DropDownStyle = Runtime.IsPocketPC ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList;
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace Ushahidi.Common.Controls
                 _IsRequired = value;
                 if (!comboBox.Focused && comboBox.Enabled)
                 {
-                    comboBox.BackColor = value ? Color.PeachPuff : Color.WhiteSmoke;
+                    comboBox.BackColor = value ? Color.LightSalmon : Color.White;
                 }
             }
         }private bool _IsRequired = false;
@@ -60,7 +61,7 @@ namespace Ushahidi.Common.Controls
             set
             {
                 comboBox.Enabled = value;
-                comboBox.BackColor = value ? Color.WhiteSmoke : Color.LightGray;
+                comboBox.BackColor = value ? Color.White : Color.WhiteSmoke;
             }
         }
 
@@ -183,7 +184,7 @@ namespace Ushahidi.Common.Controls
                 if (!comboBox.Focused)
                 {
                     comboBox.BackColor = (IsRequired && comboBox.SelectedIndex == -1)
-                                            ? Color.PeachPuff : Color.WhiteSmoke;    
+                                            ? Color.LightSalmon : Color.White;    
                 }
             }
         }
@@ -195,7 +196,7 @@ namespace Ushahidi.Common.Controls
         {
             if (!comboBox.Focused && comboBox.Enabled)
             {
-                comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.PeachPuff : Color.WhiteSmoke;
+                comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.LightSalmon : Color.White;
             }
         }
 
@@ -206,7 +207,7 @@ namespace Ushahidi.Common.Controls
 
         private void OnLostFocus(object sender, EventArgs e)
         {
-            comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.PeachPuff : Color.WhiteSmoke;
+            comboBox.BackColor = IsRequired && comboBox.SelectedIndex == -1 ? Color.LightSalmon : Color.White;
         }
     }
 }

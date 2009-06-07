@@ -6,10 +6,7 @@ namespace Ushahidi.View.Controllers
     /// The base view controller
     /// </summary>
     /// <typeparam name="TView">view</typeparam>
-    /// <typeparam name="TModel">model</typeparam>
-    public abstract class BaseViewController<TView, TModel> : ViewController<TView, TModel>
-        where TView : IView, new()
-        where TModel : IModel, new()
+    public abstract class BaseViewController<TView> : ViewController<TView> where TView : IView, new()
     {
        
     }

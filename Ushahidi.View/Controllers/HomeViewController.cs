@@ -1,6 +1,7 @@
-﻿using Ushahidi.Common.Controls;
+﻿using System.Drawing;
+using Ushahidi.Common.Controls;
 using Ushahidi.Model;
-using Ushahidi.View.Models;
+using Ushahidi.View.Resources;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -8,15 +9,20 @@ namespace Ushahidi.View.Controllers
     /// <summary>
     /// Home View Controller
     /// </summary>
-    public class HomeViewController : BaseViewController<HomeView, HomeModel>
+    public class HomeViewController : BaseViewController<HomeView>
     {
         /// <summary>
         /// Load the view
         /// </summary>
         public override void Load(object[] parameters)
         {
-            Keyboard.AutoShowHideKeyboard = DataManager.ShowKeyboard;
-            View.Logo = Model.Logo;
+            Keyboard.AutoShow = DataManager.ShowKeyboard;
+            View.Logo = UshahidiLogo;
         }
+
+        /// <summary>
+        /// The logo
+        /// </summary>
+        private readonly Image UshahidiLogo = ResourcesManager.LoadImageResource("ushahidi_btn.png");
     }
 }

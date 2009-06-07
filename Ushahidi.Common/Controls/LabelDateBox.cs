@@ -37,7 +37,7 @@ namespace Ushahidi.Common.Controls
                 _IsRequired = value;
                 if (!dateTimePicker.Focused && Enabled)
                 {
-                    dateTimePicker.BackColor = value ? Color.LightSalmon : Color.WhiteSmoke;
+                    dateTimePicker.BackColor = value ? Color.LightSalmon : Color.White;
                 }
             }
         }private bool _IsRequired = false;
@@ -69,7 +69,7 @@ namespace Ushahidi.Common.Controls
             set
             {
                 dateTimePicker.Enabled = value;
-                dateTimePicker.BackColor = value ? Color.WhiteSmoke : Color.WhiteSmoke;
+                dateTimePicker.BackColor = value ? Color.White : Color.WhiteSmoke;
             }
         }
 

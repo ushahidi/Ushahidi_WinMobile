@@ -1,21 +1,23 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("category")]
-    public class Category : Model
+    [Serializable]
+    [XmlType(Identifier)]
+    public class Category : Common.MVC.Model
     {
-        public Category(){}
-        public Category(int id, string title, string description)
-        {
-            ID = id;
-            Title = title.ToTitleCase();
-            Description = description;
-        }
-
+        public const string Identifier = "category";
+        
         [XmlElement("id")]
-        public int ID { get; set; }
+        public override int ID { get; set; }
+
+        [XmlElement("upload")]
+        public override bool Upload { get; set; }
+
+        [XmlIgnore]
+        public override string FilePath { get; set; }
 
         [XmlElement("title")]
         public string Title
@@ -24,12 +26,21 @@ namespace Ushahidi.Model.Models
             set { _Title = value.ToTitleCase(); }
         }private string _Title;
 
-        [XmlElement("description", IsNullable = true)]
+        [XmlElement("description")]
         public string Description { get; set; }
 
         public override string ToString()
         {
             return Title;
+        }
+        public static Category Parse(string xml)
+        {
+            return Parse<Category>(xml);
+        }
+
+        public static Category Load(string filePath)
+        {
+            return Load<Category>(filePath);
         }
     }
 }

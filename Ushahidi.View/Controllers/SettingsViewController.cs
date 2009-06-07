@@ -1,4 +1,5 @@
-﻿using Ushahidi.View.Models;
+﻿using Ushahidi.Model;
+using Ushahidi.View.Languages;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -6,14 +7,14 @@ namespace Ushahidi.View.Controllers
     /// <summary>
     /// Settings View Controller
     /// </summary>
-    public class SettingsViewController : BaseViewController<SettingsView, SettingsModel>
+    public class SettingsViewController : BaseViewController<SettingsView>
     {
         /// <summary>
         /// Save error caption
         /// </summary>
         public override string SaveErrorCaption
         {
-            get { return "Missing Fields"; }
+            get { return "missingFields".Translate(); }
         }
 
         /// <summary>
@@ -21,31 +22,29 @@ namespace Ushahidi.View.Controllers
         /// </summary>
         public override string SaveErrorMessage
         {
-            get { return "Please verify all required fields are entered"; }
+            get { return "missingFieldsVerify".Translate(); }
         }
 
         public override void Load(object[] parameters)
         {
-            View.Languages = Model.Languages;
-            View.Language = Model.Language;
-            View.ServerAddress = Model.ServerAddress;
-            View.ShowKeyboard = Model.ShowKeyboard;
-            View.FirstName = Model.FirstName;
-            View.LastName = Model.LastName;
-            View.Email = Model.Email;
+            View.Languages = LanguageManager.Languages;
+            View.Language = LanguageManager.Language;
+            View.ShowKeyboard = DataManager.ShowKeyboard;
+            View.FirstName = DataManager.FirstName;
+            View.LastName = DataManager.LastName;
+            View.Email = DataManager.Email;
         }
 
         public override bool Save()
         {
             if (View.ShouldSave)
             {
-                Model.Language = View.Language;
-                Model.ServerAddress = View.ServerAddress;
-                Model.ShowKeyboard = View.ShowKeyboard;
-                Model.FirstName = View.FirstName;
-                Model.LastName = View.LastName;
-                Model.Email = View.Email;
-                return Model.Save();
+                LanguageManager.Language = View.Language;
+                DataManager.ShowKeyboard = View.ShowKeyboard;
+                DataManager.FirstName = View.FirstName;
+                DataManager.LastName = View.LastName;
+                DataManager.Email = View.Email;
+                return DataManager.Save();
             }
             return true;
         }
