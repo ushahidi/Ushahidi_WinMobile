@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="Resources\ushahidi_plus.png" />
     <EmbeddedResource Include="Languages\Language.de.resx" />
     <EmbeddedResource Include="Languages\Language.en.resx" />
     <EmbeddedResource Include="Languages\Language.es.resx" />
