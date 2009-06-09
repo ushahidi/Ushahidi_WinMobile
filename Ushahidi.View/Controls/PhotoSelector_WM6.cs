@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 using Microsoft.WindowsMobile.Forms;
-using Ushahidi.View.Languages;
+using Ushahidi.Model.Extensions;
 
 namespace Ushahidi.View.Controls
 {

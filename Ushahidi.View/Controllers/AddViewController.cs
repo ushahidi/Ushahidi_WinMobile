@@ -3,7 +3,7 @@ using System.Linq;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
-using Ushahidi.View.Languages;
+using Ushahidi.Model.Extensions;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers

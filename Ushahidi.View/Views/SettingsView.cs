@@ -2,7 +2,8 @@
 using System.ComponentModel;
 using System.Globalization;
 using Ushahidi.Common.Controls;
-using Ushahidi.View.Languages;
+using Ushahidi.Model;
+using Ushahidi.Model.Extensions;
 
 namespace Ushahidi.View.Views
 {
@@ -124,7 +125,7 @@ namespace Ushahidi.View.Views
 
         private void OnLanguageChanged(object sender, EventArgs e)
         {
-            LanguageManager.Language = comboBoxLanguages.SelectedValue<CultureInfo>();
+            DataManager.Language = comboBoxLanguages.SelectedValue<CultureInfo>();
             Translate();
         }
 

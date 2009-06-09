@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
+using System.Reflection;
+using System.Resources;
 using System.Text;
 using System.Xml;
 using Microsoft.Win32;
@@ -23,24 +28,9 @@ namespace Ushahidi.Model
         #region Settings
 
         /// <summary>
-        /// Data Directory
-        /// </summary>
-        private static readonly string DataDirectory = Path.Combine(Runtime.AppDirectory, "Data");
-
-        /// <summary>
-        /// Media Directory
-        /// </summary>
-        public static readonly string MediaDirectory = Path.Combine(Runtime.AppDirectory, "Media");
-        
-        /// <summary>
         /// Server Address
         /// </summary>
         public static string ServerAddress { get; set; }
-
-        /// <summary>
-        /// Language
-        /// </summary>
-        public static string Language { get; set; }
 
         /// <summary>
         /// Last sync date
@@ -67,6 +57,25 @@ namespace Ushahidi.Model
         /// </summary>
         public static string Email { get; set; }
 
+        /// <summary>
+        /// Data Directory
+        /// </summary>
+        private static string DataDirectory
+        {
+            get
+            {
+                if (_DataDictionary == null)
+                {
+                    _DataDictionary = Path.Combine(Runtime.AppDirectory, "Data");
+                    if (Directory.Exists(_DataDictionary) == false)
+                    {
+                        Directory.CreateDirectory(_DataDictionary);
+                    }
+                }
+                return _DataDictionary;
+            }
+        }private static string _DataDictionary;
+
         private const string RegKeyUshahidi = "Ushahidi";
         private const string RegKeyServer = "Server";
         private const string RegKeyLanguage = "Language";
@@ -75,55 +84,38 @@ namespace Ushahidi.Model
         private const string RegKeyFirstName = "FirstName";
         private const string RegKeyLastName = "LastName";
         private const string RegKeyEmail = "Email";
-        
+
         static DataManager()
         {
-            if (Directory.Exists(DataDirectory) == false)
-            {
-                Directory.CreateDirectory(DataDirectory);
-                Log.Info("DataManager.LoadSettings", "DataDirectory:{0}", DataDirectory);
-            }
-            if (Directory.Exists(MediaDirectory) == false)
-            {
-                Directory.CreateDirectory(MediaDirectory);
-                Log.Info("DataManager.LoadSettings", "MediaDirectory:{0}", MediaDirectory);
-            }
             RegistryKey registryKey = Registry.LocalMachine.CreateSubKey(RegKeyUshahidi);
             if (registryKey != null)
             {
                 ServerAddress = registryKey.GetValue(RegKeyServer, "http://demo.ushahidi.com").ToString();
-                Log.Info("DataManager", "ServerAddress:{0}", ServerAddress);
 
-                Language = registryKey.GetValue(RegKeyLanguage, "en").ToString();
-                Log.Info("DataManager", "Language:{0}", Language);
+                string languageCode = registryKey.GetValue(RegKeyLanguage, "en").ToString();
+                Language = Languages.FirstOrDefault(c => c.Name == languageCode);
 
                 string lastSyncDate = registryKey.GetValue(RegKeyLastSync, "").ToString();
                 LastSyncDate = string.IsNullOrEmpty(lastSyncDate) ? DateTime.MinValue : DateTime.Parse(lastSyncDate);
-                Log.Info("DataManager", "LastSyncDate:{0}", LastSyncDate);
 
                 ShowKeyboard = Convert.ToBoolean(registryKey.GetValue(RegKeyShowKeyboard, true));
-                Log.Info("DataManager", "ShowKeyboard:{0}", ShowKeyboard);
 
                 FirstName = registryKey.GetValue(RegKeyFirstName, "").ToString();
-                Log.Info("DataManager", "FirstName:{0}", FirstName);
 
                 LastName = registryKey.GetValue(RegKeyLastName, "").ToString();
-                Log.Info("DataManager", "LastName:{0}", LastName);
 
                 Email = registryKey.GetValue(RegKeyEmail, "").ToString();
-                Log.Info("DataManager", "Email:{0}", Email);
 
                 registryKey.Close();
             }
         }
 
         /// <summary>
-        /// Save
+        /// Save Settings
         /// </summary>
         /// <returns>true, if successful</returns>
         public static bool Save()
         {
-            Log.Info("DataManager.Save");
             RegistryKey registryKey = Registry.LocalMachine.CreateSubKey(RegKeyUshahidi);
             if (registryKey != null)
             {
@@ -137,6 +129,76 @@ namespace Ushahidi.Model
                 return true;
             }
             return false;
+        }
+
+        #endregion
+
+        #region Languages
+
+        /// <summary>
+        /// Resource Manager
+        /// </summary>
+        private static readonly ResourceManager ResourceManager = new ResourceManager("Ushahidi.Model.Languages.Language", Assembly.GetExecutingAssembly());
+
+        /// <summary>
+        /// Languages
+        /// </summary>
+        public static IEnumerable<CultureInfo> Languages
+        {
+            get
+            {
+                if (_Languages == null)
+                {
+                    _Languages = new BindingList<CultureInfo>();
+                    DirectoryInfo appDirectory = new DirectoryInfo(Runtime.AppDirectory);
+                    string resourceName = string.Format("{0}.resources.dll", Assembly.GetExecutingAssembly().GetName().Name);
+                    foreach (DirectoryInfo directoryInfo in appDirectory.GetDirectories().OrderBy(d => d.Name))
+                    {
+                        if (directoryInfo.GetFiles(resourceName).Length > 0)
+                        {
+                            Log.Info("LanguageManager", "Culture: {0}", directoryInfo.Name);
+                            _Languages.Add(new CultureInfo(directoryInfo.Name));
+                        }
+                    }
+                }
+                return _Languages;
+            }
+        }private static BindingList<CultureInfo> _Languages;
+
+        /// <summary>
+        /// Current Language
+        /// </summary>
+        public static CultureInfo Language
+        {
+            get
+            {
+                if (_Language == null)
+                {
+                    _Language = _Languages.First(c => c.Name == "en");
+                }
+                return _Language;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _Language = value;
+                }
+            }
+        }private static CultureInfo _Language;
+
+        public static string Translate(string name)
+        {
+            try
+            {
+                string translation = ResourceManager.GetString(name, Language);
+                Log.Info("LanguageManager.Translate", "{0} = {1}", name, translation);
+                return translation;
+            }
+            catch
+            {
+                return string.Format("{0}", name);
+            }
         }
 
         #endregion
@@ -361,6 +423,25 @@ namespace Ushahidi.Model
         #endregion
 
         #region Media
+
+        /// <summary>
+        /// Data Directory
+        /// </summary>
+        private static string MediaDirectory
+        {
+            get
+            {
+                if (_MediaDirectory == null)
+                {
+                    _MediaDirectory = Path.Combine(Runtime.AppDirectory, "Media");
+                    if (Directory.Exists(_MediaDirectory) == false)
+                    {
+                        Directory.CreateDirectory(_MediaDirectory);
+                    }
+                }
+                return _MediaDirectory;
+            }
+        }private static string _MediaDirectory;
 
         /// <summary>
         /// Download Media and file JSON to disk

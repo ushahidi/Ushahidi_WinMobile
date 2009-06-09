@@ -58,6 +58,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.XML" />
   </ItemGroup>
   <ProjectExtensions>
@@ -76,6 +77,7 @@
   -->
   <ItemGroup>
     <Compile Include="Extensions\ImageExtensions.cs" />
+    <Compile Include="Extensions\LanguageExtensions.cs" />
     <Compile Include="Models\Categories.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -108,5 +110,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Ushahidi.Model.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Languages\Language.de.resx" />
+    <EmbeddedResource Include="Languages\Language.en.resx" />
+    <EmbeddedResource Include="Languages\Language.es.resx" />
+    <EmbeddedResource Include="Languages\Language.fr.resx" />
+    <EmbeddedResource Include="Languages\Language.it.resx" />
+    <EmbeddedResource Include="Languages\Language.nl.resx" />
+    <EmbeddedResource Include="Languages\Language.pl.resx" />
+    <EmbeddedResource Include="Languages\Language.pt.resx" />
   </ItemGroup>
 </Project>

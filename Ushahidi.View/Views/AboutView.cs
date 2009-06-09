@@ -1,4 +1,4 @@
-﻿using Ushahidi.View.Languages;
+﻿using Ushahidi.Model.Extensions;
 
 namespace Ushahidi.View.Views
 {

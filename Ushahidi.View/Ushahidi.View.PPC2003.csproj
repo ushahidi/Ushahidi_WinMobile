@@ -88,7 +88,6 @@
     <Compile Include="Controls\TextListItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Languages\LanguageManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -182,14 +181,6 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <Content Include="Resources\ushahidi_plus.png" />
-    <EmbeddedResource Include="Languages\Language.de.resx" />
-    <EmbeddedResource Include="Languages\Language.en.resx" />
-    <EmbeddedResource Include="Languages\Language.es.resx" />
-    <EmbeddedResource Include="Languages\Language.fr.resx" />
-    <EmbeddedResource Include="Languages\Language.it.resx" />
-    <EmbeddedResource Include="Languages\Language.nl.resx" />
-    <EmbeddedResource Include="Languages\Language.pl.resx" />
-    <EmbeddedResource Include="Languages\Language.pt.resx" />
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />

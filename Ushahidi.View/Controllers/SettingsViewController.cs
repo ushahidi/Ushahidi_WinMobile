@@ -1,5 +1,5 @@
 ﻿using Ushahidi.Model;
-using Ushahidi.View.Languages;
+using Ushahidi.Model.Extensions;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -27,8 +27,8 @@ namespace Ushahidi.View.Controllers
 
         public override void Load(object[] parameters)
         {
-            View.Languages = LanguageManager.Languages;
-            View.Language = LanguageManager.Language;
+            View.Languages = DataManager.Languages;
+            View.Language = DataManager.Language;
             View.ShowKeyboard = DataManager.ShowKeyboard;
             View.FirstName = DataManager.FirstName;
             View.LastName = DataManager.LastName;
@@ -39,8 +39,8 @@ namespace Ushahidi.View.Controllers
         {
             if (View.ShouldSave)
             {
-                LanguageManager.Language = View.Language;
-                DataManager.Language = View.Language.Name;
+                DataManager.Language = View.Language;
+                DataManager.Language = View.Language;
                 DataManager.ShowKeyboard = View.ShowKeyboard;
                 DataManager.FirstName = View.FirstName;
                 DataManager.LastName = View.LastName;
