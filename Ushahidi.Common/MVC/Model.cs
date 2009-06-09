@@ -12,14 +12,14 @@ namespace Ushahidi.Common.MVC
     /// </summary>
     public abstract class Model : IModel
     {
-        [XmlElement("id")]
+        [XmlIgnore]
         public abstract int ID { get; set; }
 
-        [XmlElement("upload")]
+        [XmlIgnore]
         public abstract bool Upload { get; set; }
 
         [XmlIgnore]
-        public abstract string FilePath { get; set; }
+        public string FilePath { get; set; }
 
         /// <summary>
         /// Load XML into object
@@ -66,16 +66,6 @@ namespace Ushahidi.Common.MVC
                 Log.Info("Model.Load", "Exception: {0}", ex.Message);
             }
             return default(TModel);
-        }
-
-        public bool Save()
-        {
-            return Save(this, FilePath);
-        }
-
-        public bool Save(string filePath)
-        {
-            return Save(this, filePath);
         }
 
         protected static bool Save<TModel>(TModel model, string filePath)

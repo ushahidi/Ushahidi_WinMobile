@@ -13,6 +13,7 @@ namespace Ushahidi.Common.Controls
         public LabelCheckBox()
         {
             InitializeComponent();
+            label.Font = label.Font.ToBold();
         }
 
         /// <summary>
@@ -43,6 +44,15 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
+        /// Label
+        /// </summary>
+        public string Label
+        {
+            get { return label.Text; }
+            set { label.Text = value; }
+        }
+
+        /// <summary>
         /// Text
         /// </summary>
         public string CheckBox
@@ -52,30 +62,31 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
-        /// Label bold?
-        /// </summary>
-        public bool Bold
-        {
-            get { return label.Font.Style == FontStyle.Bold; }
-            set { label.Font = value ? label.Font.ToBold() : label.Font.ToRegular(); }
-        }
-
-        /// <summary>
         /// Font
         /// </summary>
-        public new Font Font
+        public override Font Font
         {
             get { return base.Font; }
-            set { base.Font = label.Font = value; }
+            set
+            {
+                base.Font = value;
+                label.Font = value.ToBold();
+            }
         }
 
         /// <summary>
         /// Get or set the background color
         /// </summary>
-        public new Color BackColor
+        public override Color BackColor
         {
             get { return base.BackColor; }
             set { base.BackColor = label.BackColor = checkBox.BackColor = value; }
+        }
+
+        public override Color ForeColor
+        {
+            get { return base.ForeColor; }
+            set { base.ForeColor = label.ForeColor = value; }
         }
 
         /// <summary>

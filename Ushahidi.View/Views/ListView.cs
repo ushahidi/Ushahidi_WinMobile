@@ -33,17 +33,19 @@ namespace Ushahidi.View.Views
             comboBoxCategories.Translate("category");
         }
 
+        public override void Render()
+        {
+            base.Render();
+            comboBoxCategories.SelectedIndex = 0;
+        }
+
         /// <summary>
         /// Categories
         /// </summary>
         public Models<Category> Categories
         {
             set { comboBoxCategories.DataSource = value; }
-        }
-
-        protected Category SelectedCategory
-        {
-            get { return comboBoxCategories.SelectedValue<Category>(); }
+            get { return comboBoxCategories.DataSource as Models<Category>; }
         }
 
         /// <summary>
@@ -73,12 +75,13 @@ namespace Ushahidi.View.Views
                 listBoxIncidents.Clear();
                 if (Incidents != null)
                 {
-                    foreach (Incident incident in SelectedCategory.ID != -1
-                                                      ? Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false &&
-                                                                             i.HasCategory(SelectedCategory.ID))
-                                                      : Incidents.Where(i => string.IsNullOrEmpty(i.Title) == false))
+                    Category category = comboBoxCategories.SelectedValue<Category>();
+                    foreach (Incident incident in Incidents)
                     {
-                        listBoxIncidents.Add(new IncidentListItem(incident));
+                        if (category == null || category.ID == -1 || incident.HasCategory(category.ID))
+                        {
+                            listBoxIncidents.Add(new IncidentListItem(incident));
+                        }
                     }
                 }
             }

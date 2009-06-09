@@ -83,6 +83,12 @@
     <Compile Include="Controls\LabelCheckBox.Designer.cs">
       <DependentUpon>LabelCheckBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LabelCheckBoxes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LabelCheckBoxes.Designer.cs">
+      <DependentUpon>LabelCheckBoxes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LabelComboBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,12 +100,6 @@
     </Compile>
     <Compile Include="Controls\LabelDateBox.Designer.cs">
       <DependentUpon>LabelDateBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\LabelListEntry.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\LabelListEntry.Designer.cs">
-      <DependentUpon>LabelListEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\LabelPictureBoxes.cs">
       <SubType>UserControl</SubType>
@@ -183,14 +183,14 @@
     <EmbeddedResource Include="Controls\LabelCheckBox.resx">
       <DependentUpon>LabelCheckBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LabelCheckBoxes.resx">
+      <DependentUpon>LabelCheckBoxes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelComboBox.resx">
       <DependentUpon>LabelComboBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelDateBox.resx">
       <DependentUpon>LabelDateBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\LabelListEntry.resx">
-      <DependentUpon>LabelListEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\LabelPictureBoxes.resx">
       <DependentUpon>LabelPictureBoxes.cs</DependentUpon>

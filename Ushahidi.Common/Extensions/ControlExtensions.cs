@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
@@ -9,12 +10,51 @@ namespace Ushahidi.Common.Extensions
 {
     public static class ControlExtensions
     {
+        public static int MaxBottom(this Control.ControlCollection controls)
+        {
+            return controls.Count > 0 ? controls.All().Max(c => c.Bottom) : 0;
+        }
+
+        public static int MaxTabIndex(this Control control)
+        {
+            return Math.Max(control.TabIndex, control.Controls.Count > 0 ? control.Controls.All().Max(c => c.TabIndex) : 0);
+        }
+
+        public static int MaxTabIndex(this Control.ControlCollection controls)
+        {
+
+            return controls.Count > 0 ? controls.All().Max(c => c.TabIndex) : 0;
+        }
+
         public static IEnumerable<Control> All(this Control.ControlCollection controls)
         {
             foreach (Control control in controls)
             {
                 yield return control;
             }
+        }
+
+        public static IEnumerable<Control> Where(this Control.ControlCollection controls, Func<Control, bool> predicate)
+        {
+            foreach (Control control in controls)
+            {
+                if (predicate(control))
+                {
+                    yield return control;
+                }
+            }
+        }
+
+        public static Control FirstOrDefault(this Control.ControlCollection controls, Func<Control, bool> predicate)
+        {
+            foreach (Control control in controls)
+            {
+                if (predicate(control))
+                {
+                    return control;
+                }
+            }
+            return null;
         }
 
         public static IEnumerable<Control> Children(this Control.ControlCollection controls)

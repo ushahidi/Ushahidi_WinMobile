@@ -16,6 +16,7 @@ namespace Ushahidi.Common.Controls
         public LabelDateBox()
         {
             InitializeComponent();
+            label.Font = label.Font.ToBold();
         }
 
         /// <summary>
@@ -83,30 +84,40 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
-        /// Label bold?
+        /// Label
         /// </summary>
-        public bool Bold
+        public string Label
         {
-            get { return label.Font.Style == FontStyle.Bold; }
-            set { label.Font = value ? label.Font.ToBold() : label.Font.ToRegular(); }
+            get { return label.Text; }
+            set { label.Text = value; }
         }
 
         /// <summary>
         /// Font
         /// </summary>
-        public new Font Font
+        public override Font Font
         {
             get { return base.Font; }
-            set { base.Font = label.Font = value; }
+            set
+            {
+                base.Font = value;
+                label.Font = value.ToBold();
+            }
         }
 
         /// <summary>
         /// Get or set the background color
         /// </summary>
-        public new Color BackColor
+        public override Color BackColor
         {
             get { return base.BackColor; }
             set { base.BackColor = label.BackColor = value; }
+        }
+
+        public override Color ForeColor
+        {
+            get { return base.ForeColor; }
+            set { base.ForeColor = label.ForeColor = value; }
         }
 
         /// <summary>
@@ -129,11 +140,6 @@ namespace Ushahidi.Common.Controls
                     dateTimePicker.CustomFormat = " ";
                 }
             }
-        }
-
-        private void OnDateChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -44,7 +44,7 @@
             this.menuItemAction.MenuItems.Add(this.menuItemAddVideo);
             this.menuItemAction.Text = "Action";
             // 
-            // menuItemIncidentDetailsAddPhoto
+            // menuItemAddPhoto
             // 
             this.menuItemAddPhoto.Text = "Add Photo";
             // 
@@ -58,9 +58,9 @@
             this.panelContent.Controls.Add(this.listBoxDetails);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(240, 268);
+            this.panelContent.Size = new System.Drawing.Size(176, 180);
             // 
-            // scrollListBox
+            // listBoxDetails
             // 
             this.listBoxDetails.AutoScroll = true;
             this.listBoxDetails.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -68,26 +68,29 @@
             this.listBoxDetails.BackColorOdd = System.Drawing.Color.WhiteSmoke;
             this.listBoxDetails.BackSelectedColor = System.Drawing.Color.Black;
             this.listBoxDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxDetails.ForeColor = System.Drawing.Color.Black;
+            this.listBoxDetails.ForeSelectedColor = System.Drawing.Color.White;
             this.listBoxDetails.Location = new System.Drawing.Point(0, 0);
             this.listBoxDetails.Name = "listBoxDetails";
             this.listBoxDetails.SelectedIndex = -1;
-            this.listBoxDetails.Size = new System.Drawing.Size(240, 268);
+            this.listBoxDetails.SelectedItem = null;
+            this.listBoxDetails.Size = new System.Drawing.Size(176, 180);
             this.listBoxDetails.TabIndex = 0;
             // 
-            // menuItemIncidentDetailsAddNews
+            // menuItemAddNews
             // 
             this.menuItemAddNews.Text = "Add News Link";
             // 
-            // menuItemIncidentDetailsAddVideo
+            // menuItemAddVideo
             // 
             this.menuItemAddVideo.Text = "Add Video Link";
             // 
-            // IncidentDetailsView
+            // DetailsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(240, 268);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DetailsView";

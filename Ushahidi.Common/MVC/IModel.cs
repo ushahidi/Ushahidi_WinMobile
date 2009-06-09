@@ -8,14 +8,6 @@ namespace Ushahidi.Common.MVC
     /// </summary>
     public interface IModel : IDisposable
     {
-        /// <summary>
-        /// Save model
-        /// </summary>
-        /// <returns>true, if save successful</returns>
-        bool Save();
-
-        bool Save(string filePath);
-
         int ID { get; set; }
 
         [XmlElement("upload")]

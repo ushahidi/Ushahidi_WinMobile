@@ -336,7 +336,8 @@ namespace Ushahidi.Model
         public static bool AddIncident(Incident incident)
         {
             Incidents.Add(incident);
-            string filePath = Path.Combine(DataDirectory, string.Format("{0}.{1}", Guid.NewGuid(), Incident.Identifier));
+            string fileName = string.Format("{0}.{1}", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"), Incident.Identifier);
+            string filePath = Path.Combine(DataDirectory, fileName);
             Log.Info("DataManager.AddIncident", "{0}", filePath);
             return incident.Save(filePath);
         }

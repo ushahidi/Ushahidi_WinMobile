@@ -20,9 +20,6 @@ namespace Ushahidi.Model.Models
         [XmlElement("upload")]
         public override bool Upload { get; set; }
 
-        [XmlIgnore]
-        public override string FilePath { get; set; }
-
         [XmlElement("payload", IsNullable = true)]
         public Payload Payload { get; set; }
 

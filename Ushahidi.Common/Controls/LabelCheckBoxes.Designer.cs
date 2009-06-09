@@ -1,6 +1,6 @@
 ﻿namespace Ushahidi.Common.Controls
 {
-    partial class LabelDateBox
+    partial class LabelCheckBoxes
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.panel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // label
@@ -39,26 +39,24 @@
             this.label.Location = new System.Drawing.Point(4, 2);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(233, 18);
+            this.label.Text = "Label";
             // 
-            // dateTimePicker
+            // panel
             // 
-            this.dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker.Location = new System.Drawing.Point(4, 21);
-            this.dateTimePicker.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.dateTimePicker.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(233, 22);
-            this.dateTimePicker.TabIndex = 2;
+            this.panel.Location = new System.Drawing.Point(4, 22);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(233, 21);
             // 
-            // LabelDateBox
+            // LabelCheckBoxes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.dateTimePicker);
+            this.Controls.Add(this.panel);
             this.Controls.Add(this.label);
-            this.Name = "LabelDateBox";
+            this.Name = "LabelCheckBoxes";
             this.Size = new System.Drawing.Size(240, 45);
             this.ResumeLayout(false);
 
@@ -67,6 +65,6 @@
         #endregion
 
         private System.Windows.Forms.Label label;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Panel panel;
     }
 }

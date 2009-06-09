@@ -50,12 +50,12 @@
             // 
             this.menuItemSettings.Enabled = false;
             // 
-            // menuItemSettingsDone
+            // menuItemDone
             // 
             this.menuItemDone.Text = "Done";
             this.menuItemDone.Click += new System.EventHandler(this.OnDone);
             // 
-            // menuItemSettingsCancel
+            // menuItemCancel
             // 
             this.menuItemCancel.Text = "Cancel";
             this.menuItemCancel.Click += new System.EventHandler(this.OnCancel);
@@ -74,23 +74,22 @@
             this.panelContent.Controls.Add(this.textBoxFirstName);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(240, 268);
+            this.panelContent.Size = new System.Drawing.Size(176, 210);
             // 
-            // checkBoxSettingsKeyboard
+            // checkBoxKeyboard
             // 
             this.checkBoxKeyboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxKeyboard.BackColor = System.Drawing.Color.Gainsboro;
-            this.checkBoxKeyboard.Bold = true;
             this.checkBoxKeyboard.CheckBox = "Auto Show";
             this.checkBoxKeyboard.Checked = false;
-            this.checkBoxKeyboard.Text = "Keyboard";
+            this.checkBoxKeyboard.Label = "Keyboard";
             this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 180);
             this.checkBoxKeyboard.Name = "checkBoxKeyboard";
-            this.checkBoxKeyboard.Size = new System.Drawing.Size(240, 28);
+            this.checkBoxKeyboard.Size = new System.Drawing.Size(176, 28);
             this.checkBoxKeyboard.TabIndex = 4;
             // 
-            // comboBoxSettingsLanguages
+            // comboBoxLanguages
             // 
             this.comboBoxLanguages.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -99,64 +98,64 @@
             this.comboBoxLanguages.DataSource = null;
             this.comboBoxLanguages.DisplayMember = "NativeName";
             this.comboBoxLanguages.IsRequired = true;
-            this.comboBoxLanguages.Text = "Language";
+            this.comboBoxLanguages.Label = "Language";
             this.comboBoxLanguages.Location = new System.Drawing.Point(0, 0);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.SelectedIndex = -1;
             this.comboBoxLanguages.SelectedItem = null;
             this.comboBoxLanguages.SelectedText = "";
-            this.comboBoxLanguages.Size = new System.Drawing.Size(240, 45);
+            this.comboBoxLanguages.Size = new System.Drawing.Size(176, 45);
             this.comboBoxLanguages.TabIndex = 0;
             this.comboBoxLanguages.ValueMember = "Name";
             this.comboBoxLanguages.SelectedIndexChanged += new System.EventHandler(this.OnLanguageChanged);
             // 
-            // textBoxSettingsEmail
+            // textBoxEmail
             // 
             this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEmail.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxEmail.Bold = true;
             this.textBoxEmail.IsRequired = false;
-            this.textBoxEmail.Text = "Email";
+            this.textBoxEmail.Label = "Email";
             this.textBoxEmail.Location = new System.Drawing.Point(0, 135);
             this.textBoxEmail.Multiline = false;
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(240, 45);
+            this.textBoxEmail.Size = new System.Drawing.Size(176, 45);
             this.textBoxEmail.TabIndex = 3;
+            this.textBoxEmail.Value = "";
             // 
-            // textBoxSettingsLastName
+            // textBoxLastName
             // 
             this.textBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxLastName.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxLastName.Bold = true;
             this.textBoxLastName.IsRequired = false;
-            this.textBoxLastName.Text = "Last Name";
+            this.textBoxLastName.Label = "Last Name";
             this.textBoxLastName.Location = new System.Drawing.Point(0, 90);
             this.textBoxLastName.Multiline = false;
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(240, 45);
+            this.textBoxLastName.Size = new System.Drawing.Size(176, 45);
             this.textBoxLastName.TabIndex = 2;
+            this.textBoxLastName.Value = "";
             // 
-            // textBoxSettingsFirstName
+            // textBoxFirstName
             // 
             this.textBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxFirstName.Bold = true;
             this.textBoxFirstName.IsRequired = false;
-            this.textBoxFirstName.Text = "First Name";
+            this.textBoxFirstName.Label = "First Name";
             this.textBoxFirstName.Location = new System.Drawing.Point(0, 45);
             this.textBoxFirstName.Multiline = false;
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(240, 45);
+            this.textBoxFirstName.Size = new System.Drawing.Size(176, 45);
             this.textBoxFirstName.TabIndex = 1;
+            this.textBoxFirstName.Value = "";
             // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(240, 268);
+            this.ClientSize = new System.Drawing.Size(176, 210);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";

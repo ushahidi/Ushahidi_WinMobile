@@ -9,6 +9,7 @@ namespace Ushahidi.Common.Controls
         public LabelImages()
         {
             InitializeComponent();
+            label.Font = label.Font.ToBold();
         }
 
         /// <summary>
@@ -30,21 +31,16 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
-        /// Label bold?
-        /// </summary>
-        public bool Bold
-        {
-            get { return label.Font.Style == FontStyle.Bold; }
-            set { label.Font = value ? label.Font.ToBold() : label.Font.ToRegular(); }
-        }
-
-        /// <summary>
         /// Font
         /// </summary>
-        public new Font Font
+        public override Font Font
         {
             get { return base.Font; }
-            set { base.Font = label.Font = value; }
+            set
+            {
+                base.Font = value;
+                label.Font = value.ToBold();
+            }
         }
 
         /// <summary>

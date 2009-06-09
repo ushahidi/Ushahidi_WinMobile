@@ -52,6 +52,15 @@ namespace Ushahidi.Common.Controls
         }private Color _BackSelectedColor = Color.Black;
 
         /// <summary>
+        /// Selected back color
+        /// </summary>
+        public Color ForeSelectedColor
+        {
+            get { return _ForeSelectedColor; }
+            set { _ForeSelectedColor = value; }
+        }private Color _ForeSelectedColor = Color.White;
+
+        /// <summary>
         /// Focus on list, if nothing currently selected, then select first item
         /// </summary>
         public new bool Focus()

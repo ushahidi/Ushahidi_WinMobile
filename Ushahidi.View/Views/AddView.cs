@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.MVC;
@@ -36,19 +37,27 @@ namespace Ushahidi.View.Views
             base.Translate();
             this.Translate("addIncident");
             textBoxTitle.Translate("title");
+            textBoxDescription.Translate("description");
             dateBoxDate.Translate("date");
-            comboBoxCategories.Translate("category");
+            checkBoxesCategories.Translate("category");
             comboBoxLocales.Translate("location");
             menuItemSave.Translate("saveIncident");
             menuItemCancel.Translate("cancel");
             menuItemAddPhoto.Translate("addPhoto");
-            menuItemAddNews.Translate("addNewLink");
+            menuItemAddNews.Translate("addNewsLink");
             menuItemAddVideo.Translate("addVideoLink");
         }
 
         public override void Render()
         {
             ShouldSave = true;
+            textBoxTitle.Top = 0;
+            dateBoxDate.Top = textBoxTitle.Bottom;
+            comboBoxLocales.Top = dateBoxDate.Bottom;
+            checkBoxesCategories.Top = comboBoxLocales.Bottom;
+            textBoxDescription.Top = checkBoxesCategories.Bottom;
+            scrollListBox.Top = textBoxDescription.Bottom;
+            scrollListBox.AdjustHeight();
         }
 
         /// <summary>
@@ -72,18 +81,17 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Categories data source
         /// </summary>
-        public Models<Category> Categories
+        public IEnumerable<Category> Categories
         {
-            set { comboBoxCategories.DataSource = value; }
-        }
-
-        /// <summary>
-        /// Incident type
-        /// </summary>
-        public Category Category
-        {
-            get { return comboBoxCategories.SelectedValue<Category>(); }
-            set { comboBoxCategories.SelectedItem = value; }
+            set
+            {
+                checkBoxesCategories.Clear();
+                foreach (Category category in value)
+                {
+                    checkBoxesCategories.Add(category.Title, category);
+                }
+            }
+            get { return checkBoxesCategories.CheckedValues.Select(c => c as Category); }
         }
 
         /// <summary>
@@ -137,7 +145,6 @@ namespace Ushahidi.View.Views
             {
                 _MediaItems.Add(media);
                 scrollListBox.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
-                scrollListBox.AdjustHeight();
             }
         }
 
@@ -165,7 +172,7 @@ namespace Ushahidi.View.Views
 
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
-            panelContent.Height = ClientRectangle.Height - args.Bounds.Height;
+            scrollListBox.Height = ClientRectangle.Height - args.Bounds.Height;
         }
     }
 }

@@ -37,7 +37,6 @@ namespace Ushahidi.View.Controllers
             View.Categories = DataManager.Categories;
             View.Locales = DataManager.Locales;
             View.Title = string.Empty;
-            View.Category = null;
             View.Locale = null;
             View.Date = DateTime.Now;
             View.Description = string.Empty;
@@ -50,7 +49,12 @@ namespace Ushahidi.View.Controllers
         /// <returns>true, if successful</returns>
         public override bool Save()
         {
-            if (View.ShouldSave && View.Title.HasText() && View.Description.HasText() && View.Locale != null && View.Category != null && View.Date != DateTime.MinValue)
+            if (View.ShouldSave && 
+                View.Title.HasText() && 
+                View.Description.HasText() && 
+                View.Locale != null && 
+                View.Categories.Count() > 0 && 
+                View.Date != DateTime.MinValue)
             {
                 Incident incident = new Incident
                 {
@@ -58,9 +62,13 @@ namespace Ushahidi.View.Controllers
                     Date = View.Date,
                     Title = View.Title,
                     Description = View.Description,
-                    Categories = new[] { View.Category },
+                    Categories = View.Categories.ToArray(),
                     MediaItems = View.MediaItems.ToArray(),
-                    Locale = View.Locale
+                    Locale = View.Locale,
+                    Mode = 1,
+                    Active = true,
+                    Verified = false,
+                    Upload = true
                 };
                 return DataManager.AddIncident(incident);
             }

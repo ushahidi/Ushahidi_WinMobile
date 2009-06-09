@@ -15,9 +15,6 @@ namespace Ushahidi.Model.Models
         [XmlElement("upload")]
         public override bool Upload { get; set; }
 
-        [XmlIgnore]
-        public override string FilePath { get; set; }
-
         [XmlElement("name")]
         public string Name { get; set; }
 

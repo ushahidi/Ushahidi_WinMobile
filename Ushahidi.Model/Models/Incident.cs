@@ -20,9 +20,6 @@ namespace Ushahidi.Model.Models
         [XmlElement("upload")]
         public override bool Upload { get; set; }
 
-        [XmlIgnore]
-        public override string FilePath { get; set; }
-
         [XmlElement("title")]
         public string Title { get; set; }
 
@@ -178,6 +175,16 @@ namespace Ushahidi.Model.Models
         public override string ToString()
         {
             return Title;
+        }
+
+        public bool Save()
+        {
+            return Save(this, FilePath);
+        }
+
+        public bool Save(string filePath)
+        {
+            return Save(this, filePath);
         }
 
         public static Incident Load(string filePath)
