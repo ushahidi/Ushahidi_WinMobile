@@ -35,12 +35,11 @@
             // 
             // pictureBoxLogo
             // 
-            this.pictureBoxLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxLogo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(170, 85);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(170, 91);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // textBlockDescription
@@ -50,7 +49,7 @@
             this.textBlockDescription.AutoResize = false;
             this.textBlockDescription.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBlockDescription.Bold = true;
-            this.textBlockDescription.Location = new System.Drawing.Point(3, 94);
+            this.textBlockDescription.Location = new System.Drawing.Point(3, 100);
             this.textBlockDescription.Name = "textBlockDescription";
             this.textBlockDescription.Size = new System.Drawing.Size(170, 75);
             this.textBlockDescription.TabIndex = 2;
@@ -64,7 +63,7 @@
             this.Controls.Add(this.textBlockDescription);
             this.Controls.Add(this.pictureBoxLogo);
             this.Name = "AboutView";
-            this.Text = "AboutView";
+            this.Text = "About";
             this.ResumeLayout(false);
 
         }

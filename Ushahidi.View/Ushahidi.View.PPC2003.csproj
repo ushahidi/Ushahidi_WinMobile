@@ -180,7 +180,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
-    <Content Include="Resources\ushahidi_plus.png" />
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />

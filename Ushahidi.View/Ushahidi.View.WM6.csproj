@@ -206,7 +206,6 @@
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
-    <EmbeddedResource Include="Resources\ushahidi_plus.png" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
   </ItemGroup>
   <ItemGroup>

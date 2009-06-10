@@ -174,6 +174,9 @@
   <data name="downloadingLocations" xml:space="preserve">
     <value>Lade Orte</value>
   </data>
+  <data name="downloadingMaps" xml:space="preserve">
+    <value>Herunterladen von Karten</value>
+  </data>
   <data name="downloadingMedia" xml:space="preserve">
     <value>Lade Medien</value>
   </data>
@@ -212,6 +215,9 @@
   </data>
   <data name="location" xml:space="preserve">
     <value>Ort</value>
+  </data>
+  <data name="mapType" xml:space="preserve">
+    <value>Typ Map</value>
   </data>
   <data name="menu" xml:space="preserve">
     <value>Menü</value>

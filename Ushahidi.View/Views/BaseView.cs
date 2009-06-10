@@ -29,7 +29,6 @@ namespace Ushahidi.View.Views
             menuItemAddIncident.Translate("addIncident");
             menuItemExit.Translate("exit");
             menuItemIncidentList.Translate("incidentList");
-            menuItemIncidentMap.Translate("incidentMap");
             menuItemAbout.Translate("about");
             menuItemSettings.Translate("settings");
             menuItemSynchronize.Translate("synchronize");
@@ -99,9 +98,12 @@ namespace Ushahidi.View.Views
         private void OnMenuPopup(object sender, EventArgs e)
         {
             Type type = GetType();
-            menuItemAddIncident.Enabled =  type != typeof(AddView);
-            menuItemIncidentList.Enabled = type != typeof(ListView);
-            menuItemIncidentMap.Enabled = type != typeof(MapView);
+            menuItemAddIncident.Enabled = type != typeof (AddView);
+            menuItemIncidentList.Enabled = type != typeof (ListView);
+            menuItemSettings.Enabled = type != typeof (SettingsView);
+            menuItemSynchronize.Enabled = type != typeof (SyncView);
+            menuItemAbout.Enabled = type != typeof (AboutView);
+            menuItemWebsite.Enabled = type != typeof (WebsiteView);
         }
 
     }

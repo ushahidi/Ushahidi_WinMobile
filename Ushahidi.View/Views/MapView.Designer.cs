@@ -35,10 +35,6 @@
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuItemIncidentMap
-            // 
-            this.menuItemIncidentMap.Enabled = false;
-            // 
             // panelContent
             // 
             this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)

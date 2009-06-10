@@ -20,7 +20,6 @@ namespace Ushahidi.View.Views
             base.Translate();
             this.Translate("ushahidi");
             buttonListIncident.Translate("incidentList");
-            buttonMapIncident.Translate("incidentMap");
             buttonAddIncident.Translate("addIncident");
             buttonSynchronize.Translate("synchronize");
         }
@@ -52,6 +51,16 @@ namespace Ushahidi.View.Views
         private void OnSynchronize(object sender, EventArgs e)
         {
             OnForward<SyncViewController>(true);
+        }
+
+        private void OnResize(object sender, EventArgs e)
+        {
+            int padding = buttonListIncident.Left;
+            buttonListIncident.Height = buttonAddIncident.Height = buttonSynchronize.Height =
+                (ClientRectangle.Height - pictureBoxLogo.Height - pictureBoxLogo.Top - (padding*4)) / 3;
+            buttonListIncident.Top = pictureBoxLogo.Bottom + padding;
+            buttonAddIncident.Top = buttonListIncident.Bottom + padding;
+            buttonSynchronize.Top = buttonAddIncident.Bottom + padding;
         }
     }
 }

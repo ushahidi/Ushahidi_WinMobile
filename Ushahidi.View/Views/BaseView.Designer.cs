@@ -34,15 +34,14 @@
             this.menuItemMenu = new System.Windows.Forms.MenuItem();
             this.menuItemAddIncident = new System.Windows.Forms.MenuItem();
             this.menuItemIncidentList = new System.Windows.Forms.MenuItem();
-            this.menuItemIncidentMap = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
             this.menuItemSynchronize = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
+            this.menuItemAbout = new System.Windows.Forms.MenuItem();
             this.menuItemSettings = new System.Windows.Forms.MenuItem();
             this.menuItemWebsite = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator3 = new System.Windows.Forms.MenuItem();
             this.menuItemExit = new System.Windows.Forms.MenuItem();
-            this.menuItemAbout = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -58,7 +57,6 @@
             // 
             this.menuItemMenu.MenuItems.Add(this.menuItemAddIncident);
             this.menuItemMenu.MenuItems.Add(this.menuItemIncidentList);
-            this.menuItemMenu.MenuItems.Add(this.menuItemIncidentMap);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator1);
             this.menuItemMenu.MenuItems.Add(this.menuItemSynchronize);
             this.menuItemMenu.MenuItems.Add(this.menuItemSeparator2);
@@ -80,11 +78,6 @@
             this.menuItemIncidentList.Text = "Incident List";
             this.menuItemIncidentList.Click += new System.EventHandler(this.OnIncidentList);
             // 
-            // menuItemIncidentMap
-            // 
-            this.menuItemIncidentMap.Text = "Incident Map";
-            this.menuItemIncidentMap.Click += new System.EventHandler(this.OnIncidentMap);
-            // 
             // menuItemSeparator1
             // 
             this.menuItemSeparator1.Text = "-";
@@ -97,6 +90,11 @@
             // menuItemSeparator2
             // 
             this.menuItemSeparator2.Text = "-";
+            // 
+            // menuItemAbout
+            // 
+            this.menuItemAbout.Text = "About";
+            this.menuItemAbout.Click += new System.EventHandler(this.OnAbout);
             // 
             // menuItemSettings
             // 
@@ -116,11 +114,6 @@
             // 
             this.menuItemExit.Text = "Exit";
             this.menuItemExit.Click += new System.EventHandler(this.OnExit);
-            // 
-            // menuItemAbout
-            // 
-            this.menuItemAbout.Text = "About";
-            this.menuItemAbout.Click += new System.EventHandler(this.OnAbout);
             // 
             // BaseView
             // 
@@ -145,7 +138,6 @@
         public System.Windows.Forms.MenuItem menuItemMenu;
         public System.Windows.Forms.MenuItem menuItemExit;
         public System.Windows.Forms.MenuItem menuItemAddIncident;
-        public System.Windows.Forms.MenuItem menuItemIncidentMap;
         public System.Windows.Forms.MenuItem menuItemIncidentList;
         public System.Windows.Forms.MenuItem menuItemSettings;
         public System.Windows.Forms.MenuItem menuItemWebsite;

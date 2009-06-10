@@ -32,7 +32,6 @@
             this.panelContent = new System.Windows.Forms.Panel();
             this.buttonSynchronize = new Ushahidi.Common.Controls.ImageButton();
             this.buttonAddIncident = new Ushahidi.Common.Controls.ImageButton();
-            this.buttonMapIncident = new Ushahidi.Common.Controls.ImageButton();
             this.buttonListIncident = new Ushahidi.Common.Controls.ImageButton();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelContent.SuspendLayout();
@@ -47,12 +46,11 @@
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContent.Controls.Add(this.buttonSynchronize);
             this.panelContent.Controls.Add(this.buttonAddIncident);
-            this.panelContent.Controls.Add(this.buttonMapIncident);
             this.panelContent.Controls.Add(this.buttonListIncident);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(176, 240);
+            this.panelContent.Size = new System.Drawing.Size(176, 300);
             // 
             // buttonSynchronize
             // 
@@ -63,11 +61,11 @@
             this.buttonSynchronize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonSynchronize.DisabledImage = null;
             this.buttonSynchronize.Image = null;
-            this.buttonSynchronize.Location = new System.Drawing.Point(4, 196);
+            this.buttonSynchronize.Location = new System.Drawing.Point(4, 192);
             this.buttonSynchronize.Momentary = false;
             this.buttonSynchronize.Name = "buttonSynchronize";
             this.buttonSynchronize.Pressed = false;
-            this.buttonSynchronize.Size = new System.Drawing.Size(169, 28);
+            this.buttonSynchronize.Size = new System.Drawing.Size(169, 40);
             this.buttonSynchronize.TabIndex = 3;
             this.buttonSynchronize.Click += new System.EventHandler(this.OnSynchronize);
             // 
@@ -80,30 +78,13 @@
             this.buttonAddIncident.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonAddIncident.DisabledImage = null;
             this.buttonAddIncident.Image = null;
-            this.buttonAddIncident.Location = new System.Drawing.Point(4, 162);
+            this.buttonAddIncident.Location = new System.Drawing.Point(4, 146);
             this.buttonAddIncident.Momentary = false;
             this.buttonAddIncident.Name = "buttonAddIncident";
             this.buttonAddIncident.Pressed = false;
-            this.buttonAddIncident.Size = new System.Drawing.Size(169, 28);
+            this.buttonAddIncident.Size = new System.Drawing.Size(169, 40);
             this.buttonAddIncident.TabIndex = 2;
             this.buttonAddIncident.Click += new System.EventHandler(this.OnAddIncident);
-            // 
-            // buttonMapIncident
-            // 
-            this.buttonMapIncident.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonMapIncident.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonMapIncident.BackColorSelected = System.Drawing.Color.Gray;
-            this.buttonMapIncident.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.buttonMapIncident.DisabledImage = null;
-            this.buttonMapIncident.Image = null;
-            this.buttonMapIncident.Location = new System.Drawing.Point(4, 128);
-            this.buttonMapIncident.Momentary = false;
-            this.buttonMapIncident.Name = "buttonMapIncident";
-            this.buttonMapIncident.Pressed = false;
-            this.buttonMapIncident.Size = new System.Drawing.Size(169, 28);
-            this.buttonMapIncident.TabIndex = 1;
-            this.buttonMapIncident.Click += new System.EventHandler(this.OnMapIncident);
             // 
             // buttonListIncident
             // 
@@ -114,11 +95,11 @@
             this.buttonListIncident.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonListIncident.DisabledImage = null;
             this.buttonListIncident.Image = null;
-            this.buttonListIncident.Location = new System.Drawing.Point(4, 94);
+            this.buttonListIncident.Location = new System.Drawing.Point(4, 100);
             this.buttonListIncident.Momentary = false;
             this.buttonListIncident.Name = "buttonListIncident";
             this.buttonListIncident.Pressed = false;
-            this.buttonListIncident.Size = new System.Drawing.Size(169, 28);
+            this.buttonListIncident.Size = new System.Drawing.Size(169, 40);
             this.buttonListIncident.TabIndex = 0;
             this.buttonListIncident.Click += new System.EventHandler(this.OnListIncident);
             // 
@@ -129,7 +110,7 @@
             this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
             this.pictureBoxLogo.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxLogo.Name = "pictureBoxLogo";
-            this.pictureBoxLogo.Size = new System.Drawing.Size(170, 85);
+            this.pictureBoxLogo.Size = new System.Drawing.Size(170, 91);
             this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // HomeView
@@ -141,6 +122,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomeView";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Resize += new System.EventHandler(this.OnResize);
             this.panelContent.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -151,7 +133,6 @@
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
         private Ushahidi.Common.Controls.ImageButton buttonListIncident;
-        private Ushahidi.Common.Controls.ImageButton buttonMapIncident;
         private Ushahidi.Common.Controls.ImageButton buttonAddIncident;
         private Ushahidi.Common.Controls.ImageButton buttonSynchronize;
 

@@ -32,6 +32,7 @@ namespace Ushahidi.View.Views
             textBoxFirstName.Translate("firstName");
             textBoxLastName.Translate("lastName");
             comboBoxLanguages.Translate("language");
+            comboBoxMapType.Translate("mapType");
             checkBoxKeyboard.Translate("keyboard", "autoShow");
         }
 
@@ -65,6 +66,24 @@ namespace Ushahidi.View.Views
         {
             get { return comboBoxLanguages.DataSource; }
             set { comboBoxLanguages.DataSource = value; }
+        }
+
+        /// <summary>
+        /// Map Types
+        /// </summary>
+        public object MapTypes
+        {
+            get { return comboBoxMapType.DataSource; }
+            set { comboBoxMapType.DataSource = value; }
+        }
+
+        /// <summary>
+        /// Map Types
+        /// </summary>
+        public string MapType
+        {
+            get { return comboBoxMapType.SelectedValue<string>(); }
+            set { comboBoxMapType.SelectedItem = value; }
         }
 
         /// <summary>

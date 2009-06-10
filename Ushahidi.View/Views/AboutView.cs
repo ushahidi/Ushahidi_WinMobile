@@ -16,5 +16,10 @@ namespace Ushahidi.View.Views
             textBlockDescription.Translate("ushahidiDescription");
             textBlockDescription.AdjustHeight();
         }
+
+        public override void Render()
+        {
+            base.Render();
+        }
     }
 }

@@ -44,14 +44,18 @@ namespace Ushahidi.View.Views
             listBoxDetails.Add(new TextListItem("title".Translate(), Incident.Title, true));
             listBoxDetails.Add(new TextListItem("description".Translate(), Incident.Description));
             listBoxDetails.Add(new TextListItem("category".Translate(), Incident.CategoryTitle));
-            listBoxDetails.Add(new LocaleListItem(Incident.Locale));
             listBoxDetails.Add(new TextListItem("date".Translate(), Incident.Date.ToString("MMMM d, yyyy h:mm tt")));
             string verified = Incident.Verified ? "verified".Translate() : "notVerified".Translate();
             string active = Incident.Active ? "active".Translate() : "notActive".Translate();
             listBoxDetails.Add(new TextListItem("verifiedAndActive".Translate(), string.Format("{0} - {1}", verified, active)));
+            listBoxDetails.Add(new LocaleListItem(Incident.Locale));
             foreach (Media media in Incident.MediaItems.Where(m => m.MediaType != MediaType.Photo))
             {
                 listBoxDetails.Add(new LinkListItem(GetMediaTypeLabel(media.MediaType), media.Link));
+            }
+            if (DataManager.HasMap(Incident.ID))
+            {
+                listBoxDetails.Add(new PhotoListItem(DataManager.LoadMap(Incident.ID)));
             }
             foreach (Media media in Incident.MediaItems.Where(m => m.MediaType == MediaType.Photo))
             {
@@ -111,7 +115,8 @@ namespace Ushahidi.View.Views
             }
             else if (mapListItem != null)
             {
-                OnForward<MapViewController>(false, Incident.LocaleName, Incident.LocaleLatitude, Incident.LocaleLongitude);
+                Dialog.Help(mapListItem.Item.Name, string.Format("({0},{1})", mapListItem.Item.Latitude, mapListItem.Item.Longitude));
+                //OnForward<MapViewController>(false, Incident.LocaleName, Incident.LocaleLatitude, Incident.LocaleLongitude);
             }
         }
     }

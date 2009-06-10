@@ -31,7 +31,7 @@ namespace Ushahidi.View.Views
             this.Translate("synchronize");
             dateBoxLastSync.Translate("lastSynchronization");
             textBoxServer.Translate("server");
-            menuItemAction.Translate("action");
+            menuItemAction.Translate("synchronize");
         }
 
         public override void Render()
@@ -67,11 +67,15 @@ namespace Ushahidi.View.Views
         {
             Log.Info("SyncView.OnSynchronize");
             progressBox.Value = 0;
-            progressBox.Maximum = 8;
+            progressBox.Maximum = 9;
             listView.Items.Clear();
             columnHeaderProgress.Width = -2;
             StartTime = DateTime.Now;
+            Internet.TestURL = textBoxServer.Value;
+            DataManager.ScreenWidth = Screen.PrimaryScreen.Bounds.Width;
+            DataManager.ScreenHeight = Screen.PrimaryScreen.Bounds.Height;
             DataManager.ServerAddress = textBoxServer.Value;
+            listView.Focus();
             new Thread(SyncInternal).Start();
         }
 
@@ -94,22 +98,23 @@ namespace Ushahidi.View.Views
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
                          Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 3) &&
                          Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 4) &&
-                         Download(DataManager.DownloadLocales, "downloadingLocales".Translate(), 5) &&
+                         Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 5) &&
                          Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 6) &&
-                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 7))
+                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 7) &&
+                         Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 8))
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 8);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 9);
                 }
                 else
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 8);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 9);
                 }
 
             }
             catch (Exception ex)
             {
                 Log.Exception("SyncView.SyncInternal", "Exception: {0}", ex.Message);
-                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 8);
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 9);
             }
         }
 
@@ -123,7 +128,7 @@ namespace Ushahidi.View.Views
         private bool Download(DownloadHandler downloadHandler, string taskName, int progress)
         {
             Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, taskName, progress);
-            if (downloadHandler.Invoke("http://demo.ushahidi.com"))
+            if (downloadHandler.Invoke())
             {
                  Log.Info("SyncView.Download", "Task {0} Successful", taskName);
                  return true;
@@ -136,7 +141,7 @@ namespace Ushahidi.View.Views
         /// The download handler delegate
         /// </summary>
         /// <returns></returns>
-        private delegate bool DownloadHandler(string serverAddress);
+        private delegate bool DownloadHandler();
 
         /// <summary>
         /// Progress handler delegate
@@ -186,6 +191,7 @@ namespace Ushahidi.View.Views
                 LastSyncDate = DateTime.Now;
                 Cursor.Current = Cursors.Default;
             }
+            columnHeaderProgress.Width = -2;
         }
 
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)

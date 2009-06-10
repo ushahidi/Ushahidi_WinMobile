@@ -29,10 +29,12 @@ namespace Ushahidi.View.Controllers
         {
             View.Languages = DataManager.Languages;
             View.Language = DataManager.Language;
-            View.ShowKeyboard = DataManager.ShowKeyboard;
+            View.MapTypes = DataManager.MapTypes;
+            View.MapType = DataManager.MapType;
             View.FirstName = DataManager.FirstName;
             View.LastName = DataManager.LastName;
             View.Email = DataManager.Email;
+            View.ShowKeyboard = DataManager.ShowKeyboard;
         }
 
         public override bool Save()
@@ -40,11 +42,11 @@ namespace Ushahidi.View.Controllers
             if (View.ShouldSave)
             {
                 DataManager.Language = View.Language;
-                DataManager.Language = View.Language;
-                DataManager.ShowKeyboard = View.ShowKeyboard;
+                DataManager.MapType = View.MapType;
                 DataManager.FirstName = View.FirstName;
                 DataManager.LastName = View.LastName;
                 DataManager.Email = View.Email;
+                DataManager.ShowKeyboard = View.ShowKeyboard;
                 return DataManager.Save();
             }
             return true;
