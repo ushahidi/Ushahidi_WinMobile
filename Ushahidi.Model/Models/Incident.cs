@@ -145,7 +145,8 @@ namespace Ushahidi.Model.Models
                 Title = null,
                 Type = ((int) MediaType.Photo),
                 Link = Path.GetFileName(imagePath),
-                ThumbnailLink = Path.GetFileName(imagePath)
+                ThumbnailLink = Path.GetFileName(imagePath),
+                Upload = true
             };
             _MediaItems.Add(media);
         }
@@ -160,13 +161,10 @@ namespace Ushahidi.Model.Models
         {
             get
             {
-                if (_Thumbnail == null && _MediaItems.Any(m => m.MediaType == MediaType.Photo))
+                if (_Thumbnail == null)
                 {
                     Media media = _MediaItems.FirstOrDefault(m => m.MediaType == MediaType.Photo);
-                    if(media != null)
-                    {
-                        _Thumbnail = DataManager.LoadImage(media.ThumbnailLink);
-                    }
+                    _Thumbnail = media != null ? DataManager.LoadImage(media.ThumbnailLink) : DataManager.LoadMap(ID);
                 }
                 return _Thumbnail;
             }
