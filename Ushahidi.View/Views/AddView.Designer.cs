@@ -37,11 +37,11 @@
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
             this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.panel = new System.Windows.Forms.Panel();
-            this.textBoxTitle = new Ushahidi.Common.Controls.LabelTextBox();
-            this.dateBoxDate = new Ushahidi.Common.Controls.LabelDateBox();
-            this.comboBoxLocales = new Ushahidi.Common.Controls.LabelComboBox();
-            this.checkBoxesCategories = new Ushahidi.Common.Controls.LabelCheckBoxes();
             this.textBoxDescription = new Ushahidi.Common.Controls.LabelTextBox();
+            this.checkBoxesCategories = new Ushahidi.Common.Controls.LabelCheckBoxes();
+            this.comboBoxLocales = new Ushahidi.Common.Controls.LabelComboBox();
+            this.dateBoxDate = new Ushahidi.Common.Controls.LabelDateBox();
+            this.textBoxTitle = new Ushahidi.Common.Controls.LabelTextBox();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -89,7 +89,7 @@
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
-            this.scrollListBox.Size = new System.Drawing.Size(176, 10);
+            this.scrollListBox.Size = new System.Drawing.Size(169, 10);
             this.scrollListBox.TabIndex = 5;
             // 
             // panel
@@ -107,36 +107,34 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 275);
+            this.panel.Size = new System.Drawing.Size(176, 180);
             // 
-            // textBoxTitle
+            // textBoxDescription
             // 
-            this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTitle.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxTitle.IsRequired = false;
-            this.textBoxTitle.Label = "Title";
-            this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
-            this.textBoxTitle.Multiline = false;
-            this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(176, 45);
-            this.textBoxTitle.TabIndex = 0;
-            this.textBoxTitle.Value = "";
+            this.textBoxDescription.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxDescription.IsRequired = false;
+            this.textBoxDescription.Label = "Description";
+            this.textBoxDescription.Location = new System.Drawing.Point(0, 185);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(169, 75);
+            this.textBoxDescription.TabIndex = 4;
+            this.textBoxDescription.Value = "";
             // 
-            // dateBoxDate
+            // checkBoxesCategories
             // 
-            this.dateBoxDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.checkBoxesCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateBoxDate.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dateBoxDate.IsRequired = false;
-            this.dateBoxDate.Label = "Date";
-            this.dateBoxDate.Location = new System.Drawing.Point(0, 45);
-            this.dateBoxDate.Name = "dateBoxDate";
-            this.dateBoxDate.Size = new System.Drawing.Size(176, 45);
-            this.dateBoxDate.TabIndex = 1;
-            this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
+            this.checkBoxesCategories.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkBoxesCategories.Label = "Category";
+            this.checkBoxesCategories.Location = new System.Drawing.Point(0, 135);
+            this.checkBoxesCategories.Name = "checkBoxesCategories";
+            this.checkBoxesCategories.Size = new System.Drawing.Size(169, 45);
+            this.checkBoxesCategories.TabIndex = 3;
             // 
-            // comboBoxLocaless
+            // comboBoxLocales
             // 
             this.comboBoxLocales.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -151,40 +149,43 @@
             this.comboBoxLocales.SelectedIndex = -1;
             this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
-            this.comboBoxLocales.Size = new System.Drawing.Size(176, 45);
+            this.comboBoxLocales.Size = new System.Drawing.Size(169, 45);
             this.comboBoxLocales.TabIndex = 2;
             this.comboBoxLocales.ValueMember = "";
             // 
-            // checkBoxesCategories
+            // dateBoxDate
             // 
-            this.checkBoxesCategories.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.dateBoxDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxesCategories.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.checkBoxesCategories.Label = "Category";
-            this.checkBoxesCategories.Location = new System.Drawing.Point(0, 135);
-            this.checkBoxesCategories.Name = "checkBoxesCategories";
-            this.checkBoxesCategories.Size = new System.Drawing.Size(176, 45);
-            this.checkBoxesCategories.TabIndex = 3;
+            this.dateBoxDate.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dateBoxDate.IsRequired = false;
+            this.dateBoxDate.Label = "Date";
+            this.dateBoxDate.Location = new System.Drawing.Point(0, 45);
+            this.dateBoxDate.Name = "dateBoxDate";
+            this.dateBoxDate.Size = new System.Drawing.Size(169, 45);
+            this.dateBoxDate.TabIndex = 1;
+            this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
             // 
-            // textBoxDescription
+            // textBoxTitle
             // 
-            this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDescription.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxDescription.IsRequired = false;
-            this.textBoxDescription.Label = "Description";
-            this.textBoxDescription.Location = new System.Drawing.Point(0, 185);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(176, 75);
-            this.textBoxDescription.TabIndex = 4;
-            this.textBoxDescription.Value = "";
+            this.textBoxTitle.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxTitle.IsRequired = false;
+            this.textBoxTitle.Label = "Title";
+            this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
+            this.textBoxTitle.Multiline = false;
+            this.textBoxTitle.Name = "textBoxTitle";
+            this.textBoxTitle.Size = new System.Drawing.Size(169, 45);
+            this.textBoxTitle.TabIndex = 0;
+            this.textBoxTitle.Value = "";
             // 
             // AddView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 275);
+            this.AutoScroll = false;
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";

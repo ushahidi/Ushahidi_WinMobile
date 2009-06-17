@@ -38,6 +38,7 @@ namespace Ushahidi.View.Views
         {
             base.Render();
             progressBox.Value = 0;
+            listView.Items.Clear();
         }
 
         /// <summary>

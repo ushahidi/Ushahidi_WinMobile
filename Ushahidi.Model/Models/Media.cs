@@ -1,29 +1,19 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Net;
 using System.Xml.Serialization;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Model.Models
 {
-    /// <summary>
-    /// <media>
-    ///     <id>1</id>
-    ///     <title>photograph</title>
-    ///     <type>1</type>
-    ///     <link>3_1_1231886194.jpg</link>
-    ///     <thumb>3_1_1231886194_t.jpg</thumb>
-    ///</media>
-    /// </summary>
     [Serializable]
     [XmlType(Identifier)]
     public class Media : Common.MVC.Model
     {
         public const string Identifier = "media";
         
-        [XmlElement("id")]
-        public override int ID { get; set; }
-
-        [XmlElement("upload")]
-        public override bool Upload { get; set; }
-
         [XmlElement("type")]
         public int Type { get; set; }
 
@@ -86,6 +76,75 @@ namespace Ushahidi.Model.Models
               ThumbnailLink = thumbnailName,
               Upload = true
             };
+        }
+
+        /// <summary>
+        /// Download image from server
+        /// </summary>
+        /// <param name="sourceURL">source url</param>
+        /// <param name="destinationFilePath">destination filepath</param>
+        /// <returns>true, if successful</returns>
+        public static bool Download(string sourceURL, string destinationFilePath)
+        {
+            try
+            {
+                Log.Info("DataManager.DownloadImage", "Source: {0} Destination: {1}", sourceURL, destinationFilePath);
+                FileInfo fileInfo = new FileInfo(destinationFilePath);
+                if (fileInfo.Exists == false || fileInfo.Length == 0)
+                {
+                    WebRequest request = WebRequest.Create(sourceURL);
+                    request.Timeout = 5000;
+                    request.Credentials = CredentialCache.DefaultCredentials;
+                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                    using (Stream stream = response.GetResponseStream())
+                    {
+                        using (Image image = new Bitmap(stream))
+                        {
+                            image.Save(destinationFilePath, ImageFormat.Jpeg);
+                        }
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Exception("DataManager.DownloadImage", "Exception: {0}", ex.Message);
+            }
+            return false;
+        }
+
+        public static Bitmap CreateThumbnail(string filePath, int widthOrHeight)
+        {
+            try
+            {
+                if (File.Exists(filePath))
+                {
+                    using (Bitmap original = new Bitmap(filePath))
+                    {
+                        if (original.Width < widthOrHeight && original.Height < widthOrHeight) return original;
+                        Rectangle srcRect = new Rectangle(0, 0, original.Width, original.Height);
+                        Rectangle destRect = (original.Width > original.Height)
+                                 ? new Rectangle(0, 0, widthOrHeight, widthOrHeight * original.Height / original.Width)
+                                 : new Rectangle(0, 0, widthOrHeight * original.Width / original.Height, widthOrHeight);
+
+                        Bitmap thumbnail = new Bitmap(destRect.Width, destRect.Height);
+                        using (Graphics graphics = Graphics.FromImage(thumbnail))
+                        {
+                            using (Brush brush = new SolidBrush(Color.White))
+                            {
+                                graphics.FillRectangle(brush, 0, 0, destRect.Width, destRect.Height);
+                                graphics.DrawImage(original, destRect, srcRect, GraphicsUnit.Pixel);
+                            }
+                        }
+                        return thumbnail;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Exception("Media.CreateThumbnail", "Exception: {0}", ex.Message);
+            }
+            return null;
         }
     }
 }

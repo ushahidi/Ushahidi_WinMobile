@@ -1,20 +1,10 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 
 namespace Ushahidi.Model.Models
 {
-    [Serializable]
-    [XmlType(Identifier)]
+    [XmlType("location")]
     public class Locale : Common.MVC.Model
     {
-        public const string Identifier = "location";
-
-        [XmlElement("id")]
-        public override int ID { get; set; }
-
-        [XmlElement("upload")]
-        public override bool Upload { get; set; }
-
         [XmlElement("name")]
         public string Name { get; set; }
 

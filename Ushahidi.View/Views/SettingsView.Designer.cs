@@ -29,37 +29,23 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
-            this.menuItemDone = new System.Windows.Forms.MenuItem();
-            this.menuItemCancel = new System.Windows.Forms.MenuItem();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.comboBoxMapType = new Ushahidi.Common.Controls.LabelComboBox();
             this.checkBoxKeyboard = new Ushahidi.Common.Controls.LabelCheckBox();
             this.comboBoxLanguages = new Ushahidi.Common.Controls.LabelComboBox();
             this.textBoxEmail = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxLastName = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxFirstName = new Ushahidi.Common.Controls.LabelTextBox();
-            this.comboBoxMapType = new Ushahidi.Common.Controls.LabelComboBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemDone);
-            this.menuItemAction.MenuItems.Add(this.menuItemCancel);
             this.menuItemAction.Text = "Action";
             // 
             // menuItemSettings
             // 
             this.menuItemSettings.Enabled = false;
-            // 
-            // menuItemDone
-            // 
-            this.menuItemDone.Text = "Done";
-            this.menuItemDone.Click += new System.EventHandler(this.OnDone);
-            // 
-            // menuItemCancel
-            // 
-            this.menuItemCancel.Text = "Cancel";
-            this.menuItemCancel.Click += new System.EventHandler(this.OnCancel);
             // 
             // panelContent
             // 
@@ -77,6 +63,25 @@
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 260);
+            // 
+            // comboBoxMapType
+            // 
+            this.comboBoxMapType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxMapType.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.comboBoxMapType.Bold = true;
+            this.comboBoxMapType.DataSource = null;
+            this.comboBoxMapType.DisplayMember = "NativeName";
+            this.comboBoxMapType.IsRequired = true;
+            this.comboBoxMapType.Label = "Map Type";
+            this.comboBoxMapType.Location = new System.Drawing.Point(0, 45);
+            this.comboBoxMapType.Name = "comboBoxMapType";
+            this.comboBoxMapType.SelectedIndex = -1;
+            this.comboBoxMapType.SelectedItem = null;
+            this.comboBoxMapType.SelectedText = "";
+            this.comboBoxMapType.Size = new System.Drawing.Size(176, 45);
+            this.comboBoxMapType.TabIndex = 1;
+            this.comboBoxMapType.ValueMember = "Name";
             // 
             // checkBoxKeyboard
             // 
@@ -153,25 +158,6 @@
             this.textBoxFirstName.TabIndex = 2;
             this.textBoxFirstName.Value = "";
             // 
-            // comboBoxMapType
-            // 
-            this.comboBoxMapType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxMapType.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.comboBoxMapType.Bold = true;
-            this.comboBoxMapType.DataSource = null;
-            this.comboBoxMapType.DisplayMember = "NativeName";
-            this.comboBoxMapType.IsRequired = true;
-            this.comboBoxMapType.Label = "Map Type";
-            this.comboBoxMapType.Location = new System.Drawing.Point(0, 45);
-            this.comboBoxMapType.Name = "comboBoxMapType";
-            this.comboBoxMapType.SelectedIndex = -1;
-            this.comboBoxMapType.SelectedItem = null;
-            this.comboBoxMapType.SelectedText = "";
-            this.comboBoxMapType.Size = new System.Drawing.Size(176, 45);
-            this.comboBoxMapType.TabIndex = 1;
-            this.comboBoxMapType.ValueMember = "Name";
-            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -188,8 +174,6 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuItem menuItemDone;
-        private System.Windows.Forms.MenuItem menuItemCancel;
         private System.Windows.Forms.Panel panelContent;
         private Ushahidi.Common.Controls.LabelCheckBox checkBoxKeyboard;
         private Ushahidi.Common.Controls.LabelComboBox comboBoxLanguages;

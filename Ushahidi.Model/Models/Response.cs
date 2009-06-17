@@ -2,24 +2,9 @@
 
 namespace Ushahidi.Model.Models
 {
-    /// <summary>
-    /// <response><payload>
-    /// <success>false</success>
-    /// </payload>
-    /// <error>
-    /// <code>003</code>
-    /// <message>Form Post Failed.</message>
-    /// </error></response>
-    /// </summary>
     [XmlRoot("response")]
     public class Response : Common.MVC.Model
     {
-        [XmlElement("id")]
-        public override int ID { get; set; }
-
-        [XmlElement("upload")]
-        public override bool Upload { get; set; }
-
         [XmlElement("payload", IsNullable = true)]
         public Payload Payload { get; set; }
 

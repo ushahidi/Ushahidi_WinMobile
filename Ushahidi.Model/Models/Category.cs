@@ -1,21 +1,11 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
 using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Model.Models
 {
-    [Serializable]
-    [XmlType(Identifier)]
+    [XmlType("category")]
     public class Category : Common.MVC.Model
     {
-        public const string Identifier = "category";
-        
-        [XmlElement("id")]
-        public override int ID { get; set; }
-
-        [XmlElement("upload")]
-        public override bool Upload { get; set; }
-
         [XmlElement("title")]
         public string Title
         {

@@ -8,15 +8,27 @@ using System.Xml.Serialization;
 namespace Ushahidi.Common.MVC
 {
     /// <summary>
-    /// Abstract Model
+    /// Model
     /// </summary>
     public abstract class Model : IModel
     {
-        [XmlIgnore]
-        public abstract int ID { get; set; }
+        [XmlElement("id")]
+        public int ID { get; set; }
 
-        [XmlIgnore]
-        public abstract bool Upload { get; set; }
+        [XmlElement("upload")]
+        public bool Upload
+        {
+            get { return _Upload; }
+            set
+            {
+                //if (_Upload && value == false)
+                //{
+                //    FileInfo fileInfo = new FileInfo(FilePath);
+                //    fileInfo.MoveTo(string.Format("{0}.uploaded", FilePath));
+                //}
+                _Upload = value;
+            }
+        }private bool _Upload = false;
 
         [XmlIgnore]
         public string FilePath { get; set; }
@@ -40,7 +52,7 @@ namespace Ushahidi.Common.MVC
                 }
                 catch (Exception ex)
                 {
-                    Log.Info("Model.Load", "Exception: {0}", ex.Message);
+                    Log.Info("Model.Load", "Exception: {0} {1}", typeof(TModel), ex.Message);
                 }
             }
             return default(TModel);
@@ -63,7 +75,7 @@ namespace Ushahidi.Common.MVC
             }
             catch (Exception ex)
             {
-                Log.Info("Model.Load", "Exception: {0}", ex.Message);
+                Log.Info("Model.Parse", "Exception: {0} {1}", typeof(TModel), ex.Message);
             }
             return default(TModel);
         }
@@ -94,6 +106,20 @@ namespace Ushahidi.Common.MVC
             catch (Exception ex)
             {
                 Log.Exception("Model.Save", "Exception {0} {1}", typeof(TModel), ex.Message);
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Delete Model
+        /// </summary>
+        /// <returns>true, if successful</returns>
+        public bool Delete()
+        {
+            if (File.Exists(FilePath))
+            {
+                File.Delete(FilePath);
+                return true;
             }
             return false;
         }

@@ -1,15 +1,31 @@
-﻿using System.Xml.Serialization;
-using Ushahidi.Common.MVC;
+﻿using Ushahidi.Common.MVC;
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("categories")]
-    [XmlInclude(typeof(Category))]
+    /// <summary>
+    /// Collection of Categories
+    /// </summary>
     public class Categories : Models<Category>
     {
-        public static Categories Load(string filePath)
+        /// <summary>
+        /// Load Categories
+        /// </summary>
+        /// <param name="directory">directory</param>
+        /// <returns>Collection of Categories</returns>
+        public static Categories Load(string directory)
         {
-            return Load<Categories>(filePath);
+            return Load<Categories>(directory);
+        }
+
+        /// <summary>
+        /// Download Categories
+        /// </summary>
+        /// <param name="url">download url</param>
+        /// <param name="directory">destination directory</param>
+        /// <returns>Collection of Categories</returns>
+        public static Categories Download(string url, string directory)
+        {
+            return Download<Categories>(url, directory, "category");
         }
     }
 }

@@ -21,13 +21,14 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
+            menuItemAction.Click += OnDone;
         }
 
         public override void Translate()
         {
             base.Translate();
             this.Translate("settings");
-            menuItemAction.Translate("action");
+            menuItemAction.Translate("done");
             textBoxEmail.Translate("email");
             textBoxFirstName.Translate("firstName");
             textBoxLastName.Translate("lastName");
@@ -124,15 +125,6 @@ namespace Ushahidi.View.Views
         private void OnDone(object sender, EventArgs e)
         {
             ShouldSave = true;
-            OnBack();
-        }
-
-        /// <summary>
-        /// On Done
-        /// </summary>
-        private void OnCancel(object sender, EventArgs e)
-        {
-            ShouldSave = false;
             OnBack();
         }
 

@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Net;
 using System.Xml;
-using System.Xml.Serialization;
 using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.MVC
 {
+    /// <summary>
+    /// Generic collection of models
+    /// </summary>
+    /// <typeparam name="TModel">model</typeparam>
     public class Models<TModel> : BindingList<TModel>, IDisposable where TModel : Model
     {
+        /// <summary>
+        /// Add range of models
+        /// </summary>
+        /// <param name="models">range of models</param>
         public void Add(IEnumerable<TModel> models)
         {
             foreach (TModel model in models)
@@ -21,74 +28,125 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Load
+        /// Models to be purgeds
         /// </summary>
-        /// <typeparam name="TModels">Models</typeparam>
-        /// <param name="filePath">xml file path</param>
-        /// <returns>TModels</returns>
-        protected static TModels Load<TModels>(string filePath) where TModels : Models<TModel>
+        public IEnumerable<TModel> Uploaded
         {
-            if (File.Exists(filePath))
+            get { return _Uploaded; }
+            set
             {
-                try
-                {
-                    using (StreamReader reader = File.OpenText(filePath))
-                    {
-                        UTF8Encoding encoding = new UTF8Encoding();
-                        XmlSerializer serializer = new XmlSerializer(typeof (TModels), new[] {typeof (TModel)});
-                        using (MemoryStream memoryStream = new MemoryStream(encoding.GetBytes(reader.ReadToEnd())))
-                        {
-                            using (new XmlTextWriter(memoryStream, Encoding.UTF8))
-                            {
-                                return (TModels) serializer.Deserialize(memoryStream);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Info("Models.Load", "Exception {0} {1}", typeof(TModels), ex.Message);
-                }
+                _Uploaded.Clear();
+                _Uploaded.AddRange(value);
             }
-            return default(TModels);
+        }private readonly List<TModel> _Uploaded = new List<TModel>();
+
+        /// <summary>
+        /// Add uploaded model
+        /// </summary>
+        /// <param name="model">model</param>
+        public void AddUploaded(TModel model)
+        {
+            model.Upload = false;
+            _Uploaded.Add(model);
         }
 
         /// <summary>
-        /// Save
+        /// Load collection of models
         /// </summary>
-        /// <typeparam name="TModels">Models</typeparam>
-        /// <param name="models">models</param>
-        /// <param name="filePath">xml file path</param>
-        /// <returns>true, if successful</returns>
-        protected static bool Save<TModels>(TModels models, string filePath) where TModels : Models<TModel>
+        /// <typeparam name="TModels">models</typeparam>
+        /// <param name="directory">source directory</param>
+        /// <param name="uploadedOnly">load uploaded only</param>
+        /// <returns>collection of models</returns>
+        protected static TModels Load<TModels>(string directory, bool uploadedOnly) where TModels : Models<TModel>, new()
+        {
+            TModels models = new TModels();
+            string searchPattern = uploadedOnly ? "*.uploaded" : "*.xml";
+            foreach (string filePath in Directory.GetFiles(directory, searchPattern))
+            {
+                TModel model = Model.Load<TModel>(filePath);
+                if (model != null)
+                {
+                    model.FilePath = filePath;
+                    models.Add(model);
+                }
+            }
+            return models;
+        }
+
+        /// <summary>
+        /// Load collection of models
+        /// </summary>
+        /// <typeparam name="TModels">models</typeparam>
+        /// <param name="directory">source directory</param>
+        /// <returns>collection of models</returns>
+        protected static TModels Load<TModels>(string directory) where TModels : Models<TModel>, new()
+        {
+            return Load<TModels>(directory, false);
+        }
+
+        /// <summary>
+        /// Download TModels
+        /// </summary>
+        /// <typeparam name="TModels"></typeparam>
+        /// <param name="url">download url</param>
+        /// <param name="directory">destination directory</param>
+        /// <param name="identifier">model identifier</param>
+        /// <returns>Collection of TModels</returns>
+        protected static TModels Download<TModels>(string url, string directory, string identifier) where TModels : Models<TModel>, new()
         {
             try
             {
-                using (StreamWriter writer = new StreamWriter(filePath, false, Encoding.UTF8))
+                TModels models = new TModels();
+                WebRequest request = WebRequest.Create(url);
+                request.Timeout = 5000;
+                request.Credentials = CredentialCache.DefaultCredentials;
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                using (Stream dataStream = response.GetResponseStream())
                 {
-                    using (MemoryStream stream = new MemoryStream())
+                    XmlDocument document = new XmlDocument();
+                    document.Load(dataStream);
+                    foreach (XmlNode node in document.GetElementsByTagName(identifier))
                     {
-                        UTF8Encoding encoding = new UTF8Encoding();
-                        XmlSerializer serializer = new XmlSerializer(typeof(TModels), new[] { typeof(TModel) });
-                        using (XmlTextWriter xmlTextWriter = new XmlTextWriter(stream, Encoding.UTF8))
+                        try
                         {
-                            serializer.Serialize(xmlTextWriter, models);
-                            using (MemoryStream writeStream = (MemoryStream)xmlTextWriter.BaseStream)
+                            string modelXML = node.OuterXml;
+                            TModel model = Model.Parse<TModel>(modelXML);
+                            if (model != null)
                             {
-                                Byte[] data = writeStream.ToArray();
-                                string xmlString = encoding.GetString(data, 0, data.Length);
-                                writer.WriteLine(xmlString);
+                                model.FilePath = Path.Combine(directory, string.Format("{0}.xml", model.ID));
+                                if (File.Exists(model.FilePath))
+                                {
+                                    File.Delete(model.FilePath);
+                                }
+                                using (TextWriter writer = new StreamWriter(model.FilePath))
+                                {
+                                    writer.WriteLine(modelXML);
+                                }
+                                //TModel purgedModel = models.Uploaded.FirstOrDefault(p => p.Equals(model));
+                                //if (purgedModel != null)
+                                //{
+                                //    if (purgedModel.Delete())
+                                //    {
+                                //        models.Remove(purgedModel);
+                                //    }
+                                //}
+                                models.Add(model);
                             }
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Exception("DataManager.Download", "Exception: {0}", ex.Message);
                         }
                     }
                 }
-                return true;
+                return models;
             }
             catch (Exception ex)
             {
-                Log.Exception("Models.Save", "Exception {0} {1}", typeof(TModels), ex.Message);
+                Log.Exception("DataManager.Download", "{0} {1}", ex.Message, url);
             }
-            return false;
+            return null;
+
         }
 
         public void Dispose()

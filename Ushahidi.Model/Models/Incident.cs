@@ -8,18 +8,9 @@ using Ushahidi.Common.Extensions;
 
 namespace Ushahidi.Model.Models
 {
-    [Serializable]
-    [XmlRoot(Identifier)]
+    [XmlRoot("incident")]
     public class Incident : Common.MVC.Model
     {
-        public const string Identifier = "incident";
-
-        [XmlElement("id")]
-        public override int ID { get; set; }
-
-        [XmlElement("upload")]
-        public override bool Upload { get; set; }
-
         [XmlElement("title")]
         public string Title { get; set; }
 
@@ -161,10 +152,10 @@ namespace Ushahidi.Model.Models
         {
             get
             {
-                if (_Thumbnail == null)
+                if (_Thumbnail == null && _MediaItems.Any(m => m.IsPhoto))
                 {
                     Media media = _MediaItems.FirstOrDefault(m => m.MediaType == MediaType.Photo);
-                    _Thumbnail = media != null ? DataManager.LoadImage(media.ThumbnailLink) : DataManager.LoadMap(ID);
+                    _Thumbnail = DataManager.LoadImage(media.ThumbnailLink);
                 }
                 return _Thumbnail;
             }
@@ -195,15 +186,22 @@ namespace Ushahidi.Model.Models
             return Parse<Incident>(xml);
         }
 
-        public bool Equals(Incident incident)
+        public override bool Equals(object obj)
         {
-            return Title == incident.Title &&
+            Incident incident = obj as Incident;
+            return incident != null &&
+                   Title == incident.Title &&
                    Description == incident.Description &&
                    DateString == incident.DateString &&
-                   LocaleName == incident.LocaleName &&
                    CategoryTitle == incident.CategoryTitle &&
+                   LocaleName == incident.LocaleName &&
                    LocaleLatitude == incident.LocaleLatitude &&
                    LocaleLongitude == incident.LocaleLongitude;
+        }
+
+        public override int GetHashCode()
+        {
+            return (Title + Description + DateString + CategoryTitle + LocaleName + LocaleLatitude + LocaleLongitude).GetHashCode();
         }
     }
 }

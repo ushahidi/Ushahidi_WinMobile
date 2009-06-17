@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml.Serialization;
 
 namespace Ushahidi.Common.MVC
 {
@@ -10,10 +9,8 @@ namespace Ushahidi.Common.MVC
     {
         int ID { get; set; }
 
-        [XmlElement("upload")]
         bool Upload { get; set; }
 
-        [XmlIgnore]
         string FilePath { get; set; }
     }
 }

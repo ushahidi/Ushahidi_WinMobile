@@ -53,13 +53,13 @@ namespace Ushahidi.View.Views
             {
                 listBoxDetails.Add(new LinkListItem(GetMediaTypeLabel(media.MediaType), media.Link));
             }
-            if (DataManager.HasMap(Incident.ID))
-            {
-                listBoxDetails.Add(new PhotoListItem(DataManager.LoadMap(Incident.ID)));
-            }
             foreach (Media media in Incident.MediaItems.Where(m => m.MediaType == MediaType.Photo))
             {
                 listBoxDetails.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
+            }
+            if (DataManager.HasMap(Incident.ID))
+            {
+                listBoxDetails.Add(new PhotoListItem(DataManager.LoadMap(Incident.ID)));
             }
         }
 

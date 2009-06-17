@@ -1,20 +1,31 @@
-﻿using System.Xml.Serialization;
-using Ushahidi.Common.MVC;
+﻿using Ushahidi.Common.MVC;
 
 namespace Ushahidi.Model.Models
 {
-    [XmlRoot("incidents")]
-    [XmlInclude(typeof(Incident))]
+    /// <summary>
+    /// Collection of Incidentss
+    /// </summary>
     public class Incidents : Models<Incident>
     {
         /// <summary>
-        /// Load Incidents from xml file
+        /// Load Incidents
         /// </summary>
-        /// <param name="filePath">xml file path</param>
-        /// <returns>Incidents</returns>
-        public static Incidents Load(string filePath)
+        /// <param name="directory">directory</param>
+        /// <returns>Collection of Incidents</returns>
+        public static Incidents Load(string directory)
         {
-            return Load<Incidents>(filePath);
+            return Load<Incidents>(directory);
+        }
+
+        /// <summary>
+        /// Download Incidents
+        /// </summary>
+        /// <param name="url">download url</param>
+        /// <param name="directory">destination directory</param>
+        /// <returns>Collection of Incidents</returns>
+        public static Incidents Download(string url, string directory)
+        {
+            return Download<Incidents>(url, directory, "incident");
         }
     }
 }

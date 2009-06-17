@@ -10,13 +10,11 @@ using System.Net;
 using System.Reflection;
 using System.Resources;
 using System.Text;
-using System.Xml;
 using Microsoft.Win32;
 using Ushahidi.Common.Logging;
 using Ushahidi.Common.Net;
 using Ushahidi.Model.Models;
 using Ushahidi.Common;
-using Ushahidi.Common.MVC;
 
 namespace Ushahidi.Model
 {
@@ -221,32 +219,39 @@ namespace Ushahidi.Model
         }private static string _CategoriesDirectory;
 
         /// <summary>
+        /// Categories URL
+        /// </summary>
+        private static string CategoriesURL
+        {
+            get { return string.Format("{0}/api?task=categories&resp=xml", ServerAddress); }
+        }
+
+        /// <summary>
         /// Refresh Categories
         /// </summary>
         /// <returns></returns>
         public static bool DownloadCategories()
         {
             Log.Info("DataManager.DownloadCategories", "serverAddress={0}", ServerAddress);
-            string categoriesURL = string.Format("{0}/api?task=categories&resp=xml", ServerAddress);
-            Categories = Download<Category>(CategoriesDirectory, categoriesURL, Category.Identifier);
+            Categories = Categories.Download(CategoriesURL, CategoriesDirectory);
             return Categories != null;
         }
 
         /// <summary>
         /// Categories
         /// </summary>
-        public static Models<Category> Categories
+        public static Categories Categories
         {
             private set { _Categories = value; }
             get
             {
                 if (_Categories == null)
                 {
-                    _Categories = Load<Category>(CategoriesDirectory);
+                    _Categories = Categories.Load(CategoriesDirectory);
                 }
                 return _Categories;
             }
-        }private static Models<Category> _Categories;
+        }private static Categories _Categories;
 
         #endregion
 
@@ -272,32 +277,39 @@ namespace Ushahidi.Model
         }private static string _CountriesDirectory;
 
         /// <summary>
+        /// Countries URL
+        /// </summary>
+        private static string CountriesURL
+        {
+            get { return string.Format("{0}/api?task=countries&resp=xml", ServerAddress); }
+        }
+
+        /// <summary>
         /// Download Categories and file JSON to disk
         /// </summary>
         /// <returns></returns>
         public static bool DownloadCountries()
         {
             Log.Info("DataManager.DownloadCountries", "serverAddress={0}", ServerAddress);
-            string countriesURL = string.Format("{0}/api?task=countries&resp=xml", ServerAddress);
-            Countries = Download<Country>(CountriesDirectory, countriesURL, Country.Identifier);
+            Countries = Countries.Download(CountriesURL, CountriesDirectory);
             return Countries != null;
         }
 
         /// <summary>
         /// Countries
         /// </summary>
-        public static Models<Country> Countries
+        public static Countries Countries
         {
             private set { _Countries = value; }
             get
             {
                 if (_Countries == null)
                 {
-                    _Countries = Load<Country>(CountriesDirectory);
+                    _Countries = Countries.Load(CountriesDirectory);
                 }
                 return _Countries;
             }
-        }private static Models<Country> _Countries;
+        }private static Countries _Countries;
 
             #endregion
 
@@ -323,32 +335,39 @@ namespace Ushahidi.Model
         }private static string _LocalesDirectory;
 
         /// <summary>
+        /// Locales URL
+        /// </summary>
+        private static string LocalesURL
+        {
+            get { return string.Format("{0}/api?task=locations&resp=xml", ServerAddress); }
+        }
+
+        /// <summary>
         /// Download Locales and file JSON to disk
         /// </summary>
         /// <returns></returns>
         public static bool DownloadLocales()
         {
             Log.Info("DataManager.DownloadLocales", "serverAddress={0}", ServerAddress);
-            string localesURL = string.Format("{0}/api?task=locations&resp=xml", ServerAddress);
-            Locales = Download<Locale>(LocalesDirectory, localesURL, Locale.Identifier);
+            Locales = Locales.Download(LocalesURL, LocalesDirectory);
             return Locales != null;
         }
 
         /// <summary>
         /// Locales
         /// </summary>
-        public static Models<Locale> Locales
+        public static Locales Locales
         {
             private set { _Locales = value; }
             get
             {
                 if (_Locales == null)
                 {
-                    _Locales = Load<Locale>(LocalesDirectory);
+                    _Locales = Locales.Load(LocalesDirectory);
                 }
                 return _Locales;
             }
-        }private static Models<Locale> _Locales;
+        }private static Locales _Locales;
 
         #endregion
 
@@ -374,32 +393,39 @@ namespace Ushahidi.Model
         }private static string _IncidentsDirectory;
 
         /// <summary>
-        /// Download Incidents and file JSON to disk
+        /// Incidents URL
+        /// </summary>
+        private static string IncidentsURL
+        {
+            get { return string.Format("{0}/api?task=incidents&by=all&resp=xml", ServerAddress); }
+        }
+
+        /// <summary>
+        /// Download Incidents
         /// </summary>
         /// <returns>true, if successful</returns>
         public static bool DownloadIncidents()
         {
             Log.Info("DataManager.DownloadIncidents", "serverAddress={0}", ServerAddress);
-            string incidentsURL = string.Format("{0}/api?task=incidents&by=all&resp=xml", ServerAddress);
-            Incidents = Download<Incident>(IncidentsDirectory, incidentsURL, Incident.Identifier);
+            Incidents = Incidents.Download(IncidentsURL, IncidentsDirectory);
             return Incidents != null;
         }
 
         /// <summary>
         /// Incidents
         /// </summary>
-        public static Models<Incident> Incidents
+        public static Incidents Incidents
         {
             private set { _Incidents = value;}
             get
             {
                 if (_Incidents == null)
                 {
-                    _Incidents = Load<Incident>(IncidentsDirectory);
+                    _Incidents = Incidents.Load(IncidentsDirectory);
                 }
                 return _Incidents;
             }
-        }private static Models<Incident> _Incidents;
+        }private static Incidents _Incidents;
 
         /// <summary>
         /// Add a new incident
@@ -408,8 +434,9 @@ namespace Ushahidi.Model
         public static bool AddIncident(Incident incident)
         {
             Incidents.Add(incident);
-            string fileName = string.Format("{0}.{1}", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"), Incident.Identifier);
+            string fileName = string.Format("{0}.xml", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
             incident.FilePath = Path.Combine(IncidentsDirectory, fileName);
+            incident.Upload = true;
             return incident.Save();
         }
 
@@ -468,8 +495,7 @@ namespace Ushahidi.Model
                                 Response result = Response.Parse(responseText);
                                 if (result != null && result.Success)
                                 {
-                                    incident.Upload = false;
-                                    incident.Save();
+                                    Incidents.AddUploaded(incident);
                                 }
                                 else
                                 {
@@ -552,7 +578,7 @@ namespace Ushahidi.Model
                             url.AppendFormat("&maptype={0}", MapType.ToLower());
                             url.AppendFormat("&markers={0},{1},{2}", incident.LocaleLatitude, incident.LocaleLongitude, "red");
                             url.AppendFormat("&key={0}", GoogleMapApiKey);
-                            DownloadImage(url.ToString(), filePath.ToString());
+                            Media.Download(url.ToString(), filePath.ToString());
                         }
                         catch (Exception ex)
                         {
@@ -631,15 +657,15 @@ namespace Ushahidi.Model
                 {
                    if (string.IsNullOrEmpty(media.ThumbnailLink) == false)
                    {
-                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.ThumbnailLink);
+                       string mediaURL = string.Format("{0}/media/uploads/{1}", ServerAddress, media.ThumbnailLink);
                        string filePath = Path.Combine(MediaDirectory, media.ThumbnailLink);
-                       DownloadImage(url, filePath);
+                       Media.Download(mediaURL, filePath);
                    }
                    if (string.IsNullOrEmpty(media.Link) == false)
                    {
-                       string url = string.Format("{0}/media/uploads/{1}", ServerAddress, media.Link);
+                       string mediaURL = string.Format("{0}/media/uploads/{1}", ServerAddress, media.Link);
                        string filePath = Path.Combine(MediaDirectory, media.Link);
-                       DownloadImage(url, filePath);
+                       Media.Download(mediaURL, filePath);
                    }
                 }
             }
@@ -661,7 +687,7 @@ namespace Ushahidi.Model
                 string imagePath = Path.Combine(MediaDirectory, imageName);
                 fileInfo.CopyTo(imagePath, true);
                 string thumbnailPath = Path.Combine(MediaDirectory, thumbnailName);
-                using(Bitmap thumbnail = CreateThumbnail(imagePath, 100))
+                using(Bitmap thumbnail = Media.CreateThumbnail(imagePath, 100))
                 {
                     thumbnail.Save(thumbnailPath, ImageFormat.Jpeg);
                 }
@@ -694,137 +720,5 @@ namespace Ushahidi.Model
         }
 
         #endregion
-
-        #region Helpers
-
-        private static Models<TModel> Download<TModel>(string directory, string url, string identifier)
-            where TModel : Common.MVC.Model
-        {
-            try
-            {
-                Models<TModel> models = new Models<TModel>();
-                WebRequest request = WebRequest.Create(url);
-                request.Timeout = 5000;
-                request.Credentials = CredentialCache.DefaultCredentials;
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                using (Stream dataStream = response.GetResponseStream())
-                {
-                    XmlDocument document = new XmlDocument();
-                    document.Load(dataStream);
-                    foreach (XmlNode node in document.GetElementsByTagName(identifier))
-                    {
-                        try
-                        {
-                            string modelXML = node.OuterXml;
-                            TModel model = Common.MVC.Model.Parse<TModel>(modelXML);
-                            if (model != null)
-                            {
-                                model.FilePath = Path.Combine(directory, string.Format("{0}.xml", model.ID));
-                                if (File.Exists(model.FilePath))
-                                {
-                                    File.Delete(model.FilePath);
-                                }
-                                using(TextWriter writer = new StreamWriter(model.FilePath))
-                                {
-                                    writer.WriteLine(modelXML);
-                                }
-                                models.Add(model);
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Exception("DataManager.Download", "Exception: {0}", ex.Message);
-                        }
-                    }
-                }
-                return models;
-            }
-            catch (Exception ex)
-            {
-                Log.Exception("DataManager.Download", "{0} {1}", ex.Message, url);
-            }
-            return null;
-        }
-
-        private static Models<TModel> Load<TModel>(string directory)
-            where TModel : Common.MVC.Model
-        {
-            Models<TModel> models = new Models<TModel>();
-            foreach (string filePath in Directory.GetFiles(directory, string.Format("*.xml")))
-            {
-                TModel model = Common.MVC.Model.Load<TModel>(filePath);
-                if (model != null)
-                {
-                    model.FilePath = filePath;
-                    models.Add(model);
-                }
-            }
-            return models;
-        }
-
-        /// <summary>
-        /// Download image from server
-        /// </summary>
-        /// <param name="sourceURL">source url</param>
-        /// <param name="destinationFilePath">destination filepath</param>
-        /// <returns>true, if successful</returns>
-        private static bool DownloadImage(string sourceURL, string destinationFilePath)
-        {
-            Log.Info("DataManager.DownloadImage", "Source: {0} Destination: {1}", sourceURL, destinationFilePath);
-            FileInfo fileInfo = new FileInfo(destinationFilePath);
-            if (fileInfo.Exists == false || fileInfo.Length == 0)
-            {
-                WebRequest request = WebRequest.Create(sourceURL);
-                request.Timeout = 5000;
-                request.Credentials = CredentialCache.DefaultCredentials;
-                HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-                using (Stream stream = response.GetResponseStream())
-                {
-                    using (Image image = new Bitmap(stream))
-                    {
-                        image.Save(destinationFilePath, ImageFormat.Jpeg);
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-
-        private static Bitmap CreateThumbnail(string filePath, int widthOrHeight)
-        {
-            try
-            {
-                if (File.Exists(filePath))
-                {
-                    using (Bitmap original = new Bitmap(filePath))
-                    {
-                        if (original.Width < widthOrHeight && original.Height < widthOrHeight) return original;
-                        Rectangle srcRect = new Rectangle(0, 0, original.Width, original.Height);
-                        Rectangle destRect = (original.Width > original.Height)
-                                 ? new Rectangle(0, 0, widthOrHeight, widthOrHeight*original.Height/original.Width)
-                                 : new Rectangle(0, 0, widthOrHeight*original.Width/original.Height, widthOrHeight);
-
-                        Bitmap thumbnail = new Bitmap(destRect.Width, destRect.Height);
-                        using (Graphics graphics = Graphics.FromImage(thumbnail))
-                        {
-                            using (Brush brush = new SolidBrush(Color.White))
-                            {
-                                graphics.FillRectangle(brush, 0, 0, destRect.Width, destRect.Height);
-                                graphics.DrawImage(original, destRect, srcRect, GraphicsUnit.Pixel);
-                            }
-                        }
-                        return thumbnail;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Exception("DataManager.CreateThumbnail", "Exception: {0}", ex.Message);
-            }
-            return null;
-        }
-
-        #endregion
-
     }
 }
