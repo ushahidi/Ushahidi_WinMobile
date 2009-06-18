@@ -41,7 +41,8 @@
             // 
             // menuItemAction
             // 
-            this.menuItemAction.Text = "Action";
+            this.menuItemAction.Text = "Done";
+            this.menuItemAction.Click += new System.EventHandler(OnDone);
             // 
             // menuItemSettings
             // 

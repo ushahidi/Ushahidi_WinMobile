@@ -141,6 +141,9 @@
   <data name="allCategories" xml:space="preserve">
     <value>Toutes les catégories</value>
   </data>
+  <data name="areYouSure" xml:space="preserve">
+    <value>Etes-vous sûr?</value>
+  </data>
   <data name="audio" xml:space="preserve">
     <value>Acoustique</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="category" xml:space="preserve">
     <value>Catégorie</value>
+  </data>
+  <data name="clearCache" xml:space="preserve">
+    <value>Vider le cache de fichiers</value>
   </data>
   <data name="date" xml:space="preserve">
     <value>Date</value>
@@ -185,6 +191,9 @@
   </data>
   <data name="exit" xml:space="preserve">
     <value>Sortir</value>
+  </data>
+  <data name="exitApplication" xml:space="preserve">
+    <value>Etes-vous sûr que vous souhaitez quitter l'application?</value>
   </data>
   <data name="firstName" xml:space="preserve">
     <value>Prénom</value>

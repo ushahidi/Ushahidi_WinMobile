@@ -102,6 +102,7 @@ namespace Ushahidi.Common.MVC
                                 {
                                     if (duplicateModel.Delete())
                                     {
+                                        uploaded.Remove(duplicateModel);
                                         Log.Info("Models.Download", "Duplicate model deleted: {0}", duplicateModel.ID);
                                     }
                                 }
@@ -113,6 +114,10 @@ namespace Ushahidi.Common.MVC
                             Log.Exception("DataManager.Download", "Exception: {0}", ex.Message);
                         }
                     }
+                }
+                if (uploaded.Count > 0)
+                {
+                    models.Add(uploaded);
                 }
                 return models;
             }

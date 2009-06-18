@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelContent = new System.Windows.Forms.Panel();
+            this.buttonClearCache = new Ushahidi.Common.Controls.ImageButton();
             this.textBoxServer = new Ushahidi.Common.Controls.LabelTextBox();
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeaderProgress = new System.Windows.Forms.ColumnHeader();
@@ -48,6 +49,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.buttonClearCache);
             this.panelContent.Controls.Add(this.textBoxServer);
             this.panelContent.Controls.Add(this.listView);
             this.panelContent.Controls.Add(this.progressBox);
@@ -56,17 +58,35 @@
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 180);
             // 
+            // buttonClearCache
+            // 
+            this.buttonClearCache.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClearCache.BackColor = System.Drawing.Color.LightGray;
+            this.buttonClearCache.BackColorSelected = System.Drawing.Color.Gray;
+            this.buttonClearCache.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buttonClearCache.DisabledImage = null;
+            this.buttonClearCache.Image = null;
+            this.buttonClearCache.Label = "Clear Cache Files";
+            this.buttonClearCache.Location = new System.Drawing.Point(4, 150);
+            this.buttonClearCache.Momentary = false;
+            this.buttonClearCache.Name = "buttonClearCache";
+            this.buttonClearCache.Pressed = false;
+            this.buttonClearCache.Size = new System.Drawing.Size(169, 26);
+            this.buttonClearCache.TabIndex = 1;
+            // 
             // textBoxServer
             // 
             this.textBoxServer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxServer.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxServer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxServer.IsRequired = false;
+            this.textBoxServer.Label = "Label";
             this.textBoxServer.Location = new System.Drawing.Point(0, 0);
             this.textBoxServer.Multiline = false;
             this.textBoxServer.Name = "textBoxServer";
             this.textBoxServer.Size = new System.Drawing.Size(176, 45);
-            this.textBoxServer.TabIndex = 0;
+            this.textBoxServer.TabIndex = 2;
             this.textBoxServer.Value = "";
             // 
             // listView
@@ -78,8 +98,8 @@
             this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listView.Location = new System.Drawing.Point(4, 118);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(169, 59);
-            this.listView.TabIndex = 3;
+            this.listView.Size = new System.Drawing.Size(169, 28);
+            this.listView.TabIndex = 0;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeaderProgress
@@ -91,7 +111,7 @@
             // 
             this.progressBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBox.BackColor = System.Drawing.Color.Gainsboro;
+            this.progressBox.BackColor = System.Drawing.Color.WhiteSmoke;
             this.progressBox.Location = new System.Drawing.Point(0, 90);
             this.progressBox.Maximum = 0;
             this.progressBox.Minimum = 0;
@@ -108,6 +128,7 @@
             this.dateBoxLastSync.BackColor = System.Drawing.Color.WhiteSmoke;
             this.dateBoxLastSync.Enabled = false;
             this.dateBoxLastSync.IsRequired = false;
+            this.dateBoxLastSync.Label = "Last Sync";
             this.dateBoxLastSync.Location = new System.Drawing.Point(0, 45);
             this.dateBoxLastSync.Name = "dateBoxLastSync";
             this.dateBoxLastSync.Size = new System.Drawing.Size(176, 45);
@@ -136,5 +157,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderProgress;
         private Ushahidi.Common.Controls.ProgressBox progressBox;
         private Ushahidi.Common.Controls.LabelDateBox dateBoxLastSync;
+        private Ushahidi.Common.Controls.ImageButton buttonClearCache;
     }
 }

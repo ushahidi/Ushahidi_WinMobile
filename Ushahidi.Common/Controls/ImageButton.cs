@@ -17,6 +17,12 @@ namespace Ushahidi.Common.Controls
             InitializeComponent();
         }
 
+        public string Label
+        {
+            get { return Text; }
+            set { Text = value; }
+        }
+
         /// <summary>
         /// Enabled
         /// </summary>
@@ -120,14 +126,14 @@ namespace Ushahidi.Common.Controls
 
         protected override void OnGotFocus(System.EventArgs e)
         {
-            Invalidate();
             base.OnGotFocus(e);
+            Invalidate();
         }
 
         protected override void OnLostFocus(System.EventArgs e)
         {
-            Invalidate();
             base.OnLostFocus(e);
+            Invalidate();
         }
 
         protected override void OnPaintBackground(PaintEventArgs e)

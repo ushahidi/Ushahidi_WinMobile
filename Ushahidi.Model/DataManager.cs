@@ -125,6 +125,38 @@ namespace Ushahidi.Model
             return false;
         }
 
+        /// <summary>
+        /// Clear all cache files
+        /// </summary>
+        /// <returns>true, if successful</returns>
+        public static bool ClearCacheFiles()
+        {
+            Log.Info("DataManager.ClearCacheFiles");
+            return DeleteFolderContents(IncidentsDirectory) &&
+                   DeleteFolderContents(CountriesDirectory) && 
+                   DeleteFolderContents(CategoriesDirectory) &&
+                   DeleteFolderContents(LocalesDirectory) &&
+                   DeleteFolderContents(MediaDirectory) &&
+                   DeleteFolderContents(MapDirectory);
+        }
+
+        private static bool DeleteFolderContents(string directory)
+        {
+            Log.Info("DataManager.DeleteFolderContents", "Directory: {0}", directory);
+            foreach(string filePath in Directory.GetFiles(directory).Reverse())
+            {
+                try
+                {
+                    File.Delete(filePath);
+                }
+                catch(Exception ex)
+                {
+                    Log.Exception("DataManager.DeleteFolderContents", "Exception: {0} {1}", directory, ex.Message);
+                }
+            }
+            return true;
+        }
+
         #endregion
 
         #region Languages
@@ -608,11 +640,14 @@ namespace Ushahidi.Model
 
         public static bool HasMap(int incidentID)
         {
-            foreach(string mapType in MapTypes)
+            if (incidentID > -1)
             {
-                if (GetMapFilePath(incidentID, mapType).Exists)
+                foreach (string mapType in MapTypes)
                 {
-                    return true;
+                    if (GetMapFilePath(incidentID, mapType).Exists)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;

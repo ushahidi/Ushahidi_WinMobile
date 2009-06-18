@@ -15,17 +15,10 @@ namespace Ushahidi.View.Views
             InitializeComponent();
         }
 
-        public override void Initialize()
-        {
-            base.Initialize();
-            this.Translate("website");
-            webBrowser.Navigating += OnNavigating;
-            webBrowser.Navigated += OnNavigated;
-            menuItemAction.Click += OnDone;
-        }
         public override void Translate()
         {
             base.Translate();
+            this.Translate("website");
             menuItemAction.Translate("done");
         }
 

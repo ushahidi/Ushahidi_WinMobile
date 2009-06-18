@@ -19,15 +19,6 @@ namespace Ushahidi.View.Views
             InitializeComponent();    
         }
 
-        public override void Initialize()
-        {
-            base.Initialize();
-            menuItemAddPhoto.Click += OnAddPhoto;
-            menuItemAddNews.Click += OnAddNews;
-            menuItemAddVideo.Click += OnAddVideo;
-            listBoxDetails.ItemSelected += OnItemSelected;
-        }
-
         public override void Translate()
         {
             base.Translate();

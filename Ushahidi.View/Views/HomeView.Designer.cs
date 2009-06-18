@@ -50,7 +50,7 @@
             this.panelContent.Controls.Add(this.pictureBoxLogo);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(176, 300);
+            this.panelContent.Size = new System.Drawing.Size(176, 240);
             // 
             // buttonSynchronize
             // 
@@ -61,6 +61,7 @@
             this.buttonSynchronize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonSynchronize.DisabledImage = null;
             this.buttonSynchronize.Image = null;
+            this.buttonSynchronize.Label = "Synchronize";
             this.buttonSynchronize.Location = new System.Drawing.Point(4, 192);
             this.buttonSynchronize.Momentary = false;
             this.buttonSynchronize.Name = "buttonSynchronize";
@@ -78,6 +79,7 @@
             this.buttonAddIncident.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonAddIncident.DisabledImage = null;
             this.buttonAddIncident.Image = null;
+            this.buttonAddIncident.Label = "Add Incident";
             this.buttonAddIncident.Location = new System.Drawing.Point(4, 146);
             this.buttonAddIncident.Momentary = false;
             this.buttonAddIncident.Name = "buttonAddIncident";
@@ -95,6 +97,7 @@
             this.buttonListIncident.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonListIncident.DisabledImage = null;
             this.buttonListIncident.Image = null;
+            this.buttonListIncident.Label = "Incident List";
             this.buttonListIncident.Location = new System.Drawing.Point(4, 100);
             this.buttonListIncident.Momentary = false;
             this.buttonListIncident.Name = "buttonListIncident";
@@ -117,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 240);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HomeView";

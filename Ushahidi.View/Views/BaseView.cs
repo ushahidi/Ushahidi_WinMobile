@@ -1,4 +1,5 @@
 ﻿using System;
+using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.View.Controllers;
 using Ushahidi.Model.Extensions;
@@ -14,7 +15,6 @@ namespace Ushahidi.View.Views
         public BaseView()
         {
             InitializeComponent();
-            //Keyboard.KeyboardChanged += OnKeyboardChanged;
         }
 
         public override void Initialize()
@@ -99,7 +99,10 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnExit(object sender, EventArgs e)
         {
-            OnExit();
+            if (Dialog.Question("exit".Translate(), "exitApplication".Translate()))
+            {
+                OnExit();
+            }
         }
 
         private void OnMenuPopup(object sender, EventArgs e)

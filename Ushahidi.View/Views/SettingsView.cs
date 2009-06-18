@@ -22,7 +22,6 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            menuItemAction.Click += OnDone;
         }
 
         public override void Translate()

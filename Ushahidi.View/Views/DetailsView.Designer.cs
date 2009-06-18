@@ -47,6 +47,7 @@
             // menuItemAddPhoto
             // 
             this.menuItemAddPhoto.Text = "Add Photo";
+            this.menuItemAddPhoto.Click += new System.EventHandler(this.OnAddPhoto);
             // 
             // panelContent
             // 
@@ -76,14 +77,17 @@
             this.listBoxDetails.SelectedItem = null;
             this.listBoxDetails.Size = new System.Drawing.Size(176, 180);
             this.listBoxDetails.TabIndex = 0;
+            this.listBoxDetails.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(OnItemSelected);
             // 
             // menuItemAddNews
             // 
             this.menuItemAddNews.Text = "Add News Link";
+            this.menuItemAddNews.Click += new System.EventHandler(this.OnAddNews);
             // 
             // menuItemAddVideo
             // 
             this.menuItemAddVideo.Text = "Add Video Link";
+            this.menuItemAddVideo.Click += new System.EventHandler(this.OnAddVideo);
             // 
             // DetailsView
             // 

@@ -24,6 +24,7 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
+            buttonClearCache.Click += OnClearCache;
         }
 
         public override void Translate()
@@ -33,6 +34,7 @@ namespace Ushahidi.View.Views
             dateBoxLastSync.Translate("lastSynchronization");
             textBoxServer.Translate("server");
             menuItemAction.Translate("synchronize");
+            buttonClearCache.Translate("clearCache");
         }
 
         public override void Render()
@@ -44,6 +46,7 @@ namespace Ushahidi.View.Views
             textBoxServer.BackColor = Colors.Background;
             progressBox.BackColor = Colors.Background;
             panelContent.BackColor = Colors.Background;
+            listView.Focus();
         }
 
         /// <summary>
@@ -66,6 +69,18 @@ namespace Ushahidi.View.Views
         /// </summary>
         private DateTime StartTime { get; set; }
 
+        private bool Synchronizing
+        {
+            set
+            {
+                Enabled =
+                textBoxServer.Enabled = 
+                buttonClearCache.Enabled = 
+                menuItemAction.Enabled = 
+                menuItemMenu.Enabled = !value;
+            }
+        }
+
         /// <summary>
         /// On Sync
         /// </summary>
@@ -77,6 +92,7 @@ namespace Ushahidi.View.Views
             listView.Items.Clear();
             columnHeaderProgress.Width = -2;
             StartTime = DateTime.Now;
+            Synchronizing = true;
             Internet.TestURL = textBoxServer.Value;
             DataManager.ScreenWidth = Screen.PrimaryScreen.Bounds.Width;
             DataManager.ScreenHeight = Screen.PrimaryScreen.Bounds.Height;
@@ -168,33 +184,33 @@ namespace Ushahidi.View.Views
             progressBox.Value = value;
             listView.Items.Add(new ListViewItem(text));
             double totalSeconds = DateTime.Now.Subtract(StartTime).TotalSeconds;
+            columnHeaderProgress.Width = -2;
             if (status == Status.Downloading)
             {
                 Cursor.Current = Cursors.WaitCursor;    
             }
-            else if (status == Status.NoNetwork && Dialog.Warning("noNetworkConnection".Translate(), "verifyNetworkConnection".Translate()))
+            else
             {
+                if (status == Status.NoNetwork && Dialog.Warning("noNetworkConnection".Translate(), "verifyNetworkConnection".Translate()))
+                {
+                    Log.Info("SyncView.UpdateProgress", "noNetworkConnection");
+                }
+                else if (status == Status.NoInternet && Dialog.Warning("noInternetConnection".Translate(), "verifyInternetConnection".Translate()))
+                {
+                    Log.Info("SyncView.UpdateProgress", "noInternetConnection");
+                }
+                else if (status == Status.Failure && Dialog.Warning("synchronizationFailure".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
+                {
+                    Log.Info("SyncView.UpdateProgress", "synchronizationFailure");
+                }
+                else if (status == Status.Complete && Dialog.Info("synchronizationComplete".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
+                {
+                    Log.Info("SyncView.UpdateProgress", "synchronizationComplete");
+                    LastSyncDate = DateTime.Now;
+                }
+                Synchronizing = false;
                 progressBox.Value = 0;
                 progressBox.Text = "";
-                Cursor.Current = Cursors.Default;
-            }
-            else if (status == Status.NoInternet && Dialog.Warning("noInternetConnection".Translate(), "verifyInternetConnection".Translate()))
-            {
-                progressBox.Value = 0;
-                progressBox.Text = "";
-                Cursor.Current = Cursors.Default;
-            }
-            else if (status == Status.Failure && Dialog.Warning("synchronizationFailure".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
-            {
-                progressBox.Value = 0;
-                progressBox.Text = "";
-                Cursor.Current = Cursors.Default;
-            }
-            else if (status == Status.Complete && Dialog.Info("synchronizationComplete".Translate(), "{0} {1}", totalSeconds.ToString(), "seconds".Translate()))
-            {
-                progressBox.Value = 0;
-                progressBox.Text = "";
-                LastSyncDate = DateTime.Now;
                 Cursor.Current = Cursors.Default;
             }
             columnHeaderProgress.Width = -2;
@@ -203,6 +219,24 @@ namespace Ushahidi.View.Views
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
             panelContent.Height = ClientRectangle.Height - args.Bounds.Height;
+        }
+
+        private void OnClearCache(object sender, EventArgs e)
+        {
+            if (Dialog.Question("clearCache".Translate(), "areYouSure".Translate()))
+            {
+                bool result;
+                using (new WaitCursor())
+                {
+                    result = DataManager.ClearCacheFiles();
+                }
+                if (result)
+                {
+                    dateBoxLastSync.Value = DateTime.MinValue;
+                    DataManager.LastSyncDate = DateTime.MinValue;
+                    Dialog.Info("clearCache".Translate(), "done".Translate());
+                }
+            }
         }
 
         /// <summary>

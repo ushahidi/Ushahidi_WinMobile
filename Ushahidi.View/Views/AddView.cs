@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using Ushahidi.Common.Controls;
+using Ushahidi.Common.Logging;
 using Ushahidi.Common.MVC;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
@@ -25,11 +26,6 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            menuItemAddPhoto.Click += OnAddPhoto;
-            menuItemAddNews.Click += OnAddNews;
-            menuItemAddVideo.Click += OnAddVideo;
-            menuItemCancel.Click += OnCancel;
-            menuItemSave.Click += OnSave;
         }
 
         public override void Translate()
@@ -165,6 +161,7 @@ namespace Ushahidi.View.Views
 
         private void OnSave(object sender, EventArgs e)
         {
+            Log.Info("AddView.OnSave");
             ShouldSave = true;
             OnBack();
         }
@@ -177,7 +174,7 @@ namespace Ushahidi.View.Views
 
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
-            scrollListBox.Height = ClientRectangle.Height - args.Bounds.Height;
+            panel.Height = ClientRectangle.Height - args.Bounds.Height;
         }
 
         private void OnResize(object sender, EventArgs e)

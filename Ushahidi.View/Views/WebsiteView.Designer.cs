@@ -35,6 +35,7 @@
             // menuItemAction
             // 
             this.menuItemAction.Text = "Done";
+            this.menuItemAction.Click += new System.EventHandler(OnDone);
             // 
             // webBrowser
             // 
@@ -42,6 +43,8 @@
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(240, 268);
+            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(OnNavigating);
+            this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(OnNavigated);
             // 
             // WebsiteView
             // 

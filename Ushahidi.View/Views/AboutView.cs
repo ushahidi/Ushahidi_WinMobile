@@ -3,6 +3,9 @@ using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
 {
+    /// <summary>
+    /// About View
+    /// </summary>
     public partial class AboutView : BaseView
     {
         public AboutView()

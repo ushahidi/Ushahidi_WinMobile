@@ -80,7 +80,6 @@ namespace Ushahidi.Common.MVC
                 if (currentViewController != null && !currentViewController.Save())
                 {
                     //unable to save previous view controller
-                    Dialog.Error("Error", "There was a problem saving {0} information", currentViewController.Name);
                     return;
                 }
                 //previous view controller successfuly saved, proceed to load new view controller
@@ -141,16 +140,8 @@ namespace Ushahidi.Common.MVC
                     {
                         Dialog.Error(currentViewController.SaveErrorCaption, currentViewController.SaveErrorMessage);
                     }
-                    else
-                    {
-                        if (Dialog.Question("Error", "There was a problem saving {0} information. Would you like to exit anyways?",
-                                            currentViewController.Name))
-                        {
-                            Dispose();
-                        }
-                    }
                 }
-                else if (Depth > 0 || Dialog.Question("Exit", "Are you sure you would like to exit the application?"))
+                else if (Depth > 0)
                 {
                     //current view controller successfully saved
                     currentViewController = Stack.Pop();
@@ -178,13 +169,11 @@ namespace Ushahidi.Common.MVC
         private void Exit(params object [] paremeters)
         {
             Log.Info("NavigationController.Exit");
-            IViewController viewController = (Depth > 0) ? Stack.Peek() : null;
-            if (viewController == null || 
-                viewController.Save() || 
-                Dialog.Question("Error", "There was a problem saving {0} information. Would you like to exit anyways?", viewController.Name))
+            if (Depth > 0 && Stack.Peek().Save())
             {
-                Dispose();
+                Log.Info("NavigationController.Exit", "IViewController Saved");
             }
+            Dispose();
         }
 
         /// <summary>
@@ -202,7 +191,7 @@ namespace Ushahidi.Common.MVC
                 }
                 catch (Exception exception)
                 {
-                    Console.WriteLine(exception.Message);
+                    Log.Info("NavigationController.Dispose", "Exception: {0}", exception.Message);
                 }
             }
         }

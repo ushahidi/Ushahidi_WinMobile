@@ -47,13 +47,13 @@
             // 
             // menuItemAction
             // 
+            this.menuItemAction.MenuItems.Add(this.menuItemAddPhoto);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddNews);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddVideo);
+            this.menuItemAction.MenuItems.Add(this.menuItemSeparator);
+            this.menuItemAction.MenuItems.Add(this.menuItemSave);
+            this.menuItemAction.MenuItems.Add(this.menuItemCancel);
             this.menuItemAction.Text = "Action";
-            this.menuItemAction.MenuItems.Add(menuItemAddPhoto);
-            this.menuItemAction.MenuItems.Add(menuItemAddNews);
-            this.menuItemAction.MenuItems.Add(menuItemAddVideo);
-            this.menuItemAction.MenuItems.Add(menuItemSeparator);
-            this.menuItemAction.MenuItems.Add(menuItemSave);
-            this.menuItemAction.MenuItems.Add(menuItemCancel);
             // 
             // menuItemAddPhoto
             // 
@@ -99,7 +99,7 @@
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
-            this.scrollListBox.Size = new System.Drawing.Size(162, 10);
+            this.scrollListBox.Size = new System.Drawing.Size(155, 10);
             this.scrollListBox.TabIndex = 5;
             // 
             // panel
@@ -129,7 +129,7 @@
             this.textBoxDescription.Location = new System.Drawing.Point(0, 185);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(169, 75);
+            this.textBoxDescription.Size = new System.Drawing.Size(162, 75);
             this.textBoxDescription.TabIndex = 4;
             this.textBoxDescription.Value = "";
             // 
@@ -141,7 +141,7 @@
             this.checkBoxesCategories.Label = "Category";
             this.checkBoxesCategories.Location = new System.Drawing.Point(0, 135);
             this.checkBoxesCategories.Name = "checkBoxesCategories";
-            this.checkBoxesCategories.Size = new System.Drawing.Size(169, 45);
+            this.checkBoxesCategories.Size = new System.Drawing.Size(162, 45);
             this.checkBoxesCategories.TabIndex = 3;
             // 
             // comboBoxLocales
@@ -152,14 +152,14 @@
             this.comboBoxLocales.Bold = true;
             this.comboBoxLocales.DataSource = null;
             this.comboBoxLocales.DisplayMember = "";
-            this.comboBoxLocales.IsRequired = false;
+            this.comboBoxLocales.IsRequired = true;
             this.comboBoxLocales.Label = "Location";
             this.comboBoxLocales.Location = new System.Drawing.Point(0, 90);
             this.comboBoxLocales.Name = "comboBoxLocales";
             this.comboBoxLocales.SelectedIndex = -1;
             this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
-            this.comboBoxLocales.Size = new System.Drawing.Size(169, 45);
+            this.comboBoxLocales.Size = new System.Drawing.Size(162, 45);
             this.comboBoxLocales.TabIndex = 2;
             this.comboBoxLocales.ValueMember = "";
             // 
@@ -168,11 +168,11 @@
             this.dateBoxDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.dateBoxDate.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dateBoxDate.IsRequired = false;
+            this.dateBoxDate.IsRequired = true;
             this.dateBoxDate.Label = "Date";
             this.dateBoxDate.Location = new System.Drawing.Point(0, 45);
             this.dateBoxDate.Name = "dateBoxDate";
-            this.dateBoxDate.Size = new System.Drawing.Size(169, 45);
+            this.dateBoxDate.Size = new System.Drawing.Size(162, 45);
             this.dateBoxDate.TabIndex = 1;
             this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
             // 
@@ -181,12 +181,12 @@
             this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxTitle.BackColor = System.Drawing.Color.Gainsboro;
-            this.textBoxTitle.IsRequired = false;
+            this.textBoxTitle.IsRequired = true;
             this.textBoxTitle.Label = "Title";
             this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
             this.textBoxTitle.Multiline = false;
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(169, 45);
+            this.textBoxTitle.Size = new System.Drawing.Size(162, 45);
             this.textBoxTitle.TabIndex = 0;
             this.textBoxTitle.Value = "";
             // 

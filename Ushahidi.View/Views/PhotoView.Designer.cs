@@ -40,6 +40,9 @@
             this.KeyPreview = true;
             this.Name = "PhotoView";
             this.Text = "Incident Photo";
+            this.Click += new System.EventHandler(OnClick);
+            this.DoubleClick += new System.EventHandler(OnClick);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(OnKeyDown);
             this.ResumeLayout(false);
 
         }

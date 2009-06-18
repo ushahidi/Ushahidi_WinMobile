@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.MVC
 {
@@ -69,6 +70,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         protected void OnBack(params object [] parameters)
         {
+            Log.Info("View.OnBack");
             if (Back != null)
             {
                 Back(parameters);
@@ -80,6 +82,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         protected override void OnClosing(CancelEventArgs e)
         {
+            Log.Info("View.OnClosing");
             e.Cancel = true;
             if (Back != null)
             {

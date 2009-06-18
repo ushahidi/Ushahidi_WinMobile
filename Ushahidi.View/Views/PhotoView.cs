@@ -21,9 +21,6 @@ namespace Ushahidi.View.Views
             WindowState = FormWindowState.Maximized;
             Menu = null;
             menuItemMenu.Enabled = false;
-            Click += OnClick;
-            DoubleClick += OnClick;
-            KeyDown += OnKeyDown;
         }
 
         public Bitmap Image
