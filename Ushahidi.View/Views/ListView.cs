@@ -37,6 +37,8 @@ namespace Ushahidi.View.Views
         {
             base.Render();
             comboBoxCategories.SelectedIndex = 0;
+            comboBoxCategories.BackColor = Colors.Background;
+            panelContent.BackColor = Colors.Background;
         }
 
         /// <summary>

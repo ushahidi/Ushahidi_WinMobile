@@ -4,6 +4,7 @@ using System.Globalization;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.Model.Extensions;
+using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
 {
@@ -40,6 +41,13 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             ShouldSave = true;
+            textBoxEmail.BackColor = Colors.Background;
+            textBoxFirstName.BackColor = Colors.Background;
+            textBoxLastName.BackColor = Colors.Background;
+            comboBoxLanguages.BackColor = Colors.Background;
+            comboBoxMapType.BackColor = Colors.Background;
+            checkBoxKeyboard.BackColor = Colors.Background;
+            panelContent.BackColor = Colors.Background;
         }
 
         /// <summary>

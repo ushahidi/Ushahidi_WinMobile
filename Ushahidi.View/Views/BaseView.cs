@@ -2,6 +2,7 @@
 using Ushahidi.Model;
 using Ushahidi.View.Controllers;
 using Ushahidi.Model.Extensions;
+using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
 {
@@ -32,6 +33,12 @@ namespace Ushahidi.View.Views
             menuItemAbout.Translate("about");
             menuItemSettings.Translate("settings");
             menuItemSynchronize.Translate("synchronize");
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            BackColor = Colors.Background;
         }
 
         /// <summary>

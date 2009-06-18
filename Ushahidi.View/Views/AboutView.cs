@@ -1,4 +1,5 @@
 ﻿using Ushahidi.Model.Extensions;
+using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
 {
@@ -20,6 +21,7 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             base.Render();
+            textBlockDescription.BackColor = Colors.Background;
         }
     }
 }

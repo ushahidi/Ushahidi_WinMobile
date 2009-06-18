@@ -66,6 +66,7 @@
             this.comboBoxCategories.DataSource = null;
             this.comboBoxCategories.DisplayMember = "Title";
             this.comboBoxCategories.IsRequired = false;
+            this.comboBoxCategories.Label = "Label";
             this.comboBoxCategories.Location = new System.Drawing.Point(0, 0);
             this.comboBoxCategories.Name = "comboBoxCategories";
             this.comboBoxCategories.SelectedIndex = -1;
@@ -89,11 +90,11 @@
             this.listBoxIncidents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listBoxIncidents.ForeColor = System.Drawing.Color.Black;
             this.listBoxIncidents.ForeSelectedColor = System.Drawing.Color.White;
-            this.listBoxIncidents.Location = new System.Drawing.Point(0, 45);
+            this.listBoxIncidents.Location = new System.Drawing.Point(3, 45);
             this.listBoxIncidents.Name = "listBoxIncidents";
             this.listBoxIncidents.SelectedIndex = -1;
             this.listBoxIncidents.SelectedItem = null;
-            this.listBoxIncidents.Size = new System.Drawing.Size(176, 135);
+            this.listBoxIncidents.Size = new System.Drawing.Size(170, 132);
             this.listBoxIncidents.TabIndex = 0;
             this.listBoxIncidents.IndexChanged += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentChanged);
             this.listBoxIncidents.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentSelected);

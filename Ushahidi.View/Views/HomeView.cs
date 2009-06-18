@@ -2,6 +2,7 @@
 using System.Drawing;
 using Ushahidi.View.Controllers;
 using Ushahidi.Model.Extensions;
+using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
 {
@@ -22,6 +23,12 @@ namespace Ushahidi.View.Views
             buttonListIncident.Translate("incidentList");
             buttonAddIncident.Translate("addIncident");
             buttonSynchronize.Translate("synchronize");
+        }
+
+        public override void Render()
+        {
+            base.Render();
+            panelContent.BackColor = Colors.Background;
         }
 
         /// <summary>
@@ -56,8 +63,8 @@ namespace Ushahidi.View.Views
         private void OnResize(object sender, EventArgs e)
         {
             int padding = buttonListIncident.Left;
-            buttonListIncident.Height = buttonAddIncident.Height = buttonSynchronize.Height =
-                (ClientRectangle.Height - pictureBoxLogo.Height - pictureBoxLogo.Top - (padding*4)) / 3;
+            int height = (ClientRectangle.Height - pictureBoxLogo.Height - pictureBoxLogo.Top - (padding * 4)) / 3;
+            buttonListIncident.Height = buttonAddIncident.Height = buttonSynchronize.Height = height > 28 ? height : 28;
             buttonListIncident.Top = pictureBoxLogo.Bottom + padding;
             buttonAddIncident.Top = buttonListIncident.Bottom + padding;
             buttonSynchronize.Top = buttonAddIncident.Bottom + padding;

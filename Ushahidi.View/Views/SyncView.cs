@@ -6,6 +6,7 @@ using Ushahidi.Common.Logging;
 using Ushahidi.Common.Net;
 using Ushahidi.Model;
 using Ushahidi.Model.Extensions;
+using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
 {
@@ -39,6 +40,10 @@ namespace Ushahidi.View.Views
             base.Render();
             progressBox.Value = 0;
             listView.Items.Clear();
+            dateBoxLastSync.BackColor = Colors.Background;
+            textBoxServer.BackColor = Colors.Background;
+            progressBox.BackColor = Colors.Background;
+            panelContent.BackColor = Colors.Background;
         }
 
         /// <summary>

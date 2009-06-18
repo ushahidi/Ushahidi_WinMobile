@@ -73,6 +73,7 @@
     <Compile Include="Controllers\SettingsViewController.cs" />
     <Compile Include="Controllers\SyncViewController.cs" />
     <Compile Include="Controllers\WebsiteViewController.cs" />
+    <Compile Include="Controls\Colors.cs" />
     <Compile Include="Controls\IncidentListItem.cs">
       <SubType>Component</SubType>
     </Compile>

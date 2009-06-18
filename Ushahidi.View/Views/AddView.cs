@@ -58,6 +58,11 @@ namespace Ushahidi.View.Views
             textBoxDescription.Top = checkBoxesCategories.Bottom;
             scrollListBox.Top = textBoxDescription.Bottom;
             scrollListBox.AdjustHeight();
+            textBoxTitle.BackColor = Colors.Background;
+            dateBoxDate.BackColor = Colors.Background;
+            comboBoxLocales.BackColor = Colors.Background;
+            checkBoxesCategories.BackColor = Colors.Background;
+            textBoxDescription.BackColor = Colors.Background;
         }
 
         /// <summary>
