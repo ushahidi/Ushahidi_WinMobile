@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Xml;
+using Ushahidi.Common.Extensions;
 using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.MVC
@@ -28,40 +29,15 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Models to be purgeds
-        /// </summary>
-        public IEnumerable<TModel> Uploaded
-        {
-            get { return _Uploaded; }
-            set
-            {
-                _Uploaded.Clear();
-                _Uploaded.AddRange(value);
-            }
-        }private readonly List<TModel> _Uploaded = new List<TModel>();
-
-        /// <summary>
-        /// Add uploaded model
-        /// </summary>
-        /// <param name="model">model</param>
-        public void AddUploaded(TModel model)
-        {
-            model.Upload = false;
-            _Uploaded.Add(model);
-        }
-
-        /// <summary>
         /// Load collection of models
         /// </summary>
         /// <typeparam name="TModels">models</typeparam>
         /// <param name="directory">source directory</param>
-        /// <param name="uploadedOnly">load uploaded only</param>
         /// <returns>collection of models</returns>
-        protected static TModels Load<TModels>(string directory, bool uploadedOnly) where TModels : Models<TModel>, new()
+        protected static TModels Load<TModels>(string directory) where TModels : Models<TModel>, new()
         {
             TModels models = new TModels();
-            string searchPattern = uploadedOnly ? "*.uploaded" : "*.xml";
-            foreach (string filePath in Directory.GetFiles(directory, searchPattern))
+            foreach (string filePath in directory.GetFiles("*.xml", "*.uploaded"))
             {
                 TModel model = Model.Load<TModel>(filePath);
                 if (model != null)
@@ -71,17 +47,6 @@ namespace Ushahidi.Common.MVC
                 }
             }
             return models;
-        }
-
-        /// <summary>
-        /// Load collection of models
-        /// </summary>
-        /// <typeparam name="TModels">models</typeparam>
-        /// <param name="directory">source directory</param>
-        /// <returns>collection of models</returns>
-        protected static TModels Load<TModels>(string directory) where TModels : Models<TModel>, new()
-        {
-            return Load<TModels>(directory, false);
         }
 
         /// <summary>
@@ -96,6 +61,16 @@ namespace Ushahidi.Common.MVC
         {
             try
             {
+                List<TModel> uploaded = new List<TModel>();
+                foreach (string filePath in directory.GetFiles("*.uploaded"))
+                {
+                    TModel model = Model.Load<TModel>(filePath);
+                    if (model != null)
+                    {
+                        model.FilePath = filePath;
+                        uploaded.Add(model);
+                    }
+                }
                 TModels models = new TModels();
                 WebRequest request = WebRequest.Create(url);
                 request.Timeout = 5000;
@@ -122,14 +97,14 @@ namespace Ushahidi.Common.MVC
                                 {
                                     writer.WriteLine(modelXML);
                                 }
-                                //TModel purgedModel = models.Uploaded.FirstOrDefault(p => p.Equals(model));
-                                //if (purgedModel != null)
-                                //{
-                                //    if (purgedModel.Delete())
-                                //    {
-                                //        models.Remove(purgedModel);
-                                //    }
-                                //}
+                                TModel duplicateModel = uploaded.FirstOrDefault(p => p.Equals(model));
+                                if (duplicateModel != null && duplicateModel.ID < 0)
+                                {
+                                    if (duplicateModel.Delete())
+                                    {
+                                        Log.Info("Models.Download", "Duplicate model deleted: {0}", duplicateModel.ID);
+                                    }
+                                }
                                 models.Add(model);
                             }
                         }

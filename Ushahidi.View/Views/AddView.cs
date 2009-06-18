@@ -174,5 +174,15 @@ namespace Ushahidi.View.Views
         {
             scrollListBox.Height = ClientRectangle.Height - args.Bounds.Height;
         }
+
+        private void OnResize(object sender, EventArgs e)
+        {
+            textBoxTitle.Width = panel.ClientRectangle.Width;
+            dateBoxDate.Width = panel.ClientRectangle.Width;
+            comboBoxLocales.Width = panel.ClientRectangle.Width;
+            checkBoxesCategories.Width = panel.ClientRectangle.Width;
+            textBoxDescription.Width = panel.ClientRectangle.Width;
+            scrollListBox.Width = panel.ClientRectangle.Width;
+        }
     }
 }

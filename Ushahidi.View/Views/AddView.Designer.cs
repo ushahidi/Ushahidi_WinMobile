@@ -45,6 +45,16 @@
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
+            // menuItemAction
+            // 
+            this.menuItemAction.Text = "Action";
+            this.menuItemAction.MenuItems.Add(menuItemAddPhoto);
+            this.menuItemAction.MenuItems.Add(menuItemAddNews);
+            this.menuItemAction.MenuItems.Add(menuItemAddVideo);
+            this.menuItemAction.MenuItems.Add(menuItemSeparator);
+            this.menuItemAction.MenuItems.Add(menuItemSave);
+            this.menuItemAction.MenuItems.Add(menuItemCancel);
+            // 
             // menuItemAddPhoto
             // 
             this.menuItemAddPhoto.Text = "Add Photo";
@@ -89,7 +99,7 @@
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
-            this.scrollListBox.Size = new System.Drawing.Size(169, 10);
+            this.scrollListBox.Size = new System.Drawing.Size(162, 10);
             this.scrollListBox.TabIndex = 5;
             // 
             // panel
@@ -190,6 +200,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";
             this.Text = "Add Incident";
+            this.Resize += new System.EventHandler(this.OnResize);
             this.panel.ResumeLayout(false);
             this.ResumeLayout(false);
 

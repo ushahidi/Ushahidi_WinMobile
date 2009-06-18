@@ -495,7 +495,8 @@ namespace Ushahidi.Model
                                 Response result = Response.Parse(responseText);
                                 if (result != null && result.Success)
                                 {
-                                    Incidents.AddUploaded(incident);
+                                    incident.Upload = false;
+                                    incident.Save();
                                 }
                                 else
                                 {

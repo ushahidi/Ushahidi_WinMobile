@@ -166,16 +166,6 @@ namespace Ushahidi.Model.Models
             return Title;
         }
 
-        public bool Save()
-        {
-            return Save(this, FilePath);
-        }
-
-        public bool Save(string filePath)
-        {
-            return Save(this, filePath);
-        }
-
         public static Incident Load(string filePath)
         {
             return Load<Incident>(filePath);
@@ -192,7 +182,6 @@ namespace Ushahidi.Model.Models
             return incident != null &&
                    Title == incident.Title &&
                    Description == incident.Description &&
-                   DateString == incident.DateString &&
                    CategoryTitle == incident.CategoryTitle &&
                    LocaleName == incident.LocaleName &&
                    LocaleLatitude == incident.LocaleLatitude &&
@@ -202,6 +191,16 @@ namespace Ushahidi.Model.Models
         public override int GetHashCode()
         {
             return (Title + Description + DateString + CategoryTitle + LocaleName + LocaleLatitude + LocaleLongitude).GetHashCode();
+        }
+
+        public bool Save()
+        {
+            return Save(this, FilePath);
+        }
+
+        public bool Save(string filePath)
+        {
+            return Save(this, filePath);
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 
 namespace Ushahidi.Common.Extensions
 {
@@ -50,5 +53,15 @@ namespace Ushahidi.Common.Extensions
         }
 
         private readonly static CultureInfo English = new CultureInfo("en-US", false);
+
+        public static IEnumerable<string> GetFiles(this string path, params string [] searchPatterns)
+        {
+            List<string> files = new List<string>();
+            foreach (string searchPattern in searchPatterns)
+            {
+                files.AddRange(Directory.GetFiles(path, searchPattern));
+            }
+            return files;
+        }
     }
 }

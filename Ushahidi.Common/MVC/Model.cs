@@ -21,11 +21,12 @@ namespace Ushahidi.Common.MVC
             get { return _Upload; }
             set
             {
-                //if (_Upload && value == false)
-                //{
-                //    FileInfo fileInfo = new FileInfo(FilePath);
-                //    fileInfo.MoveTo(string.Format("{0}.uploaded", FilePath));
-                //}
+                if (_Upload && value == false && FilePath.EndsWith("uploaded") == false)
+                {
+                    //if upload true>>false then append 'uploaded' file extension
+                    File.Move(FilePath, string.Format("{0}.uploaded", FilePath));
+                    FilePath = string.Format("{0}.uploaded", FilePath);
+                }
                 _Upload = value;
             }
         }private bool _Upload = false;
