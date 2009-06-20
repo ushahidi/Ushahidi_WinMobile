@@ -237,4 +237,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Ushahidi.Setup"
+"$(SolutionDir)Ushahidi.Setup\Cabwiz.exe" "$(SolutionDir)Ushahidi.Setup\Ushahidi.PPC2003.inf"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

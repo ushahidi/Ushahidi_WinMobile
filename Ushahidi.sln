@@ -9,10 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.Model", "Ushahidi.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.View.WM6", "Ushahidi.View\Ushahidi.View.WM6.csproj", "{76E15E18-6BCD-4AE6-8014-48947977250F}"
 EndProject
-Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Ushahidi.Setup.PPC2003", "Ushahidi.Setup\Ushahidi.Setup.PPC2003.vddproj", "{0DDE325F-F27B-43EA-A08A-F6832ED06061}"
-EndProject
-Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Ushahidi.Setup.WM6", "Ushahidi.Setup\Ushahidi.Setup.WM6.vddproj", "{7F70DB59-A38E-4D77-9781-D457693E0638}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.Common.Tests", "Ushahidi.Common.Tests\Ushahidi.Common.Tests.csproj", "{004CC7E8-0B67-4275-9C0A-6B46D09F1DA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.Model.Tests", "Ushahidi.Model.Tests\Ushahidi.Model.Tests.csproj", "{6C0ABBF9-15B9-481F-9497-02C3B21BA0CC}"
@@ -47,14 +43,6 @@ Global
 		{76E15E18-6BCD-4AE6-8014-48947977250F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76E15E18-6BCD-4AE6-8014-48947977250F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{76E15E18-6BCD-4AE6-8014-48947977250F}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{0DDE325F-F27B-43EA-A08A-F6832ED06061}.Debug|Any CPU.ActiveCfg = Debug
-		{0DDE325F-F27B-43EA-A08A-F6832ED06061}.Debug|Any CPU.Build.0 = Debug
-		{0DDE325F-F27B-43EA-A08A-F6832ED06061}.Release|Any CPU.ActiveCfg = Release
-		{0DDE325F-F27B-43EA-A08A-F6832ED06061}.Release|Any CPU.Build.0 = Release
-		{7F70DB59-A38E-4D77-9781-D457693E0638}.Debug|Any CPU.ActiveCfg = Debug
-		{7F70DB59-A38E-4D77-9781-D457693E0638}.Debug|Any CPU.Build.0 = Debug
-		{7F70DB59-A38E-4D77-9781-D457693E0638}.Release|Any CPU.ActiveCfg = Release
-		{7F70DB59-A38E-4D77-9781-D457693E0638}.Release|Any CPU.Build.0 = Release
 		{004CC7E8-0B67-4275-9C0A-6B46D09F1DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{004CC7E8-0B67-4275-9C0A-6B46D09F1DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{004CC7E8-0B67-4275-9C0A-6B46D09F1DA0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

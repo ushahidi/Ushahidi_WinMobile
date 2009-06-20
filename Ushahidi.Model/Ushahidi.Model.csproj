@@ -122,4 +122,15 @@
     <EmbeddedResource Include="Languages\Language.pl.resx" />
     <EmbeddedResource Include="Languages\Language.pt.resx" />
   </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Ushahidi.Setup"
+copy "$(TargetDir)de\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\de_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)en\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\en_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)es\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\es_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)fr\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\fr_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)it\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\it_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)nl\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\nl_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)pl\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\pl_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)pt\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\pt_Ushahidi.Model.resources.dll"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -162,11 +162,6 @@ namespace Ushahidi.Model
         #region Languages
 
         /// <summary>
-        /// Resource Manager
-        /// </summary>
-        private static readonly ResourceManager ResourceManager = new ResourceManager("Ushahidi.Model.Languages.Language", Assembly.GetExecutingAssembly());
-
-        /// <summary>
         /// Languages
         /// </summary>
         public static IEnumerable<CultureInfo> Languages
@@ -200,7 +195,7 @@ namespace Ushahidi.Model
             {
                 if (_Language == null)
                 {
-                    _Language = _Languages.First(c => c.Name == "en");
+                    _Language = Languages.First(c => c.Name == "en");
                 }
                 return _Language;
             }
@@ -213,17 +208,32 @@ namespace Ushahidi.Model
             }
         }private static CultureInfo _Language;
 
+        protected static ResourceManager ResourceManager
+        {
+            get
+            {
+                if (_ResourceManager == null)
+                {
+                    Assembly executingAssembly = Assembly.GetExecutingAssembly();
+                    string resourceName = string.Format("{0}.Languages.Language", executingAssembly.GetName().Name);
+                    _ResourceManager = new ResourceManager(resourceName, executingAssembly);
+                }
+                return _ResourceManager;
+            }
+        }private static ResourceManager _ResourceManager;
+
         public static string Translate(string name)
         {
             try
             {
                 string translation = ResourceManager.GetString(name, Language);
-                Log.Info("LanguageManager.Translate", "{0} = {1}", name, translation);
+                Log.Info("DataManager.Translate", "{0} = {1}", name, translation);
                 return translation;
             }
-            catch
+            catch (Exception ex)
             {
-                return string.Format("{0}", name);
+                Log.Exception("DataManager.Translate", "{0} {1} {2}", name, Language.Name, ex.Message);
+                return string.Format("{0}_{1}", name, Language.Name);
             }
         }
 
