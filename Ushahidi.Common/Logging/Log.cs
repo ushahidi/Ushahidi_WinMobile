@@ -1,4 +1,6 @@
-﻿namespace Ushahidi.Common.Logging
+﻿using System;
+
+namespace Ushahidi.Common.Logging
 {
     public static class Log
     {
@@ -17,32 +19,74 @@
 
         public static void Info(string format, params object[] parameters)
         {
-            Instance.Info(format, parameters);
+            try
+            {
+                Instance.Info(format, parameters);
+            }
+            catch
+            {
+                Console.WriteLine("Info: " + format + " " + parameters);
+            }
         }
 
         public static void Info(string sender, string format, params object[] parameters)
         {
-            Instance.Info(string.Format("{0} {1}", sender, format), parameters);
+            try
+            {
+                Instance.Info(string.Format("{0} {1}", sender, format), parameters);
+            }
+            catch
+            {
+                Console.WriteLine("Info: " + sender + " " + format + " " + parameters);
+            }
         }
 
         public static void Exception(string format, params object[] parameters)
         {
-            Instance.Exception(format, parameters);
+            try
+            {
+                Instance.Exception(format, parameters);
+            }
+            catch
+            {
+                Console.WriteLine("Info: " + format + " " + parameters);
+            } 
         }
 
         public static void Exception(string sender, string format, params object[] parameters)
         {
-            Instance.Exception(string.Format("{0} {1}", sender, format), parameters);
+            try
+            {
+                Instance.Exception(string.Format("{0} {1}", sender, format), parameters);
+            }
+            catch 
+            {
+                Console.WriteLine("Exception: " + sender + " " + format + " " + parameters);        
+            }
         }
 
         public static void Critical(string format, params object[] parameters)
         {
-            Instance.Critical(format, parameters);
+            try
+            {
+                Instance.Critical(format, parameters);
+            }
+            catch
+            {
+                Console.WriteLine("Critical: " + format + " " + parameters);   
+            }            
         }
 
         public static void Critical(string sender, string format, params object[] parameters)
         {
-            Instance.Critical(string.Format("{0} {1}", sender, format), parameters);
+            try
+            {
+                Instance.Critical(string.Format("{0} {1}", sender, format), parameters);
+            }
+            catch
+            {
+                Console.WriteLine("Critical: " + sender + " " + format + " " + parameters);
+            }
         }
     }
 }

@@ -146,6 +146,7 @@ namespace Ushahidi.View.Views
             {
                 _MediaItems.Add(media);
                 scrollListBox.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
+                scrollListBox.AdjustHeight();
             }
         }
 

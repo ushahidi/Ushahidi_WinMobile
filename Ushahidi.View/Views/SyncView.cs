@@ -73,7 +73,6 @@ namespace Ushahidi.View.Views
         {
             set
             {
-                Enabled =
                 textBoxServer.Enabled = 
                 buttonClearCache.Enabled = 
                 menuItemAction.Enabled = 
@@ -88,7 +87,7 @@ namespace Ushahidi.View.Views
         {
             Log.Info("SyncView.OnSynchronize");
             progressBox.Value = 0;
-            progressBox.Maximum = 9;
+            progressBox.Maximum = 10;
             listView.Items.Clear();
             columnHeaderProgress.Width = -2;
             StartTime = DateTime.Now;
@@ -118,25 +117,26 @@ namespace Ushahidi.View.Views
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "noInternetConnection".Translate(), 1);
                 }
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
-                         Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 3) &&
-                         Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 4) &&
-                         Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 5) &&
-                         Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 6) &&
-                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 7) &&
-                         Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 8))
+                         Download(DataManager.UploadPhotos, "uploadingPhotos".Translate(), 3) &&
+                         Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 4) &&
+                         Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 5) &&
+                         Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 6) &&
+                         Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 7) &&
+                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 8) &&
+                         Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 9))
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 9);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 10);
                 }
                 else
                 {
-                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 9);
+                    Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 10);
                 }
 
             }
             catch (Exception ex)
             {
                 Log.Exception("SyncView.SyncInternal", "Exception: {0}", ex.Message);
-                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 9);
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Failure, "synchronizationFailure".Translate(), 10);
             }
         }
 

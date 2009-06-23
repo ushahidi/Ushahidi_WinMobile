@@ -303,6 +303,9 @@
   <data name="uploadingIncidents" xml:space="preserve">
     <value>Lade Vorkommnisse</value>
   </data>
+  <data name="uploadingPhotos" xml:space="preserve">
+    <value>Bilder hochladen</value>
+  </data>
   <data name="ushahidi" xml:space="preserve">
     <value>Ushahidi</value>
   </data>

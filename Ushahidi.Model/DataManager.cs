@@ -482,6 +482,15 @@ namespace Ushahidi.Model
             return incident.Save();
         }
 
+        public static bool UploadPhotos()
+        {
+            foreach (Incident incident in Incidents.Where(i => i.Photos.Any(m => m.Upload)))
+            {
+                Log.Info("UploadPhotos: {0}", incident.ID);
+            }
+            return true;
+        }
+
         /// <summary>
         /// Upload all new incidents
         /// </summary>
@@ -510,16 +519,25 @@ namespace Ushahidi.Model
                     postData.Add("person_email", Email);
                     postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
                     postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
-                    Log.Info("DataManager.UploadIncidents", "{0}", postData.ToString());
-
+                    Media media = incident.Photos.FirstOrDefault(m => m.Upload);
+                    if (media != null)
+                    {
+                        Image image = LoadImage(media.Link);
+                        if (image != null)
+                        {
+                            postData.Add("incident_photo[]", media.Link, image);
+                        }
+                    }
                     string uploadURL = string.Format("{0}{1}{2}", ServerAddress, ServerAddress.EndsWith("/") ? "" : "/", "api");
                     HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(uploadURL);
+                    webRequest.Credentials = CredentialCache.DefaultCredentials;
                     webRequest.Method = "POST";
-                    webRequest.ContentType = "application/x-www-form-urlencoded";
+                    webRequest.ContentType = string.Format("multipart/form-data; boundary={0}", PostData.Boundary);
                     webRequest.KeepAlive = false;
                     webRequest.AllowAutoRedirect = true;
                     webRequest.Timeout = 15000;
-                    byte[] bytes = postData.ToUrlEncodedData();
+                    webRequest.Pipelined = false;
+                    byte[] bytes = postData.ToBytes();
                     webRequest.ContentLength = bytes.Length;
                     using (Stream requestStream = webRequest.GetRequestStream())
                     {
@@ -533,7 +551,6 @@ namespace Ushahidi.Model
                             using (StreamReader responseReader = new StreamReader(responseStream))
                             {
                                 string responseText = responseReader.ReadToEnd();
-                                Log.Info("DataManager.UploadIncidents", "{0}", responseText);
                                 Response result = Response.Parse(responseText);
                                 if (result != null && result.Success)
                                 {
@@ -550,7 +567,18 @@ namespace Ushahidi.Model
                 }
                 catch(WebException ex)
                 {
-                    Log.Exception("DataManager.UploadIncidents", "WebException {0} {1)", ex.Status, ex.Message);
+                    if (ex.Status == WebExceptionStatus.ProtocolError)
+                    {
+                        HttpWebResponse response = ex.Response as HttpWebResponse;
+                        if (response != null)
+                        {
+                            Log.Exception("DataManager.UploadIncidents", "WebException {0} {1) {2}", ex.Status, ex.Message, response.StatusDescription);    
+                        }
+                    }
+                    else
+                    {
+                        Log.Exception("DataManager.UploadIncidents", "WebException {0} {1)", ex.Status, ex.Message);    
+                    }
                 }
                 catch(Exception ex)
                 {
