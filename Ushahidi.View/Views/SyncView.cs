@@ -24,7 +24,6 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            buttonClearCache.Click += OnClearCache;
         }
 
         public override void Translate()
@@ -34,7 +33,6 @@ namespace Ushahidi.View.Views
             dateBoxLastSync.Translate("lastSynchronization");
             textBoxServer.Translate("server");
             menuItemAction.Translate("synchronize");
-            buttonClearCache.Translate("clearCache");
         }
 
         public override void Render()
@@ -74,7 +72,6 @@ namespace Ushahidi.View.Views
             set
             {
                 textBoxServer.Enabled = 
-                buttonClearCache.Enabled = 
                 menuItemAction.Enabled = 
                 menuItemMenu.Enabled = !value;
             }
@@ -219,24 +216,6 @@ namespace Ushahidi.View.Views
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
             panelContent.Height = ClientRectangle.Height - args.Bounds.Height;
-        }
-
-        private void OnClearCache(object sender, EventArgs e)
-        {
-            if (Dialog.Question("clearCache".Translate(), "areYouSure".Translate()))
-            {
-                bool result;
-                using (new WaitCursor())
-                {
-                    result = DataManager.ClearCacheFiles();
-                }
-                if (result)
-                {
-                    dateBoxLastSync.Value = DateTime.MinValue;
-                    DataManager.LastSyncDate = DateTime.MinValue;
-                    Dialog.Info("clearCache".Translate(), "done".Translate());
-                }
-            }
         }
 
         /// <summary>

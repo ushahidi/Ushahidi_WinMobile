@@ -519,8 +519,7 @@ namespace Ushahidi.Model
                     postData.Add("person_email", Email);
                     postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
                     postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
-                    Media media = incident.Photos.FirstOrDefault(m => m.Upload);
-                    if (media != null)
+                    foreach(Media media in incident.Photos.Where(m => m.Upload))
                     {
                         Image image = LoadImage(media.Link);
                         if (image != null)

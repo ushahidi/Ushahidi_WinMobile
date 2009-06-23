@@ -20,7 +20,7 @@
     </FormFactorID>
     <StartupObject>Ushahidi.View.Program</StartupObject>
     <ApplicationIcon>icon.ico</ApplicationIcon>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Ushahidi.View.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

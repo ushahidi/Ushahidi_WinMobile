@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
             this.panelContent = new System.Windows.Forms.Panel();
+            this.buttonClearCache = new Ushahidi.Common.Controls.ImageButton();
             this.comboBoxMapType = new Ushahidi.Common.Controls.LabelComboBox();
             this.checkBoxKeyboard = new Ushahidi.Common.Controls.LabelCheckBox();
             this.comboBoxLanguages = new Ushahidi.Common.Controls.LabelComboBox();
@@ -42,7 +43,7 @@
             // menuItemAction
             // 
             this.menuItemAction.Text = "Done";
-            this.menuItemAction.Click += new System.EventHandler(OnDone);
+            this.menuItemAction.Click += new System.EventHandler(this.OnDone);
             // 
             // menuItemSettings
             // 
@@ -55,6 +56,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.AutoScroll = true;
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.buttonClearCache);
             this.panelContent.Controls.Add(this.comboBoxMapType);
             this.panelContent.Controls.Add(this.checkBoxKeyboard);
             this.panelContent.Controls.Add(this.comboBoxLanguages);
@@ -64,6 +66,23 @@
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 260);
+            // 
+            // buttonClearCache
+            // 
+            this.buttonClearCache.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClearCache.BackColor = System.Drawing.Color.LightGray;
+            this.buttonClearCache.BackColorSelected = System.Drawing.Color.Gray;
+            this.buttonClearCache.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buttonClearCache.DisabledImage = null;
+            this.buttonClearCache.Image = null;
+            this.buttonClearCache.Label = "Clear Cache Files";
+            this.buttonClearCache.Location = new System.Drawing.Point(3, 228);
+            this.buttonClearCache.Momentary = false;
+            this.buttonClearCache.Name = "buttonClearCache";
+            this.buttonClearCache.Pressed = false;
+            this.buttonClearCache.Size = new System.Drawing.Size(170, 26);
+            this.buttonClearCache.TabIndex = 6;
             // 
             // comboBoxMapType
             // 
@@ -94,7 +113,7 @@
             this.checkBoxKeyboard.Label = "Keyboard";
             this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 225);
             this.checkBoxKeyboard.Name = "checkBoxKeyboard";
-            this.checkBoxKeyboard.Size = new System.Drawing.Size(176, 28);
+            this.checkBoxKeyboard.Size = new System.Drawing.Size(169, 28);
             this.checkBoxKeyboard.TabIndex = 5;
             // 
             // comboBoxLanguages
@@ -182,6 +201,7 @@
         private Ushahidi.Common.Controls.LabelTextBox textBoxLastName;
         private Ushahidi.Common.Controls.LabelTextBox textBoxFirstName;
         private Ushahidi.Common.Controls.LabelComboBox comboBoxMapType;
+        private Ushahidi.Common.Controls.ImageButton buttonClearCache;
 
     }
 }
