@@ -559,15 +559,15 @@ namespace Ushahidi.Model
                 postData.Add("person_first", FirstName);
                 postData.Add("person_last", LastName);
                 postData.Add("person_email", Email);
-                if (incident.NewsLinks.Count() > 0)
+                if (incident.NewsLinks.Count(m => m.Upload) > 0)
                 {
-                    Media newsMedia = incident.NewsLinks.Last();
+                    Media newsMedia = incident.NewsLinks.Last(m => m.Upload);
                     newsMedia.Upload = false;
                     postData.Add("incident_news", newsMedia.Link);
                 }
-                if (incident.VideoLinks.Count() > 0)
+                if (incident.VideoLinks.Count(m => m.Upload) > 0)
                 {
-                    Media videoMedia = incident.VideoLinks.Last();
+                    Media videoMedia = incident.VideoLinks.Last(m => m.Upload);
                     videoMedia.Upload = false;
                     postData.Add("incident_video", videoMedia.Link);
                 }
