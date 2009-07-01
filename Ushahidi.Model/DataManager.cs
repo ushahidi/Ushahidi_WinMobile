@@ -561,17 +561,22 @@ namespace Ushahidi.Model
                 postData.Add("person_email", Email);
                 if (incident.NewsLinks.Count() > 0)
                 {
-                    postData.Add("incident_news", incident.NewsLinks.Last().Link);
+                    Media newsMedia = incident.NewsLinks.Last();
+                    newsMedia.Upload = false;
+                    postData.Add("incident_news", newsMedia.Link);
                 }
                 if (incident.VideoLinks.Count() > 0)
                 {
-                    postData.Add("incident_video", incident.VideoLinks.Last().Link);
+                    Media videoMedia = incident.VideoLinks.Last();
+                    videoMedia.Upload = false;
+                    postData.Add("incident_video", videoMedia.Link);
                 }
                 foreach (Media media in incident.Photos.Where(m => m.Upload))
                 {
                     Image image = LoadImage(media.Link);
                     if (image != null)
                     {
+                        media.Upload = false;
                         postData.Add("incident_photo[]", media.Link, image);
                     }
                 }
