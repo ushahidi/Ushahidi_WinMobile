@@ -482,7 +482,11 @@ namespace Ushahidi.Model
             return incident.Save();
         }
 
-        public static bool UploadPhotos()
+        /// <summary>
+        /// Upload Incident Media
+        /// </summary>
+        /// <returns>true, if successful</returns>
+        public static bool UploadMedia()
         {
             foreach (Incident incident in Incidents.Where(i => i.ID > 0))
             {
@@ -514,16 +518,19 @@ namespace Ushahidi.Model
                     }
                     if (PostWebRequest(postData))
                     {
-                        Log.Info("DataManager.UploadPhotos", "Upload media successful");
+                        Log.Info("DataManager.UploadMedia", "Upload media successful");
                         media.Upload = false;
-                        incident.Save();
+                        if(incident.Save())
+                        {
+                            Log.Info("DataManager.UploadMedia", "Incident Saved: {0}", incident.ID);
+                        }
                     }
                     else
                     {
-                        Log.Critical("DataManager.UploadPhotos", "Upload media failed");
+                        Log.Critical("DataManager.UploadMedia", "Upload media failed");
                     }
                 }
-                Log.Info("UploadPhotos: {0}", incident.ID);
+                Log.Info("UploadMedia: {0}", incident.ID);
             }
             return true;
         }
@@ -566,7 +573,10 @@ namespace Ushahidi.Model
                 {
                     Log.Info("DataManager.UploadIncidents", "Upload incident successful");
                     incident.Upload = false;
-                    incident.Save();
+                    if (incident.Save())
+                    {
+                        Log.Info("DataManager.UploadIncidents", "Incident Saved: {0}", incident.ID);
+                    }
                 }
                 else
                 {

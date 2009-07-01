@@ -114,7 +114,7 @@ namespace Ushahidi.View.Views
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.NoInternet, "noInternetConnection".Translate(), 1);
                 }
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
-                         Download(DataManager.UploadPhotos, "uploadingPhotos".Translate(), 3) &&
+                         Download(DataManager.UploadMedia, "uploadingPhotos".Translate(), 3) &&
                          Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 4) &&
                          Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 5) &&
                          Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 6) &&

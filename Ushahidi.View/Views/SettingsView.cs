@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Globalization;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
@@ -46,27 +45,19 @@ namespace Ushahidi.View.Views
             buttonClearCache.Translate("clearCache");
         }
 
-        public override void Render()
-        {
-            ShouldSave = true;
-        }
-
         public override bool Validate()
         {
-            if (ShouldSave)
+            if (comboBoxLanguages.SelectedIndex == -1)
             {
-                if (comboBoxLanguages.SelectedIndex > -1)
-                {
-                    Dialog.Warning("language".Translate(), "missingFieldsVerify".Translate());
-                    comboBoxLanguages.Focus();
-                    return false;
-                }
-                if (comboBoxMapType.SelectedIndex > -1)
-                {
-                    Dialog.Warning("mapType".Translate(), "missingFieldsVerify".Translate());
-                    comboBoxMapType.Focus();
-                    return false;
-                }
+                Dialog.Warning("language".Translate(), "missingFieldsVerify".Translate());
+                comboBoxLanguages.Focus();
+                return false;
+            }
+            if (comboBoxMapType.SelectedIndex == -1)
+            {
+                Dialog.Warning("mapType".Translate(), "missingFieldsVerify".Translate());
+                comboBoxMapType.Focus();
+                return false;
             }
             return true;
         }
@@ -144,23 +135,11 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
-        /// Is the process cancelled?
-        /// </summary>
-        protected bool ShouldSave { get; private set; }
-
-        /// <summary>
         /// On Done
         /// </summary>
         private void OnDone(object sender, EventArgs e)
         {
-            ShouldSave = true;
             OnBack();
-        }
-
-        protected override void OnClosing(CancelEventArgs e)
-        {
-            ShouldSave = true;
-            base.OnClosing(e);
         }
 
         private void OnLanguageChanged(object sender, EventArgs e)
