@@ -37,13 +37,13 @@
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
             this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.panel = new System.Windows.Forms.Panel();
+            this.textBoxVideo = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxNews = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxDescription = new Ushahidi.Common.Controls.LabelTextBox();
             this.checkBoxesCategories = new Ushahidi.Common.Controls.LabelCheckBoxes();
             this.comboBoxLocales = new Ushahidi.Common.Controls.LabelComboBox();
             this.dateBoxDate = new Ushahidi.Common.Controls.LabelDateBox();
             this.textBoxTitle = new Ushahidi.Common.Controls.LabelTextBox();
-            this.listViewNews = new Ushahidi.Common.Controls.LabelListView();
-            this.listViewVideos = new Ushahidi.Common.Controls.LabelListView();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +97,7 @@
             this.scrollListBox.BackSelectedColor = System.Drawing.Color.Black;
             this.scrollListBox.ForeColor = System.Drawing.Color.Black;
             this.scrollListBox.ForeSelectedColor = System.Drawing.Color.White;
-            this.scrollListBox.Location = new System.Drawing.Point(0, 380);
+            this.scrollListBox.Location = new System.Drawing.Point(0, 350);
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
@@ -111,8 +111,8 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.AutoScroll = true;
             this.panel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panel.Controls.Add(this.listViewVideos);
-            this.panel.Controls.Add(this.listViewNews);
+            this.panel.Controls.Add(this.textBoxVideo);
+            this.panel.Controls.Add(this.textBoxNews);
             this.panel.Controls.Add(this.textBoxDescription);
             this.panel.Controls.Add(this.scrollListBox);
             this.panel.Controls.Add(this.checkBoxesCategories);
@@ -121,18 +121,45 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 450);
+            this.panel.Size = new System.Drawing.Size(176, 380);
+            // 
+            // textBoxVideo
+            // 
+            this.textBoxVideo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxVideo.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxVideo.IsRequired = false;
+            this.textBoxVideo.Label = "Video";
+            this.textBoxVideo.Location = new System.Drawing.Point(0, 305);
+            this.textBoxVideo.Multiline = false;
+            this.textBoxVideo.Name = "textBoxVideo";
+            this.textBoxVideo.Size = new System.Drawing.Size(176, 45);
+            this.textBoxVideo.TabIndex = 6;
+            this.textBoxVideo.Value = "";
+            // 
+            // textBoxNews
+            // 
+            this.textBoxNews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxNews.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxNews.IsRequired = false;
+            this.textBoxNews.Label = "News";
+            this.textBoxNews.Location = new System.Drawing.Point(0, 260);
+            this.textBoxNews.Multiline = false;
+            this.textBoxNews.Name = "textBoxNews";
+            this.textBoxNews.Size = new System.Drawing.Size(176, 45);
+            this.textBoxNews.TabIndex = 5;
+            this.textBoxNews.Value = "";
             // 
             // textBoxDescription
             // 
             this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDescription.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.textBoxDescription.IsRequired = false;
+            this.textBoxDescription.IsRequired = true;
             this.textBoxDescription.Label = "Description";
             this.textBoxDescription.Location = new System.Drawing.Point(0, 185);
             this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.IsRequired = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(176, 75);
             this.textBoxDescription.TabIndex = 4;
@@ -195,36 +222,12 @@
             this.textBoxTitle.TabIndex = 0;
             this.textBoxTitle.Value = "";
             // 
-            // listViewNews
-            // 
-            this.listViewNews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewNews.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listViewNews.Label = "News";
-            this.listViewNews.Location = new System.Drawing.Point(0, 260);
-            this.listViewNews.Name = "listViewNews";
-            this.listViewNews.Size = new System.Drawing.Size(176, 60);
-            this.listViewNews.TabIndex = 5;
-            this.listViewNews.Enabled = true;
-            // 
-            // listViewVideos
-            // 
-            this.listViewVideos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewVideos.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listViewVideos.Label = "Videos";
-            this.listViewVideos.Location = new System.Drawing.Point(0, 320);
-            this.listViewVideos.Name = "listViewVideos";
-            this.listViewVideos.Size = new System.Drawing.Size(176, 60);
-            this.listViewVideos.TabIndex = 6;
-            this.listViewVideos.Enabled = true;
-            // 
             // AddView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(176, 450);
+            this.ClientSize = new System.Drawing.Size(176, 380);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";
@@ -250,8 +253,8 @@
         private Ushahidi.Common.Controls.LabelComboBox comboBoxLocales;
         private Ushahidi.Common.Controls.LabelCheckBoxes checkBoxesCategories;
         private Ushahidi.Common.Controls.LabelTextBox textBoxDescription;
-        private Ushahidi.Common.Controls.LabelListView listViewNews;
-        private Ushahidi.Common.Controls.LabelListView listViewVideos;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxNews;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxVideo;
 
     }
 }

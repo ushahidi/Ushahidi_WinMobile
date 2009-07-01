@@ -559,8 +559,14 @@ namespace Ushahidi.Model
                 postData.Add("person_first", FirstName);
                 postData.Add("person_last", LastName);
                 postData.Add("person_email", Email);
-                postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
-                postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
+                if (incident.NewsLinks.Count() > 0)
+                {
+                    postData.Add("incident_news", incident.NewsLinks.Last().Link);
+                }
+                if (incident.VideoLinks.Count() > 0)
+                {
+                    postData.Add("incident_video", incident.VideoLinks.Last().Link);
+                }
                 foreach (Media media in incident.Photos.Where(m => m.Upload))
                 {
                     Image image = LoadImage(media.Link);
@@ -586,6 +592,11 @@ namespace Ushahidi.Model
             return true;
         }
 
+        /// <summary>
+        /// Post WebRequst
+        /// </summary>
+        /// <param name="postData">post data</param>
+        /// <returns>true, is succesful</returns>
         private static bool PostWebRequest(PostData postData)
         {
             try

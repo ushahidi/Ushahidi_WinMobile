@@ -33,8 +33,8 @@ namespace Ushahidi.View.Views
             comboBoxLocales.BackColor =
             checkBoxesCategories.BackColor =
             textBoxDescription.BackColor =
-            listViewNews.BackColor =
-            listViewVideos.BackColor =
+            textBoxNews.BackColor =
+            textBoxVideo.BackColor =
             scrollListBox.BackColor =
             scrollListBox.BackColorEven =
             scrollListBox.BackSelectedColor = Colors.Background;
@@ -49,8 +49,8 @@ namespace Ushahidi.View.Views
             dateBoxDate.Translate("date");
             checkBoxesCategories.Translate("category");
             comboBoxLocales.Translate("location");
-            listViewNews.Translate("news");
-            listViewVideos.Translate("video");
+            textBoxNews.Translate("news");
+            textBoxVideo.Translate("video");
             menuItemSave.Translate("saveIncident");
             menuItemCancel.Translate("cancel");
             menuItemAddPhoto.Translate("addPhoto");
@@ -62,9 +62,9 @@ namespace Ushahidi.View.Views
         {
             ShouldSave = true;
             textBoxDescription.Top = checkBoxesCategories.Bottom;
-            listViewNews.Top = textBoxDescription.Bottom;
-            listViewVideos.Top = listViewNews.Bottom;
-            scrollListBox.Top = listViewVideos.Bottom;
+            textBoxNews.Top = textBoxDescription.Bottom;
+            textBoxVideo.Top = textBoxNews.Bottom;
+            scrollListBox.Top = textBoxVideo.Bottom;
             scrollListBox.AdjustHeight();
         }
 
@@ -176,25 +176,23 @@ namespace Ushahidi.View.Views
             {
                 _MediaItems.Clear();
                 scrollListBox.Clear();
-                listViewNews.Clear();
-                listViewVideos.Clear();
+                textBoxNews.Text = "";
+                textBoxVideo.Text = "";
                 if (value != null)
                 {
-                    foreach (Media media in value)
+                    foreach (Media media in value.Where(m => m.IsPhoto))
                     {
-                        _MediaItems.Add(media);
-                        if (media.IsNews)
-                        {
-                            listViewNews.Add(media.Link);
-                        }
-                        else if (media.IsVideo)
-                        {
-                            listViewVideos.Add(media.Link);
-                        }
-                        else if (media.IsPhoto)
-                        {
-                            scrollListBox.Add(media);
-                        }
+                        scrollListBox.Add(media);
+                    }
+                    Media news = value.FirstOrDefault(m => m.IsNews);
+                    if (news != null)
+                    {
+                        textBoxNews.Value = news.Link;
+                    }
+                    Media video = value.FirstOrDefault(m => m.IsVideo);
+                    if (video != null)
+                    {
+                        textBoxVideo.Value = video.Link;
                     }
                 }
                 scrollListBox.AdjustHeight();
@@ -206,11 +204,11 @@ namespace Ushahidi.View.Views
             _MediaItems.Add(media);
             if (media.MediaType == MediaType.News)
             {
-                listViewNews.Add(media.Link);
+                textBoxNews.Value = media.Link;
             }
             else if (media.MediaType == MediaType.Video)
             {
-                listViewVideos.Add(media.Link);
+                textBoxVideo.Value = media.Link;
             }
             else if (media.MediaType == MediaType.Photo)
             {
@@ -238,12 +236,14 @@ namespace Ushahidi.View.Views
         private void OnAddNews(object sender, EventArgs e)
         {
             ShouldSave = false;
+            textBoxNews.Focus();
             OnForward<MediaViewController>(false, MediaType.News);
         }
 
         private void OnAddVideo(object sender, EventArgs e)
         {
             ShouldSave = false;
+            textBoxVideo.Focus();
             OnForward<MediaViewController>(false, MediaType.Video);
         }
 
@@ -272,8 +272,8 @@ namespace Ushahidi.View.Views
             comboBoxLocales.Width = 
             checkBoxesCategories.Width = 
             textBoxDescription.Width = 
-            listViewNews.Width =
-            listViewVideos.Width =
+            textBoxNews.Width =
+            textBoxVideo.Width =
             scrollListBox.Width = panel.ClientRectangle.Width;
         }
     }

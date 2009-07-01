@@ -1,4 +1,5 @@
 ﻿using Ushahidi.Common.Extensions;
+using Ushahidi.Common.Logging;
 using Ushahidi.Model.Models;
 using Ushahidi.View.Views;
 
@@ -10,7 +11,7 @@ namespace Ushahidi.View.Controllers
     public class DetailsViewController : BaseViewController<DetailsView>
     {
         /// <summary>
-        /// Load the view
+        /// Load DetailsView
         /// </summary>
         public override void Load(object[] parameters)
         {
@@ -22,6 +23,14 @@ namespace Ushahidi.View.Controllers
             {
                 Media media = parameters.ItemAtIndex<Media>(0);
                 View.AddMedia(media);
+                if (View.Incident != null && View.Incident.Save())
+                {
+                    Log.Info("DetailsViewController.Load", "Incident Saved: {0}", View.Incident.ID);
+                }
+                else
+                {
+                    Log.Critical("DetailsViewController.Load", "Unable to save Incident");
+                }
             }
         }
     }
