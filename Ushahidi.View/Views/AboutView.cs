@@ -1,4 +1,5 @@
-﻿using Ushahidi.Model.Extensions;
+﻿using System.Drawing;
+using Ushahidi.Model.Extensions;
 using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
@@ -17,6 +18,7 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             textBlockDescription.BackColor = Colors.Background;
+            BackColor = Colors.Background;
         }
         public override void Translate()
         {
@@ -24,6 +26,15 @@ namespace Ushahidi.View.Views
             this.Translate("about");
             textBlockDescription.Translate("ushahidiDescription");
             textBlockDescription.AdjustHeight();
+        }
+
+        /// <summary>
+        /// The logo
+        /// </summary>
+        public Image Logo
+        {
+            get { return pictureBoxLogo.Image; }
+            set { pictureBoxLogo.Image = value; }
         }
     }
 }
