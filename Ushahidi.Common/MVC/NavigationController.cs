@@ -69,7 +69,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         /// <param name="type">view controller type</param>
         /// <param name="clearStack">should clear stack?</param>
-        /// <param name="parameters">parameters</param>
+        /// <param name="parameters">parameters to pass to next view controller</param>
         public void Push(Type type, bool clearStack, params object [] parameters)
         {
             Log.Info("NavigationController.Push", "type={0} clearStack={1} parameters={2}", type.Name, clearStack, parameters.Length);
@@ -77,9 +77,15 @@ namespace Ushahidi.Common.MVC
             IViewController viewController;
             using (new WaitCursor())
             {
-                if (currentViewController != null && !currentViewController.Save())
+
+                if (currentViewController != null && currentViewController.Validate() == false)
                 {
-                    //unable to save previous view controller
+                    Log.Critical("NavigationController.Push", "View Controller Validate Failure");
+                    return;
+                }
+                if (currentViewController != null && currentViewController.Save() == false)
+                {
+                    Log.Critical("NavigationController.Push", "View Controller Save Failure");
                     return;
                 }
                 //previous view controller successfuly saved, proceed to load new view controller
@@ -127,19 +133,24 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Pop off the specified number of views from stack
         /// </summary>
+        /// <param name="parameters">parameters to return to previous view controller</param>
         public void Pop(params object [] parameters)
         {
             Log.Info("NavigationController.Pop", "StackCount={0}", Stack.Count);
             IViewController currentViewController = (Depth > 0) ? Stack.Peek() : null;
             using (new WaitCursor())
             {
-                if (currentViewController != null && !currentViewController.Save())
+                if (currentViewController == null)
                 {
-                    //unable to save current view controller
-                    if (Depth > 1)
-                    {
-                        Dialog.Error(currentViewController.SaveErrorCaption, currentViewController.SaveErrorMessage);
-                    }
+                    Log.Info("NavigationController.Pop", "No previous view controller");
+                }
+                else if (currentViewController.Validate() == false)
+                {
+                    Log.Critical("NavigationController.Pop", "View Controller Validate Failure");
+                }
+                else if(currentViewController.Save() == false)
+                {
+                    Log.Critical("NavigationController.Pop", "View Controller Save Failure");
                 }
                 else if (Depth > 0)
                 {
@@ -149,7 +160,7 @@ namespace Ushahidi.Common.MVC
                     {
                         //show previous view controller
                         IViewController viewController = Stack.Peek();
-                        viewController.Load();
+                        viewController.Load(parameters);
                         viewController.Render();
                         viewController.Translate();
                         viewController.Show();

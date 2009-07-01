@@ -140,6 +140,21 @@ namespace Ushahidi.Common.Controls
             set { comboBox.DisplayMember = value; }
         }
 
+        public void Add(object item)
+        {
+            comboBox.Items.Add(item);
+        }
+
+        public int Count
+        {
+            get { return comboBox.Items.Count; }
+        }
+
+        public void Clear()
+        {
+            comboBox.Items.Clear();
+        }
+
         /// <summary>
         /// ComboBox value member
         /// </summary>

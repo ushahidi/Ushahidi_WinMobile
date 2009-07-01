@@ -13,18 +13,17 @@ namespace Ushahidi.View.Views
             InitializeComponent();
         }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            textBlockDescription.BackColor = Colors.Background;
+        }
         public override void Translate()
         {
             base.Translate();
             this.Translate("about");
             textBlockDescription.Translate("ushahidiDescription");
             textBlockDescription.AdjustHeight();
-        }
-
-        public override void Render()
-        {
-            base.Render();
-            textBlockDescription.BackColor = Colors.Background;
         }
     }
 }

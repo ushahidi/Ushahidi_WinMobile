@@ -22,13 +22,13 @@ namespace Ushahidi.View.Views
             menuItemAction.Translate("done");
         }
 
-        private static void OnNavigating(object sender, WebBrowserNavigatingEventArgs e)
+        private void OnNavigating(object sender, WebBrowserNavigatingEventArgs e)
         {
             Log.Info("WebsiteView.OnNavigating");
             Cursor.Current = Cursors.WaitCursor;
         }
 
-        private static void OnNavigated(object sender, WebBrowserNavigatedEventArgs e)
+        private void OnNavigated(object sender, WebBrowserNavigatedEventArgs e)
         {
             Log.Info("WebsiteView.OnNavigated");
             Cursor.Current = Cursors.Default;
@@ -54,7 +54,7 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Website URL
         /// </summary>
-        public string WebsiteURL 
+        public string URL 
         { 
             get { return webBrowser.Url != null ? webBrowser.Url.ToString() : string.Empty; }
             set { webBrowser.Url = string.IsNullOrEmpty(value) ? null : new Uri(value); }

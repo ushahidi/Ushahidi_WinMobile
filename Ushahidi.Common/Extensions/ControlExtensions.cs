@@ -10,6 +10,11 @@ namespace Ushahidi.Common.Extensions
 {
     public static class ControlExtensions
     {
+        public static bool HasText(this Control control)
+        {
+            return string.IsNullOrEmpty(control.Text) == false;
+        }
+
         public static int MaxBottom(this Control.ControlCollection controls)
         {
             return controls.Count > 0 ? controls.All().Max(c => c.Bottom) : 0;

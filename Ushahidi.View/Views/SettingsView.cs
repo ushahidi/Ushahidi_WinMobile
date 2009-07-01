@@ -23,6 +23,13 @@ namespace Ushahidi.View.Views
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
             buttonClearCache.Click += OnClearCache;
+            textBoxEmail.BackColor = Colors.Background;
+            textBoxFirstName.BackColor = Colors.Background;
+            textBoxLastName.BackColor = Colors.Background;
+            comboBoxLanguages.BackColor = Colors.Background;
+            comboBoxMapType.BackColor = Colors.Background;
+            checkBoxKeyboard.BackColor = Colors.Background;
+            panelContent.BackColor = Colors.Background;
         }
 
         public override void Translate()
@@ -42,13 +49,26 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             ShouldSave = true;
-            textBoxEmail.BackColor = Colors.Background;
-            textBoxFirstName.BackColor = Colors.Background;
-            textBoxLastName.BackColor = Colors.Background;
-            comboBoxLanguages.BackColor = Colors.Background;
-            comboBoxMapType.BackColor = Colors.Background;
-            checkBoxKeyboard.BackColor = Colors.Background;
-            panelContent.BackColor = Colors.Background;
+        }
+
+        public override bool Validate()
+        {
+            if (ShouldSave)
+            {
+                if (comboBoxLanguages.SelectedIndex > -1)
+                {
+                    Dialog.Warning("language".Translate(), "missingFieldsVerify".Translate());
+                    comboBoxLanguages.Focus();
+                    return false;
+                }
+                if (comboBoxMapType.SelectedIndex > -1)
+                {
+                    Dialog.Warning("mapType".Translate(), "missingFieldsVerify".Translate());
+                    comboBoxMapType.Focus();
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
@@ -126,7 +146,7 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Is the process cancelled?
         /// </summary>
-        public bool ShouldSave { get; private set; }
+        protected bool ShouldSave { get; private set; }
 
         /// <summary>
         /// On Done

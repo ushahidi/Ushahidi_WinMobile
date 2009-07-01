@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using Ushahidi.Common.Controls;
 
 namespace Ushahidi.Common.MVC
@@ -12,27 +11,11 @@ namespace Ushahidi.Common.MVC
         where TView : IView, new()
     {
         /// <summary>
-        /// View name
+        /// View Name
         /// </summary>
         public string Name
         {
             get { return View.ToString(); }
-        }
-
-        /// <summary>
-        /// Save error caption
-        /// </summary>
-        public virtual string SaveErrorCaption
-        {
-            get { return "Error"; }
-        }
-
-        /// <summary>
-        /// Save error message
-        /// </summary>
-        public virtual string SaveErrorMessage
-        {
-            get { return string.Format("There was a problem saving {0} information", Name); }
         }
 
         /// <summary>
@@ -54,16 +37,16 @@ namespace Ushahidi.Common.MVC
         }private TView _View;
 
         /// <summary>
-        /// Load view with model data
+        /// Load View
         /// </summary>
-        /// <param name="parameters">parameters</param>
+        /// <param name="parameters">parameters used to load view</param>
         public virtual void Load(params object [] parameters)
         {
             //implementing view controller can provide their own load logic
         }
 
         /// <summary>
-        /// Save model data from view
+        /// Save View
         /// </summary>
         /// <returns>true, if successful</returns>
         public virtual bool Save()
@@ -73,7 +56,7 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Initialize the view
+        /// Initialize View
         /// </summary>
         public void Initialize()
         {
@@ -81,7 +64,7 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Render the view
+        /// Render View
         /// </summary>
         public void Render()
         {
@@ -89,7 +72,7 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Translate the view
+        /// Translate View
         /// </summary>
         public void Translate()
         {
@@ -97,7 +80,16 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Show view
+        /// Validate View
+        /// </summary>
+        /// <returns></returns>
+        public bool Validate()
+        {
+            return View.Validate();
+        }
+
+        /// <summary>
+        /// Show View
         /// </summary>
         public void Show()
         {
@@ -111,11 +103,12 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         public void Hide()
         {
+            Keyboard.Visible = false;
             View.Hide();
         }
 
         /// <summary>
-        /// Dispose of view
+        /// Dispose View
         /// </summary>
         public virtual void Dispose()
         {
@@ -126,16 +119,6 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// On model changed event
-        /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">PropertyChangedEventArgs</param>
-        public virtual void OnModelChanged(object sender, PropertyChangedEventArgs e)
-        {
-            //implementing view controller will override and provide on model changed code
-        }
-       
-        /// <summary>
         /// The back event
         /// </summary>
         public event BackHandler Back;
@@ -143,11 +126,12 @@ namespace Ushahidi.Common.MVC
         /// <summary>
         /// Return to previous form
         /// </summary>
+        /// <param name="parameters">parameters to return to previous view controller</param>
         protected void OnBack(params object [] parameters)
         {
             if (Back != null)
             {
-                Back();
+                Back(parameters);
             }
         }
 
@@ -160,7 +144,7 @@ namespace Ushahidi.Common.MVC
         /// Move forward
         /// </summary>
         /// <param name="type">view controller type</param>
-        /// <param name="parameters">parameters</param>
+        /// <param name="parameters">parameters to pass to next view controller</param>
         protected void OnForward(Type type, params object[] parameters)
         {
             if (Forward != null)
@@ -174,7 +158,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         /// <param name="type">view controller type</param>
         /// <param name="clearStack">should clear stack?</param>
-        /// <param name="parameters">parameters</param>
+        /// <param name="parameters">parameters to pass to next view controller</param>
         protected void OnForward(Type type, bool clearStack, params object [] parameters)
         {
             if (Forward != null)
@@ -195,7 +179,7 @@ namespace Ushahidi.Common.MVC
         {
             if (Exit != null)
             {
-               Exit();
+                Exit(parameters);
             }
         }
 

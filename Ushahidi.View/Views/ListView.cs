@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.MVC;
@@ -23,6 +24,11 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
+            scrollListBox.BackColor = Color.White;
+            scrollListBox.BackColorEven = Color.Gainsboro;
+            scrollListBox.BackColorOdd = Color.WhiteSmoke;
+            scrollListBox.BackSelectedColor = Color.Black;
+            scrollListBox.ForeSelectedColor = Color.White;
         }
 
         public override void Translate()
@@ -59,12 +65,12 @@ namespace Ushahidi.View.Views
             set
             {
                 _Incidents = value;
-                listBoxIncidents.Clear();
+                scrollListBox.Clear();
                 if (value != null)
                 {
                     foreach (Incident incident in value.Where(i => string.IsNullOrEmpty(i.Title) == false))
                     {
-                        listBoxIncidents.Add(new IncidentListItem(incident));
+                        scrollListBox.Add(new IncidentListItem(incident));
                     }
                 }
             }
@@ -74,7 +80,7 @@ namespace Ushahidi.View.Views
         {
             using (new WaitCursor())
             {
-                listBoxIncidents.Clear();
+                scrollListBox.Clear();
                 if (Incidents != null)
                 {
                     Category category = comboBoxCategories.SelectedValue<Category>();
@@ -82,7 +88,7 @@ namespace Ushahidi.View.Views
                     {
                         if (category == null || category.ID == -1 || incident.HasCategory(category.ID))
                         {
-                            listBoxIncidents.Add(new IncidentListItem(incident));
+                            scrollListBox.Add(new IncidentListItem(incident));
                         }
                     }
                 }
@@ -105,7 +111,7 @@ namespace Ushahidi.View.Views
 
         private void OnViewIncident(object sender, EventArgs e)
         {
-            IncidentListItem listItem = listBoxIncidents.SelectedItem as IncidentListItem;
+            IncidentListItem listItem = scrollListBox.SelectedItem as IncidentListItem;
             if (listItem != null)
             {
                 OnForward<DetailsViewController>(false, listItem.Item);

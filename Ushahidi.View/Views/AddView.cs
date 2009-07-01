@@ -9,6 +9,7 @@ using Ushahidi.Model.Models;
 using Ushahidi.View.Controllers;
 using Ushahidi.View.Controls;
 using Ushahidi.Model.Extensions;
+using Ushahidi.View.Extensions;
 
 namespace Ushahidi.View.Views
 {
@@ -26,6 +27,17 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
+            panel.BackColor =
+            textBoxTitle.BackColor =
+            dateBoxDate.BackColor =
+            comboBoxLocales.BackColor =
+            checkBoxesCategories.BackColor =
+            textBoxDescription.BackColor =
+            listViewNews.BackColor =
+            listViewVideos.BackColor =
+            scrollListBox.BackColor =
+            scrollListBox.BackColorEven =
+            scrollListBox.BackSelectedColor = Colors.Background;
         }
 
         public override void Translate()
@@ -37,6 +49,8 @@ namespace Ushahidi.View.Views
             dateBoxDate.Translate("date");
             checkBoxesCategories.Translate("category");
             comboBoxLocales.Translate("location");
+            listViewNews.Translate("news");
+            listViewVideos.Translate("video");
             menuItemSave.Translate("saveIncident");
             menuItemCancel.Translate("cancel");
             menuItemAddPhoto.Translate("addPhoto");
@@ -47,22 +61,53 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             ShouldSave = true;
-            textBoxTitle.Top = 0;
-            dateBoxDate.Top = textBoxTitle.Bottom;
-            comboBoxLocales.Top = dateBoxDate.Bottom;
-            checkBoxesCategories.Top = comboBoxLocales.Bottom;
             textBoxDescription.Top = checkBoxesCategories.Bottom;
-            scrollListBox.Top = textBoxDescription.Bottom;
+            listViewNews.Top = textBoxDescription.Bottom;
+            listViewVideos.Top = listViewNews.Bottom;
+            scrollListBox.Top = listViewVideos.Bottom;
             scrollListBox.AdjustHeight();
-            textBoxTitle.BackColor = Colors.Background;
-            dateBoxDate.BackColor = Colors.Background;
-            comboBoxLocales.BackColor = Colors.Background;
-            checkBoxesCategories.BackColor = Colors.Background;
-            textBoxDescription.BackColor = Colors.Background;
+        }
+
+        public override bool Validate()
+        {
+            if (ShouldSave)
+            {
+                if (string.IsNullOrEmpty(Title))
+                {
+                    Dialog.Warning("title".Translate(), "missingFieldsVerify".Translate());
+                    textBoxTitle.Focus();
+                    return false;
+                }
+                if (dateBoxDate.Value == DateTime.MinValue)
+                {
+                    Dialog.Warning("date".Translate(), "missingFieldsVerify".Translate());
+                    dateBoxDate.Focus();
+                    return false;
+                }
+                if (Locale == null)
+                {
+                    Dialog.Warning("location".Translate(), "missingFieldsVerify".Translate());
+                    comboBoxLocales.Focus();
+                    return false;
+                }
+                if (Categories.Count() == 0)
+                {
+                    Dialog.Warning("category".Translate(), "missingFieldsVerify".Translate());
+                    checkBoxesCategories.Focus();
+                    return false;
+                }
+                if (string.IsNullOrEmpty(Description))
+                {
+                    Dialog.Warning("description".Translate(), "missingFieldsVerify".Translate());
+                    textBoxDescription.Focus();
+                    return false;
+                }
+            }
+            return true;
         }
 
         /// <summary>
-        /// Incident title
+        /// Incident Title
         /// </summary>
         public string Title
         {
@@ -71,7 +116,7 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
-        /// Incident date
+        /// Incident Date
         /// </summary>
         public DateTime Date
         {
@@ -80,7 +125,7 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
-        /// Categories data source
+        /// Categories DataSource
         /// </summary>
         public IEnumerable<Category> Categories
         {
@@ -96,7 +141,7 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
-        /// Locales data source
+        /// Locales DataSource
         /// </summary>
         public Models<Locale> Locales
         {
@@ -104,7 +149,7 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
-        /// Incident type
+        /// Incident Locale
         /// </summary>
         public Locale Locale
         {
@@ -113,7 +158,7 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
-        /// Incident description
+        /// Incident Description
         /// </summary>
         public string Description
         {
@@ -121,18 +166,58 @@ namespace Ushahidi.View.Views
             set { textBoxDescription.Value = value; }
         }
 
+        /// <summary>
+        /// Media Items
+        /// </summary>
         public Media[] MediaItems
         {
             get { return _MediaItems.ToArray(); }
             set
             {
                 _MediaItems.Clear();
+                scrollListBox.Clear();
+                listViewNews.Clear();
+                listViewVideos.Clear();
                 if (value != null)
                 {
-                    _MediaItems.AddRange(value);
+                    foreach (Media media in value)
+                    {
+                        _MediaItems.Add(media);
+                        if (media.IsNews)
+                        {
+                            listViewNews.Add(media.Link);
+                        }
+                        else if (media.IsVideo)
+                        {
+                            listViewVideos.Add(media.Link);
+                        }
+                        else if (media.IsPhoto)
+                        {
+                            scrollListBox.Add(media);
+                        }
+                    }
                 }
+                scrollListBox.AdjustHeight();
             }
         }private readonly List<Media> _MediaItems = new List<Media>();
+
+        public void AddMedia(Media media)
+        {
+            _MediaItems.Add(media);
+            if (media.MediaType == MediaType.News)
+            {
+                listViewNews.Add(media.Link);
+            }
+            else if (media.MediaType == MediaType.Video)
+            {
+                listViewVideos.Add(media.Link);
+            }
+            else if (media.MediaType == MediaType.Photo)
+            {
+                scrollListBox.Add(media);
+                scrollListBox.AdjustHeight();    
+            }
+        }
 
         /// <summary>
         /// Is the process cancelled?
@@ -145,19 +230,21 @@ namespace Ushahidi.View.Views
             if (media != null)
             {
                 _MediaItems.Add(media);
-                scrollListBox.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
+                scrollListBox.Add(media);
                 scrollListBox.AdjustHeight();
             }
         }
 
         private void OnAddNews(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddNews.Text);
+            ShouldSave = false;
+            OnForward<MediaViewController>(false, MediaType.News);
         }
 
         private void OnAddVideo(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(false, string.Empty, menuItemAddVideo.Text);
+            ShouldSave = false;
+            OnForward<MediaViewController>(false, MediaType.Video);
         }
 
         private void OnSave(object sender, EventArgs e)
@@ -180,11 +267,13 @@ namespace Ushahidi.View.Views
 
         private void OnResize(object sender, EventArgs e)
         {
-            textBoxTitle.Width = panel.ClientRectangle.Width;
-            dateBoxDate.Width = panel.ClientRectangle.Width;
-            comboBoxLocales.Width = panel.ClientRectangle.Width;
-            checkBoxesCategories.Width = panel.ClientRectangle.Width;
-            textBoxDescription.Width = panel.ClientRectangle.Width;
+            textBoxTitle.Width = 
+            dateBoxDate.Width = 
+            comboBoxLocales.Width = 
+            checkBoxesCategories.Width = 
+            textBoxDescription.Width = 
+            listViewNews.Width =
+            listViewVideos.Width =
             scrollListBox.Width = panel.ClientRectangle.Width;
         }
     }

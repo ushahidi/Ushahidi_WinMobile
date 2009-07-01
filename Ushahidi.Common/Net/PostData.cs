@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Collections.Generic;
@@ -65,6 +66,7 @@ namespace Ushahidi.Common.Net
         {
             using (Stream stream = new MemoryStream())
             {
+                string post = "";
                 foreach (ParamData paramData in Params)
                 {
                     StringBuilder data = new StringBuilder();
@@ -78,6 +80,7 @@ namespace Ushahidi.Common.Net
                     data.Append("\r\n");
                     data.Append(paramData.Value);
                     data.Append("\r\n");
+                    post += data.ToString();
                     stream.Write(Encoding.GetBytes(data.ToString()), 0, data.Length);
                 }
                 foreach (FileData fileData in Files)
@@ -96,10 +99,13 @@ namespace Ushahidi.Common.Net
                     data.Append("Content-Type: application/octet-stream");
                     data.Append("\r\n");
                     data.Append("\r\n");
+                    post += data.ToString();
                     stream.Write(Encoding.GetBytes(data.ToString()), 0, data.Length);
                     stream.Write(fileData.FileBytes, 0, fileData.FileBytes.Length);    
                 }
                 string footer = string.Format("--{0}--", Boundary);
+                post += footer;
+                Console.WriteLine(post);
                 stream.Write(Encoding.GetBytes(footer), 0, footer.Length);
                 stream.Position = 0;
                 byte[] formData = new byte[stream.Length];

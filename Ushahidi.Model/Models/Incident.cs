@@ -142,7 +142,7 @@ namespace Ushahidi.Model.Models
             _MediaItems.Add(media);
         }
 
-        public void AddPhoto(Media media)
+        public void AddMedia(Media media)
         {
             _MediaItems.Add(media);
         }

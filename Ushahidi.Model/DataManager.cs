@@ -484,8 +484,45 @@ namespace Ushahidi.Model
 
         public static bool UploadPhotos()
         {
-            foreach (Incident incident in Incidents.Where(i => i.Photos.Any(m => m.Upload)))
+            foreach (Incident incident in Incidents.Where(i => i.ID > 0))
             {
+                foreach(Media media in incident.MediaItems.Where(m => m.Upload))
+                {
+                    PostData postData = new PostData(Encoding.UTF8);
+                    postData.Add("resp", "xml");
+                    postData.Add("id", incident.ID.ToString());
+                    postData.Add("url", media.Link);
+                    if (media.IsNews)
+                    {
+                        postData.Add("task", "tagnews"); 
+                    }
+                    else if (media.IsVideo)
+                    {
+                        postData.Add("task", "tagvideo"); 
+                    }
+                    else if (media.IsAudio)
+                    {
+                        postData.Add("task", "tagaudio"); 
+                    }
+                    else if (media.IsPhoto)
+                    {
+                        postData.Add("task", "tagphoto"); 
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                    if (PostWebRequest(postData))
+                    {
+                        Log.Info("DataManager.UploadPhotos", "Upload media successful");
+                        media.Upload = false;
+                        incident.Save();
+                    }
+                    else
+                    {
+                        Log.Critical("DataManager.UploadPhotos", "Upload media failed");
+                    }
+                }
                 Log.Info("UploadPhotos: {0}", incident.ID);
             }
             return true;
@@ -499,92 +536,103 @@ namespace Ushahidi.Model
         {
             foreach(Incident incident in Incidents.Where(i => i.Upload))
             {
-                try
+                PostData postData = new PostData(Encoding.UTF8);
+                postData.Add("task", "report");
+                postData.Add("resp", "xml");
+                postData.Add("incident_title", incident.Title);
+                postData.Add("incident_description", incident.Description);
+                postData.Add("incident_date", incident.Date.ToString("MM/dd/yyyy"));
+                postData.Add("incident_hour", incident.Date.ToString("hh"));
+                postData.Add("incident_minute", incident.Date.ToString("mm"));
+                postData.Add("incident_ampm", incident.Date.ToString("tt").ToLower());
+                postData.Add("incident_category", incident.Categories.Select(c => c.ID));
+                postData.Add("latitude", incident.LocaleLatitude);
+                postData.Add("longitude", incident.LocaleLongitude);
+                postData.Add("location_name", incident.LocaleName);
+                postData.Add("person_first", FirstName);
+                postData.Add("person_last", LastName);
+                postData.Add("person_email", Email);
+                postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
+                postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
+                foreach (Media media in incident.Photos.Where(m => m.Upload))
                 {
-                    PostData postData = new PostData(Encoding.UTF8);
-                    postData.Add("task", "report");
-                    postData.Add("resp", "xml");
-                    postData.Add("incident_title", incident.Title);
-                    postData.Add("incident_description", incident.Description);
-                    postData.Add("incident_date", incident.Date.ToString("MM/dd/yyyy"));
-                    postData.Add("incident_hour", incident.Date.ToString("hh"));
-                    postData.Add("incident_minute", incident.Date.ToString("mm"));
-                    postData.Add("incident_ampm", incident.Date.ToString("tt").ToLower());
-                    postData.Add("incident_category", incident.Categories.Select(c => c.ID));
-                    postData.Add("latitude", incident.LocaleLatitude);
-                    postData.Add("longitude", incident.LocaleLongitude);
-                    postData.Add("location_name", incident.LocaleName);
-                    postData.Add("person_first", FirstName);
-                    postData.Add("person_last", LastName);
-                    postData.Add("person_email", Email);
-                    postData.Add("incident_news", incident.NewsLinks.Select(m => m.Link));
-                    postData.Add("incident_video", incident.VideoLinks.Select(m => m.Link));
-                    foreach(Media media in incident.Photos.Where(m => m.Upload))
+                    Image image = LoadImage(media.Link);
+                    if (image != null)
                     {
-                        Image image = LoadImage(media.Link);
-                        if (image != null)
-                        {
-                            postData.Add("incident_photo[]", media.Link, image);
-                        }
-                    }
-                    string uploadURL = string.Format("{0}{1}{2}", ServerAddress, ServerAddress.EndsWith("/") ? "" : "/", "api");
-                    HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(uploadURL);
-                    webRequest.Credentials = CredentialCache.DefaultCredentials;
-                    webRequest.Method = "POST";
-                    webRequest.ContentType = string.Format("multipart/form-data; boundary={0}", PostData.Boundary);
-                    webRequest.KeepAlive = false;
-                    webRequest.AllowAutoRedirect = true;
-                    webRequest.Timeout = 15000;
-                    webRequest.Pipelined = false;
-                    byte[] bytes = postData.ToBytes();
-                    webRequest.ContentLength = bytes.Length;
-                    using (Stream requestStream = webRequest.GetRequestStream())
-                    {
-                        requestStream.Write(bytes, 0, bytes.Length);
-                        requestStream.Close();
-                    }
-                    using (HttpWebResponse webResponse = (HttpWebResponse) webRequest.GetResponse())
-                    {
-                        using (Stream responseStream = webResponse.GetResponseStream())
-                        {
-                            using (StreamReader responseReader = new StreamReader(responseStream))
-                            {
-                                string responseText = responseReader.ReadToEnd();
-                                Response result = Response.Parse(responseText);
-                                if (result != null && result.Success)
-                                {
-                                    incident.Upload = false;
-                                    incident.Save();
-                                }
-                                else
-                                {
-                                    Log.Critical("DataManager.UploadIncidents", "Failure {0}", incident.FilePath);
-                                }
-                            }
-                        }
+                        postData.Add("incident_photo[]", media.Link, image);
                     }
                 }
-                catch(WebException ex)
+                if (PostWebRequest(postData))
                 {
-                    if (ex.Status == WebExceptionStatus.ProtocolError)
-                    {
-                        HttpWebResponse response = ex.Response as HttpWebResponse;
-                        if (response != null)
-                        {
-                            Log.Exception("DataManager.UploadIncidents", "WebException {0} {1) {2}", ex.Status, ex.Message, response.StatusDescription);    
-                        }
-                    }
-                    else
-                    {
-                        Log.Exception("DataManager.UploadIncidents", "WebException {0} {1)", ex.Status, ex.Message);    
-                    }
+                    Log.Info("DataManager.UploadIncidents", "Upload incident successful");
+                    incident.Upload = false;
+                    incident.Save();
                 }
-                catch(Exception ex)
+                else
                 {
-                    Log.Exception("DataManager.UploadIncidents", "Exception {0}", ex.Message);
+                    Log.Critical("DataManager.UploadIncidents", "Upload incident failed");   
                 }
             }
             return true;
+        }
+
+        private static bool PostWebRequest(PostData postData)
+        {
+            try
+            {
+                string url = string.Format("{0}{1}{2}", ServerAddress, ServerAddress.EndsWith("/") ? "" : "/", "api/");
+                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+                webRequest.Credentials = CredentialCache.DefaultCredentials;
+                webRequest.Method = "POST";
+                webRequest.ContentType = string.Format("multipart/form-data; boundary={0}", PostData.Boundary);
+                webRequest.AllowWriteStreamBuffering = true;
+                webRequest.AllowAutoRedirect = true;
+                webRequest.ReadWriteTimeout = 15000;
+                webRequest.KeepAlive = false;
+                webRequest.Timeout = 15000;
+                byte[] bytes = postData.ToBytes();
+                webRequest.ContentLength = bytes.Length;
+                using (Stream requestStream = webRequest.GetRequestStream())
+                {
+                    requestStream.Write(bytes, 0, bytes.Length);
+                    requestStream.Close();
+                }
+                using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse())
+                {
+                    using (Stream responseStream = webResponse.GetResponseStream())
+                    {
+                        using (StreamReader responseReader = new StreamReader(responseStream))
+                        {
+                            string responseText = responseReader.ReadToEnd();
+                            Response result = Response.Parse(responseText);
+                            return result != null && result.Success;
+                        }
+                    }
+                }
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    using (HttpWebResponse response = ex.Response as HttpWebResponse)
+                    {
+                        if (response != null)
+                        {
+                            Log.Exception("DataManager.UploadIncidents", "WebException {0} {1) {2}", ex.Status,
+                                          ex.Message, response.StatusDescription);
+                        }
+                    }
+                }
+                else
+                {
+                    Log.Exception("DataManager.UploadIncidents", "WebException {0} {1)", ex.Status, ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Exception("DataManager.UploadIncidents", "Exception {0}", ex.Message);
+            }
+            return false;
         }
 
         #endregion

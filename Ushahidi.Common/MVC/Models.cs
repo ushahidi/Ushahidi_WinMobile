@@ -75,43 +75,46 @@ namespace Ushahidi.Common.MVC
                 WebRequest request = WebRequest.Create(url);
                 request.Timeout = 5000;
                 request.Credentials = CredentialCache.DefaultCredentials;
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                using (Stream dataStream = response.GetResponseStream())
+                using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
-                    XmlDocument document = new XmlDocument();
-                    document.Load(dataStream);
-                    foreach (XmlNode node in document.GetElementsByTagName(identifier))
+                    using (Stream dataStream = response.GetResponseStream())
                     {
-                        try
+                        XmlDocument document = new XmlDocument();
+                        document.Load(dataStream);
+                        foreach (XmlNode node in document.GetElementsByTagName(identifier))
                         {
-                            string modelXML = node.OuterXml;
-                            TModel model = Model.Parse<TModel>(modelXML);
-                            if (model != null)
+                            try
                             {
-                                model.FilePath = Path.Combine(directory, string.Format("{0}.xml", model.ID));
-                                if (File.Exists(model.FilePath))
+                                string modelXML = node.OuterXml;
+                                TModel model = Model.Parse<TModel>(modelXML);
+                                if (model != null)
                                 {
-                                    File.Delete(model.FilePath);
-                                }
-                                using (TextWriter writer = new StreamWriter(model.FilePath))
-                                {
-                                    writer.WriteLine(modelXML);
-                                }
-                                TModel duplicateModel = uploaded.FirstOrDefault(p => p.Equals(model));
-                                if (duplicateModel != null && duplicateModel.ID < 0)
-                                {
-                                    if (duplicateModel.Delete())
+                                    model.FilePath = Path.Combine(directory, string.Format("{0}.xml", model.ID));
+                                    if (File.Exists(model.FilePath))
                                     {
-                                        uploaded.Remove(duplicateModel);
-                                        Log.Info("Models.Download", "Duplicate model deleted: {0}", duplicateModel.ID);
+                                        File.Delete(model.FilePath);
                                     }
+                                    using (TextWriter writer = new StreamWriter(model.FilePath))
+                                    {
+                                        writer.WriteLine(modelXML);
+                                    }
+                                    TModel duplicateModel = uploaded.FirstOrDefault(p => p.Equals(model));
+                                    if (duplicateModel != null && duplicateModel.ID < 0)
+                                    {
+                                        if (duplicateModel.Delete())
+                                        {
+                                            uploaded.Remove(duplicateModel);
+                                            Log.Info("Models.Download", "Duplicate model deleted: {0}",
+                                                     duplicateModel.ID);
+                                        }
+                                    }
+                                    models.Add(model);
                                 }
-                                models.Add(model);
                             }
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Exception("DataManager.Download", "Exception: {0}", ex.Message);
+                            catch (Exception ex)
+                            {
+                                Log.Exception("DataManager.Download", "Exception: {0}", ex.Message);
+                            }
                         }
                     }
                 }

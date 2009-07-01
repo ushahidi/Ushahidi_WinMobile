@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DetailsView));
             this.menuItemAddPhoto = new System.Windows.Forms.MenuItem();
             this.panelContent = new System.Windows.Forms.Panel();
-            this.listBoxDetails = new Ushahidi.Common.Controls.ScrollListBox();
+            this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.menuItemAddNews = new System.Windows.Forms.MenuItem();
             this.menuItemAddVideo = new System.Windows.Forms.MenuItem();
             this.panelContent.SuspendLayout();
@@ -56,28 +56,28 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.AutoScroll = true;
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContent.Controls.Add(this.listBoxDetails);
+            this.panelContent.Controls.Add(this.scrollListBox);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 180);
             // 
-            // listBoxDetails
+            // scrollListBox
             // 
-            this.listBoxDetails.AutoScroll = true;
-            this.listBoxDetails.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxDetails.BackColorEven = System.Drawing.Color.Gainsboro;
-            this.listBoxDetails.BackColorOdd = System.Drawing.Color.WhiteSmoke;
-            this.listBoxDetails.BackSelectedColor = System.Drawing.Color.Black;
-            this.listBoxDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxDetails.ForeColor = System.Drawing.Color.Black;
-            this.listBoxDetails.ForeSelectedColor = System.Drawing.Color.White;
-            this.listBoxDetails.Location = new System.Drawing.Point(0, 0);
-            this.listBoxDetails.Name = "listBoxDetails";
-            this.listBoxDetails.SelectedIndex = -1;
-            this.listBoxDetails.SelectedItem = null;
-            this.listBoxDetails.Size = new System.Drawing.Size(176, 180);
-            this.listBoxDetails.TabIndex = 0;
-            this.listBoxDetails.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(OnItemSelected);
+            this.scrollListBox.AutoScroll = true;
+            this.scrollListBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.scrollListBox.BackColorEven = System.Drawing.Color.Gainsboro;
+            this.scrollListBox.BackColorOdd = System.Drawing.Color.WhiteSmoke;
+            this.scrollListBox.BackSelectedColor = System.Drawing.Color.Black;
+            this.scrollListBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scrollListBox.ForeColor = System.Drawing.Color.Black;
+            this.scrollListBox.ForeSelectedColor = System.Drawing.Color.White;
+            this.scrollListBox.Location = new System.Drawing.Point(0, 0);
+            this.scrollListBox.Name = "scrollListBox";
+            this.scrollListBox.SelectedIndex = -1;
+            this.scrollListBox.SelectedItem = null;
+            this.scrollListBox.Size = new System.Drawing.Size(176, 180);
+            this.scrollListBox.TabIndex = 0;
+            this.scrollListBox.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(OnItemSelected);
             // 
             // menuItemAddNews
             // 
@@ -108,7 +108,7 @@
 
         private System.Windows.Forms.MenuItem menuItemAddPhoto;
         private System.Windows.Forms.Panel panelContent;
-        private Ushahidi.Common.Controls.ScrollListBox listBoxDetails;
+        private Ushahidi.Common.Controls.ScrollListBox scrollListBox;
         private System.Windows.Forms.MenuItem menuItemAddNews;
         private System.Windows.Forms.MenuItem menuItemAddVideo;
     }

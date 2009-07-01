@@ -17,11 +17,7 @@ namespace Ushahidi.Common.Controls
         public ScrollListBox()
         {
             InitializeComponent();
-            MouseDown += OnMouseDown;
-            MouseUp += OnMouseUp;
-            MouseMove += OnMouseMove;
             KeyDown += EnhancedListBox_KeyDown;
-            ScrollTimer.Tick += ScrollTick;
         }
 
         /// <summary>
@@ -123,10 +119,7 @@ namespace Ushahidi.Common.Controls
 
             control.Click += OnItemClick;
             control.DoubleClick += OnItemDoubleClick;
-            control.MouseDown += OnMouseDown;
-            control.MouseUp += OnMouseUp;
-            control.MouseMove += OnMouseMove;
-
+            
             Controls.Add(control);
             if (refresh)
             {
@@ -144,10 +137,6 @@ namespace Ushahidi.Common.Controls
             {
                 using (new WaitCursor())
                 {
-                    control.MouseDown -= OnMouseDown;
-                    control.MouseUp -= OnMouseUp;
-                    control.MouseMove -= OnMouseMove;
-
                     Controls.Remove(control);
                     for (int index = 0; index < Controls.Count; index++)
                     {
@@ -284,59 +273,6 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
-        /// ScrollTick distance
-        /// </summary>
-        private int ScrollDistance = 0;
-
-        /// <summary>
-        /// The Y position when mouse was down
-        /// </summary>
-        private int PreviousY = 0;
-
-        /// <summary>
-        /// ScrollTick timer
-        /// </summary>
-        private readonly Timer ScrollTimer = new Timer { Enabled = true, Interval = 50 };
-
-        /// <summary>
-        /// MouseDown Handler
-        /// </summary>
-        private void OnMouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-            PreviousY = GetAbsoluteY(e.Y, sender as Control, this);
-        }
-
-        /// <summary>
-        /// MouseMove Handler
-        /// </summary>
-        private void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-            int mouseDownY = GetAbsoluteY(e.Y, sender as Control, this);
-            ScrollDistance += mouseDownY - PreviousY;
-            PreviousY = mouseDownY;
-        }
-
-        /// <summary>
-        /// MouseUp Handler
-        /// </summary>
-        private void OnMouseUp(object sender, MouseEventArgs e)
-        {
-            if (e.Button != MouseButtons.Left) return;
-            ScrollDistance = 0;
-        }
-
-        /// <summary>
-        /// Scroll timer tick
-        /// </summary>
-        private void ScrollTick(object sender, EventArgs e)
-        {
-            if (ScrollDistance == 0) return;
-            AutoScrollPosition = new Point(Math.Abs(AutoScrollPosition.X), Math.Abs(AutoScrollPosition.Y) + ScrollDistance);
-        }
-
-        /// <summary>
         /// Get the absolute Y position
         /// </summary>
         /// <param name="y">the mouse Y</param>
@@ -439,11 +375,6 @@ namespace Ushahidi.Common.Controls
         /// </summary>
         public new void Dispose()
         {
-            if (ScrollTimer != null)
-            {
-                ScrollTimer.Enabled = false;
-                ScrollTimer.Dispose();
-            }
             if (Controls.Count > 0)
             {
                 for (int i = Controls.Count - 1; i < 0; i--)

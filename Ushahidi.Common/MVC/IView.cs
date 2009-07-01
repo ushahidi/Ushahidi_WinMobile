@@ -22,6 +22,11 @@ namespace Ushahidi.Common.MVC
         void Show();
 
         /// <summary>
+        /// Validate View
+        /// </summary>
+        bool Validate();
+
+        /// <summary>
         /// Hide view
         /// </summary>
         void Hide();

@@ -68,6 +68,7 @@
     <Compile Include="Controllers\HomeViewController.cs" />
     <Compile Include="Controllers\ListViewController.cs" />
     <Compile Include="Controllers\MapViewController.cs" />
+    <Compile Include="Controllers\MediaViewController.cs" />
     <Compile Include="Controllers\PhotoViewController.cs" />
     <Compile Include="Controllers\SettingsViewController.cs" />
     <Compile Include="Controllers\SyncViewController.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Controls\TextListItem.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -143,6 +145,12 @@
     </Compile>
     <Compile Include="Views\MapView.Designer.cs">
       <DependentUpon>MapView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MediaView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MediaView.Designer.cs">
+      <DependentUpon>MediaView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\PhotoView.cs">
       <SubType>Form</SubType>
@@ -205,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MediaView.resx">
+      <DependentUpon>MediaView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PhotoView.resx">
       <DependentUpon>PhotoView.cs</DependentUpon>

@@ -3,7 +3,6 @@ using System.Linq;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
-using Ushahidi.Model.Extensions;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -14,47 +13,38 @@ namespace Ushahidi.View.Controllers
     public class AddViewController : BaseViewController<AddView>
     {
         /// <summary>
-        /// Save error caption
+        /// Load AddView
         /// </summary>
-        public override string SaveErrorCaption
-        {
-            get { return "missingFields".Translate(); }
-        }
-
-        /// <summary>
-        /// Save error message
-        /// </summary>
-        public override string SaveErrorMessage
-        {
-            get { return "missingFieldsVerify".Translate(); }
-        }
-
-        /// <summary>
-        /// Load AddIncidentView with AddIncidentModel data
-        /// </summary>
+        /// <param name="parameters">parameters for AddView</param>
         public override void Load(object[] parameters)
         {
-            View.Categories = DataManager.Categories;
-            View.Locales = DataManager.Locales;
-            View.Title = string.Empty;
-            View.Locale = null;
-            View.Date = DateTime.Now;
-            View.Description = string.Empty;
-            View.MediaItems = null;
+            if (parameters.Exists(0) && parameters[0] is Media)
+            {
+                Media media = parameters.ItemAtIndex<Media>(0);
+                if (string.IsNullOrEmpty(media.Link) == false)
+                {
+                    View.AddMedia(media);
+                }
+            }
+            else if (parameters.Length == 0)
+            {
+                View.Categories = DataManager.Categories;
+                View.Locales = DataManager.Locales;
+                View.Title = string.Empty;
+                View.Locale = null;
+                View.Date = DateTime.Now;
+                View.Description = string.Empty;
+                View.MediaItems = null;
+            }
         }
 
         /// <summary>
-        /// Save AddIncidentModel from AddIncidentView data
+        /// Save AddView
         /// </summary>
         /// <returns>true, if successful</returns>
         public override bool Save()
         {
-            if (View.ShouldSave && 
-                View.Title.HasText() && 
-                View.Description.HasText() && 
-                View.Locale != null && 
-                View.Categories.Count() > 0 && 
-                View.Date != DateTime.MinValue)
+            if (View.ShouldSave)
             {
                 Incident incident = new Incident
                 {

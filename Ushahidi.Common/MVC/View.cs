@@ -5,12 +5,12 @@ using Ushahidi.Common.Logging;
 namespace Ushahidi.Common.MVC
 {
     /// <summary>
-    /// Abstract view
+    /// Abstract View
     /// </summary>
     public class View : Form, IView
     {
         /// <summary>
-        /// Initialize view
+        /// Initialize View
         /// </summary>
         public virtual void Initialize()
         {
@@ -18,7 +18,7 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Render view
+        /// Render View
         /// </summary>
         public virtual void Render()
         {
@@ -26,11 +26,21 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
-        /// Translate view
+        /// Translate View
         /// </summary>
         public virtual void Translate()
         {
             //implementing view can override and provide translation code
+        }
+
+        /// <summary>
+        /// Validate View
+        /// </summary>
+        /// <returns>true, if valid</returns>
+        public virtual bool Validate()
+        {
+            //implementing view can override and provide validation code
+            return true;
         }
 
         /// <summary>
@@ -100,6 +110,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         protected void OnExit()
         {
+            Log.Info("View.OnExit");
             if (Exit != null)
             {
                 Exit();
@@ -121,11 +132,7 @@ namespace Ushahidi.Common.MVC
         /// <returns></returns>
         public new bool Focus()
         {
-            if (Visible)
-            {
-                return base.Focus();
-            }
-            return false;
+            return Visible && base.Focus();
         }
     }
 }

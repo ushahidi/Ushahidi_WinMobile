@@ -35,22 +35,22 @@
             // menuItemAction
             // 
             this.menuItemAction.Text = "Done";
-            this.menuItemAction.Click += new System.EventHandler(OnDone);
+            this.menuItemAction.Click += new System.EventHandler(this.OnDone);
             // 
             // webBrowser
             // 
             this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(240, 268);
-            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(OnNavigating);
-            this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(OnNavigated);
+            this.webBrowser.Size = new System.Drawing.Size(176, 180);
+            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.OnNavigating);
+            this.webBrowser.Navigated += new System.Windows.Forms.WebBrowserNavigatedEventHandler(this.OnNavigated);
             // 
             // WebsiteView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(240, 268);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.webBrowser);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WebsiteView";

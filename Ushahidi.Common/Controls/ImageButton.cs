@@ -20,7 +20,11 @@ namespace Ushahidi.Common.Controls
         public string Label
         {
             get { return Text; }
-            set { Text = value; }
+            set
+            {
+                Text = value;
+                Invalidate();
+            }
         }
 
         /// <summary>

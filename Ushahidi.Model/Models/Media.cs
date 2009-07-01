@@ -92,15 +92,22 @@ namespace Ushahidi.Model.Models
                 FileInfo fileInfo = new FileInfo(destinationFilePath);
                 if (fileInfo.Exists == false || fileInfo.Length == 0)
                 {
-                    WebRequest request = WebRequest.Create(sourceURL);
-                    request.Timeout = 5000;
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(sourceURL);
                     request.Credentials = CredentialCache.DefaultCredentials;
-                    HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                    using (Stream stream = response.GetResponseStream())
+                    request.AllowWriteStreamBuffering = true;
+                    request.AllowAutoRedirect = true;
+                    request.ReadWriteTimeout = 5000;
+                    request.Method = "GET";
+                    request.KeepAlive = true;
+                    request.Timeout = 5000;
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
-                        using (Image image = new Bitmap(stream))
+                        using (Stream stream = response.GetResponseStream())
                         {
-                            image.Save(destinationFilePath, ImageFormat.Jpeg);
+                            using (Image image = new Bitmap(stream))
+                            {
+                                image.Save(destinationFilePath, ImageFormat.Jpeg);
+                            }
                         }
                     }
                     return true;

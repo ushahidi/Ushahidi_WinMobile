@@ -126,6 +126,9 @@
   <data name="active" xml:space="preserve">
     <value>Actief</value>
   </data>
+  <data name="add" xml:space="preserve">
+    <value>Toevoegen</value>
+  </data>
   <data name="addIncident" xml:space="preserve">
     <value>Incident Toevoegen</value>
   </data>
@@ -222,6 +225,9 @@
   <data name="lastSynchronization" xml:space="preserve">
     <value>Laatste synchronisatie</value>
   </data>
+  <data name="load" xml:space="preserve">
+    <value>Laden</value>
+  </data>
   <data name="location" xml:space="preserve">
     <value>Locatie</value>
   </data>
@@ -264,6 +270,9 @@
   <data name="saveIncident" xml:space="preserve">
     <value>Incident bewaren</value>
   </data>
+  <data name="search" xml:space="preserve">
+    <value>Zoeken</value>
+  </data>
   <data name="seconds" xml:space="preserve">
     <value>Seconden</value>
   </data>
@@ -275,6 +284,9 @@
   </data>
   <data name="settings" xml:space="preserve">
     <value>Instellingen</value>
+  </data>
+  <data name="stop" xml:space="preserve">
+    <value>Halte</value>
   </data>
   <data name="synchronizationComplete" xml:space="preserve">
     <value>Synchronisatie voltooid</value>
@@ -295,9 +307,6 @@
     <value>Netwerkverbinding aan het testen</value>
   </data>
   <data name="title" xml:space="preserve">
-    <value>Titel</value>
-  </data>
-  <data name="title1" xml:space="preserve">
     <value>Titel</value>
   </data>
   <data name="uploadingIncidents" xml:space="preserve">

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListView));
             this.panelContent = new System.Windows.Forms.Panel();
             this.comboBoxCategories = new Ushahidi.Common.Controls.LabelComboBox();
-            this.listBoxIncidents = new Ushahidi.Common.Controls.ScrollListBox();
+            this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContent.Controls.Add(this.comboBoxCategories);
-            this.panelContent.Controls.Add(this.listBoxIncidents);
+            this.panelContent.Controls.Add(this.scrollListBox);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 180);
@@ -77,27 +77,27 @@
             this.comboBoxCategories.ValueMember = "ID";
             this.comboBoxCategories.SelectedIndexChanged += new System.EventHandler(this.OnCategoryChanged);
             // 
-            // listBoxIncidents
+            // scrollListBox
             // 
-            this.listBoxIncidents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.scrollListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxIncidents.AutoScroll = true;
-            this.listBoxIncidents.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxIncidents.BackColorEven = System.Drawing.Color.Gainsboro;
-            this.listBoxIncidents.BackColorOdd = System.Drawing.Color.WhiteSmoke;
-            this.listBoxIncidents.BackSelectedColor = System.Drawing.Color.Black;
-            this.listBoxIncidents.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBoxIncidents.ForeColor = System.Drawing.Color.Black;
-            this.listBoxIncidents.ForeSelectedColor = System.Drawing.Color.White;
-            this.listBoxIncidents.Location = new System.Drawing.Point(3, 45);
-            this.listBoxIncidents.Name = "listBoxIncidents";
-            this.listBoxIncidents.SelectedIndex = -1;
-            this.listBoxIncidents.SelectedItem = null;
-            this.listBoxIncidents.Size = new System.Drawing.Size(170, 132);
-            this.listBoxIncidents.TabIndex = 0;
-            this.listBoxIncidents.IndexChanged += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentChanged);
-            this.listBoxIncidents.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentSelected);
+            this.scrollListBox.AutoScroll = true;
+            this.scrollListBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.scrollListBox.BackColorEven = System.Drawing.Color.Gainsboro;
+            this.scrollListBox.BackColorOdd = System.Drawing.Color.WhiteSmoke;
+            this.scrollListBox.BackSelectedColor = System.Drawing.Color.Black;
+            this.scrollListBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.scrollListBox.ForeColor = System.Drawing.Color.Black;
+            this.scrollListBox.ForeSelectedColor = System.Drawing.Color.White;
+            this.scrollListBox.Location = new System.Drawing.Point(3, 45);
+            this.scrollListBox.Name = "scrollListBox";
+            this.scrollListBox.SelectedIndex = -1;
+            this.scrollListBox.SelectedItem = null;
+            this.scrollListBox.Size = new System.Drawing.Size(170, 132);
+            this.scrollListBox.TabIndex = 0;
+            this.scrollListBox.IndexChanged += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentChanged);
+            this.scrollListBox.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnIncidentSelected);
             // 
             // ListView
             // 
@@ -117,7 +117,7 @@
 
         private System.Windows.Forms.Panel panelContent;
         private Ushahidi.Common.Controls.LabelComboBox comboBoxCategories;
-        private Ushahidi.Common.Controls.ScrollListBox listBoxIncidents;
+        private Ushahidi.Common.Controls.ScrollListBox scrollListBox;
 
     }
 }

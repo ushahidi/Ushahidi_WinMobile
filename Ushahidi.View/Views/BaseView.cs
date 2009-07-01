@@ -91,7 +91,7 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnWebsite(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(true, DataManager.ServerAddress, "WebsiteView".Translate());  
+            OnForward<WebsiteViewController>(true, DataManager.ServerAddress, "website".Translate());  
         }
 
         /// <summary>

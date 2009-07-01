@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
@@ -6,17 +7,28 @@ using Ushahidi.Model.Models;
 using Ushahidi.View.Controllers;
 using Ushahidi.View.Controls;
 using Ushahidi.Model.Extensions;
+using Ushahidi.View.Extensions;
 
 namespace Ushahidi.View.Views
 {
     /// <summary>
-    /// Incident details view
+    /// Incident Details View
     /// </summary>
     public partial class DetailsView : BaseView
     {
         public DetailsView()
         {
             InitializeComponent();    
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            scrollListBox.BackColor = Color.White;
+            scrollListBox.BackColorEven = Color.Gainsboro;
+            scrollListBox.BackColorOdd = Color.WhiteSmoke;
+            scrollListBox.BackSelectedColor = Color.Black;
+            scrollListBox.ForeSelectedColor = Color.White;
         }
 
         public override void Translate()
@@ -31,83 +43,76 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             base.Render();
-            listBoxDetails.Clear();
-            listBoxDetails.Add(new TextListItem("title".Translate(), Incident.Title, true));
-            listBoxDetails.Add(new TextListItem("description".Translate(), Incident.Description));
-            listBoxDetails.Add(new TextListItem("category".Translate(), Incident.CategoryTitle));
-            listBoxDetails.Add(new TextListItem("date".Translate(), Incident.Date.ToString("MMMM d, yyyy h:mm tt")));
-            string verified = Incident.Verified ? "verified".Translate() : "notVerified".Translate();
-            string active = Incident.Active ? "active".Translate() : "notActive".Translate();
-            listBoxDetails.Add(new TextListItem("verifiedAndActive".Translate(), string.Format("{0} - {1}", verified, active)));
-            listBoxDetails.Add(new LocaleListItem(Incident.Locale));
-            foreach (Media media in Incident.MediaItems.Where(m => m.MediaType != MediaType.Photo))
+            scrollListBox.Clear();
+            if (Incident != null)
             {
-                listBoxDetails.Add(new LinkListItem(GetMediaTypeLabel(media.MediaType), media.Link));
+                scrollListBox.Add(new TextListItem("title".Translate(), Incident.Title, true));
+                scrollListBox.Add(new TextListItem("description".Translate(), Incident.Description));
+                scrollListBox.Add(new TextListItem("category".Translate(), Incident.CategoryTitle));
+                scrollListBox.Add(new TextListItem("date".Translate(), Incident.Date.ToString("MMMM d, yyyy h:mm tt")));
+                string verified = Incident.Verified ? "verified".Translate() : "notVerified".Translate();
+                string active = Incident.Active ? "active".Translate() : "notActive".Translate();
+                scrollListBox.Add(new TextListItem("verifiedAndActive".Translate(),
+                                                   string.Format("{0} - {1}", verified, active)));
+                scrollListBox.Add(new LocaleListItem(Incident.Locale));
+                foreach (Media media in Incident.MediaItems.Where(m => m.MediaType != MediaType.Photo))
+                {
+                    scrollListBox.Add(media);
+                }
+                foreach (Media media in Incident.MediaItems.Where(m => m.MediaType == MediaType.Photo))
+                {
+                    scrollListBox.Add(media);
+                }
+                if (DataManager.HasMap(Incident.ID))
+                {
+                    scrollListBox.Add(DataManager.LoadMap(Incident.ID));
+                }
             }
-            foreach (Media media in Incident.MediaItems.Where(m => m.MediaType == MediaType.Photo))
-            {
-                listBoxDetails.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
-            }
-            if (DataManager.HasMap(Incident.ID))
-            {
-                listBoxDetails.Add(new PhotoListItem(DataManager.LoadMap(Incident.ID)));
-            }
-        }
-
-        private static string GetMediaTypeLabel(MediaType mediaType)
-        {
-            if (mediaType == MediaType.News)  return "news".Translate();
-            if (mediaType == MediaType.Audio) return "audio".Translate();
-            if (mediaType == MediaType.Video) return "video".Translate();
-            if (mediaType == MediaType.Photo) return "photo".Translate();
-            return string.Empty;
         }
 
         public Incident Incident { get; set; }
-        
+
+        public void AddMedia(Media media)
+        {
+            Incident.AddMedia(media);
+        }
+
         private void OnAddPhoto(object sender, EventArgs e)
         {
-            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this));
-            if (media != null)
-            {
-                Incident.AddPhoto(media);
-                listBoxDetails.Add(new PhotoListItem(DataManager.LoadImage(media.Link)));
-                listBoxDetails.AdjustHeight();
-            }
+            OnForward<MediaViewController>(false, MediaType.Photo);
         }
 
         private void OnAddNews(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(false, menuItemAddNews.Text);
+            OnForward<MediaViewController>(false, MediaType.News);
         }
 
         private void OnAddVideo(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(false, menuItemAddVideo.Text);
+            OnForward<MediaViewController>(false, MediaType.Video);
         }
 
         private void OnItemSelected(object sender, ScrollEventArgs args)
         {
-            PhotoListItem mediaPhotoListItem = args.Item as PhotoListItem;
-            TextListItem textListItem = args.Item as TextListItem;
-            LinkListItem linkListItem = args.Item as LinkListItem;
-            LocaleListItem mapListItem = args.Item as LocaleListItem;
-            if (textListItem != null)
+            if (args.Item is TextListItem)
             {
+                TextListItem textListItem = args.Item as TextListItem;
                 Dialog.Help(textListItem.Label, textListItem.Text);
             }
-            else if (mediaPhotoListItem != null)
+            else if (args.Item is PhotoListItem)
             {
+                PhotoListItem mediaPhotoListItem = args.Item as PhotoListItem;
                 OnForward<PhotoViewController>(false, mediaPhotoListItem.Image);
             }
-            else if (linkListItem != null)
+            else if (args.Item is LinkListItem)
             {
+                LinkListItem linkListItem = args.Item as LinkListItem;
                 OnForward<WebsiteViewController>(false, linkListItem.Link);
             }
-            else if (mapListItem != null)
+            else if (args.Item is LocaleListItem)
             {
+                LocaleListItem mapListItem = args.Item as LocaleListItem;
                 Dialog.Help(mapListItem.Item.Name, string.Format("({0},{1})", mapListItem.Item.Latitude, mapListItem.Item.Longitude));
-                //OnForward<MapViewController>(false, Incident.LocaleName, Incident.LocaleLatitude, Incident.LocaleLongitude);
             }
         }
     }

@@ -42,6 +42,8 @@
             this.comboBoxLocales = new Ushahidi.Common.Controls.LabelComboBox();
             this.dateBoxDate = new Ushahidi.Common.Controls.LabelDateBox();
             this.textBoxTitle = new Ushahidi.Common.Controls.LabelTextBox();
+            this.listViewNews = new Ushahidi.Common.Controls.LabelListView();
+            this.listViewVideos = new Ushahidi.Common.Controls.LabelListView();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,17 +92,17 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.scrollListBox.AutoScroll = true;
             this.scrollListBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.scrollListBox.BackColorEven = System.Drawing.Color.Gainsboro;
+            this.scrollListBox.BackColorEven = System.Drawing.Color.WhiteSmoke;
             this.scrollListBox.BackColorOdd = System.Drawing.Color.WhiteSmoke;
             this.scrollListBox.BackSelectedColor = System.Drawing.Color.Black;
             this.scrollListBox.ForeColor = System.Drawing.Color.Black;
             this.scrollListBox.ForeSelectedColor = System.Drawing.Color.White;
-            this.scrollListBox.Location = new System.Drawing.Point(0, 260);
+            this.scrollListBox.Location = new System.Drawing.Point(0, 380);
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
-            this.scrollListBox.Size = new System.Drawing.Size(155, 10);
-            this.scrollListBox.TabIndex = 5;
+            this.scrollListBox.Size = new System.Drawing.Size(176, 20);
+            this.scrollListBox.TabIndex = 7;
             // 
             // panel
             // 
@@ -109,6 +111,8 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.AutoScroll = true;
             this.panel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel.Controls.Add(this.listViewVideos);
+            this.panel.Controls.Add(this.listViewNews);
             this.panel.Controls.Add(this.textBoxDescription);
             this.panel.Controls.Add(this.scrollListBox);
             this.panel.Controls.Add(this.checkBoxesCategories);
@@ -117,19 +121,20 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 180);
+            this.panel.Size = new System.Drawing.Size(176, 450);
             // 
             // textBoxDescription
             // 
             this.textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDescription.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxDescription.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxDescription.IsRequired = false;
             this.textBoxDescription.Label = "Description";
             this.textBoxDescription.Location = new System.Drawing.Point(0, 185);
             this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.IsRequired = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(162, 75);
+            this.textBoxDescription.Size = new System.Drawing.Size(176, 75);
             this.textBoxDescription.TabIndex = 4;
             this.textBoxDescription.Value = "";
             // 
@@ -141,14 +146,14 @@
             this.checkBoxesCategories.Label = "Category";
             this.checkBoxesCategories.Location = new System.Drawing.Point(0, 135);
             this.checkBoxesCategories.Name = "checkBoxesCategories";
-            this.checkBoxesCategories.Size = new System.Drawing.Size(162, 45);
+            this.checkBoxesCategories.Size = new System.Drawing.Size(176, 45);
             this.checkBoxesCategories.TabIndex = 3;
             // 
             // comboBoxLocales
             // 
             this.comboBoxLocales.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxLocales.BackColor = System.Drawing.Color.Gainsboro;
+            this.comboBoxLocales.BackColor = System.Drawing.Color.WhiteSmoke;
             this.comboBoxLocales.Bold = true;
             this.comboBoxLocales.DataSource = null;
             this.comboBoxLocales.DisplayMember = "";
@@ -159,7 +164,7 @@
             this.comboBoxLocales.SelectedIndex = -1;
             this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
-            this.comboBoxLocales.Size = new System.Drawing.Size(162, 45);
+            this.comboBoxLocales.Size = new System.Drawing.Size(176, 45);
             this.comboBoxLocales.TabIndex = 2;
             this.comboBoxLocales.ValueMember = "";
             // 
@@ -172,7 +177,7 @@
             this.dateBoxDate.Label = "Date";
             this.dateBoxDate.Location = new System.Drawing.Point(0, 45);
             this.dateBoxDate.Name = "dateBoxDate";
-            this.dateBoxDate.Size = new System.Drawing.Size(162, 45);
+            this.dateBoxDate.Size = new System.Drawing.Size(176, 45);
             this.dateBoxDate.TabIndex = 1;
             this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
             // 
@@ -180,22 +185,46 @@
             // 
             this.textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxTitle.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxTitle.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxTitle.IsRequired = true;
             this.textBoxTitle.Label = "Title";
             this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
             this.textBoxTitle.Multiline = false;
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(162, 45);
+            this.textBoxTitle.Size = new System.Drawing.Size(176, 45);
             this.textBoxTitle.TabIndex = 0;
             this.textBoxTitle.Value = "";
+            // 
+            // listViewNews
+            // 
+            this.listViewNews.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewNews.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listViewNews.Label = "News";
+            this.listViewNews.Location = new System.Drawing.Point(0, 260);
+            this.listViewNews.Name = "listViewNews";
+            this.listViewNews.Size = new System.Drawing.Size(176, 60);
+            this.listViewNews.TabIndex = 5;
+            this.listViewNews.Enabled = true;
+            // 
+            // listViewVideos
+            // 
+            this.listViewVideos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewVideos.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listViewVideos.Label = "Videos";
+            this.listViewVideos.Location = new System.Drawing.Point(0, 320);
+            this.listViewVideos.Name = "listViewVideos";
+            this.listViewVideos.Size = new System.Drawing.Size(176, 60);
+            this.listViewVideos.TabIndex = 6;
+            this.listViewVideos.Enabled = true;
             // 
             // AddView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(176, 180);
+            this.ClientSize = new System.Drawing.Size(176, 450);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";
@@ -221,6 +250,8 @@
         private Ushahidi.Common.Controls.LabelComboBox comboBoxLocales;
         private Ushahidi.Common.Controls.LabelCheckBoxes checkBoxesCategories;
         private Ushahidi.Common.Controls.LabelTextBox textBoxDescription;
+        private Ushahidi.Common.Controls.LabelListView listViewNews;
+        private Ushahidi.Common.Controls.LabelListView listViewVideos;
 
     }
 }

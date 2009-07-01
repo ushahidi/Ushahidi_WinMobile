@@ -1,5 +1,4 @@
 ﻿using Ushahidi.Model;
-using Ushahidi.Model.Extensions;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -9,22 +8,6 @@ namespace Ushahidi.View.Controllers
     /// </summary>
     public class SettingsViewController : BaseViewController<SettingsView>
     {
-        /// <summary>
-        /// Save error caption
-        /// </summary>
-        public override string SaveErrorCaption
-        {
-            get { return "missingFields".Translate(); }
-        }
-
-        /// <summary>
-        /// Save error message
-        /// </summary>
-        public override string SaveErrorMessage
-        {
-            get { return "missingFieldsVerify".Translate(); }
-        }
-
         public override void Load(object[] parameters)
         {
             View.Languages = DataManager.Languages;
@@ -39,17 +22,13 @@ namespace Ushahidi.View.Controllers
 
         public override bool Save()
         {
-            if (View.ShouldSave)
-            {
-                DataManager.Language = View.Language;
-                DataManager.MapType = View.MapType;
-                DataManager.FirstName = View.FirstName;
-                DataManager.LastName = View.LastName;
-                DataManager.Email = View.Email;
-                DataManager.ShowKeyboard = View.ShowKeyboard;
-                return DataManager.Save();
-            }
-            return true;
+            DataManager.Language = View.Language;
+            DataManager.MapType = View.MapType;
+            DataManager.FirstName = View.FirstName;
+            DataManager.LastName = View.LastName;
+            DataManager.Email = View.Email;
+            DataManager.ShowKeyboard = View.ShowKeyboard;
+            return DataManager.Save();
         }
     }
 }

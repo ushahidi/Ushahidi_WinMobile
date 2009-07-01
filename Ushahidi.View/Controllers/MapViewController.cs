@@ -4,7 +4,7 @@ using Ushahidi.View.Views;
 namespace Ushahidi.View.Controllers
 {
     /// <summary>
-    /// Incident Map View Controller
+    /// Map View Controller
     /// </summary>
     public class MapViewController : BaseViewController<MapView>
     {

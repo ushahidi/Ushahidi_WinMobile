@@ -1,5 +1,5 @@
-﻿using System;
-using Ushahidi.Common.Extensions;
+﻿using Ushahidi.Common.Extensions;
+using Ushahidi.Model.Extensions;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -14,12 +14,11 @@ namespace Ushahidi.View.Controllers
         /// </summary>
         public override void Load(object[] parameters)
         {
-            View.WebsiteURL = parameters.ItemAtIndex<string>(0);
-        }
+            string parameterOne = parameters.ItemAtIndex<string>(0);
+            View.URL = string.IsNullOrEmpty(parameterOne) ? null : parameterOne;
 
-        public override bool Save()
-        {
-            return base.Save();
+            string parameterTwo = parameters.ItemAtIndex<string>(1);
+            View.Text = string.IsNullOrEmpty(parameterTwo) ? "website".Translate() : parameterTwo;
         }
     }
 }

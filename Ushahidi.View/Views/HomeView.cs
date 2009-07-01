@@ -16,6 +16,12 @@ namespace Ushahidi.View.Views
             InitializeComponent();
         }
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            panelContent.BackColor = Colors.Background;
+        }
+
         public override void Translate()
         {
             base.Translate();
@@ -23,12 +29,6 @@ namespace Ushahidi.View.Views
             buttonListIncident.Translate("incidentList");
             buttonAddIncident.Translate("addIncident");
             buttonSynchronize.Translate("synchronize");
-        }
-
-        public override void Render()
-        {
-            base.Render();
-            panelContent.BackColor = Colors.Background;
         }
 
         /// <summary>
@@ -43,11 +43,6 @@ namespace Ushahidi.View.Views
         private void OnListIncident(object sender, EventArgs e)
         {
             OnForward<ListViewController>(true);
-        }
-
-        private void OnMapIncident(object sender, EventArgs e)
-        {
-            OnForward<MapViewController>(true);
         }
 
         private void OnAddIncident(object sender, EventArgs e)

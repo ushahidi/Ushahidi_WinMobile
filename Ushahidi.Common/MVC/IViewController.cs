@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 
 namespace Ushahidi.Common.MVC
 {
@@ -22,77 +21,66 @@ namespace Ushahidi.Common.MVC
     public interface IViewController: IDisposable
     {
         /// <summary>
-        /// View name
+        /// View Name
         /// </summary>
         string Name { get; }
 
         /// <summary>
-        /// Save error caption
+        /// Load View
         /// </summary>
-        string SaveErrorCaption { get; }
-
-        /// <summary>
-        /// Save error message
-        /// </summary>
-        string SaveErrorMessage { get; }
-
-        /// <summary>
-        /// Load view with model data
-        /// </summary>
-        /// <param name="parameters">parameters</param>
+        /// <param name="parameters">parameters used to load view</param>
         void Load(params object [] parameters);
 
         /// <summary>
-        /// Save model from view data
+        /// Save View
         /// </summary>
         /// <returns>true, if successful</returns>
         bool Save();
 
         /// <summary>
-        /// Initialize the view
+        /// Initialize View
         /// </summary>
         void Initialize();
 
         /// <summary>
-        /// Render the view
+        /// Render View
         /// </summary>
         void Render();
 
         /// <summary>
-        /// Translate the view
+        /// Translate View
         /// </summary>
         void Translate();
 
         /// <summary>
-        /// Show the view
+        /// Validate View
+        /// </summary>
+        /// <returns></returns>
+        bool Validate();
+
+        /// <summary>
+        /// Show View
         /// </summary>
         void Show();
 
         /// <summary>
-        /// Hide the view
+        /// Hide View
         /// </summary>
         void Hide();
 
         /// <summary>
-        /// The back event
+        /// Back Event
         /// </summary>
         event BackHandler Back;
 
         /// <summary>
-        /// The forward event
+        /// Forward Event
         /// </summary>
         event ForwardHandler Forward;
 
         /// <summary>
-        /// The exit event
+        /// Exit Event
         /// </summary>
         event BackHandler Exit;
-
-        /// <summary>
-        /// On model changed event
-        /// </summary>
-        /// <param name="sender">sender</param>
-        /// <param name="e">PropertyChangedEventArgs</param>
-        void OnModelChanged(object sender, PropertyChangedEventArgs e);
     }
 }
