@@ -35,7 +35,7 @@ namespace Ushahidi.View.Views
         {
             base.Translate();
             this.Translate("incidentDetails");
-            menuItemAddPhoto.Translate("addPhoto");
+            menuItemAddPhoto.Translate("addPhotoLink");
             menuItemAddNews.Translate("addNewsLink");
             menuItemAddVideo.Translate("addVideoLink");
         }

@@ -138,6 +138,9 @@
   <data name="addPhoto" xml:space="preserve">
     <value>Photo hinzufügen</value>
   </data>
+  <data name="addPhotoLink" xml:space="preserve">
+    <value>Foto hinzufügen Link</value>
+  </data>
   <data name="addVideoLink" xml:space="preserve">
     <value>Videolink hinzufügen</value>
   </data>
