@@ -288,6 +288,9 @@
   <data name="stop" xml:space="preserve">
     <value>Halte</value>
   </data>
+  <data name="submit" xml:space="preserve">
+    <value>Indienen</value>
+  </data>
   <data name="synchronizationComplete" xml:space="preserve">
     <value>Synchronisatie voltooid</value>
   </data>

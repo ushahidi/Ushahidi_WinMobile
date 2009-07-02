@@ -33,7 +33,7 @@
             this.menuItemAddNews = new System.Windows.Forms.MenuItem();
             this.menuItemAddVideo = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator = new System.Windows.Forms.MenuItem();
-            this.menuItemSave = new System.Windows.Forms.MenuItem();
+            this.menuItemSubmit = new System.Windows.Forms.MenuItem();
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
             this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.panel = new System.Windows.Forms.Panel();
@@ -53,7 +53,7 @@
             this.menuItemAction.MenuItems.Add(this.menuItemAddNews);
             this.menuItemAction.MenuItems.Add(this.menuItemAddVideo);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator);
-            this.menuItemAction.MenuItems.Add(this.menuItemSave);
+            this.menuItemAction.MenuItems.Add(this.menuItemSubmit);
             this.menuItemAction.MenuItems.Add(this.menuItemCancel);
             this.menuItemAction.Text = "Action";
             // 
@@ -76,10 +76,10 @@
             // 
             this.menuItemSeparator.Text = "-";
             // 
-            // menuItemSave
+            // menuItemSubmit
             // 
-            this.menuItemSave.Text = "Save";
-            this.menuItemSave.Click += new System.EventHandler(this.OnSave);
+            this.menuItemSubmit.Text = "Submit";
+            this.menuItemSubmit.Click += new System.EventHandler(this.OnSave);
             // 
             // menuItemCancel
             // 
@@ -244,7 +244,7 @@
         private System.Windows.Forms.MenuItem menuItemAddNews;
         private System.Windows.Forms.MenuItem menuItemAddVideo;
         private System.Windows.Forms.MenuItem menuItemSeparator;
-        private System.Windows.Forms.MenuItem menuItemSave;
+        private System.Windows.Forms.MenuItem menuItemSubmit;
         private System.Windows.Forms.MenuItem menuItemCancel;
         private Ushahidi.Common.Controls.ScrollListBox scrollListBox;
         private System.Windows.Forms.Panel panel;

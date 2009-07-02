@@ -51,7 +51,7 @@ namespace Ushahidi.View.Views
             comboBoxLocales.Translate("location");
             textBoxNews.Translate("news");
             textBoxVideo.Translate("video");
-            menuItemSave.Translate("saveIncident");
+            menuItemSubmit.Translate("submit");
             menuItemCancel.Translate("cancel");
             menuItemAddPhoto.Translate("addPhoto");
             menuItemAddNews.Translate("addNewsLink");

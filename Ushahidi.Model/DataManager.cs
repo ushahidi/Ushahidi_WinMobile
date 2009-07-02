@@ -530,7 +530,6 @@ namespace Ushahidi.Model
                         Log.Critical("DataManager.UploadMedia", "Upload media failed");
                     }
                 }
-                Log.Info("UploadMedia: {0}", incident.ID);
             }
             return true;
         }

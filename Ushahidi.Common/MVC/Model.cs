@@ -21,11 +21,21 @@ namespace Ushahidi.Common.MVC
             get { return _Upload; }
             set
             {
-                if (_Upload && value == false && FilePath.EndsWith("uploaded") == false)
+                if (_Upload && //current value is true
+                    value == false && //new value is false
+                    string.IsNullOrEmpty(FilePath) == false && //file path null null
+                    File.Exists(FilePath) && //file path exists
+                    FilePath.EndsWith("uploaded") == false) //file path does not already contain .uploaded
                 {
-                    //if upload true>>false then append 'uploaded' file extension
-                    File.Move(FilePath, string.Format("{0}.uploaded", FilePath));
-                    FilePath = string.Format("{0}.uploaded", FilePath);
+                    try
+                    {
+                        File.Move(FilePath, string.Format("{0}.uploaded", FilePath));
+                        FilePath = string.Format("{0}.uploaded", FilePath);    
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Exception("Model.Upload", "Exception: {0}", ex.Message);        
+                    }
                 }
                 _Upload = value;
             }
