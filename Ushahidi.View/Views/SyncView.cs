@@ -24,19 +24,21 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            dateBoxLastSync.BackColor = Colors.Background;
             textBoxServer.BackColor = Colors.Background;
             progressBox.BackColor = Colors.Background;
             panelContent.BackColor = Colors.Background;
+            checkBoxDownloadMaps.BackColor = Colors.Background;
+            checkBoxDownloadMedia.BackColor = Colors.Background;
         }
 
         public override void Translate()
         {
             base.Translate();
             this.Translate("synchronize");
-            dateBoxLastSync.Translate("lastSynchronization");
             textBoxServer.Translate("server");
             menuItemAction.Translate("synchronize");
+            checkBoxDownloadMaps.Translate("downloadMaps");
+            checkBoxDownloadMedia.Translate("downloadMedia");
         }
 
         public override void Render()
@@ -44,18 +46,23 @@ namespace Ushahidi.View.Views
             base.Render();
             progressBox.Value = 0;
             listView.Items.Clear();
+            if (LastSyncDate > DateTime.MinValue)
+            {
+                listView.Items.Add(new ListViewItem("lastSynchronization".Translate()));
+                listView.Items.Add(new ListViewItem(LastSyncDate.ToString("h:mm tt, dddd MMMM 2, yyyy")));    
+            }
+            columnHeaderProgress.Width = -2;
             listView.Focus();
         }
 
         /// <summary>
         /// Last sync
         /// </summary>
-        public DateTime LastSyncDate
-        {
-            get { return dateBoxLastSync.Value; }
-            set { dateBoxLastSync.Value = value;}
-        }
+        public DateTime LastSyncDate { get; set; }
 
+        /// <summary>
+        /// Server Address
+        /// </summary>
         public string ServerAddress
         {
             get { return textBoxServer.Value; }
@@ -63,17 +70,50 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
+        /// Download Maps
+        /// </summary>
+        public bool ShouldDownloadMaps
+        {
+            get { return checkBoxDownloadMaps.Checked; }
+            set { checkBoxDownloadMaps.Checked = value; }
+        }
+
+        /// <summary>
+        /// Download Media
+        /// </summary>
+        public bool ShouldDownloadMedia
+        {
+            get { return checkBoxDownloadMedia.Checked; }
+            set { checkBoxDownloadMedia.Checked = value; }
+        }
+
+        /// <summary>
         /// Start time
         /// </summary>
         private DateTime StartTime { get; set; }
 
+        /// <summary>
+        /// Skip Download Media?
+        /// </summary>
+        private bool SkipDownloadMedia { get; set; }
+
+        /// <summary>
+        /// Skip Download Maps?
+        /// </summary>
+        private bool SkipDownloadMaps { get; set; }
+
+        /// <summary>
+        /// Is Synchronizing
+        /// </summary>
         private bool Synchronizing
         {
             set
             {
                 textBoxServer.Enabled = 
                 menuItemAction.Enabled = 
-                menuItemMenu.Enabled = !value;
+                menuItemMenu.Enabled =
+                checkBoxDownloadMedia.Enabled =
+                checkBoxDownloadMaps.Enabled = !value;
             }
         }
 
@@ -89,6 +129,8 @@ namespace Ushahidi.View.Views
             columnHeaderProgress.Width = -2;
             StartTime = DateTime.Now;
             Synchronizing = true;
+            SkipDownloadMedia = checkBoxDownloadMedia.Checked == false;
+            SkipDownloadMaps = checkBoxDownloadMaps.Checked == false;
             Internet.TestURL = textBoxServer.Value;
             DataManager.ScreenWidth = Screen.PrimaryScreen.Bounds.Width;
             DataManager.ScreenHeight = Screen.PrimaryScreen.Bounds.Height;
@@ -119,8 +161,8 @@ namespace Ushahidi.View.Views
                          Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 5) &&
                          Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 6) &&
                          Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 7) &&
-                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 8) &&
-                         Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 9))
+                        (SkipDownloadMedia || Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 8)) &&
+                        (SkipDownloadMaps || Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 9)))
                 {
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 10);
                 }

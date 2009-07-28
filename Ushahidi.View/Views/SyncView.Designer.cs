@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.panelContent = new System.Windows.Forms.Panel();
+            this.checkBoxDownloadMaps = new System.Windows.Forms.CheckBox();
             this.textBoxServer = new Ushahidi.Common.Controls.LabelTextBox();
             this.listView = new System.Windows.Forms.ListView();
             this.columnHeaderProgress = new System.Windows.Forms.ColumnHeader();
             this.progressBox = new Ushahidi.Common.Controls.ProgressBox();
-            this.dateBoxLastSync = new Ushahidi.Common.Controls.LabelDateBox();
+            this.checkBoxDownloadMedia = new System.Windows.Forms.CheckBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,13 +49,25 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.checkBoxDownloadMedia);
+            this.panelContent.Controls.Add(this.checkBoxDownloadMaps);
             this.panelContent.Controls.Add(this.textBoxServer);
             this.panelContent.Controls.Add(this.listView);
             this.panelContent.Controls.Add(this.progressBox);
-            this.panelContent.Controls.Add(this.dateBoxLastSync);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 180);
+            // 
+            // checkBoxDownloadMaps
+            // 
+            this.checkBoxDownloadMaps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxDownloadMaps.Font = new System.Drawing.Font("Segoe Condensed", 10F, System.Drawing.FontStyle.Bold);
+            this.checkBoxDownloadMaps.Location = new System.Drawing.Point(4, 45);
+            this.checkBoxDownloadMaps.Name = "checkBoxDownloadMaps";
+            this.checkBoxDownloadMaps.Size = new System.Drawing.Size(169, 22);
+            this.checkBoxDownloadMaps.TabIndex = 2;
+            this.checkBoxDownloadMaps.Text = "Download Maps";
             // 
             // textBoxServer
             // 
@@ -62,12 +75,12 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxServer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxServer.IsRequired = false;
-            this.textBoxServer.Label = "Label";
+            this.textBoxServer.Label = "Server";
             this.textBoxServer.Location = new System.Drawing.Point(0, 0);
             this.textBoxServer.Multiline = false;
             this.textBoxServer.Name = "textBoxServer";
             this.textBoxServer.Size = new System.Drawing.Size(176, 45);
-            this.textBoxServer.TabIndex = 2;
+            this.textBoxServer.TabIndex = 1;
             this.textBoxServer.Value = "";
             // 
             // listView
@@ -77,9 +90,9 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.listView.Columns.Add(this.columnHeaderProgress);
             this.listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.listView.Location = new System.Drawing.Point(4, 118);
+            this.listView.Location = new System.Drawing.Point(4, 115);
             this.listView.Name = "listView";
-            this.listView.Size = new System.Drawing.Size(169, 59);
+            this.listView.Size = new System.Drawing.Size(169, 62);
             this.listView.TabIndex = 0;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
@@ -93,7 +106,7 @@
             this.progressBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.progressBox.Location = new System.Drawing.Point(0, 90);
+            this.progressBox.Location = new System.Drawing.Point(0, 86);
             this.progressBox.Maximum = 0;
             this.progressBox.Minimum = 0;
             this.progressBox.Name = "progressBox";
@@ -102,20 +115,16 @@
             this.progressBox.TabStop = false;
             this.progressBox.Value = 0;
             // 
-            // dateBoxLastSync
+            // checkBoxDownloadMedia
             // 
-            this.dateBoxLastSync.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.checkBoxDownloadMedia.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateBoxLastSync.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.dateBoxLastSync.Enabled = false;
-            this.dateBoxLastSync.IsRequired = false;
-            this.dateBoxLastSync.Label = "Last Sync";
-            this.dateBoxLastSync.Location = new System.Drawing.Point(0, 45);
-            this.dateBoxLastSync.Name = "dateBoxLastSync";
-            this.dateBoxLastSync.Size = new System.Drawing.Size(176, 45);
-            this.dateBoxLastSync.TabIndex = 0;
-            this.dateBoxLastSync.TabStop = false;
-            this.dateBoxLastSync.Value = new System.DateTime(2009, 3, 26, 20, 58, 51, 644);
+            this.checkBoxDownloadMedia.Font = new System.Drawing.Font("Segoe Condensed", 10F, System.Drawing.FontStyle.Bold);
+            this.checkBoxDownloadMedia.Location = new System.Drawing.Point(4, 67);
+            this.checkBoxDownloadMedia.Name = "checkBoxDownloadMedia";
+            this.checkBoxDownloadMedia.Size = new System.Drawing.Size(169, 22);
+            this.checkBoxDownloadMedia.TabIndex = 3;
+            this.checkBoxDownloadMedia.Text = "Download Media";
             // 
             // SyncView
             // 
@@ -137,6 +146,7 @@
         private System.Windows.Forms.ListView listView;
         private System.Windows.Forms.ColumnHeader columnHeaderProgress;
         private Ushahidi.Common.Controls.ProgressBox progressBox;
-        private Ushahidi.Common.Controls.LabelDateBox dateBoxLastSync;
+        private System.Windows.Forms.CheckBox checkBoxDownloadMaps;
+        private System.Windows.Forms.CheckBox checkBoxDownloadMedia;
     }
 }

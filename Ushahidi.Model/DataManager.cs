@@ -30,6 +30,8 @@ namespace Ushahidi.Model
         private const string RegKeyLanguage = "Language";
         private const string RegKeyLastSync = "LastSync";
         private const string RegKeyShowKeyboard = "ShowKeyboard";
+        private const string RegKeyDownloadMaps = "DownloadMaps";
+        private const string RegKeyDownloadMedia = "DownloadMedia";
         private const string RegKeyFirstName = "FirstName";
         private const string RegKeyLastName = "LastName";
         private const string RegKeyEmail = "Email";
@@ -55,6 +57,16 @@ namespace Ushahidi.Model
         /// Last sync date
         /// </summary>
         public static DateTime LastSyncDate { get; set; }
+
+        /// <summary>
+        /// Download Maps
+        /// </summary>
+        public static bool ShouldDownloadMaps { get; set; }
+
+        /// <summary>
+        /// Download Media
+        /// </summary>
+        public static bool ShouldDownloadMedia { get; set; }
 
         /// <summary>
         /// Auto show keyboard?
@@ -91,6 +103,10 @@ namespace Ushahidi.Model
 
                 ShowKeyboard = Convert.ToBoolean(registryKey.GetValue(RegKeyShowKeyboard, true));
 
+                ShouldDownloadMaps = Convert.ToBoolean(registryKey.GetValue(RegKeyDownloadMaps, true));
+
+                ShouldDownloadMedia = Convert.ToBoolean(registryKey.GetValue(RegKeyDownloadMedia, true));
+
                 FirstName = registryKey.GetValue(RegKeyFirstName, "").ToString();
 
                 LastName = registryKey.GetValue(RegKeyLastName, "").ToString();
@@ -116,6 +132,8 @@ namespace Ushahidi.Model
                 registryKey.SetValue(RegKeyLanguage, Language);
                 registryKey.SetValue(RegKeyLastSync, LastSyncDate.ToString());
                 registryKey.SetValue(RegKeyShowKeyboard, ShowKeyboard.ToString());
+                registryKey.SetValue(RegKeyDownloadMaps, ShouldDownloadMaps.ToString());
+                registryKey.SetValue(RegKeyDownloadMedia, ShouldDownloadMedia.ToString());
                 registryKey.SetValue(RegKeyFirstName, FirstName);
                 registryKey.SetValue(RegKeyLastName, LastName);
                 registryKey.SetValue(RegKeyEmail, Email);
@@ -797,6 +815,7 @@ namespace Ushahidi.Model
         /// <returns>true, if successful</returns>
         public static bool DownloadMedia()
         {
+            Log.Info("DataManager.DownloadMedia");
             foreach(Incident incident in Incidents)
             {
                 foreach(Media media in incident.MediaItems.Where(m => m.MediaType == MediaType.Photo))
@@ -805,13 +824,27 @@ namespace Ushahidi.Model
                    {
                        string mediaURL = string.Format("{0}/media/uploads/{1}", ServerAddress, media.ThumbnailLink);
                        string filePath = Path.Combine(MediaDirectory, media.ThumbnailLink);
-                       Media.Download(mediaURL, filePath);
+                       if (Media.Download(mediaURL, filePath))
+                       {
+                            Log.Info("Download Thumbnail {0} to {1}", mediaURL, filePath); 
+                       }
+                       else
+                       {
+                           Log.Exception("Download Thumbnail Failed {0}", mediaURL);
+                       }
                    }
                    if (string.IsNullOrEmpty(media.Link) == false)
                    {
                        string mediaURL = string.Format("{0}/media/uploads/{1}", ServerAddress, media.Link);
                        string filePath = Path.Combine(MediaDirectory, media.Link);
-                       Media.Download(mediaURL, filePath);
+                       if (Media.Download(mediaURL, filePath))
+                       {
+                           Log.Info("Download Image {0} to {1}", mediaURL, filePath);
+                       }
+                       else
+                       {
+                           Log.Exception("Download Image Failed {0}", mediaURL);
+                       }
                    }
                 }
             }

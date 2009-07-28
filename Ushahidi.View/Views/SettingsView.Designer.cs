@@ -65,7 +65,7 @@
             this.panelContent.Controls.Add(this.textBoxFirstName);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(176, 260);
+            this.panelContent.Size = new System.Drawing.Size(176, 180);
             // 
             // buttonClearCache
             // 
@@ -81,7 +81,7 @@
             this.buttonClearCache.Momentary = false;
             this.buttonClearCache.Name = "buttonClearCache";
             this.buttonClearCache.Pressed = false;
-            this.buttonClearCache.Size = new System.Drawing.Size(170, 26);
+            this.buttonClearCache.Size = new System.Drawing.Size(163, 26);
             this.buttonClearCache.TabIndex = 6;
             // 
             // comboBoxMapType
@@ -99,7 +99,7 @@
             this.comboBoxMapType.SelectedIndex = -1;
             this.comboBoxMapType.SelectedItem = null;
             this.comboBoxMapType.SelectedText = "";
-            this.comboBoxMapType.Size = new System.Drawing.Size(176, 45);
+            this.comboBoxMapType.Size = new System.Drawing.Size(169, 45);
             this.comboBoxMapType.TabIndex = 1;
             this.comboBoxMapType.ValueMember = "Name";
             // 
@@ -113,7 +113,7 @@
             this.checkBoxKeyboard.Label = "Keyboard";
             this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 225);
             this.checkBoxKeyboard.Name = "checkBoxKeyboard";
-            this.checkBoxKeyboard.Size = new System.Drawing.Size(169, 28);
+            this.checkBoxKeyboard.Size = new System.Drawing.Size(162, 28);
             this.checkBoxKeyboard.TabIndex = 5;
             // 
             // comboBoxLanguages
@@ -131,7 +131,7 @@
             this.comboBoxLanguages.SelectedIndex = -1;
             this.comboBoxLanguages.SelectedItem = null;
             this.comboBoxLanguages.SelectedText = "";
-            this.comboBoxLanguages.Size = new System.Drawing.Size(176, 45);
+            this.comboBoxLanguages.Size = new System.Drawing.Size(169, 45);
             this.comboBoxLanguages.TabIndex = 0;
             this.comboBoxLanguages.ValueMember = "Name";
             this.comboBoxLanguages.SelectedIndexChanged += new System.EventHandler(this.OnLanguageChanged);
@@ -146,7 +146,7 @@
             this.textBoxEmail.Location = new System.Drawing.Point(0, 180);
             this.textBoxEmail.Multiline = false;
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(176, 45);
+            this.textBoxEmail.Size = new System.Drawing.Size(169, 45);
             this.textBoxEmail.TabIndex = 4;
             this.textBoxEmail.Value = "";
             // 
@@ -160,7 +160,7 @@
             this.textBoxLastName.Location = new System.Drawing.Point(0, 135);
             this.textBoxLastName.Multiline = false;
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(176, 45);
+            this.textBoxLastName.Size = new System.Drawing.Size(169, 45);
             this.textBoxLastName.TabIndex = 3;
             this.textBoxLastName.Value = "";
             // 
@@ -174,7 +174,7 @@
             this.textBoxFirstName.Location = new System.Drawing.Point(0, 90);
             this.textBoxFirstName.Multiline = false;
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(176, 45);
+            this.textBoxFirstName.Size = new System.Drawing.Size(169, 45);
             this.textBoxFirstName.TabIndex = 2;
             this.textBoxFirstName.Value = "";
             // 
@@ -182,7 +182,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 260);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";

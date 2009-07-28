@@ -77,7 +77,6 @@ namespace Ushahidi.Common.MVC
             IViewController viewController;
             using (new WaitCursor())
             {
-
                 if (currentViewController != null && currentViewController.Validate() == false)
                 {
                     Log.Critical("NavigationController.Push", "View Controller Validate Failure");

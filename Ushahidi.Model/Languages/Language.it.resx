@@ -192,6 +192,9 @@
   <data name="downloadingMedia" xml:space="preserve">
     <value>Sincronizzazione dei Media</value>
   </data>
+  <data name="downloadMaps" xml:space="preserve">
+    <value>Scarica Maps</value>
+  </data>
   <data name="email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -347,5 +350,8 @@
   </data>
   <data name="website" xml:space="preserve">
     <value>Sito Web</value>
+  </data>
+  <data name="downloadMedia" xml:space="preserve">
+    <value>Scaricare i Mezzi di comunicazione</value>
   </data>
 </root>

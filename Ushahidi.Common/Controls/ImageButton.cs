@@ -19,10 +19,20 @@ namespace Ushahidi.Common.Controls
 
         public string Label
         {
-            get { return Text; }
+            get { return base.Text; }
             set
             {
-                Text = value;
+                base.Text = value;
+                Invalidate();
+            }
+        }
+
+        public override string Text
+        {
+            get { return base.Text; }
+            set
+            {
+                base.Text = value;
                 Invalidate();
             }
         }

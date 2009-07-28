@@ -94,11 +94,9 @@ namespace Ushahidi.Model.Models
                 {
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(sourceURL);
                     request.Credentials = CredentialCache.DefaultCredentials;
-                    request.AllowWriteStreamBuffering = true;
                     request.AllowAutoRedirect = true;
                     request.ReadWriteTimeout = 5000;
                     request.Method = "GET";
-                    request.KeepAlive = true;
                     request.Timeout = 5000;
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {

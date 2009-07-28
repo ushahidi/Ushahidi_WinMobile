@@ -192,6 +192,9 @@
   <data name="downloadingMedia" xml:space="preserve">
     <value>Descargando Medios</value>
   </data>
+  <data name="downloadMaps" xml:space="preserve">
+    <value>Descargar Mapas</value>
+  </data>
   <data name="email" xml:space="preserve">
     <value>Correo electrónico</value>
   </data>
@@ -347,5 +350,8 @@
   </data>
   <data name="website" xml:space="preserve">
     <value>Sitio web</value>
+  </data>
+  <data name="downloadMedia" xml:space="preserve">
+    <value>Descargue Medios</value>
   </data>
 </root>
