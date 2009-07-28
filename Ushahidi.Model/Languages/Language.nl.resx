@@ -354,4 +354,7 @@
   <data name="downloadMedia" xml:space="preserve">
     <value>De Media van de download</value>
   </data>
+  <data name="downloadIncidents" xml:space="preserve">
+    <value>Incidenten van de download</value>
+  </data>
 </root>

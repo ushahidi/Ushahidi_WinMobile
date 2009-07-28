@@ -39,7 +39,7 @@ namespace Ushahidi.Common.Controls
                 _IsRequired = value;
                 if (Enabled)
                 {
-                    textBox.BackColor = value ? Color.PeachPuff : Color.White;
+                    textBox.BackColor = value ? Color.LightSalmon : Color.White;
                 }
             }
         }private bool _IsRequired = false;

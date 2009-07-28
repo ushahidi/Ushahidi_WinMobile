@@ -17,7 +17,6 @@ namespace Ushahidi.Common.Controls
         {
             InitializeComponent();
             label.Font = label.Font.ToBold();
-            //comboBox.DropDownStyle = Runtime.IsPocketPC ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList;
         }
 
         /// <summary>

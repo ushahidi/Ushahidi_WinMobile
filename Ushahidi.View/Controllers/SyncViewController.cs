@@ -15,8 +15,9 @@ namespace Ushahidi.View.Controllers
         {
             View.LastSyncDate = DataManager.LastSyncDate;
             View.ServerAddress = DataManager.ServerAddress;
-            View.ShouldDownloadMaps = DataManager.ShouldDownloadMaps;
+            View.ShouldDownloadIncidents = DataManager.ShouldDownloadIncidents;
             View.ShouldDownloadMedia = DataManager.ShouldDownloadMedia;
+            View.ShouldDownloadMaps = DataManager.ShouldDownloadMaps;
         }
 
         /// <summary>
@@ -27,8 +28,9 @@ namespace Ushahidi.View.Controllers
         {
             DataManager.ServerAddress = View.ServerAddress;
             DataManager.LastSyncDate = View.LastSyncDate;
-            DataManager.ShouldDownloadMaps = View.ShouldDownloadMaps;
+            DataManager.ShouldDownloadIncidents = View.ShouldDownloadIncidents;
             DataManager.ShouldDownloadMedia = View.ShouldDownloadMedia;
+            DataManager.ShouldDownloadMaps = View.ShouldDownloadMaps;
             return DataManager.Save();
         }
     }

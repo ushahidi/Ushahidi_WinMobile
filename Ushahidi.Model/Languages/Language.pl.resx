@@ -354,4 +354,7 @@
   <data name="downloadMedia" xml:space="preserve">
     <value>Pobierz Media</value>
   </data>
+  <data name="downloadIncidents" xml:space="preserve">
+    <value>Pobierz Incydenty</value>
+  </data>
 </root>

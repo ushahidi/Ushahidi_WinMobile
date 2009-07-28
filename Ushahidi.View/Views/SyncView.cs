@@ -24,11 +24,12 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            textBoxServer.BackColor = Colors.Background;
-            progressBox.BackColor = Colors.Background;
-            panelContent.BackColor = Colors.Background;
-            checkBoxDownloadMaps.BackColor = Colors.Background;
-            checkBoxDownloadMedia.BackColor = Colors.Background;
+            textBoxServer.BackColor = 
+            progressBox.BackColor = 
+            panelContent.BackColor =
+            checkBoxDownloadMaps.BackColor = 
+            checkBoxDownloadMedia.BackColor = 
+            checkBoxDownloadIncidents.BackColor = Colors.Background;
         }
 
         public override void Translate()
@@ -39,6 +40,7 @@ namespace Ushahidi.View.Views
             menuItemAction.Translate("synchronize");
             checkBoxDownloadMaps.Translate("downloadMaps");
             checkBoxDownloadMedia.Translate("downloadMedia");
+            checkBoxDownloadIncidents.Translate("downloadIncidents");
         }
 
         public override void Render()
@@ -70,13 +72,22 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
+        /// Download Incidents
+        /// </summary>
+        public bool ShouldDownloadIncidents
+        {
+            get { return checkBoxDownloadIncidents.Checked; }
+            set { checkBoxDownloadIncidents.Checked = value; }
+        }private bool _ShouldDownloadIncidents;
+
+        /// <summary>
         /// Download Maps
         /// </summary>
         public bool ShouldDownloadMaps
         {
             get { return checkBoxDownloadMaps.Checked; }
             set { checkBoxDownloadMaps.Checked = value; }
-        }
+        }private bool _ShouldDownloadMaps;
 
         /// <summary>
         /// Download Media
@@ -85,22 +96,12 @@ namespace Ushahidi.View.Views
         {
             get { return checkBoxDownloadMedia.Checked; }
             set { checkBoxDownloadMedia.Checked = value; }
-        }
+        }private bool _ShouldDownloadMedia;
 
         /// <summary>
         /// Start time
         /// </summary>
         private DateTime StartTime { get; set; }
-
-        /// <summary>
-        /// Skip Download Media?
-        /// </summary>
-        private bool SkipDownloadMedia { get; set; }
-
-        /// <summary>
-        /// Skip Download Maps?
-        /// </summary>
-        private bool SkipDownloadMaps { get; set; }
 
         /// <summary>
         /// Is Synchronizing
@@ -112,6 +113,7 @@ namespace Ushahidi.View.Views
                 textBoxServer.Enabled = 
                 menuItemAction.Enabled = 
                 menuItemMenu.Enabled =
+                checkBoxDownloadIncidents.Enabled =
                 checkBoxDownloadMedia.Enabled =
                 checkBoxDownloadMaps.Enabled = !value;
             }
@@ -129,8 +131,9 @@ namespace Ushahidi.View.Views
             columnHeaderProgress.Width = -2;
             StartTime = DateTime.Now;
             Synchronizing = true;
-            SkipDownloadMedia = checkBoxDownloadMedia.Checked == false;
-            SkipDownloadMaps = checkBoxDownloadMaps.Checked == false;
+            _ShouldDownloadIncidents = checkBoxDownloadIncidents.Checked;
+            _ShouldDownloadMedia = checkBoxDownloadMedia.Checked;
+            _ShouldDownloadMaps = checkBoxDownloadMaps.Checked;
             Internet.TestURL = textBoxServer.Value;
             DataManager.ScreenWidth = Screen.PrimaryScreen.Bounds.Width;
             DataManager.ScreenHeight = Screen.PrimaryScreen.Bounds.Height;
@@ -157,12 +160,12 @@ namespace Ushahidi.View.Views
                 }
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
                          Download(DataManager.UploadMedia, "uploadingPhotos".Translate(), 3) &&
-                         Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 4) &&
-                         Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 5) &&
-                         Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 6) &&
-                         Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 7) &&
-                        (SkipDownloadMedia || Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 8)) &&
-                        (SkipDownloadMaps || Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 9)))
+                         Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 4, _ShouldDownloadIncidents) &&
+                         Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 5, _ShouldDownloadIncidents) &&
+                         Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 6, _ShouldDownloadIncidents) &&
+                         Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 7, _ShouldDownloadIncidents) &&
+                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 8, _ShouldDownloadMedia) &&
+                         Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 9, _ShouldDownloadMaps))
                 {
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 10);
                 }
@@ -188,14 +191,31 @@ namespace Ushahidi.View.Views
         /// <returns>true, if successful</returns>
         private bool Download(DownloadHandler downloadHandler, string taskName, int progress)
         {
-            Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, taskName, progress);
-            if (downloadHandler.Invoke())
+            return Download(downloadHandler, taskName, progress, true);    
+        }
+        
+        /// <summary>
+        /// Download
+        /// </summary>
+        /// <param name="downloadHandler">download handler delegate</param>
+        /// <param name="taskName">task name</param>
+        /// <param name="progress">progress</param>
+        /// <param name="shouldDownload">should download?</param>
+        /// <returns>true, if successful</returns>
+        private bool Download(DownloadHandler downloadHandler, string taskName, int progress, bool shouldDownload)
+        {
+            if (shouldDownload)
             {
-                 Log.Info("SyncView.Download", "Task {0} Successful", taskName);
-                 return true;
+                Invoke(new UpdateProgressHandler(UpdateProgress), Status.Downloading, taskName, progress);
+                if (downloadHandler.Invoke())
+                {
+                    Log.Info("SyncView.Download", "Task {0} Successful", taskName);
+                    return true;
+                }
+                Log.Info("SyncView.Download", "Task {0} Failed", taskName);
+                return false;
             }
-            Log.Info("SyncView.Download", "Task {0} Failed", taskName);
-            return false;
+            return true;
         }
 
         /// <summary>

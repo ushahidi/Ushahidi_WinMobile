@@ -354,4 +354,7 @@
   <data name="downloadMedia" xml:space="preserve">
     <value>Transfira Meios de comunicação</value>
   </data>
+  <data name="downloadIncidents" xml:space="preserve">
+    <value>Transfira Incidentes</value>
+  </data>
 </root>
