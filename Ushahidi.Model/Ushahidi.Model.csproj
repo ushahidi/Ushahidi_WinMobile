@@ -23,6 +23,7 @@
     </StartupObject>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Ushahidi.Model.snk</AssemblyOriginatorKeyFile>
+    <ApplicationIcon>Ushahidi.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -123,14 +124,17 @@
     <EmbeddedResource Include="Languages\Language.pt.resx" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Ushahidi.Setup"
-copy "$(TargetDir)de\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\de_Ushahidi.Model.resources.dll"
-copy "$(TargetDir)en\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\en_Ushahidi.Model.resources.dll"
-copy "$(TargetDir)es\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\es_Ushahidi.Model.resources.dll"
-copy "$(TargetDir)fr\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\fr_Ushahidi.Model.resources.dll"
-copy "$(TargetDir)it\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\it_Ushahidi.Model.resources.dll"
-copy "$(TargetDir)nl\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\nl_Ushahidi.Model.resources.dll"
-copy "$(TargetDir)pl\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\pl_Ushahidi.Model.resources.dll"
-copy "$(TargetDir)pt\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\pt_Ushahidi.Model.resources.dll"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Ushahidi.Setup\Resources"
+copy "$(TargetDir)de\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\de_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)en\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\en_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)es\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\es_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)fr\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\fr_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)it\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\it_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)nl\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\nl_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)pl\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\pl_Ushahidi.Model.resources.dll"
+copy "$(TargetDir)pt\Ushahidi.Model.resources.dll" "$(SolutionDir)Ushahidi.Setup\Resources\pt_Ushahidi.Model.resources.dll"</PostBuildEvent>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Ushahidi.ico" />
+  </ItemGroup>
 </Project>

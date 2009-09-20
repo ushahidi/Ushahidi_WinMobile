@@ -18,8 +18,7 @@
     <NativePlatformName>Pocket PC 2003</NativePlatformName>
     <FormFactorID>
     </FormFactorID>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Ushahidi.ico</ApplicationIcon>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Ushahidi.Common.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
@@ -217,6 +216,9 @@
   <ItemGroup>
     <None Include="Ushahidi.Common.snk" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ushahidi.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
@@ -233,6 +235,6 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Ushahidi.Setup"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "$(SolutionDir)Ushahidi.Setup\Resources"</PostBuildEvent>
   </PropertyGroup>
 </Project>

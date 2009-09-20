@@ -15,6 +15,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.Model.Tests", "Ush
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.View.Tests", "Ushahidi.View.Tests\Ushahidi.View.Tests.csproj", "{C00A9128-6C67-48E4-B021-9C5A8D41AB19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ushahidi.Setup", "Ushahidi.Setup\Ushahidi.Setup.csproj", "{D9E68422-6D8E-4585-A541-1CCF4E1159C3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{76E15E18-6BCD-4AE6-8014-48947977250F} = {76E15E18-6BCD-4AE6-8014-48947977250F}
+		{41B1C26D-FA1C-4A6D-8F14-3E84D5BBDD6A} = {41B1C26D-FA1C-4A6D-8F14-3E84D5BBDD6A}
+		{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F} = {6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}
+		{30B816C6-91C3-4C20-AF65-B1AF62E4E6A1} = {30B816C6-91C3-4C20-AF65-B1AF62E4E6A1}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +69,10 @@ Global
 		{C00A9128-6C67-48E4-B021-9C5A8D41AB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C00A9128-6C67-48E4-B021-9C5A8D41AB19}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C00A9128-6C67-48E4-B021-9C5A8D41AB19}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D9E68422-6D8E-4585-A541-1CCF4E1159C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9E68422-6D8E-4585-A541-1CCF4E1159C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9E68422-6D8E-4585-A541-1CCF4E1159C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9E68422-6D8E-4585-A541-1CCF4E1159C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

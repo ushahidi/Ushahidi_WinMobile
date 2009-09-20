@@ -1,0 +1,37 @@
+<wap-provisioningdoc>
+<characteristic type="CertificateStore">
+    <characteristic type="Privileged Execution Trust Authorities">
+        <characteristic type="b898cd805484b09b290abf1f3e99cf3de03b614c">
+            <parm name="EncodedCertificate" value="MIIB9TCCAV6gAwIBAgIQRKy/52obzKRA8Ettt0mZZTANBgkqhkiG9w0BAQQFADAT
+MREwDwYDVQQDEwhVc2hhaGlkaTAgFw0wOTAxMDEwMzAwMDBaGA8yMDk5MDEwMTAz
+MDAwMFowEzERMA8GA1UEAxMIVXNoYWhpZGkwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+MIGJAoGBANl+nJ3H1RWT72WMorFCY4/az2sgjxef9Y+VOJDSugeM1TH3sYZLyn+V
+9g5HtLH/JmwwY3usH2FWWwyosvvLEnHEXjTVIf+5bUbhew0oXIDEScqZhPQHtJ8o
+UUujXOLz8NdH+TDXB5s/t2JXkvboIegYFy2qXVa95eDEoQQlLCsBAgMBAAGjSDBG
+MEQGA1UdAQQ9MDuAEH2mHsSrq0Ua7RMk5g88v86hFTATMREwDwYDVQQDEwhVc2hh
+aGlkaYIQRKy/52obzKRA8Ettt0mZZTANBgkqhkiG9w0BAQQFAAOBgQCGfDXS6uet
+f7i8ohY1ZjV3dW+o0u7JAV46dYqQZ6EJGwOKyk/BUnYnztN7d1WioB+tuktaidys
+sFRWtPvTIp0Gw1GVhovTqP8upCr3mGXUXNlqZGV/edxRrwFfTif5UPzjhRVmzAqD
+WMG5r1L4ZtO7pGb1cqklElkzUMBsUFjoTQ==" />
+        </characteristic>
+    </characteristic>
+</characteristic>
+<characteristic type="CertificateStore">
+    <characteristic type="SPC">
+        <characteristic type="b898cd805484b09b290abf1f3e99cf3de03b614c">
+            <parm name="EncodedCertificate" value="MIIB9TCCAV6gAwIBAgIQRKy/52obzKRA8Ettt0mZZTANBgkqhkiG9w0BAQQFADAT
+MREwDwYDVQQDEwhVc2hhaGlkaTAgFw0wOTAxMDEwMzAwMDBaGA8yMDk5MDEwMTAz
+MDAwMFowEzERMA8GA1UEAxMIVXNoYWhpZGkwgZ8wDQYJKoZIhvcNAQEBBQADgY0A
+MIGJAoGBANl+nJ3H1RWT72WMorFCY4/az2sgjxef9Y+VOJDSugeM1TH3sYZLyn+V
+9g5HtLH/JmwwY3usH2FWWwyosvvLEnHEXjTVIf+5bUbhew0oXIDEScqZhPQHtJ8o
+UUujXOLz8NdH+TDXB5s/t2JXkvboIegYFy2qXVa95eDEoQQlLCsBAgMBAAGjSDBG
+MEQGA1UdAQQ9MDuAEH2mHsSrq0Ua7RMk5g88v86hFTATMREwDwYDVQQDEwhVc2hh
+aGlkaYIQRKy/52obzKRA8Ettt0mZZTANBgkqhkiG9w0BAQQFAAOBgQCGfDXS6uet
+f7i8ohY1ZjV3dW+o0u7JAV46dYqQZ6EJGwOKyk/BUnYnztN7d1WioB+tuktaidys
+sFRWtPvTIp0Gw1GVhovTqP8upCr3mGXUXNlqZGV/edxRrwFfTif5UPzjhRVmzAqD
+WMG5r1L4ZtO7pGb1cqklElkzUMBsUFjoTQ==" />
+            <parm name="Role" value="222" />
+        </characteristic>
+    </characteristic>
+</characteristic>
+</wap-provisioningdoc>
