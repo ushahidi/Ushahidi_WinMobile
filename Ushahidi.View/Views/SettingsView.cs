@@ -150,7 +150,7 @@ namespace Ushahidi.View.Views
 
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
-            panelContent.Height = ClientRectangle.Height - args.Bounds.Height;
+            panelContent.Height = ClientRectangle.Height - args.Height;
         }
 
         private static void OnClearCache(object sender, EventArgs e)

@@ -30,6 +30,7 @@
         {
             this.label = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.focusTimer = new System.Windows.Forms.Timer();
             this.SuspendLayout();
             // 
             // label
@@ -50,7 +51,15 @@
             this.dateTimePicker.MinDate = new System.DateTime(1980, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(233, 22);
-            this.dateTimePicker.TabIndex = 2;
+            this.dateTimePicker.TabIndex = 0;
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.OnValueChanged);
+            this.dateTimePicker.GotFocus += new System.EventHandler(this.OnGotFocus);
+            this.dateTimePicker.LostFocus += new System.EventHandler(this.OnLostFocus);
+            // 
+            // focusTimer
+            // 
+            this.focusTimer.Interval = 200;
+            this.focusTimer.Tick += new System.EventHandler(this.OnFocusTimer);
             // 
             // LabelDateBox
             // 
@@ -68,5 +77,6 @@
 
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.Timer focusTimer;
     }
 }

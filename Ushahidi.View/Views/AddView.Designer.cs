@@ -37,6 +37,7 @@
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
             this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.panel = new System.Windows.Forms.Panel();
+            this.dateBoxTime = new Ushahidi.Common.Controls.LabelDateBox();
             this.textBoxVideo = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxNews = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxDescription = new Ushahidi.Common.Controls.LabelTextBox();
@@ -101,7 +102,7 @@
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
-            this.scrollListBox.Size = new System.Drawing.Size(176, 20);
+            this.scrollListBox.Size = new System.Drawing.Size(155, 20);
             this.scrollListBox.TabIndex = 7;
             // 
             // panel
@@ -111,6 +112,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.AutoScroll = true;
             this.panel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel.Controls.Add(this.dateBoxTime);
             this.panel.Controls.Add(this.textBoxVideo);
             this.panel.Controls.Add(this.textBoxNews);
             this.panel.Controls.Add(this.textBoxDescription);
@@ -121,7 +123,21 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 380);
+            this.panel.Size = new System.Drawing.Size(176, 180);
+            // 
+            // dateBoxTime
+            // 
+            this.dateBoxTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateBoxTime.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.dateBoxTime.IsRequired = true;
+            this.dateBoxTime.Label = "Time";
+            this.dateBoxTime.Location = new System.Drawing.Point(0, 90);
+            this.dateBoxTime.Name = "dateBoxTime";
+            this.dateBoxTime.Size = new System.Drawing.Size(162, 45);
+            this.dateBoxTime.TabIndex = 2;
+            this.dateBoxTime.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Time;
+            this.dateBoxTime.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
             // 
             // textBoxVideo
             // 
@@ -130,11 +146,11 @@
             this.textBoxVideo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxVideo.IsRequired = false;
             this.textBoxVideo.Label = "Video";
-            this.textBoxVideo.Location = new System.Drawing.Point(0, 305);
+            this.textBoxVideo.Location = new System.Drawing.Point(0, 350);
             this.textBoxVideo.Multiline = false;
             this.textBoxVideo.Name = "textBoxVideo";
-            this.textBoxVideo.Size = new System.Drawing.Size(176, 45);
-            this.textBoxVideo.TabIndex = 6;
+            this.textBoxVideo.Size = new System.Drawing.Size(162, 45);
+            this.textBoxVideo.TabIndex = 7;
             this.textBoxVideo.Value = "";
             // 
             // textBoxNews
@@ -144,11 +160,11 @@
             this.textBoxNews.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxNews.IsRequired = false;
             this.textBoxNews.Label = "News";
-            this.textBoxNews.Location = new System.Drawing.Point(0, 260);
+            this.textBoxNews.Location = new System.Drawing.Point(0, 305);
             this.textBoxNews.Multiline = false;
             this.textBoxNews.Name = "textBoxNews";
-            this.textBoxNews.Size = new System.Drawing.Size(176, 45);
-            this.textBoxNews.TabIndex = 5;
+            this.textBoxNews.Size = new System.Drawing.Size(162, 45);
+            this.textBoxNews.TabIndex = 6;
             this.textBoxNews.Value = "";
             // 
             // textBoxDescription
@@ -158,11 +174,11 @@
             this.textBoxDescription.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxDescription.IsRequired = true;
             this.textBoxDescription.Label = "Description";
-            this.textBoxDescription.Location = new System.Drawing.Point(0, 185);
+            this.textBoxDescription.Location = new System.Drawing.Point(0, 230);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(176, 75);
-            this.textBoxDescription.TabIndex = 4;
+            this.textBoxDescription.Size = new System.Drawing.Size(162, 75);
+            this.textBoxDescription.TabIndex = 5;
             this.textBoxDescription.Value = "";
             // 
             // checkBoxesCategories
@@ -171,10 +187,10 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxesCategories.BackColor = System.Drawing.Color.WhiteSmoke;
             this.checkBoxesCategories.Label = "Category";
-            this.checkBoxesCategories.Location = new System.Drawing.Point(0, 135);
+            this.checkBoxesCategories.Location = new System.Drawing.Point(0, 180);
             this.checkBoxesCategories.Name = "checkBoxesCategories";
-            this.checkBoxesCategories.Size = new System.Drawing.Size(176, 45);
-            this.checkBoxesCategories.TabIndex = 3;
+            this.checkBoxesCategories.Size = new System.Drawing.Size(162, 45);
+            this.checkBoxesCategories.TabIndex = 4;
             // 
             // comboBoxLocales
             // 
@@ -186,13 +202,13 @@
             this.comboBoxLocales.DisplayMember = "";
             this.comboBoxLocales.IsRequired = true;
             this.comboBoxLocales.Label = "Location";
-            this.comboBoxLocales.Location = new System.Drawing.Point(0, 90);
+            this.comboBoxLocales.Location = new System.Drawing.Point(0, 135);
             this.comboBoxLocales.Name = "comboBoxLocales";
             this.comboBoxLocales.SelectedIndex = -1;
             this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
-            this.comboBoxLocales.Size = new System.Drawing.Size(176, 45);
-            this.comboBoxLocales.TabIndex = 2;
+            this.comboBoxLocales.Size = new System.Drawing.Size(162, 45);
+            this.comboBoxLocales.TabIndex = 3;
             this.comboBoxLocales.ValueMember = "";
             // 
             // dateBoxDate
@@ -204,8 +220,9 @@
             this.dateBoxDate.Label = "Date";
             this.dateBoxDate.Location = new System.Drawing.Point(0, 45);
             this.dateBoxDate.Name = "dateBoxDate";
-            this.dateBoxDate.Size = new System.Drawing.Size(176, 45);
+            this.dateBoxDate.Size = new System.Drawing.Size(162, 45);
             this.dateBoxDate.TabIndex = 1;
+            this.dateBoxDate.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Date;
             this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
             // 
             // textBoxTitle
@@ -218,7 +235,7 @@
             this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
             this.textBoxTitle.Multiline = false;
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(176, 45);
+            this.textBoxTitle.Size = new System.Drawing.Size(162, 45);
             this.textBoxTitle.TabIndex = 0;
             this.textBoxTitle.Value = "";
             // 
@@ -227,7 +244,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(176, 380);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";
@@ -255,6 +272,7 @@
         private Ushahidi.Common.Controls.LabelTextBox textBoxDescription;
         private Ushahidi.Common.Controls.LabelTextBox textBoxNews;
         private Ushahidi.Common.Controls.LabelTextBox textBoxVideo;
+        private Ushahidi.Common.Controls.LabelDateBox dateBoxTime;
 
     }
 }

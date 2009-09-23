@@ -19,7 +19,7 @@
     <FormFactorID>
     </FormFactorID>
     <StartupObject>Ushahidi.View.Program</StartupObject>
-    <ApplicationIcon>icon.ico</ApplicationIcon>
+    <ApplicationIcon>Ushahidi.ico</ApplicationIcon>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile>Ushahidi.View.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
@@ -222,6 +222,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <Content Include="Ushahidi.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Ushahidi.View.snk" />

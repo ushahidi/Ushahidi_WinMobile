@@ -30,6 +30,7 @@ namespace Ushahidi.View.Views
             panel.BackColor =
             textBoxTitle.BackColor =
             dateBoxDate.BackColor =
+            dateBoxTime.BackColor =
             comboBoxLocales.BackColor =
             checkBoxesCategories.BackColor =
             textBoxDescription.BackColor =
@@ -120,8 +121,20 @@ namespace Ushahidi.View.Views
         /// </summary>
         public DateTime Date
         {
-            get { return dateBoxDate.Value; }
-            set { dateBoxDate.Value = value; }
+            get
+            {
+                return new DateTime(dateBoxDate.Value.Year,
+                                    dateBoxDate.Value.Month,
+                                    dateBoxDate.Value.Day,
+                                    dateBoxTime.Value.Hour,
+                                    dateBoxTime.Value.Minute,
+                                    dateBoxTime.Value.Second);
+            }
+            set
+            {
+                dateBoxDate.Value = value;
+                dateBoxTime.Value = value;
+            }
         }
 
         /// <summary>
@@ -262,13 +275,14 @@ namespace Ushahidi.View.Views
 
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)
         {
-            panel.Height = ClientRectangle.Height - args.Bounds.Height;
+            panel.Height = ClientRectangle.Height - args.Height;
         }
 
         private void OnResize(object sender, EventArgs e)
         {
             textBoxTitle.Width = 
             dateBoxDate.Width = 
+            dateBoxTime.Width =
             comboBoxLocales.Width = 
             checkBoxesCategories.Width = 
             textBoxDescription.Width = 
