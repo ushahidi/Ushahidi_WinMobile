@@ -25,14 +25,17 @@ namespace Ushahidi.View.Views
 
         public override void Translate()
         {
-            menuItemMenu.Translate("menu");
-            menuItemWebsite.Translate("website");
-            menuItemAddIncident.Translate("addIncident");
-            menuItemExit.Translate("exit");
-            menuItemIncidentList.Translate("incidentList");
-            menuItemAbout.Translate("about");
-            menuItemSettings.Translate("settings");
-            menuItemSynchronize.Translate("synchronize");
+            using (new WaitCursor())
+            {
+                menuItemMenu.Translate("menu");
+                menuItemWebsite.Translate("website");
+                menuItemAddIncident.Translate("addIncident");
+                menuItemExit.Translate("exit");
+                menuItemIncidentList.Translate("incidentList");
+                menuItemAbout.Translate("about");
+                menuItemSettings.Translate("settings");
+                menuItemSynchronize.Translate("synchronize");
+            }
         }
 
         public override void Render()

@@ -357,4 +357,19 @@
   <data name="downloadIncidents" xml:space="preserve">
     <value>Scarica Incidenti</value>
   </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Latitudine</value>
+  </data>
+  <data name="longitude" xml:space="preserve">
+    <value>Longitudine</value>
+  </data>
+  <data name="detectingLocation" xml:space="preserve">
+    <value>Rilevamento Posizione</value>
+  </data>
+  <data name="detectLocation" xml:space="preserve">
+    <value>Rileva Location</value>
+  </data>
+  <data name="runtimeException" xml:space="preserve">
+    <value>Eccezione di tempo di esecuzione</value>
+  </data>
 </root>

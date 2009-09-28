@@ -385,6 +385,19 @@ namespace Ushahidi.Model
         #region Locales
 
         /// <summary>
+        /// Add a new locale
+        /// </summary>
+        /// <param name="locale">locale</param>
+        public static bool AddLocale(Locale locale)
+        {
+            Locales.Add(locale);
+            string fileName = string.Format("{0}.xml", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
+            locale.FilePath = Path.Combine(LocalesDirectory, fileName);
+            locale.Upload = true;
+            return locale.Save();
+        }
+
+        /// <summary>
         /// Locales Directory
         /// </summary>
         private static string LocalesDirectory

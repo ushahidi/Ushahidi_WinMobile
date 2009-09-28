@@ -1,6 +1,8 @@
 ﻿using System;
+using Ushahidi.Common.Controls;
 using Ushahidi.Common.Logging;
 using Ushahidi.Common.MVC;
+using Ushahidi.Model.Extensions;
 using Ushahidi.View.Controllers;
 
 namespace Ushahidi.View
@@ -14,10 +16,17 @@ namespace Ushahidi.View
         static void Main()
         {
             Log.Info("Program.Main", "Starting...");
-            using (INavigationController navigationController = new NavigationController())
+            try
             {
-                navigationController.Push(typeof(HomeViewController));
-                navigationController.Run();
+                using (INavigationController navigationController = new NavigationController())
+                {
+                    navigationController.Push(typeof(HomeViewController));
+                    navigationController.Run();
+                }
+            }
+            catch (Exception ex)
+            {
+                Dialog.Error("runtimeException".Translate(), ex.Message, ex);
             }
             Log.Info("Program.Main", "...Exiting");
         }

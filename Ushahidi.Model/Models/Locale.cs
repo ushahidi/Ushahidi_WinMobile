@@ -21,5 +21,10 @@ namespace Ushahidi.Model.Models
         {
             return Name;
         }
+
+        public bool Save()
+        {
+            return Save(this, FilePath);
+        }
     }
 }

@@ -221,7 +221,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icon.ico" />
     <Content Include="Ushahidi.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +230,10 @@
     <ProjectReference Include="..\Ushahidi.Common\Ushahidi.Common.csproj">
       <Project>{41B1C26D-FA1C-4A6D-8F14-3E84D5BBDD6A}</Project>
       <Name>Ushahidi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ushahidi.Map\Ushahidi.Map.csproj">
+      <Project>{31FE3BF4-F759-4324-BBFF-AC5563BD1E4C}</Project>
+      <Name>Ushahidi.Map</Name>
     </ProjectReference>
     <ProjectReference Include="..\Ushahidi.Model\Ushahidi.Model.csproj">
       <Project>{6AD603BE-7F83-420C-9D3B-27AE5A2C3F8F}</Project>

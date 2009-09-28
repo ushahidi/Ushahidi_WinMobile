@@ -30,9 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeView));
             this.panelContent = new System.Windows.Forms.Panel();
+            this.buttonIncidentMap = new Ushahidi.Common.Controls.ImageButton();
             this.buttonSynchronize = new Ushahidi.Common.Controls.ImageButton();
             this.buttonAddIncident = new Ushahidi.Common.Controls.ImageButton();
-            this.buttonListIncident = new Ushahidi.Common.Controls.ImageButton();
+            this.buttonIncidentList = new Ushahidi.Common.Controls.ImageButton();
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
@@ -44,13 +45,32 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.AutoScroll = true;
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.buttonIncidentMap);
             this.panelContent.Controls.Add(this.buttonSynchronize);
             this.panelContent.Controls.Add(this.buttonAddIncident);
-            this.panelContent.Controls.Add(this.buttonListIncident);
+            this.panelContent.Controls.Add(this.buttonIncidentList);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 240);
+            // 
+            // buttonIncidentMap
+            // 
+            this.buttonIncidentMap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonIncidentMap.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonIncidentMap.BackColorSelected = System.Drawing.Color.Gray;
+            this.buttonIncidentMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buttonIncidentMap.DisabledImage = null;
+            this.buttonIncidentMap.Image = null;
+            this.buttonIncidentMap.Label = "Incident Map";
+            this.buttonIncidentMap.Location = new System.Drawing.Point(3, 131);
+            this.buttonIncidentMap.Momentary = false;
+            this.buttonIncidentMap.Name = "buttonIncidentMap";
+            this.buttonIncidentMap.Pressed = false;
+            this.buttonIncidentMap.Size = new System.Drawing.Size(169, 25);
+            this.buttonIncidentMap.TabIndex = 5;
+            this.buttonIncidentMap.Visible = false;
             // 
             // buttonSynchronize
             // 
@@ -66,7 +86,7 @@
             this.buttonSynchronize.Momentary = false;
             this.buttonSynchronize.Name = "buttonSynchronize";
             this.buttonSynchronize.Pressed = false;
-            this.buttonSynchronize.Size = new System.Drawing.Size(169, 40);
+            this.buttonSynchronize.Size = new System.Drawing.Size(169, 25);
             this.buttonSynchronize.TabIndex = 3;
             this.buttonSynchronize.Click += new System.EventHandler(this.OnSynchronize);
             // 
@@ -80,31 +100,31 @@
             this.buttonAddIncident.DisabledImage = null;
             this.buttonAddIncident.Image = null;
             this.buttonAddIncident.Label = "Add Incident";
-            this.buttonAddIncident.Location = new System.Drawing.Point(4, 146);
+            this.buttonAddIncident.Location = new System.Drawing.Point(4, 161);
             this.buttonAddIncident.Momentary = false;
             this.buttonAddIncident.Name = "buttonAddIncident";
             this.buttonAddIncident.Pressed = false;
-            this.buttonAddIncident.Size = new System.Drawing.Size(169, 40);
+            this.buttonAddIncident.Size = new System.Drawing.Size(169, 25);
             this.buttonAddIncident.TabIndex = 2;
             this.buttonAddIncident.Click += new System.EventHandler(this.OnAddIncident);
             // 
-            // buttonListIncident
+            // buttonIncidentList
             // 
-            this.buttonListIncident.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.buttonIncidentList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonListIncident.BackColor = System.Drawing.Color.Gainsboro;
-            this.buttonListIncident.BackColorSelected = System.Drawing.Color.Gray;
-            this.buttonListIncident.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.buttonListIncident.DisabledImage = null;
-            this.buttonListIncident.Image = null;
-            this.buttonListIncident.Label = "Incident List";
-            this.buttonListIncident.Location = new System.Drawing.Point(4, 100);
-            this.buttonListIncident.Momentary = false;
-            this.buttonListIncident.Name = "buttonListIncident";
-            this.buttonListIncident.Pressed = false;
-            this.buttonListIncident.Size = new System.Drawing.Size(169, 40);
-            this.buttonListIncident.TabIndex = 0;
-            this.buttonListIncident.Click += new System.EventHandler(this.OnListIncident);
+            this.buttonIncidentList.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonIncidentList.BackColorSelected = System.Drawing.Color.Gray;
+            this.buttonIncidentList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.buttonIncidentList.DisabledImage = null;
+            this.buttonIncidentList.Image = null;
+            this.buttonIncidentList.Label = "Incident List";
+            this.buttonIncidentList.Location = new System.Drawing.Point(4, 100);
+            this.buttonIncidentList.Momentary = false;
+            this.buttonIncidentList.Name = "buttonIncidentList";
+            this.buttonIncidentList.Pressed = false;
+            this.buttonIncidentList.Size = new System.Drawing.Size(169, 25);
+            this.buttonIncidentList.TabIndex = 0;
+            this.buttonIncidentList.Click += new System.EventHandler(this.OnListIncident);
             // 
             // pictureBoxLogo
             // 
@@ -135,9 +155,10 @@
 
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.PictureBox pictureBoxLogo;
-        private Ushahidi.Common.Controls.ImageButton buttonListIncident;
-        private Ushahidi.Common.Controls.ImageButton buttonAddIncident;
+        private Ushahidi.Common.Controls.ImageButton buttonIncidentMap;
         private Ushahidi.Common.Controls.ImageButton buttonSynchronize;
+        private Ushahidi.Common.Controls.ImageButton buttonAddIncident;
+        private Ushahidi.Common.Controls.ImageButton buttonIncidentList;
 
     }
 }

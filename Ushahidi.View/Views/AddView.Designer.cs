@@ -32,11 +32,13 @@
             this.menuItemAddPhoto = new System.Windows.Forms.MenuItem();
             this.menuItemAddNews = new System.Windows.Forms.MenuItem();
             this.menuItemAddVideo = new System.Windows.Forms.MenuItem();
-            this.menuItemSeparator = new System.Windows.Forms.MenuItem();
+            this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
             this.menuItemSubmit = new System.Windows.Forms.MenuItem();
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
             this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.panel = new System.Windows.Forms.Panel();
+            this.textBoxLongitude = new Ushahidi.Common.Controls.LabelTextBox();
+            this.textBoxLatitude = new Ushahidi.Common.Controls.LabelTextBox();
             this.dateBoxTime = new Ushahidi.Common.Controls.LabelDateBox();
             this.textBoxVideo = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxNews = new Ushahidi.Common.Controls.LabelTextBox();
@@ -45,6 +47,8 @@
             this.comboBoxLocales = new Ushahidi.Common.Controls.LabelComboBox();
             this.dateBoxDate = new Ushahidi.Common.Controls.LabelDateBox();
             this.textBoxTitle = new Ushahidi.Common.Controls.LabelTextBox();
+            this.menuItemDetectLocation = new System.Windows.Forms.MenuItem();
+            this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +57,9 @@
             this.menuItemAction.MenuItems.Add(this.menuItemAddPhoto);
             this.menuItemAction.MenuItems.Add(this.menuItemAddNews);
             this.menuItemAction.MenuItems.Add(this.menuItemAddVideo);
-            this.menuItemAction.MenuItems.Add(this.menuItemSeparator);
+            this.menuItemAction.MenuItems.Add(this.menuItemSeparator1);
+            this.menuItemAction.MenuItems.Add(this.menuItemDetectLocation);
+            this.menuItemAction.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemAction.MenuItems.Add(this.menuItemSubmit);
             this.menuItemAction.MenuItems.Add(this.menuItemCancel);
             this.menuItemAction.Text = "Action";
@@ -73,9 +79,9 @@
             this.menuItemAddVideo.Text = "Add Video Link";
             this.menuItemAddVideo.Click += new System.EventHandler(this.OnAddVideo);
             // 
-            // menuItemSeparator
+            // menuItemSeparator1
             // 
-            this.menuItemSeparator.Text = "-";
+            this.menuItemSeparator1.Text = "-";
             // 
             // menuItemSubmit
             // 
@@ -112,6 +118,8 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.AutoScroll = true;
             this.panel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel.Controls.Add(this.textBoxLongitude);
+            this.panel.Controls.Add(this.textBoxLatitude);
             this.panel.Controls.Add(this.dateBoxTime);
             this.panel.Controls.Add(this.textBoxVideo);
             this.panel.Controls.Add(this.textBoxNews);
@@ -123,7 +131,37 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 180);
+            this.panel.Size = new System.Drawing.Size(176, 490);
+            // 
+            // textBoxLongitude
+            // 
+            this.textBoxLongitude.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLongitude.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxLongitude.Enabled = false;
+            this.textBoxLongitude.IsRequired = false;
+            this.textBoxLongitude.Label = "Longitude";
+            this.textBoxLongitude.Location = new System.Drawing.Point(0, 225);
+            this.textBoxLongitude.Multiline = false;
+            this.textBoxLongitude.Name = "textBoxLongitude";
+            this.textBoxLongitude.Size = new System.Drawing.Size(162, 45);
+            this.textBoxLongitude.TabIndex = 5;
+            this.textBoxLongitude.Value = "";
+            // 
+            // textBoxLatitude
+            // 
+            this.textBoxLatitude.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxLatitude.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxLatitude.Enabled = false;
+            this.textBoxLatitude.IsRequired = false;
+            this.textBoxLatitude.Label = "Latitude";
+            this.textBoxLatitude.Location = new System.Drawing.Point(0, 180);
+            this.textBoxLatitude.Multiline = false;
+            this.textBoxLatitude.Name = "textBoxLatitude";
+            this.textBoxLatitude.Size = new System.Drawing.Size(162, 45);
+            this.textBoxLatitude.TabIndex = 4;
+            this.textBoxLatitude.Value = "";
             // 
             // dateBoxTime
             // 
@@ -146,11 +184,11 @@
             this.textBoxVideo.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxVideo.IsRequired = false;
             this.textBoxVideo.Label = "Video";
-            this.textBoxVideo.Location = new System.Drawing.Point(0, 350);
+            this.textBoxVideo.Location = new System.Drawing.Point(0, 440);
             this.textBoxVideo.Multiline = false;
             this.textBoxVideo.Name = "textBoxVideo";
             this.textBoxVideo.Size = new System.Drawing.Size(162, 45);
-            this.textBoxVideo.TabIndex = 7;
+            this.textBoxVideo.TabIndex = 9;
             this.textBoxVideo.Value = "";
             // 
             // textBoxNews
@@ -160,11 +198,11 @@
             this.textBoxNews.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxNews.IsRequired = false;
             this.textBoxNews.Label = "News";
-            this.textBoxNews.Location = new System.Drawing.Point(0, 305);
+            this.textBoxNews.Location = new System.Drawing.Point(0, 395);
             this.textBoxNews.Multiline = false;
             this.textBoxNews.Name = "textBoxNews";
             this.textBoxNews.Size = new System.Drawing.Size(162, 45);
-            this.textBoxNews.TabIndex = 6;
+            this.textBoxNews.TabIndex = 8;
             this.textBoxNews.Value = "";
             // 
             // textBoxDescription
@@ -174,11 +212,11 @@
             this.textBoxDescription.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxDescription.IsRequired = true;
             this.textBoxDescription.Label = "Description";
-            this.textBoxDescription.Location = new System.Drawing.Point(0, 230);
+            this.textBoxDescription.Location = new System.Drawing.Point(0, 320);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.Size = new System.Drawing.Size(162, 75);
-            this.textBoxDescription.TabIndex = 5;
+            this.textBoxDescription.TabIndex = 7;
             this.textBoxDescription.Value = "";
             // 
             // checkBoxesCategories
@@ -187,10 +225,10 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBoxesCategories.BackColor = System.Drawing.Color.WhiteSmoke;
             this.checkBoxesCategories.Label = "Category";
-            this.checkBoxesCategories.Location = new System.Drawing.Point(0, 180);
+            this.checkBoxesCategories.Location = new System.Drawing.Point(0, 270);
             this.checkBoxesCategories.Name = "checkBoxesCategories";
             this.checkBoxesCategories.Size = new System.Drawing.Size(162, 45);
-            this.checkBoxesCategories.TabIndex = 4;
+            this.checkBoxesCategories.TabIndex = 6;
             // 
             // comboBoxLocales
             // 
@@ -210,6 +248,7 @@
             this.comboBoxLocales.Size = new System.Drawing.Size(162, 45);
             this.comboBoxLocales.TabIndex = 3;
             this.comboBoxLocales.ValueMember = "";
+            this.comboBoxLocales.SelectedIndexChanged += new System.EventHandler(this.OnLocaleChanged);
             // 
             // dateBoxDate
             // 
@@ -239,12 +278,21 @@
             this.textBoxTitle.TabIndex = 0;
             this.textBoxTitle.Value = "";
             // 
+            // menuItemDetectLocation
+            // 
+            this.menuItemDetectLocation.Text = "Detect Location";
+            this.menuItemDetectLocation.Click += new System.EventHandler(OnDetectLocation);
+            // 
+            // menuItemSeparator2
+            // 
+            this.menuItemSeparator2.Text = "-";
+            // 
             // AddView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(176, 180);
+            this.ClientSize = new System.Drawing.Size(176, 490);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";
@@ -260,7 +308,7 @@
         private System.Windows.Forms.MenuItem menuItemAddPhoto;
         private System.Windows.Forms.MenuItem menuItemAddNews;
         private System.Windows.Forms.MenuItem menuItemAddVideo;
-        private System.Windows.Forms.MenuItem menuItemSeparator;
+        private System.Windows.Forms.MenuItem menuItemSeparator1;
         private System.Windows.Forms.MenuItem menuItemSubmit;
         private System.Windows.Forms.MenuItem menuItemCancel;
         private Ushahidi.Common.Controls.ScrollListBox scrollListBox;
@@ -273,6 +321,10 @@
         private Ushahidi.Common.Controls.LabelTextBox textBoxNews;
         private Ushahidi.Common.Controls.LabelTextBox textBoxVideo;
         private Ushahidi.Common.Controls.LabelDateBox dateBoxTime;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxLongitude;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxLatitude;
+        private System.Windows.Forms.MenuItem menuItemDetectLocation;
+        private System.Windows.Forms.MenuItem menuItemSeparator2;
 
     }
 }

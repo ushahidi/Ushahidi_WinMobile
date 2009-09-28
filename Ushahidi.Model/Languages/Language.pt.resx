@@ -357,4 +357,19 @@
   <data name="downloadIncidents" xml:space="preserve">
     <value>Transfira Incidentes</value>
   </data>
+  <data name="latitude" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="longitude" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="detectingLocation" xml:space="preserve">
+    <value>Detectando Localização</value>
+  </data>
+  <data name="detectLocation" xml:space="preserve">
+    <value>Detectar Localização</value>
+  </data>
+  <data name="runtimeException" xml:space="preserve">
+    <value>Exceção do tempo de execução</value>
+  </data>
 </root>

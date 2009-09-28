@@ -137,5 +137,6 @@ namespace Ushahidi.Common.Controls
         {
             return Info(caption, string.Format(textFormat, args));
         }
+
     }
 }

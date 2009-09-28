@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapView));
             this.panelContent = new System.Windows.Forms.Panel();
             this.comboBoxCategories = new Ushahidi.Common.Controls.LabelComboBox();
-            this.pictureBoxMap = new System.Windows.Forms.PictureBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,10 +41,9 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelContent.Controls.Add(this.comboBoxCategories);
-            this.panelContent.Controls.Add(this.pictureBoxMap);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(240, 294);
+            this.panelContent.Size = new System.Drawing.Size(176, 180);
             // 
             // comboBoxCategories
             // 
@@ -53,30 +51,24 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxCategories.BackColor = System.Drawing.Color.Gainsboro;
             this.comboBoxCategories.Bold = true;
+            this.comboBoxCategories.DataSource = null;
             this.comboBoxCategories.DisplayMember = "Title";
             this.comboBoxCategories.IsRequired = true;
-            this.comboBoxCategories.Text = "Category";
+            this.comboBoxCategories.Label = "Category";
             this.comboBoxCategories.Location = new System.Drawing.Point(0, 0);
             this.comboBoxCategories.Name = "comboBoxCategories";
-            this.comboBoxCategories.Size = new System.Drawing.Size(240, 28);
+            this.comboBoxCategories.SelectedIndex = -1;
+            this.comboBoxCategories.SelectedItem = null;
+            this.comboBoxCategories.SelectedText = "";
+            this.comboBoxCategories.Size = new System.Drawing.Size(176, 45);
             this.comboBoxCategories.TabIndex = 31;
             this.comboBoxCategories.ValueMember = "ID";
             // 
-            // pictureBoxMap
-            // 
-            this.pictureBoxMap.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMap.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMap.Image")));
-            this.pictureBoxMap.Location = new System.Drawing.Point(0, 28);
-            this.pictureBoxMap.Name = "pictureBoxMap";
-            this.pictureBoxMap.Size = new System.Drawing.Size(240, 266);
-            // 
-            // IncidentMapView
+            // MapView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(240, 294);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MapView";
@@ -89,7 +81,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelContent;
-        private System.Windows.Forms.PictureBox pictureBoxMap;
         private Ushahidi.Common.Controls.LabelComboBox comboBoxCategories;
 
     }

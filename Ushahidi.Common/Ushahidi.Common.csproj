@@ -19,7 +19,7 @@
     <FormFactorID>
     </FormFactorID>
     <ApplicationIcon>Ushahidi.ico</ApplicationIcon>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Ushahidi.Common.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -136,6 +136,12 @@
     <Compile Include="Controls\ProgressBox.Designer.cs">
       <DependentUpon>ProgressBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ProgressPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProgressPanel.Designer.cs">
+      <DependentUpon>ProgressPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ScrollListBoxItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProgressBox.resx">
       <DependentUpon>ProgressBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ProgressPanel.resx">
+      <DependentUpon>ProgressPanel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
