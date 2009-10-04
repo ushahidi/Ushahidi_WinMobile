@@ -37,6 +37,7 @@ namespace Ushahidi.Model
         private const string RegKeyLastName = "LastName";
         private const string RegKeyEmail = "Email";
         private const string RegKeyMapType = "Maptype";
+        private const string RegKeyMapZoomLevel = "MapZoomLevel";
         private const string GoogleMapApiKey = "ABQIAAAAbBp5ldXb8kPYkZBnJ3s41RSEmPulsHbWDF8kadrMDbdex3-Z4BTbs5-9i1AkCIoGYgsph72Mjc1g_Q";
 
         /// <summary>
@@ -94,6 +95,11 @@ namespace Ushahidi.Model
         /// </summary>
         public static string Email { get; set; }
 
+        /// <summary>
+        /// Map Zoom Level
+        /// </summary>
+        public static int MapZoomLevel { get; set; }
+
         static DataManager()
         {
             RegistryKey registryKey = Registry.LocalMachine.CreateSubKey(RegKeyUshahidi);
@@ -123,6 +129,8 @@ namespace Ushahidi.Model
 
                 MapType = registryKey.GetValue(RegKeyMapType, MapTypes.ElementAt(0)).ToString();
 
+                MapZoomLevel = Convert.ToInt32(registryKey.GetValue(RegKeyMapZoomLevel, "10"));
+
                 registryKey.Close();
             }
         }
@@ -147,6 +155,7 @@ namespace Ushahidi.Model
                 registryKey.SetValue(RegKeyLastName, LastName);
                 registryKey.SetValue(RegKeyEmail, Email);
                 registryKey.SetValue(RegKeyMapType, MapType);
+                registryKey.SetValue(RegKeyMapZoomLevel, MapZoomLevel.ToString());
                 return true;
             }
             return false;
@@ -755,7 +764,7 @@ namespace Ushahidi.Model
                             url.AppendFormat("&zoom={0}", 12);
                             url.AppendFormat("&format={0}", "jpg");
                             url.AppendFormat("&size={0}x{1}", ScreenWidth, ScreenHeight);
-                            url.AppendFormat("&sensor={0}", "true_or_false");
+                            url.AppendFormat("&sensor={0}", "false");
                             url.AppendFormat("&maptype={0}", MapType.ToLower());
                             url.AppendFormat("&markers={0},{1},{2}", incident.LocaleLatitude, incident.LocaleLongitude, "red");
                             url.AppendFormat("&key={0}", GoogleMapApiKey);

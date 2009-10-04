@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Net;
 using Microsoft.WindowsMobile.Samples.Location;
 using Ushahidi.Common.Logging;
-using Ushahidi.Map.Token.Staging;
 using Ushahidi.Map.Geocode.Staging;
-using Ushahidi.Map.MapPoint.Staging;
+//using Ushahidi.Map.MapPoint.Staging;
 
 namespace Ushahidi.Map
 {
-    public class Locator
+    /// <summary>
+    /// Location Service
+    /// </summary>
+    public class LocationService : IDisposable
     {
         public delegate void LocationEventHandler(object sender, LocationEventArgs args);
 
@@ -18,20 +19,37 @@ namespace Ushahidi.Map
 
         public event StateEventHandler StateChanged;
 
-        private readonly Gps Gps = new Gps();
-
-        public Locator()
+        private Gps Gps
         {
-            Gps.LocationChanged += OnLocationChanged;
-            Gps.DeviceStateChanged += OnDeviceStateChanged;
+            get
+            {
+                if (_Gps == null)
+                {
+                    _Gps = new Gps();
+                    _Gps.LocationChanged += OnLocationChanged;
+                    _Gps.DeviceStateChanged += OnDeviceStateChanged;
+                }
+                return _Gps;
+            }
+        }private Gps _Gps;
+
+        protected string Username { get; private set; }
+
+        protected string Password { get; private set; }
+
+        public LocationService(string username, string password)
+        {
+            Username = username;
+            Password = password;
         }
 
-        ~Locator()
+        ~LocationService()
         {
-            if (Gps != null && Gps.Opened)
+            if (_Gps != null && _Gps.Opened)
             {
-                Gps.Close();
-            }  
+                _Gps.Close();
+            }
+            _Gps = null;
         }
 
         public bool Start()
@@ -61,34 +79,10 @@ namespace Ushahidi.Map
             }
         }
 
-        private static string GetToken()
-        {
-            Log.Info("Locator.GetToken");
-            try
-            {
-                CommonService commonService = new CommonService
-                {
-                    //TODO store these credentials in more secure location
-                    Credentials = new NetworkCredential("147513", "zSM4v0k-kwyNd")
-                };
-                Token.Staging.TokenSpecification tokenSpecification = new Token.Staging.TokenSpecification
-                {
-                    ClientIPAddress = "127.0.0.1",
-                    TokenValidityDurationMinutes = 15
-                };
-                return commonService.GetClientToken(tokenSpecification);
-            }
-            catch (Exception ex)
-            {
-                Log.Exception("Locator.GetToken", "Exception: {0}", ex);
-            }
-            return null;
-        }
-
         private void OnLocationChanged(object sender, LocationChangedEventArgs args)
         {
             Log.Info("Locator.OnLocationChanged", "lat={0} long={1}", args.Position.Latitude, args.Position.Longitude);
-            string requestToken = GetToken();
+            string requestToken = TokenService.GetToken(Username, Password);
             string locationAddress = string.Empty;
             if (requestToken != null)
             {
@@ -98,11 +92,11 @@ namespace Ushahidi.Map
                     ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest
                     {
                         Credentials = new Credentials { Token = requestToken },
-                        Location = new Geocode.Staging.Location
+                        Location = new Location
                         {
                             Latitude = args.Position.Latitude,
-                            Longitude = args.Position.Longitude,
                             LatitudeSpecified = true,
+                            Longitude = args.Position.Longitude,
                             LongitudeSpecified = true
                         }
                     };
@@ -149,5 +143,13 @@ namespace Ushahidi.Map
             }
         }
 
+        public void Dispose()
+        {
+            if (_Gps != null && _Gps.Opened)
+            {
+                _Gps.Close();
+            }
+            _Gps = null;
+        }
     }
 }

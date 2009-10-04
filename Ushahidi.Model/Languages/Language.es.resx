@@ -372,4 +372,13 @@
   <data name="runtimeException" xml:space="preserve">
     <value>Excepción del tiempo de pasada</value>
   </data>
+  <data name="addLocation" xml:space="preserve">
+    <value>Añadir ubicación</value>
+  </data>
+  <data name="zoomLevel" xml:space="preserve">
+    <value>Nivel de zoom</value>
+  </data>
+  <data name="locationName" xml:space="preserve">
+    <value>Ubicación Nombre</value>
+  </data>
 </root>

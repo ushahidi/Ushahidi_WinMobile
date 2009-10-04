@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/searchservice/searchservice2.xsd" filename="searchservice2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/searchservice/searchservice4.xsd" filename="searchservice4.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/searchservice/searchservice1.wsdl" filename="searchservice1.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/searchservice/searchservice.xsd" filename="searchservice.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/searchservice/searchservice1.xsd" filename="searchservice1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/searchservice/searchservice.wsdl" filename="SearchService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/searchservice/searchservice3.xsd" filename="searchservice3.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

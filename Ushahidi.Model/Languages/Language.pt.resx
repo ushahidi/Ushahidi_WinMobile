@@ -372,4 +372,13 @@
   <data name="runtimeException" xml:space="preserve">
     <value>Exceção do tempo de execução</value>
   </data>
+  <data name="addLocation" xml:space="preserve">
+    <value>Adicionar Local</value>
+  </data>
+  <data name="zoomLevel" xml:space="preserve">
+    <value>Nível de Zoom</value>
+  </data>
+  <data name="locationName" xml:space="preserve">
+    <value>Nome do Local</value>
+  </data>
 </root>

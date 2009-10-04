@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Resources;
 
 namespace Ushahidi.View.Resources
 {
@@ -29,6 +30,30 @@ namespace Ushahidi.View.Resources
                 }
             }
             return null;
+        }
+
+        /// <summary>
+        /// Bing Mapping Username
+        /// </summary>
+        public static string BingMapUsername
+        {
+            get { return Properties.Resources.BingMapUsername; }
+        }
+
+        /// <summary>
+        /// Bing Mapping Password
+        /// </summary>
+        public static string BingMapPassword
+        {
+            get { return Properties.Resources.BingMapPassword; }
+        }
+
+        /// <summary>
+        /// Google Map API Key
+        /// </summary>
+        public static string GoogleMapApiKey
+        {
+            get { return Properties.Resources.GoogleMapApiKey; }
         }
     }
 }

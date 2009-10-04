@@ -19,13 +19,16 @@ namespace Ushahidi.View.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "2.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    internal class Resources {
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Resources() {
         }
         
@@ -33,7 +36,7 @@ namespace Ushahidi.View.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ushahidi.View.Properties.Resources", typeof(Resources).Assembly);
@@ -48,7 +51,7 @@ namespace Ushahidi.View.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -57,14 +60,41 @@ namespace Ushahidi.View.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap ushahidi_btn {
+        /// <summary>
+        ///   Looks up a localized string similar to zSM4v0k-kwyNd.
+        /// </summary>
+        public static string BingMapPassword {
+            get {
+                return ResourceManager.GetString("BingMapPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 147513.
+        /// </summary>
+        public static string BingMapUsername {
+            get {
+                return ResourceManager.GetString("BingMapUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ABQIAAAAbBp5ldXb8kPYkZBnJ3s41RSEmPulsHbWDF8kadrMDbdex3-Z4BTbs5-9i1AkCIoGYgsph72Mjc1g_Q.
+        /// </summary>
+        public static string GoogleMapApiKey {
+            get {
+                return ResourceManager.GetString("GoogleMapApiKey", resourceCulture);
+            }
+        }
+        
+        public static System.Drawing.Bitmap ushahidi_btn {
             get {
                 object obj = ResourceManager.GetObject("ushahidi_btn", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap ushahidi_title {
+        public static System.Drawing.Bitmap ushahidi_title {
             get {
                 object obj = ResourceManager.GetObject("ushahidi_title", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

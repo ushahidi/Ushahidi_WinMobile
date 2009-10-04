@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/imageryservice3.xsd" filename="imageryservice3.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/imageryservice1.wsdl" filename="imageryservice1.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/imageryservice.wsdl" filename="ImageryService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/imageryservice2.xsd" filename="imageryservice2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/ImageryService1.xsd" filename="ImageryService1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/ImageryService2.xsd" filename="ImageryService20.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/ImageryService3.xsd" filename="ImageryService30.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/ImageryService4.xsd" filename="ImageryService4.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/ImageryService.xsd" filename="ImageryService.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/imageryservice/ImageryService5.xsd" filename="ImageryService5.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

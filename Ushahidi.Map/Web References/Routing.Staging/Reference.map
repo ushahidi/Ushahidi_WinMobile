@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/routeservice/routeservice1.xsd" filename="routeservice1.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/routeservice/routeservice3.xsd" filename="routeservice3.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/routeservice/routeservice1.wsdl" filename="routeservice1.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/routeservice/routeservice.wsdl" filename="RouteService.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/routeservice/routeservice2.xsd" filename="routeservice2.xsd" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://staging.dev.virtualearth.net/webservices/v1/metadata/routeservice/routeservice.xsd" filename="routeservice.xsd" />
+  </Results>
+</DiscoveryClientResultsFile>

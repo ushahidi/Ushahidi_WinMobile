@@ -117,9 +117,6 @@
     <EmbeddedResource Include="Views\ListView.resx">
       <DependentUpon>ListView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\MapView.resx">
-      <DependentUpon>MapView.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\PhotoView.resx">
       <DependentUpon>PhotoView.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +213,9 @@
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
     <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
+    <EmbeddedResource Include="Views\MapView.resx">
+      <DependentUpon>MapView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MediaView.resx">
       <DependentUpon>MediaView.cs</DependentUpon>
     </EmbeddedResource>

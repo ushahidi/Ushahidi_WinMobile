@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BingMapPassword" xml:space="preserve">
+    <value>zSM4v0k-kwyNd</value>
+  </data>
+  <data name="BingMapUsername" xml:space="preserve">
+    <value>147513</value>
+  </data>
+  <data name="GoogleMapApiKey" xml:space="preserve">
+    <value>ABQIAAAAbBp5ldXb8kPYkZBnJ3s41RSEmPulsHbWDF8kadrMDbdex3-Z4BTbs5-9i1AkCIoGYgsph72Mjc1g_Q</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="ushahidi_btn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ushahidi_btn.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

@@ -1,11 +1,9 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Linq;
 using System.Collections.Generic;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Logging;
 using Ushahidi.Common.MVC;
-using Ushahidi.Map;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
 using Ushahidi.View.Controllers;
@@ -20,19 +18,15 @@ namespace Ushahidi.View.Views
     /// </summary>
     public partial class AddView : BaseView
     {
-        private readonly Locator Locator = new Locator();
-
         public AddView()
         {
             InitializeComponent();
-            Closing += OnClosing;
         }
 
         public override void Initialize()
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            Locator.LocationChanged += OnDetectLocationChanged;
             panel.BackColor =
             textBoxTitle.BackColor =
             dateBoxDate.BackColor =
@@ -67,13 +61,12 @@ namespace Ushahidi.View.Views
             menuItemAddPhoto.Translate("addPhoto");
             menuItemAddNews.Translate("addNewsLink");
             menuItemAddVideo.Translate("addVideoLink");
-            menuItemDetectLocation.Translate("detectLocation");
+            menuItemAddLocation.Translate("addLocation");
         }
 
         public override void Render()
         {
             ShouldSave = true;
-            menuItemDetectLocation.Enabled = true;
             textBoxDescription.Top = checkBoxesCategories.Bottom;
             textBoxNews.Top = textBoxDescription.Bottom;
             textBoxVideo.Top = textBoxNews.Bottom;
@@ -117,11 +110,6 @@ namespace Ushahidi.View.Views
                 }
             }
             return true;
-        }
-
-        private void OnClosing(object sender, CancelEventArgs e)
-        {
-            Locator.Stop();
         }
 
         /// <summary>
@@ -330,54 +318,13 @@ namespace Ushahidi.View.Views
                     textBoxLatitude.Value = "";
                     textBoxLongitude.Value = "";
                 }
-                Locator.Stop();
-                menuItemDetectLocation.Enabled = true;
             }
         }
 
-        private void OnDetectLocation(object sender, EventArgs e)
+        private void OnAddLocation(object sender, EventArgs e)
         {
-            Log.Info("AddView.OnDetectLocation", "");
-            if (Locator.Start())
-            {
-                menuItemDetectLocation.Enabled = false;
-                ProgressPanel.Show(this, "detectingLocation".Translate(), "cancel".Translate(), OnDetectLocationCancelled);
-            }
-            else
-            {
-                Dialog.Warning("detectLocation".Translate(), "notActive".Translate());
-                menuItemDetectLocation.Enabled = false;
-            }
-        }
-
-        private void OnDetectLocationCancelled(object sender, EventArgs e)
-        {
-            Locator.Stop();
-            ProgressPanel.Hide(this);
-            menuItemDetectLocation.Enabled = true;
-        }
-
-        private void OnDetectLocationChanged(object sender, LocationEventArgs args)
-        {
-            Log.Info("AddView.OnDetectLocationChanged", "");
-            using (new WaitCursor())
-            {
-                Locale locale = new Locale
-                {
-                    CountryID = null,
-                    Latitude = args.Latitude.ToString(),
-                    Longitude = args.Longitude.ToString(),
-                    Name = args.Address
-                };
-
-                DataManager.AddLocale(locale);
-
-                textBoxLatitude.Value = args.Latitude.ToString();
-                textBoxLongitude.Value = args.Longitude.ToString();
-
-                comboBoxLocales.Add(locale);
-                comboBoxLocales.SelectedItem = locale;
-            }
+            ShouldSave = false;
+            OnForward<MapViewController>(false);
         }
     }
 }

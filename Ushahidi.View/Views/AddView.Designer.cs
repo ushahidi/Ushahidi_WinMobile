@@ -47,7 +47,7 @@
             this.comboBoxLocales = new Ushahidi.Common.Controls.LabelComboBox();
             this.dateBoxDate = new Ushahidi.Common.Controls.LabelDateBox();
             this.textBoxTitle = new Ushahidi.Common.Controls.LabelTextBox();
-            this.menuItemDetectLocation = new System.Windows.Forms.MenuItem();
+            this.menuItemAddLocation = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.panel.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +58,7 @@
             this.menuItemAction.MenuItems.Add(this.menuItemAddNews);
             this.menuItemAction.MenuItems.Add(this.menuItemAddVideo);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator1);
-            this.menuItemAction.MenuItems.Add(this.menuItemDetectLocation);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddLocation);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemAction.MenuItems.Add(this.menuItemSubmit);
             this.menuItemAction.MenuItems.Add(this.menuItemCancel);
@@ -108,7 +108,7 @@
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
-            this.scrollListBox.Size = new System.Drawing.Size(155, 20);
+            this.scrollListBox.Size = new System.Drawing.Size(148, 20);
             this.scrollListBox.TabIndex = 7;
             // 
             // panel
@@ -131,7 +131,7 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 490);
+            this.panel.Size = new System.Drawing.Size(176, 180);
             // 
             // textBoxLongitude
             // 
@@ -144,7 +144,7 @@
             this.textBoxLongitude.Location = new System.Drawing.Point(0, 225);
             this.textBoxLongitude.Multiline = false;
             this.textBoxLongitude.Name = "textBoxLongitude";
-            this.textBoxLongitude.Size = new System.Drawing.Size(162, 45);
+            this.textBoxLongitude.Size = new System.Drawing.Size(155, 45);
             this.textBoxLongitude.TabIndex = 5;
             this.textBoxLongitude.Value = "";
             // 
@@ -159,7 +159,7 @@
             this.textBoxLatitude.Location = new System.Drawing.Point(0, 180);
             this.textBoxLatitude.Multiline = false;
             this.textBoxLatitude.Name = "textBoxLatitude";
-            this.textBoxLatitude.Size = new System.Drawing.Size(162, 45);
+            this.textBoxLatitude.Size = new System.Drawing.Size(155, 45);
             this.textBoxLatitude.TabIndex = 4;
             this.textBoxLatitude.Value = "";
             // 
@@ -172,7 +172,7 @@
             this.dateBoxTime.Label = "Time";
             this.dateBoxTime.Location = new System.Drawing.Point(0, 90);
             this.dateBoxTime.Name = "dateBoxTime";
-            this.dateBoxTime.Size = new System.Drawing.Size(162, 45);
+            this.dateBoxTime.Size = new System.Drawing.Size(155, 45);
             this.dateBoxTime.TabIndex = 2;
             this.dateBoxTime.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Time;
             this.dateBoxTime.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
@@ -187,7 +187,7 @@
             this.textBoxVideo.Location = new System.Drawing.Point(0, 440);
             this.textBoxVideo.Multiline = false;
             this.textBoxVideo.Name = "textBoxVideo";
-            this.textBoxVideo.Size = new System.Drawing.Size(162, 45);
+            this.textBoxVideo.Size = new System.Drawing.Size(155, 45);
             this.textBoxVideo.TabIndex = 9;
             this.textBoxVideo.Value = "";
             // 
@@ -201,7 +201,7 @@
             this.textBoxNews.Location = new System.Drawing.Point(0, 395);
             this.textBoxNews.Multiline = false;
             this.textBoxNews.Name = "textBoxNews";
-            this.textBoxNews.Size = new System.Drawing.Size(162, 45);
+            this.textBoxNews.Size = new System.Drawing.Size(155, 45);
             this.textBoxNews.TabIndex = 8;
             this.textBoxNews.Value = "";
             // 
@@ -215,7 +215,7 @@
             this.textBoxDescription.Location = new System.Drawing.Point(0, 320);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(162, 75);
+            this.textBoxDescription.Size = new System.Drawing.Size(155, 75);
             this.textBoxDescription.TabIndex = 7;
             this.textBoxDescription.Value = "";
             // 
@@ -227,7 +227,7 @@
             this.checkBoxesCategories.Label = "Category";
             this.checkBoxesCategories.Location = new System.Drawing.Point(0, 270);
             this.checkBoxesCategories.Name = "checkBoxesCategories";
-            this.checkBoxesCategories.Size = new System.Drawing.Size(162, 45);
+            this.checkBoxesCategories.Size = new System.Drawing.Size(155, 45);
             this.checkBoxesCategories.TabIndex = 6;
             // 
             // comboBoxLocales
@@ -245,7 +245,7 @@
             this.comboBoxLocales.SelectedIndex = -1;
             this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
-            this.comboBoxLocales.Size = new System.Drawing.Size(162, 45);
+            this.comboBoxLocales.Size = new System.Drawing.Size(155, 45);
             this.comboBoxLocales.TabIndex = 3;
             this.comboBoxLocales.ValueMember = "";
             this.comboBoxLocales.SelectedIndexChanged += new System.EventHandler(this.OnLocaleChanged);
@@ -259,7 +259,7 @@
             this.dateBoxDate.Label = "Date";
             this.dateBoxDate.Location = new System.Drawing.Point(0, 45);
             this.dateBoxDate.Name = "dateBoxDate";
-            this.dateBoxDate.Size = new System.Drawing.Size(162, 45);
+            this.dateBoxDate.Size = new System.Drawing.Size(155, 45);
             this.dateBoxDate.TabIndex = 1;
             this.dateBoxDate.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Date;
             this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
@@ -274,14 +274,14 @@
             this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
             this.textBoxTitle.Multiline = false;
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(162, 45);
+            this.textBoxTitle.Size = new System.Drawing.Size(155, 45);
             this.textBoxTitle.TabIndex = 0;
             this.textBoxTitle.Value = "";
             // 
-            // menuItemDetectLocation
+            // menuItemAddLocation
             // 
-            this.menuItemDetectLocation.Text = "Detect Location";
-            this.menuItemDetectLocation.Click += new System.EventHandler(OnDetectLocation);
+            this.menuItemAddLocation.Text = "Add Location";
+            this.menuItemAddLocation.Click += new System.EventHandler(this.OnAddLocation);
             // 
             // menuItemSeparator2
             // 
@@ -292,7 +292,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(176, 490);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";
@@ -323,7 +323,7 @@
         private Ushahidi.Common.Controls.LabelDateBox dateBoxTime;
         private Ushahidi.Common.Controls.LabelTextBox textBoxLongitude;
         private Ushahidi.Common.Controls.LabelTextBox textBoxLatitude;
-        private System.Windows.Forms.MenuItem menuItemDetectLocation;
+        private System.Windows.Forms.MenuItem menuItemAddLocation;
         private System.Windows.Forms.MenuItem menuItemSeparator2;
 
     }
