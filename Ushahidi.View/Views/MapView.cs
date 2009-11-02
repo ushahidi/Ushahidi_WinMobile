@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Logging;
@@ -18,6 +19,7 @@ namespace Ushahidi.View.Views
         public MapView()
         {
             InitializeComponent();
+            pictureBox.MouseDown += OnMouseMove;
         }
 
         /// <summary>
@@ -45,9 +47,7 @@ namespace Ushahidi.View.Views
             {
                 if (_MapService == null)
                 {
-                    //_MapService = new BingMapService(Username, Password);
                     _MapService = new GoogleMapService(MapApiKey);
-
                     _MapService.MapDownloaded += OnMapDownloaded;
                 }
                 return _MapService;
@@ -59,8 +59,9 @@ namespace Ushahidi.View.Views
         /// </summary>
         public bool ShouldSave { get; private set; }
 
-        private WaitCursor WaitCursor;
-
+        /// <summary>
+        /// 
+        /// </summary>
         public string Username { get; set; }
         public string Password { get; set; }
         public string MapApiKey { get; set; }
@@ -70,6 +71,11 @@ namespace Ushahidi.View.Views
         
         public bool Satellite { get; set; }
 
+        private int MarkerX = int.MinValue;
+        private int MarkerY = int.MinValue;
+        private int CenterX = int.MinValue;
+        private int CenterY = int.MinValue;
+        
         public int ZoomLevel
         {
             get { return _ZoomLevel; }
@@ -115,6 +121,19 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             textBoxLocationName.BackColor = Colors.Background;
+            pictureBox.Paint += OnPictureBoxPaint;
+        }
+
+        private void OnPictureBoxPaint(object sender, PaintEventArgs e)
+        {
+            if (MarkerX > double.MinValue && MarkerY > double.MinValue)
+            {
+                Color transparencyColor = Color.Transparent;
+                ImageAttributes imageAttributes = new ImageAttributes();
+                imageAttributes.SetColorKey(transparencyColor, transparencyColor);
+                Rectangle rectangle = new Rectangle(MarkerX, MarkerY, imageList.ImageSize.Width, imageList.ImageSize.Height);
+                e.Graphics.DrawImage(imageList.Images[0], rectangle, 0, 0, imageList.ImageSize.Width, imageList.ImageSize.Height, GraphicsUnit.Pixel, imageAttributes);
+            }
         }
 
         public override void Translate()
@@ -131,8 +150,10 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             base.Render();
-            menuItemAddIncident.Enabled = false;
+            menuItemMenu.Enabled = false;
             ShouldSave = true;
+            CenterX = pictureBox.Width / 2;
+            CenterY = pictureBox.Height / 2;
         }
 
         public override bool Validate()
@@ -171,18 +192,14 @@ namespace Ushahidi.View.Views
             LocationService.Stop();
             ProgressPanel.Hide(this);
             menuItemDetectLocation.Enabled = true;
-            if (WaitCursor != null)
-            {
-                WaitCursor.Dispose();
-                WaitCursor = null;
-            }
+            WaitCursor.Hide();
         }
 
         private void OnDetectLocationChanged(object sender, LocationEventArgs args)
         {
             Log.Info("MapView.OnDetectLocationChanged", "");
             ProgressPanel.Hide(this);
-            WaitCursor = new WaitCursor();
+            WaitCursor.Show();
             Latitude = args.Latitude;
             Longitude = args.Longitude;
             MapService.GetMap(args.Latitude, args.Longitude, pictureBox.Width, pictureBox.Height, ZoomLevel, Satellite);
@@ -191,7 +208,7 @@ namespace Ushahidi.View.Views
         private void OnZoomLevelChanged(object sender, EventArgs e)
         {
             Log.Info("MapView.OnZoomLevelChanged", "");
-            WaitCursor = new WaitCursor();
+            WaitCursor.Show();
             ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
             MapService.GetMap(Latitude, Longitude, pictureBox.Width, pictureBox.Height, ZoomLevel, Satellite);
         }
@@ -199,13 +216,15 @@ namespace Ushahidi.View.Views
         private void OnMapDownloaded(object sender, MapEventArgs args)
         {
             Log.Info("MapView.OnMapDownloaded", "");
-            Invoke(new UpdatePictureBoxHandler(UpdatePictureBox), args.Image);
+            Invoke(new UpdateMapAndMarkerHandler(UpdateMapAndMarker), args.Image, Latitude, Longitude);
         }
 
-        private delegate void UpdatePictureBoxHandler(Image image);
-        
-        private void UpdatePictureBox(Image image)
+        private delegate void UpdateMapAndMarkerHandler(Image image, double latitude, double longitude);
+
+        private void UpdateMapAndMarker(Image image, double latitude, double longitude)
         {
+            MarkerX = pictureBox.Width / 2 - imageList.ImageSize.Width / 2;
+            MarkerY = pictureBox.Height / 2 - imageList.ImageSize.Height;
             if (pictureBox.Image != null)
             {
                 pictureBox.Image.Dispose();
@@ -213,11 +232,10 @@ namespace Ushahidi.View.Views
             }
             pictureBox.Image = image;
             menuItemAddIncident.Enabled = true;
-            if (WaitCursor != null)
-            {
-                WaitCursor.Dispose();
-                WaitCursor = null;
-            }
+            WaitCursor.Hide();
+
+            textBoxLocationName.Text = string.Format("{0}, {1}", MarkerX, MarkerY);
+            textBoxLocationName.Value = string.Format("{0}, {1}", latitude, longitude);
         }
 
         private void OnAddLocation(object sender, EventArgs e)
@@ -233,5 +251,24 @@ namespace Ushahidi.View.Views
             ShouldSave = false;
             OnBack();
         }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            textBoxLocationName.Text = string.Format("{0}, {1}", e.X, e.Y);
+
+            Geolocation geolocation = new Geolocation(e.X - CenterX, e.Y - CenterY, Latitude, Longitude, ZoomLevel);
+            textBoxLocationName.Value = string.Format("{0}, {1}", geolocation.Latitude, geolocation.Longitude);
+
+            Latitude = geolocation.Latitude;
+            Longitude = geolocation.Longitude;
+
+            MarkerX = e.X - (imageList.ImageSize.Width / 2);
+            MarkerY = e.Y - imageList.ImageSize.Height;
+
+            pictureBox.Invalidate();
+
+            WaitCursor.Show();
+            MapService.GetMap(Latitude, Longitude, pictureBox.Width, pictureBox.Height, ZoomLevel, Satellite);
+        }  
     }
 }

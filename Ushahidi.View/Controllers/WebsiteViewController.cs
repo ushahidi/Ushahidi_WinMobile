@@ -16,7 +16,7 @@ namespace Ushahidi.View.Controllers
         {
             string parameterOne = parameters.ItemAtIndex<string>(0);
             View.URL = string.IsNullOrEmpty(parameterOne) ? null : parameterOne;
-
+            
             string parameterTwo = parameters.ItemAtIndex<string>(1);
             View.Text = string.IsNullOrEmpty(parameterTwo) ? "website".Translate() : parameterTwo;
         }

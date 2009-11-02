@@ -21,5 +21,24 @@ namespace Ushahidi.Common.Controls
         {
             Cursor.Current = _WaitCursor;
         }
+
+        public static void Show()
+        {
+            if (Singleton == null)
+            {
+                Singleton = new WaitCursor();
+            }
+        }
+
+        public static void Hide()
+        {
+            if (Singleton != null)
+            {
+                Singleton.Dispose();
+                Singleton = null;
+            }
+        }
+
+        private static WaitCursor Singleton;
     }
 }

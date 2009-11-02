@@ -45,7 +45,7 @@ namespace Ushahidi.Map
                 url.AppendFormat("&size={0}x{1}", Width, Height);
                 url.AppendFormat("&sensor={0}", "false");
                 url.AppendFormat("&maptype={0}", Satellite ? "satellite" : "roadmap");
-                url.AppendFormat("&markers={0},{1},{2}", Latitude, Longitude, "red");
+                //url.AppendFormat("&markers={0},{1},{2}", Latitude, Longitude, "red");
                 url.AppendFormat("&key={0}", MapApiKey);
                 Log.Info("GoogleMapService.GetMapInternal()", "URL: {0}", url);
 

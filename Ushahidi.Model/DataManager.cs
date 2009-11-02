@@ -129,7 +129,7 @@ namespace Ushahidi.Model
 
                 MapType = registryKey.GetValue(RegKeyMapType, MapTypes.ElementAt(0)).ToString();
 
-                MapZoomLevel = Convert.ToInt32(registryKey.GetValue(RegKeyMapZoomLevel, "10"));
+                MapZoomLevel = Convert.ToInt32(registryKey.GetValue(RegKeyMapZoomLevel, "14"));
 
                 registryKey.Close();
             }

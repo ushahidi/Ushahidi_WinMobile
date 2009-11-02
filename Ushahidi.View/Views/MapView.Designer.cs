@@ -38,22 +38,19 @@
             this.menuItemAddLocation = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
+            this.imageList = new System.Windows.Forms.ImageList();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
-            this.menuItemAction.MenuItems.Add(this.menuItemAddLocation);
             this.menuItemAction.MenuItems.Add(this.menuItemDetectLocation);
-            this.menuItemAction.MenuItems.Add(this.menuItemSeparator1);
             this.menuItemAction.MenuItems.Add(this.menuItemZoom);
+            this.menuItemAction.MenuItems.Add(this.menuItemSeparator1);
+            this.menuItemAction.MenuItems.Add(this.menuItemAddLocation);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemAction.MenuItems.Add(this.menuItemCancel);
             this.menuItemAction.Text = "Action";
-            // 
-            // menuItemMenu
-            // 
-            this.menuItemMenu.Enabled = false;
             // 
             // panelContent
             // 
@@ -117,6 +114,12 @@
             this.menuItemCancel.Text = "Cancel";
             this.menuItemCancel.Click += new System.EventHandler(this.OnCancel);
             // 
+            // imageList
+            // 
+            this.imageList.ImageSize = new System.Drawing.Size(20, 34);
+            this.imageList.Images.Clear();
+            this.imageList.Images.Add(((System.Drawing.Image)(resources.GetObject("resource"))));
+            // 
             // MapView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -142,6 +145,7 @@
         private System.Windows.Forms.MenuItem menuItemSeparator2;
         private System.Windows.Forms.MenuItem menuItemCancel;
         private Ushahidi.Common.Controls.LabelTextBox textBoxLocationName;
+        private System.Windows.Forms.ImageList imageList;
 
     }
 }

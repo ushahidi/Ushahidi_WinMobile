@@ -211,7 +211,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
-    <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
     <EmbeddedResource Include="Views\MapView.resx">
       <DependentUpon>MapView.cs</DependentUpon>
@@ -221,6 +220,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\map_marker.png" />
     <Content Include="Ushahidi.ico" />
   </ItemGroup>
   <ItemGroup>

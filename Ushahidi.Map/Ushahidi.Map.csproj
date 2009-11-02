@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BingMapService.cs" />
+    <Compile Include="Geolocation.cs" />
     <Compile Include="GoogleMapService.cs" />
     <Compile Include="MapEventArgs.cs" />
     <Compile Include="Microsoft\DegreesMinutesSeconds.cs" />

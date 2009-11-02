@@ -32,8 +32,6 @@ namespace Ushahidi.View.Views
             dateBoxDate.BackColor =
             dateBoxTime.BackColor =
             comboBoxLocales.BackColor =
-            textBoxLatitude.BackColor =
-            textBoxLongitude.BackColor =
             checkBoxesCategories.BackColor =
             textBoxDescription.BackColor =
             textBoxNews.BackColor =
@@ -52,8 +50,6 @@ namespace Ushahidi.View.Views
             dateBoxDate.Translate("date");
             checkBoxesCategories.Translate("category");
             comboBoxLocales.Translate("location");
-            textBoxLatitude.Translate("latitude");
-            textBoxLongitude.Translate("longitude");
             textBoxNews.Translate("news");
             textBoxVideo.Translate("video");
             menuItemSubmit.Translate("submit");
@@ -294,31 +290,11 @@ namespace Ushahidi.View.Views
             dateBoxDate.Width = 
             dateBoxTime.Width =
             comboBoxLocales.Width = 
-            textBoxLatitude.Width =
-            textBoxLongitude.Width =
             checkBoxesCategories.Width = 
             textBoxDescription.Width = 
             textBoxNews.Width =
             textBoxVideo.Width =
             scrollListBox.Width = panel.ClientRectangle.Width;
-        }
-
-        private void OnLocaleChanged(object sender, EventArgs e)
-        {
-            using (new WaitCursor())
-            {
-                Locale locale = comboBoxLocales.SelectedValue<Locale>();
-                if (locale != null)
-                {
-                    textBoxLatitude.Value = locale.Latitude;
-                    textBoxLongitude.Value = locale.Longitude;
-                }
-                else
-                {
-                    textBoxLatitude.Value = "";
-                    textBoxLongitude.Value = "";
-                }
-            }
         }
 
         private void OnAddLocation(object sender, EventArgs e)

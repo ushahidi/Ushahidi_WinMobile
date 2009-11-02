@@ -120,13 +120,36 @@
   <metadata name="mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>120, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="resource" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAiCAYAAABfqvm9AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALEQAA
+        CxEBf2RfkQAAAyRJREFUSEutlktME1EUhluggFAeogIFSylSEERJ0IAQCoqlBo1C1WhKF4owRJ5tfSGI
+        InFBIoiAOzcsjCuXxo2JuHCtiQ9iYuJGQCMUg49ITMgc/1MYbAultGWSP3Nn7j1fzrnnnjMjl3m/NJgy
+        QPlQ7NKy37i/hZ5Dn9awdZuKwlMvNB2tUFChKolOZu+gU9D+lGRShisIc7NQHxTjC6rFglcqZTT1Hyyh
+        yeazInW2iXTDRk5h/KXlnDh8SE/qGCWD30M7vUEzMTFhTFeTw1ovUs9Foq52oo4Wd3W1Ec/N2RupOlPL
+        0G9Qnid0E168PqxV09+OVqLrq4A8wVizALhJl8HQDy777GT3pCLMaZsgrgsmwRHB3KULYkZ8LEP7JS9V
+        GHweNJQ6Q1kRoqdnns+weVBVwcBpiHMgM0cpwmiytY433X8gbByIbHNkBEMbGDiwNzlx9QT48k6a77ZS
+        mTqFgUMMHD2u0+JY2P33TgLetFNtbhYDR53AamSK8NLv/XMBWnZlLwMH96mCDdlG5WmpDBxmD2u5xKba
+        zgeYlFaatS8nRWBgKjR131ge2LHBVo0eNbB3DoirzXnd2o6D7bA3iquWm7dso1J+Xm4SM+PjGDggwfiu
+        hMZrkO0FbgbrOY+dKNGudnEpu9zKElyBPM7m0M05OtSylegaDNY6h902EvJz2bMZaI8nTHouwOBHb2kR
+        jtEaZYhyG6ksY9g8pPcGk96fkctk9MJyYrEHrugyVnonWMSosDAGNvuCSfMP87ZtofmrzeKK0LEdRzI0
+        DBtbL4zXpUNz9wx69wrCvj09fYxhrBJ/gLz2jhZ97s+Vpv9eogkYtWkMe+IvjNeroV+PTVWLe4lmOi5Y
+        KEQuZ6AxECDbPHI2DgaiInr1RQx7EyiM7UwJkZH03SYQIdzClCQG3g4GuJWTM2auoRlrA0WEhjKwOBgg
+        2768W1FKY2YTw75C0cECh+p251DfgWIGPgsWxvaCHt8L/h3B2K2jBAo3auJiKCshnoH1gUJc7QrCQ0Ok
+        hFRuBFAHiAixh0UbAUwEhP8LGbjc4oMBR8D4IzQBxfkC/QPrtkwul0a/hQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="$this.FormFactorShadowProperty" xml:space="preserve">
     <value>Smartphone</value>
   </metadata>
   <metadata name="$this.Skin" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAIAEBAAAAAAIABoBAAAJgAAACAgAAAAACAAqBAAAI4EAAAoAAAAEAAAACAAAAABACAAAAAAAEAE
