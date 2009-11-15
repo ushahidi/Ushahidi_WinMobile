@@ -43,18 +43,6 @@
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuItemAction
-            // 
-            this.menuItemAction.MenuItems.Add(this.menuItemClear);
-            this.menuItemAction.MenuItems.Add(this.menuItemSeparator);
-            this.menuItemAction.MenuItems.Add(this.menuItemDone);
-            this.menuItemAction.Text = "Action";
-            this.menuItemAction.Click += new System.EventHandler(this.OnDone);
-            // 
-            // menuItemSettings
-            // 
-            this.menuItemSettings.Enabled = false;
-            // 
             // panelContent
             // 
             this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -71,7 +59,7 @@
             this.panelContent.Controls.Add(this.textBoxFirstName);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(176, 320);
+            this.panelContent.Size = new System.Drawing.Size(176, 200);
             // 
             // textBoxVersion
             // 
@@ -84,7 +72,7 @@
             this.textBoxVersion.Location = new System.Drawing.Point(0, 0);
             this.textBoxVersion.Multiline = false;
             this.textBoxVersion.Name = "textBoxVersion";
-            this.textBoxVersion.Size = new System.Drawing.Size(169, 45);
+            this.textBoxVersion.Size = new System.Drawing.Size(162, 45);
             this.textBoxVersion.TabIndex = 0;
             this.textBoxVersion.TabStop = false;
             this.textBoxVersion.Value = "";
@@ -95,16 +83,14 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxMapType.BackColor = System.Drawing.Color.WhiteSmoke;
             this.comboBoxMapType.Bold = true;
-            this.comboBoxMapType.DataSource = null;
             this.comboBoxMapType.DisplayMember = "NativeName";
             this.comboBoxMapType.IsRequired = true;
             this.comboBoxMapType.Label = "Map Type";
             this.comboBoxMapType.Location = new System.Drawing.Point(0, 90);
             this.comboBoxMapType.Name = "comboBoxMapType";
             this.comboBoxMapType.SelectedIndex = -1;
-            this.comboBoxMapType.SelectedItem = null;
             this.comboBoxMapType.SelectedText = "";
-            this.comboBoxMapType.Size = new System.Drawing.Size(169, 45);
+            this.comboBoxMapType.Size = new System.Drawing.Size(162, 45);
             this.comboBoxMapType.TabIndex = 2;
             this.comboBoxMapType.ValueMember = "Name";
             // 
@@ -118,7 +104,7 @@
             this.checkBoxKeyboard.Label = "Keyboard";
             this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 270);
             this.checkBoxKeyboard.Name = "checkBoxKeyboard";
-            this.checkBoxKeyboard.Size = new System.Drawing.Size(162, 45);
+            this.checkBoxKeyboard.Size = new System.Drawing.Size(155, 45);
             this.checkBoxKeyboard.TabIndex = 6;
             // 
             // comboBoxLanguages
@@ -127,16 +113,14 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxLanguages.BackColor = System.Drawing.Color.Gainsboro;
             this.comboBoxLanguages.Bold = true;
-            this.comboBoxLanguages.DataSource = null;
             this.comboBoxLanguages.DisplayMember = "NativeName";
             this.comboBoxLanguages.IsRequired = true;
             this.comboBoxLanguages.Label = "Language";
             this.comboBoxLanguages.Location = new System.Drawing.Point(0, 45);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.SelectedIndex = -1;
-            this.comboBoxLanguages.SelectedItem = null;
             this.comboBoxLanguages.SelectedText = "";
-            this.comboBoxLanguages.Size = new System.Drawing.Size(169, 45);
+            this.comboBoxLanguages.Size = new System.Drawing.Size(162, 45);
             this.comboBoxLanguages.TabIndex = 1;
             this.comboBoxLanguages.ValueMember = "Name";
             this.comboBoxLanguages.SelectedIndexChanged += new System.EventHandler(this.OnLanguageChanged);
@@ -151,7 +135,7 @@
             this.textBoxEmail.Location = new System.Drawing.Point(0, 225);
             this.textBoxEmail.Multiline = false;
             this.textBoxEmail.Name = "textBoxEmail";
-            this.textBoxEmail.Size = new System.Drawing.Size(169, 45);
+            this.textBoxEmail.Size = new System.Drawing.Size(162, 45);
             this.textBoxEmail.TabIndex = 5;
             this.textBoxEmail.Value = "";
             // 
@@ -165,7 +149,7 @@
             this.textBoxLastName.Location = new System.Drawing.Point(0, 180);
             this.textBoxLastName.Multiline = false;
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(169, 45);
+            this.textBoxLastName.Size = new System.Drawing.Size(162, 45);
             this.textBoxLastName.TabIndex = 4;
             this.textBoxLastName.Value = "";
             // 
@@ -179,7 +163,7 @@
             this.textBoxFirstName.Location = new System.Drawing.Point(0, 135);
             this.textBoxFirstName.Multiline = false;
             this.textBoxFirstName.Name = "textBoxFirstName";
-            this.textBoxFirstName.Size = new System.Drawing.Size(169, 45);
+            this.textBoxFirstName.Size = new System.Drawing.Size(162, 45);
             this.textBoxFirstName.TabIndex = 3;
             this.textBoxFirstName.Value = "";
             // 
@@ -201,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 320);
+            this.ClientSize = new System.Drawing.Size(176, 200);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";

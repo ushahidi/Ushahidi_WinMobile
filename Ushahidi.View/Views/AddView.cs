@@ -27,6 +27,8 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
+            dateBoxTime.Type = LabelDateBox.Types.Date;
+            dateBoxTime.Type = LabelDateBox.Types.Time;
             panel.BackColor =
             textBoxTitle.BackColor =
             dateBoxDate.BackColor =

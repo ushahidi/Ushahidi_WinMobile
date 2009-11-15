@@ -12,6 +12,12 @@ namespace Ushahidi.Common.Controls
     /// </summary>
     public partial class LabelDateBox : UserControl
     {
+        const string TIME_FORMAT = "H:mm";
+        const string DATE_FORMAT = "MMMM d, yyyy";
+
+        /// <summary>
+        /// Date Formats
+        /// </summary>
         public enum Types
         {
             Date,
@@ -38,12 +44,14 @@ namespace Ushahidi.Common.Controls
                 _Type = value;
                 if (value == Types.Date)
                 {
-                    dateTimePicker.Format = DateTimePickerFormat.Long;
+                    dateTimePicker.Format = DateTimePickerFormat.Custom;
+                    dateTimePicker.CustomFormat = DATE_FORMAT;
                     dateTimePicker.ShowUpDown = false;
                 }
                 else if (value == Types.Time)
                 {
-                    dateTimePicker.Format = DateTimePickerFormat.Time;
+                    dateTimePicker.Format = DateTimePickerFormat.Custom;
+                    dateTimePicker.CustomFormat = TIME_FORMAT;
                     dateTimePicker.ShowUpDown = true;
                 }
             }
@@ -164,7 +172,8 @@ namespace Ushahidi.Common.Controls
                 if (value != DateTime.MinValue && value != DateTime.MaxValue)
                 {
                     dateTimePicker.Value = value;
-                    dateTimePicker.Format = (dateTimePicker.ShowUpDown) ? DateTimePickerFormat.Time : DateTimePickerFormat.Long;
+                    dateTimePicker.Format = DateTimePickerFormat.Custom;
+                    dateTimePicker.CustomFormat = (Type == Types.Date) ? DATE_FORMAT : TIME_FORMAT;
                 }
                 else
                 {

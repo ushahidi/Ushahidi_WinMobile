@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Ushahidi.Common;
 using Ushahidi.Model.Extensions;
 using Ushahidi.View.Controls;
 
@@ -20,12 +21,18 @@ namespace Ushahidi.View.Views
             textBlockDescription.BackColor = Colors.Background;
             BackColor = Colors.Background;
         }
+        
         public override void Translate()
         {
             base.Translate();
             this.Translate("about");
             textBlockDescription.Translate("ushahidiDescription");
             textBlockDescription.AdjustHeight();
+        }
+
+        public override void Render()
+        {
+            base.Render();
         }
 
         /// <summary>

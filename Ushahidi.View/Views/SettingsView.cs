@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.Model.Extensions;
@@ -50,7 +49,6 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             base.Render();
-            textBoxVersion.Value = Runtime.AppVersion;
             textBoxVersion.Width = panelContent.ClientRectangle.Width;
             textBoxEmail.Width = panelContent.ClientRectangle.Width;
             textBoxFirstName.Width = panelContent.ClientRectangle.Width;
@@ -75,6 +73,15 @@ namespace Ushahidi.View.Views
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Application version
+        /// </summary>
+        public string Version
+        {
+            get { return textBoxVersion.Value; }
+            set { textBoxVersion.Value = value; }
         }
 
         /// <summary>

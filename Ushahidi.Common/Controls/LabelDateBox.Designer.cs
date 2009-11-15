@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label = new System.Windows.Forms.Label();
-            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.focusTimer = new System.Windows.Forms.Timer();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // label
@@ -40,6 +40,11 @@
             this.label.Location = new System.Drawing.Point(4, 2);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(233, 18);
+            // 
+            // focusTimer
+            // 
+            this.focusTimer.Interval = 200;
+            this.focusTimer.Tick += new System.EventHandler(this.OnFocusTimer);
             // 
             // dateTimePicker
             // 
@@ -56,11 +61,6 @@
             this.dateTimePicker.GotFocus += new System.EventHandler(this.OnGotFocus);
             this.dateTimePicker.LostFocus += new System.EventHandler(this.OnLostFocus);
             // 
-            // focusTimer
-            // 
-            this.focusTimer.Interval = 200;
-            this.focusTimer.Tick += new System.EventHandler(this.OnFocusTimer);
-            // 
             // LabelDateBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -76,7 +76,7 @@
         #endregion
 
         private System.Windows.Forms.Label label;
-        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.Timer focusTimer;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }

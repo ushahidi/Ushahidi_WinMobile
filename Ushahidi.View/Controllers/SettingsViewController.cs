@@ -1,4 +1,5 @@
-﻿using Ushahidi.Model;
+﻿using Ushahidi.Common;
+using Ushahidi.Model;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -10,6 +11,7 @@ namespace Ushahidi.View.Controllers
     {
         public override void Load(object[] parameters)
         {
+            View.Version = Runtime.AppVersion;
             View.Languages = DataManager.Languages;
             View.Language = DataManager.Language;
             View.MapTypes = DataManager.MapTypes;
