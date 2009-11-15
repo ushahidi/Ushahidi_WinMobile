@@ -59,9 +59,6 @@ namespace Ushahidi.View.Views
         /// </summary>
         public bool ShouldSave { get; private set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public string Username { get; set; }
         public string Password { get; set; }
         public string MapApiKey { get; set; }
@@ -213,19 +210,26 @@ namespace Ushahidi.View.Views
 
         private void UpdateMapAndMarker(Image image, double latitude, double longitude)
         {
-            MarkerX = pictureBox.Width / 2 - imageList.ImageSize.Width / 2;
-            MarkerY = pictureBox.Height / 2 - imageList.ImageSize.Height;
-            if (pictureBox.Image != null)
+            Log.Info("MapView.UpdateMapAndMarker", "");
+            try
             {
-                pictureBox.Image.Dispose();
-                pictureBox.Image = null;
-            }
-            pictureBox.Image = image;
-            menuItemAddIncident.Enabled = true;
-            WaitCursor.Hide();
+                MarkerX = pictureBox.Width / 2 - imageList.ImageSize.Width / 2;
+                MarkerY = pictureBox.Height / 2 - imageList.ImageSize.Height;
+                if (pictureBox.Image != null)
+                {
+                    pictureBox.Image.Dispose();
+                    pictureBox.Image = null;
+                }
+                pictureBox.Image = image;
+                menuItemAddIncident.Enabled = true;
 
-            textBoxLocationName.Text = string.Format("{0}, {1}", MarkerX, MarkerY);
-            textBoxLocationName.Value = string.Format("{0}, {1}", latitude, longitude);
+                textBoxLocationName.Text = string.Format("{0}, {1}", MarkerX, MarkerY);
+                textBoxLocationName.Value = string.Format("{0}, {1}", latitude, longitude);
+            }
+            finally
+            {
+                WaitCursor.Hide();    
+            }
         }
 
         private void OnAddLocation(object sender, EventArgs e)

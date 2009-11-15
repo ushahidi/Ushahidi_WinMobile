@@ -16,6 +16,8 @@ namespace Ushahidi.View.Controllers
             View.Language = DataManager.Language;
             View.MapTypes = DataManager.MapTypes;
             View.MapType = DataManager.MapType;
+            View.Locales = DataManager.Locales;
+            View.DefaultLocale = DataManager.DefaultLocale;
             View.FirstName = DataManager.FirstName;
             View.LastName = DataManager.LastName;
             View.Email = DataManager.Email;
@@ -26,6 +28,7 @@ namespace Ushahidi.View.Controllers
         {
             DataManager.Language = View.Language;
             DataManager.MapType = View.MapType;
+            DataManager.DefaultLocale = View.DefaultLocale;
             DataManager.FirstName = View.FirstName;
             DataManager.LastName = View.LastName;
             DataManager.Email = View.Email;

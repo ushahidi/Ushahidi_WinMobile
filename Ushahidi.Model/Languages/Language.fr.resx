@@ -384,4 +384,7 @@
   <data name="version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="defaultLocation" xml:space="preserve">
+    <value>Emplacement par défaut</value>
+  </data>
 </root>

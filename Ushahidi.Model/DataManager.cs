@@ -38,6 +38,7 @@ namespace Ushahidi.Model
         private const string RegKeyEmail = "Email";
         private const string RegKeyMapType = "Maptype";
         private const string RegKeyMapZoomLevel = "MapZoomLevel";
+        private const string RegKeyDefaultLocale = "DefaultLocale";
         private const string GoogleMapApiKey = "ABQIAAAAbBp5ldXb8kPYkZBnJ3s41RSEmPulsHbWDF8kadrMDbdex3-Z4BTbs5-9i1AkCIoGYgsph72Mjc1g_Q";
 
         /// <summary>
@@ -100,6 +101,11 @@ namespace Ushahidi.Model
         /// </summary>
         public static int MapZoomLevel { get; set; }
 
+        /// <summary>
+        /// Default Locale Name
+        /// </summary>
+        private static string DefaultLocaleName { get; set; }
+
         static DataManager()
         {
             RegistryKey registryKey = Registry.LocalMachine.CreateSubKey(RegKeyUshahidi);
@@ -131,6 +137,8 @@ namespace Ushahidi.Model
 
                 MapZoomLevel = Convert.ToInt32(registryKey.GetValue(RegKeyMapZoomLevel, "14"));
 
+                DefaultLocaleName = registryKey.GetValue(RegKeyDefaultLocale, "").ToString();
+
                 registryKey.Close();
             }
         }
@@ -144,18 +152,26 @@ namespace Ushahidi.Model
             RegistryKey registryKey = Registry.LocalMachine.CreateSubKey(RegKeyUshahidi);
             if (registryKey != null)
             {
-                registryKey.SetValue(RegKeyServer, ServerAddress);
-                registryKey.SetValue(RegKeyLanguage, Language);
-                registryKey.SetValue(RegKeyLastSync, LastSyncDate.ToString());
-                registryKey.SetValue(RegKeyShowKeyboard, ShowKeyboard.ToString());
-                registryKey.SetValue(RegKeyDownloadIncidents, ShouldDownloadIncidents.ToString());
-                registryKey.SetValue(RegKeyDownloadMedia, ShouldDownloadMedia.ToString());
-                registryKey.SetValue(RegKeyDownloadMaps, ShouldDownloadMaps.ToString());
-                registryKey.SetValue(RegKeyFirstName, FirstName);
-                registryKey.SetValue(RegKeyLastName, LastName);
-                registryKey.SetValue(RegKeyEmail, Email);
-                registryKey.SetValue(RegKeyMapType, MapType);
-                registryKey.SetValue(RegKeyMapZoomLevel, MapZoomLevel.ToString());
+                try
+                {
+                    registryKey.SetValue(RegKeyServer, ServerAddress);
+                    registryKey.SetValue(RegKeyLanguage, Language);
+                    registryKey.SetValue(RegKeyLastSync, LastSyncDate.ToString());
+                    registryKey.SetValue(RegKeyShowKeyboard, ShowKeyboard.ToString());
+                    registryKey.SetValue(RegKeyDownloadIncidents, ShouldDownloadIncidents.ToString());
+                    registryKey.SetValue(RegKeyDownloadMedia, ShouldDownloadMedia.ToString());
+                    registryKey.SetValue(RegKeyDownloadMaps, ShouldDownloadMaps.ToString());
+                    registryKey.SetValue(RegKeyFirstName, FirstName);
+                    registryKey.SetValue(RegKeyLastName, LastName);
+                    registryKey.SetValue(RegKeyEmail, Email);
+                    registryKey.SetValue(RegKeyMapType, MapType);
+                    registryKey.SetValue(RegKeyMapZoomLevel, MapZoomLevel.ToString());
+                    registryKey.SetValue(RegKeyDefaultLocale, DefaultLocale != null ? DefaultLocale.Name : "");
+                }
+                catch (Exception ex)
+                {
+                    Log.Exception("DataManager.Save", "Exception: {0}", ex.Message);
+                }
                 return true;
             }
             return false;
@@ -459,6 +475,26 @@ namespace Ushahidi.Model
                 return _Locales;
             }
         }private static Locales _Locales;
+
+        /// <summary>
+        /// Default Locale
+        /// </summary>
+        public static Locale DefaultLocale
+        {
+            get
+            {
+                if (_DefaultLocale == null && String.IsNullOrEmpty(DefaultLocaleName) == false)
+                {
+                    _DefaultLocale = _Locales.FirstOrDefault(locale => locale.Name == DefaultLocaleName);
+                }
+                return _DefaultLocale;
+            }
+            set
+            {
+                _DefaultLocale = value;
+                DefaultLocaleName = value != null ? value.Name : null;
+            }
+        }private static Locale _DefaultLocale;
 
         #endregion
 

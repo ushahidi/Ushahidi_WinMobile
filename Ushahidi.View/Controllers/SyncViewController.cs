@@ -1,4 +1,5 @@
-﻿using Ushahidi.Model;
+﻿using Ushahidi.Common.Logging;
+using Ushahidi.Model;
 using Ushahidi.View.Views;
 
 namespace Ushahidi.View.Controllers
@@ -13,6 +14,7 @@ namespace Ushahidi.View.Controllers
         /// </summary>
         public override void Load(object[] parameters)
         {
+            Log.Info("SyncViewController.Load", "");
             View.LastSyncDate = DataManager.LastSyncDate;
             View.ServerAddress = DataManager.ServerAddress;
             View.ShouldDownloadIncidents = DataManager.ShouldDownloadIncidents;
@@ -26,6 +28,7 @@ namespace Ushahidi.View.Controllers
         /// <returns></returns>
         public override bool Save()
         {
+            Log.Info("SyncViewController.Save", "");
             DataManager.ServerAddress = View.ServerAddress;
             DataManager.LastSyncDate = View.LastSyncDate;
             DataManager.ShouldDownloadIncidents = View.ShouldDownloadIncidents;

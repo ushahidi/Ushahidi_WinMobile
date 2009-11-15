@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using Ushahidi.Common.Controls;
+using Ushahidi.Common.MVC;
 using Ushahidi.Model;
 using Ushahidi.Model.Extensions;
+using Ushahidi.Model.Models;
 using Ushahidi.View.Controls;
 
 namespace Ushahidi.View.Views
@@ -29,6 +31,7 @@ namespace Ushahidi.View.Views
             comboBoxMapType.BackColor = Colors.Background;
             checkBoxKeyboard.BackColor = Colors.Background;
             panelContent.BackColor = Colors.Background;
+            comboBoxLocales.BackColor = Colors.Background;
         }
 
         public override void Translate()
@@ -42,6 +45,7 @@ namespace Ushahidi.View.Views
             textBoxLastName.Translate("lastName");
             comboBoxLanguages.Translate("language");
             comboBoxMapType.Translate("mapType");
+            comboBoxLocales.Translate("defaultLocation");
             checkBoxKeyboard.Translate("keyboard", "autoShow");
             menuItemClear.Translate("clearCache");
         }
@@ -56,6 +60,7 @@ namespace Ushahidi.View.Views
             comboBoxLanguages.Width = panelContent.ClientRectangle.Width;
             comboBoxMapType.Width = panelContent.ClientRectangle.Width;
             checkBoxKeyboard.Width = panelContent.ClientRectangle.Width;
+            comboBoxLocales.Width = panelContent.ClientRectangle.Width;
         }
        
         public override bool Validate()
@@ -82,6 +87,23 @@ namespace Ushahidi.View.Views
         {
             get { return textBoxVersion.Value; }
             set { textBoxVersion.Value = value; }
+        }
+
+        /// <summary>
+        /// Locales
+        /// </summary>
+        public Models<Locale> Locales
+        {
+            set { comboBoxLocales.DataSource = value; }
+        }
+
+        /// <summary>
+        /// Default Locale
+        /// </summary>
+        public Locale DefaultLocale
+        {
+            get { return comboBoxLocales.SelectedValue<Locale>(); }
+            set { comboBoxLocales.SelectedItem = value; }
         }
 
         /// <summary>

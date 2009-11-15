@@ -30,8 +30,8 @@ namespace Ushahidi.View.Controllers
             {
                 View.Categories = DataManager.Categories;
                 View.Locales = DataManager.Locales;
+                View.Locale = DataManager.DefaultLocale;
                 View.Title = string.Empty;
-                View.Locale = null;
                 View.Date = DateTime.Now;
                 View.Description = string.Empty;
                 View.MediaItems = null;
