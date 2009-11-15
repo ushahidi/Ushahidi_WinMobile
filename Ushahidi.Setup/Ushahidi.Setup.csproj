@@ -74,25 +74,21 @@ $(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.
 
 $(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.pfx $(ProjectDir)Resources\*.Model.resources.dll
 
-$(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.pfx $(ProjectDir)Resources\Ushahidi.*.exe
+$(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.pfx $(ProjectDir)Resources\Ushahidi.exe
 
 
-$(ProjectDir)Tools\cabwiz.exe $(ProjectDir)Resources\Ushahidi.WM6.inf /prexml $(ProjectDir)Resources\Ushahidi.xml
-
-$(ProjectDir)Tools\cabwiz.exe $(ProjectDir)Resources\Ushahidi.PPC2003.inf /prexml $(ProjectDir)Resources\Ushahidi.xml
+$(ProjectDir)Tools\cabwiz.exe $(ProjectDir)Resources\Ushahidi.inf /prexml $(ProjectDir)Resources\Ushahidi.xml
 
 
-copy "$(ProjectDir)Resources\Ushahidi.*.cab" $(ProjectDir)
+copy "$(ProjectDir)Resources\Ushahidi.cab" $(ProjectDir)
 
 
-$(ProjectDir)Tools\Compil32.exe /cc $(ProjectDir)Resources\Ushahidi.WM6.iss
-
-$(ProjectDir)Tools\Compil32.exe /cc $(ProjectDir)Resources\Ushahidi.PPC2003.iss
+$(ProjectDir)Tools\Compil32.exe /cc $(ProjectDir)Resources\Ushahidi.iss
 
 
-$(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.pfx $(ProjectDir)Ushahidi.*.exe
+$(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.pfx $(ProjectDir)Ushahidi.exe
 
-$(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.pfx $(ProjectDir)Ushahidi.*.cab
+$(ProjectDir)Tools\signtool.exe sign /p goma /f $(ProjectDir)Resources\Ushahidi.pfx $(ProjectDir)Ushahidi.cab
 
 
 del /q /f $(TargetPath)</PostBuildEvent>
