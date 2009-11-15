@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Forms;
+using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.View.Controllers;

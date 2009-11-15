@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.Model.Extensions;
@@ -21,7 +22,7 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            buttonClearCache.Click += OnClearCache;
+            textBoxVersion.BackColor = Colors.Background;
             textBoxEmail.BackColor = Colors.Background;
             textBoxFirstName.BackColor = Colors.Background;
             textBoxLastName.BackColor = Colors.Background;
@@ -35,16 +36,30 @@ namespace Ushahidi.View.Views
         {
             base.Translate();
             this.Translate("settings");
-            menuItemAction.Translate("done");
+            menuItemAction.Translate("action");
+            textBoxVersion.Translate("version");
             textBoxEmail.Translate("email");
             textBoxFirstName.Translate("firstName");
             textBoxLastName.Translate("lastName");
             comboBoxLanguages.Translate("language");
             comboBoxMapType.Translate("mapType");
             checkBoxKeyboard.Translate("keyboard", "autoShow");
-            buttonClearCache.Translate("clearCache");
+            menuItemClear.Translate("clearCache");
         }
 
+        public override void Render()
+        {
+            base.Render();
+            textBoxVersion.Value = Runtime.AppVersion;
+            textBoxVersion.Width = panelContent.ClientRectangle.Width;
+            textBoxEmail.Width = panelContent.ClientRectangle.Width;
+            textBoxFirstName.Width = panelContent.ClientRectangle.Width;
+            textBoxLastName.Width = panelContent.ClientRectangle.Width;
+            comboBoxLanguages.Width = panelContent.ClientRectangle.Width;
+            comboBoxMapType.Width = panelContent.ClientRectangle.Width;
+            checkBoxKeyboard.Width = panelContent.ClientRectangle.Width;
+        }
+       
         public override bool Validate()
         {
             if (comboBoxLanguages.SelectedIndex == -1)
@@ -153,19 +168,20 @@ namespace Ushahidi.View.Views
             panelContent.Height = ClientRectangle.Height - args.Height;
         }
 
-        private static void OnClearCache(object sender, EventArgs e)
+        private void OnClearCache(object sender, EventArgs e)
         {
             if (Dialog.Question("clearCache".Translate(), "areYouSure".Translate()))
             {
-                bool result;
-                using (new WaitCursor())
+                WaitCursor.Show();
+                if (DataManager.ClearCacheFiles())
                 {
-                    result = DataManager.ClearCacheFiles();
-                }
-                if (result)
-                {
+                    WaitCursor.Hide();
                     DataManager.LastSyncDate = DateTime.MinValue;
                     Dialog.Info("clearCache".Translate(), "done".Translate());
+                }
+                else
+                {
+                    WaitCursor.Hide();
                 }
             }
         }

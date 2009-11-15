@@ -30,19 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsView));
             this.panelContent = new System.Windows.Forms.Panel();
-            this.buttonClearCache = new Ushahidi.Common.Controls.ImageButton();
+            this.textBoxVersion = new Ushahidi.Common.Controls.LabelTextBox();
             this.comboBoxMapType = new Ushahidi.Common.Controls.LabelComboBox();
             this.checkBoxKeyboard = new Ushahidi.Common.Controls.LabelCheckBox();
             this.comboBoxLanguages = new Ushahidi.Common.Controls.LabelComboBox();
             this.textBoxEmail = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxLastName = new Ushahidi.Common.Controls.LabelTextBox();
             this.textBoxFirstName = new Ushahidi.Common.Controls.LabelTextBox();
+            this.menuItemDone = new System.Windows.Forms.MenuItem();
+            this.menuItemClear = new System.Windows.Forms.MenuItem();
+            this.menuItemSeparator = new System.Windows.Forms.MenuItem();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuItemAction
             // 
-            this.menuItemAction.Text = "Done";
+            this.menuItemAction.MenuItems.Add(this.menuItemClear);
+            this.menuItemAction.MenuItems.Add(this.menuItemSeparator);
+            this.menuItemAction.MenuItems.Add(this.menuItemDone);
+            this.menuItemAction.Text = "Action";
             this.menuItemAction.Click += new System.EventHandler(this.OnDone);
             // 
             // menuItemSettings
@@ -56,7 +62,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.AutoScroll = true;
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelContent.Controls.Add(this.buttonClearCache);
+            this.panelContent.Controls.Add(this.textBoxVersion);
             this.panelContent.Controls.Add(this.comboBoxMapType);
             this.panelContent.Controls.Add(this.checkBoxKeyboard);
             this.panelContent.Controls.Add(this.comboBoxLanguages);
@@ -65,24 +71,23 @@
             this.panelContent.Controls.Add(this.textBoxFirstName);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(176, 450);
+            this.panelContent.Size = new System.Drawing.Size(176, 320);
             // 
-            // buttonClearCache
+            // textBoxVersion
             // 
-            this.buttonClearCache.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textBoxVersion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonClearCache.BackColor = System.Drawing.Color.LightGray;
-            this.buttonClearCache.BackColorSelected = System.Drawing.Color.Gray;
-            this.buttonClearCache.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.buttonClearCache.DisabledImage = null;
-            this.buttonClearCache.Image = null;
-            this.buttonClearCache.Label = "Clear Cache Files";
-            this.buttonClearCache.Location = new System.Drawing.Point(3, 228);
-            this.buttonClearCache.Momentary = false;
-            this.buttonClearCache.Name = "buttonClearCache";
-            this.buttonClearCache.Pressed = false;
-            this.buttonClearCache.Size = new System.Drawing.Size(163, 26);
-            this.buttonClearCache.TabIndex = 6;
+            this.textBoxVersion.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxVersion.Enabled = false;
+            this.textBoxVersion.IsRequired = false;
+            this.textBoxVersion.Label = "Version";
+            this.textBoxVersion.Location = new System.Drawing.Point(0, 0);
+            this.textBoxVersion.Multiline = false;
+            this.textBoxVersion.Name = "textBoxVersion";
+            this.textBoxVersion.Size = new System.Drawing.Size(169, 45);
+            this.textBoxVersion.TabIndex = 0;
+            this.textBoxVersion.TabStop = false;
+            this.textBoxVersion.Value = "";
             // 
             // comboBoxMapType
             // 
@@ -94,13 +99,13 @@
             this.comboBoxMapType.DisplayMember = "NativeName";
             this.comboBoxMapType.IsRequired = true;
             this.comboBoxMapType.Label = "Map Type";
-            this.comboBoxMapType.Location = new System.Drawing.Point(0, 45);
+            this.comboBoxMapType.Location = new System.Drawing.Point(0, 90);
             this.comboBoxMapType.Name = "comboBoxMapType";
             this.comboBoxMapType.SelectedIndex = -1;
             this.comboBoxMapType.SelectedItem = null;
             this.comboBoxMapType.SelectedText = "";
             this.comboBoxMapType.Size = new System.Drawing.Size(169, 45);
-            this.comboBoxMapType.TabIndex = 1;
+            this.comboBoxMapType.TabIndex = 2;
             this.comboBoxMapType.ValueMember = "Name";
             // 
             // checkBoxKeyboard
@@ -111,10 +116,10 @@
             this.checkBoxKeyboard.CheckBox = "Auto Show";
             this.checkBoxKeyboard.Checked = false;
             this.checkBoxKeyboard.Label = "Keyboard";
-            this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 225);
+            this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 270);
             this.checkBoxKeyboard.Name = "checkBoxKeyboard";
-            this.checkBoxKeyboard.Size = new System.Drawing.Size(162, 28);
-            this.checkBoxKeyboard.TabIndex = 5;
+            this.checkBoxKeyboard.Size = new System.Drawing.Size(162, 45);
+            this.checkBoxKeyboard.TabIndex = 6;
             // 
             // comboBoxLanguages
             // 
@@ -126,13 +131,13 @@
             this.comboBoxLanguages.DisplayMember = "NativeName";
             this.comboBoxLanguages.IsRequired = true;
             this.comboBoxLanguages.Label = "Language";
-            this.comboBoxLanguages.Location = new System.Drawing.Point(0, 0);
+            this.comboBoxLanguages.Location = new System.Drawing.Point(0, 45);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.SelectedIndex = -1;
             this.comboBoxLanguages.SelectedItem = null;
             this.comboBoxLanguages.SelectedText = "";
             this.comboBoxLanguages.Size = new System.Drawing.Size(169, 45);
-            this.comboBoxLanguages.TabIndex = 0;
+            this.comboBoxLanguages.TabIndex = 1;
             this.comboBoxLanguages.ValueMember = "Name";
             this.comboBoxLanguages.SelectedIndexChanged += new System.EventHandler(this.OnLanguageChanged);
             // 
@@ -143,11 +148,11 @@
             this.textBoxEmail.BackColor = System.Drawing.Color.Gainsboro;
             this.textBoxEmail.IsRequired = false;
             this.textBoxEmail.Label = "Email";
-            this.textBoxEmail.Location = new System.Drawing.Point(0, 180);
+            this.textBoxEmail.Location = new System.Drawing.Point(0, 225);
             this.textBoxEmail.Multiline = false;
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(169, 45);
-            this.textBoxEmail.TabIndex = 4;
+            this.textBoxEmail.TabIndex = 5;
             this.textBoxEmail.Value = "";
             // 
             // textBoxLastName
@@ -157,11 +162,11 @@
             this.textBoxLastName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxLastName.IsRequired = false;
             this.textBoxLastName.Label = "Last Name";
-            this.textBoxLastName.Location = new System.Drawing.Point(0, 135);
+            this.textBoxLastName.Location = new System.Drawing.Point(0, 180);
             this.textBoxLastName.Multiline = false;
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(169, 45);
-            this.textBoxLastName.TabIndex = 3;
+            this.textBoxLastName.TabIndex = 4;
             this.textBoxLastName.Value = "";
             // 
             // textBoxFirstName
@@ -171,18 +176,32 @@
             this.textBoxFirstName.BackColor = System.Drawing.Color.Gainsboro;
             this.textBoxFirstName.IsRequired = false;
             this.textBoxFirstName.Label = "First Name";
-            this.textBoxFirstName.Location = new System.Drawing.Point(0, 90);
+            this.textBoxFirstName.Location = new System.Drawing.Point(0, 135);
             this.textBoxFirstName.Multiline = false;
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(169, 45);
-            this.textBoxFirstName.TabIndex = 2;
+            this.textBoxFirstName.TabIndex = 3;
             this.textBoxFirstName.Value = "";
+            // 
+            // menuItemDone
+            // 
+            this.menuItemDone.Text = "Done";
+            this.menuItemDone.Click += new System.EventHandler(this.OnDone);
+            // 
+            // menuItemClear
+            // 
+            this.menuItemClear.Text = "Clear Cache Files";
+            this.menuItemClear.Click += new System.EventHandler(this.OnClearCache);
+            // 
+            // menuItemSeparator
+            // 
+            this.menuItemSeparator.Text = "-";
             // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 450);
+            this.ClientSize = new System.Drawing.Size(176, 320);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";
@@ -201,7 +220,10 @@
         private Ushahidi.Common.Controls.LabelTextBox textBoxLastName;
         private Ushahidi.Common.Controls.LabelTextBox textBoxFirstName;
         private Ushahidi.Common.Controls.LabelComboBox comboBoxMapType;
-        private Ushahidi.Common.Controls.ImageButton buttonClearCache;
+        private System.Windows.Forms.MenuItem menuItemDone;
+        private System.Windows.Forms.MenuItem menuItemClear;
+        private System.Windows.Forms.MenuItem menuItemSeparator;
+        private Ushahidi.Common.Controls.LabelTextBox textBoxVersion;
 
     }
 }

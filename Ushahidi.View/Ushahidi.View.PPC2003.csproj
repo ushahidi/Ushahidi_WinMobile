@@ -195,7 +195,6 @@
     <Content Include="Ushahidi.ico" />
     <EmbeddedResource Include="Resources\ushahidi_btn.png" />
     <EmbeddedResource Include="Resources\ushahidi_icon.ico" />
-    <EmbeddedResource Include="Resources\ushahidi_map.jpg" />
     <EmbeddedResource Include="Resources\ushahidi_title.png" />
     <EmbeddedResource Include="Views\AboutView.resx">
       <DependentUpon>AboutView.cs</DependentUpon>

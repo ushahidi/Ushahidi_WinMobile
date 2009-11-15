@@ -176,7 +176,7 @@ namespace Ushahidi.View.Views
             if (LocationService.Start())
             {
                 menuItemDetectLocation.Enabled = false;
-                ProgressPanel.Show(this, "detectingLocation".Translate(), "cancel".Translate(), OnDetectLocationCancelled);
+                WaitCursor.Show();
             }
             else
             {
@@ -186,19 +186,9 @@ namespace Ushahidi.View.Views
             menuItemAddIncident.Enabled = false;
         }
 
-        private void OnDetectLocationCancelled(object sender, EventArgs e)
-        {
-            Log.Info("MapView.OnDetectLocationCancelled", "");
-            LocationService.Stop();
-            ProgressPanel.Hide(this);
-            menuItemDetectLocation.Enabled = true;
-            WaitCursor.Hide();
-        }
-
         private void OnDetectLocationChanged(object sender, LocationEventArgs args)
         {
             Log.Info("MapView.OnDetectLocationChanged", "");
-            ProgressPanel.Hide(this);
             WaitCursor.Show();
             Latitude = args.Latitude;
             Longitude = args.Longitude;

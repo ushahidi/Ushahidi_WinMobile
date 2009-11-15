@@ -381,4 +381,7 @@
   <data name="locationName" xml:space="preserve">
     <value>Location Name</value>
   </data>
+  <data name="version" xml:space="preserve">
+    <value>Version</value>
+  </data>
 </root>
