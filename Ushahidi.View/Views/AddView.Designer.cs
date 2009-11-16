@@ -127,7 +127,7 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 180);
+            this.panel.Size = new System.Drawing.Size(176, 400);
             // 
             // dateBoxTime
             // 
@@ -257,7 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(176, 180);
+            this.ClientSize = new System.Drawing.Size(176, 400);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";

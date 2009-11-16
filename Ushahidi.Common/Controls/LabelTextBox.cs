@@ -126,7 +126,11 @@ namespace Ushahidi.Common.Controls
         public bool Multiline
         {
             get { return textBox.Multiline; }
-            set { textBox.Multiline = value; }
+            set
+            {
+                textBox.Multiline = value;
+                textBox.ScrollBars = value ? ScrollBars.Vertical : ScrollBars.None;
+            }
         }
 
         /// <summary>

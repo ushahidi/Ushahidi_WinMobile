@@ -43,15 +43,13 @@
             // 
             // textBox
             // 
-            this.textBox.AcceptsReturn = true;
-            this.textBox.AcceptsTab = true;
             this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox.Location = new System.Drawing.Point(4, 21);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(233, 21);
-            this.textBox.TabIndex = 1;
+            this.textBox.Size = new System.Drawing.Size(233, 22);
+            this.textBox.TabIndex = 0;
             this.textBox.TextChanged += new System.EventHandler(this.OnTextChanged);
             this.textBox.GotFocus += new System.EventHandler(this.OnGotFocus);
             this.textBox.LostFocus += new System.EventHandler(this.OnLostFocus);
