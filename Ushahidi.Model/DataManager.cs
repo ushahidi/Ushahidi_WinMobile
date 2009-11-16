@@ -769,7 +769,7 @@ namespace Ushahidi.Model
         public static IEnumerable<string> MapTypes
         {
             get { return _MapTypes; }
-        }private static readonly string[] _MapTypes = new[] { "Roadmap", "Mobile", "Satellite", "Terrain", "Hybrid" };
+        }private static readonly string[] _MapTypes = new[] { "Roadmap", "Satellite", "Terrain", "Hybrid" };
 
         public static string MapType
         {

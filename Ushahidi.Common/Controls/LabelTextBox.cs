@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Ushahidi.Common.Extensions;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.Controls
 {
@@ -63,6 +64,7 @@ namespace Ushahidi.Common.Controls
         /// <returns>true, if focussed</returns>
         public new bool Focus()
         {
+            Log.Info("LabelTextBox.Focus");
             return textBox.Enabled ? textBox.Focus() : false;
         }
 

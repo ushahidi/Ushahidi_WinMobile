@@ -272,6 +272,7 @@ namespace Ushahidi.View.Views
             Log.Info("AddView.OnSave");
             ShouldSave = true;
             OnBack();
+            textBoxTitle.Focus();
         }
 
         private void OnCancel(object sender, EventArgs e)
@@ -279,6 +280,7 @@ namespace Ushahidi.View.Views
             Log.Info("AddView.OnCancel");
             ShouldSave = false;
             OnBack();
+            textBoxTitle.Focus();
         }
 
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)

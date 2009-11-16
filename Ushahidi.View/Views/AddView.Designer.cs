@@ -106,7 +106,7 @@
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
             this.scrollListBox.SelectedItem = null;
-            this.scrollListBox.Size = new System.Drawing.Size(148, 20);
+            this.scrollListBox.Size = new System.Drawing.Size(141, 20);
             this.scrollListBox.TabIndex = 7;
             // 
             // panel
@@ -127,7 +127,7 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 500);
+            this.panel.Size = new System.Drawing.Size(176, 180);
             // 
             // dateBoxTime
             // 
@@ -138,7 +138,7 @@
             this.dateBoxTime.Label = "Time";
             this.dateBoxTime.Location = new System.Drawing.Point(0, 90);
             this.dateBoxTime.Name = "dateBoxTime";
-            this.dateBoxTime.Size = new System.Drawing.Size(175, 45);
+            this.dateBoxTime.Size = new System.Drawing.Size(168, 45);
             this.dateBoxTime.TabIndex = 2;
             this.dateBoxTime.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Time;
             this.dateBoxTime.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
@@ -153,7 +153,7 @@
             this.textBoxVideo.Location = new System.Drawing.Point(0, 345);
             this.textBoxVideo.Multiline = false;
             this.textBoxVideo.Name = "textBoxVideo";
-            this.textBoxVideo.Size = new System.Drawing.Size(175, 45);
+            this.textBoxVideo.Size = new System.Drawing.Size(168, 45);
             this.textBoxVideo.TabIndex = 7;
             this.textBoxVideo.Value = "";
             // 
@@ -167,7 +167,7 @@
             this.textBoxNews.Location = new System.Drawing.Point(0, 300);
             this.textBoxNews.Multiline = false;
             this.textBoxNews.Name = "textBoxNews";
-            this.textBoxNews.Size = new System.Drawing.Size(175, 45);
+            this.textBoxNews.Size = new System.Drawing.Size(168, 45);
             this.textBoxNews.TabIndex = 6;
             this.textBoxNews.Value = "";
             // 
@@ -181,7 +181,7 @@
             this.textBoxDescription.Location = new System.Drawing.Point(0, 225);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(175, 75);
+            this.textBoxDescription.Size = new System.Drawing.Size(168, 75);
             this.textBoxDescription.TabIndex = 5;
             this.textBoxDescription.Value = "";
             // 
@@ -193,7 +193,7 @@
             this.checkBoxesCategories.Label = "Category";
             this.checkBoxesCategories.Location = new System.Drawing.Point(0, 180);
             this.checkBoxesCategories.Name = "checkBoxesCategories";
-            this.checkBoxesCategories.Size = new System.Drawing.Size(175, 45);
+            this.checkBoxesCategories.Size = new System.Drawing.Size(168, 45);
             this.checkBoxesCategories.TabIndex = 4;
             // 
             // comboBoxLocales
@@ -211,7 +211,7 @@
             this.comboBoxLocales.SelectedIndex = -1;
             this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
-            this.comboBoxLocales.Size = new System.Drawing.Size(175, 45);
+            this.comboBoxLocales.Size = new System.Drawing.Size(168, 45);
             this.comboBoxLocales.TabIndex = 3;
             this.comboBoxLocales.ValueMember = "";
             // 
@@ -224,7 +224,7 @@
             this.dateBoxDate.Label = "Date";
             this.dateBoxDate.Location = new System.Drawing.Point(0, 45);
             this.dateBoxDate.Name = "dateBoxDate";
-            this.dateBoxDate.Size = new System.Drawing.Size(175, 45);
+            this.dateBoxDate.Size = new System.Drawing.Size(168, 45);
             this.dateBoxDate.TabIndex = 1;
             this.dateBoxDate.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Date;
             this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
@@ -239,7 +239,7 @@
             this.textBoxTitle.Location = new System.Drawing.Point(0, 0);
             this.textBoxTitle.Multiline = false;
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(175, 45);
+            this.textBoxTitle.Size = new System.Drawing.Size(168, 45);
             this.textBoxTitle.TabIndex = 0;
             this.textBoxTitle.Value = "";
             // 
@@ -257,7 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = false;
-            this.ClientSize = new System.Drawing.Size(176, 500);
+            this.ClientSize = new System.Drawing.Size(176, 180);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";
