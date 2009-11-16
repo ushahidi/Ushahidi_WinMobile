@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Logging;
@@ -19,7 +18,6 @@ namespace Ushahidi.View.Views
         public MapView()
         {
             InitializeComponent();
-            pictureBox.MouseDown += OnMouseMove;
         }
 
         /// <summary>
@@ -54,6 +52,19 @@ namespace Ushahidi.View.Views
             }
         }private MapService _MapService;
 
+        private GoogleGeocodeService GoogleGeocodeService
+        {
+            get
+            {
+                if (_GoogleGeocodeService == null)
+                {
+                    _GoogleGeocodeService = new GoogleGeocodeService(MapApiKey);
+                    _GoogleGeocodeService.ReverseGeocoded += OnReverseGeocoded;
+                }
+                return _GoogleGeocodeService;
+            }
+        }private GoogleGeocodeService _GoogleGeocodeService;
+
         /// <summary>
         /// Is the process cancelled?
         /// </summary>
@@ -62,17 +73,18 @@ namespace Ushahidi.View.Views
         public string Username { get; set; }
         public string Password { get; set; }
         public string MapApiKey { get; set; }
-
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        
         public bool Satellite { get; set; }
 
-        private int MarkerX = int.MinValue;
-        private int MarkerY = int.MinValue;
-        private int CenterX = int.MinValue;
-        private int CenterY = int.MinValue;
-        
+        public double Latitude
+        {
+            get { return mapBox.Latitude; }
+        }
+
+        public double Longitude
+        {
+            get { return mapBox.Longitude; }
+        }
+
         public int ZoomLevel
         {
             get { return _ZoomLevel; }
@@ -84,6 +96,7 @@ namespace Ushahidi.View.Views
                     menuItem.Checked = Convert.ToInt32(menuItem.Text) == value;
                     menuItem.Click += OnZoomLevelChanged;
                 }
+                mapBox.ZoomLevel = value;
                 _ZoomLevel = value;
             }
         }private int _ZoomLevel = 1;
@@ -118,19 +131,6 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             textBoxLocationName.BackColor = Colors.Background;
-            pictureBox.Paint += OnPictureBoxPaint;
-        }
-
-        private void OnPictureBoxPaint(object sender, PaintEventArgs e)
-        {
-            if (MarkerX > double.MinValue && MarkerY > double.MinValue)
-            {
-                Color transparencyColor = Color.Transparent;
-                ImageAttributes imageAttributes = new ImageAttributes();
-                imageAttributes.SetColorKey(transparencyColor, transparencyColor);
-                Rectangle rectangle = new Rectangle(MarkerX, MarkerY, imageList.ImageSize.Width, imageList.ImageSize.Height);
-                e.Graphics.DrawImage(imageList.Images[0], rectangle, 0, 0, imageList.ImageSize.Width, imageList.ImageSize.Height, GraphicsUnit.Pixel, imageAttributes);
-            }
         }
 
         public override void Translate()
@@ -149,8 +149,6 @@ namespace Ushahidi.View.Views
             base.Render();
             menuItemMenu.Enabled = false;
             ShouldSave = true;
-            CenterX = pictureBox.Width / 2;
-            CenterY = pictureBox.Height / 2;
         }
 
         public override bool Validate()
@@ -186,50 +184,39 @@ namespace Ushahidi.View.Views
         private void OnDetectLocationChanged(object sender, LocationEventArgs args)
         {
             Log.Info("MapView.OnDetectLocationChanged", "");
+            
+            mapBox.Latitude = args.Latitude;
+            mapBox.Longitude = args.Longitude;
+
             WaitCursor.Show();
-            Latitude = args.Latitude;
-            Longitude = args.Longitude;
-            MapService.GetMap(args.Latitude, args.Longitude, pictureBox.Width, pictureBox.Height, ZoomLevel, Satellite);
+            MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
         }
 
         private void OnZoomLevelChanged(object sender, EventArgs e)
         {
             Log.Info("MapView.OnZoomLevelChanged", "");
             WaitCursor.Show();
-            ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
-            MapService.GetMap(Latitude, Longitude, pictureBox.Width, pictureBox.Height, ZoomLevel, Satellite);
+            mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
+            MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
         }
 
         private void OnMapDownloaded(object sender, MapEventArgs args)
         {
             Log.Info("MapView.OnMapDownloaded", "");
-            Invoke(new UpdateMapAndMarkerHandler(UpdateMapAndMarker), args.Image, Latitude, Longitude);
+            GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
+            Invoke(new UpdateMapHandler(UpdateMap), args.Image, mapBox.Latitude, mapBox.Longitude);
         }
 
-        private delegate void UpdateMapAndMarkerHandler(Image image, double latitude, double longitude);
+        private delegate void UpdateMapHandler(Image image, double latitude, double longitude);
 
-        private void UpdateMapAndMarker(Image image, double latitude, double longitude)
+        private void UpdateMap(Image image, double latitude, double longitude)
         {
-            Log.Info("MapView.UpdateMapAndMarker", "");
-            try
-            {
-                MarkerX = pictureBox.Width / 2 - imageList.ImageSize.Width / 2;
-                MarkerY = pictureBox.Height / 2 - imageList.ImageSize.Height;
-                if (pictureBox.Image != null)
-                {
-                    pictureBox.Image.Dispose();
-                    pictureBox.Image = null;
-                }
-                pictureBox.Image = image;
-                menuItemAddIncident.Enabled = true;
-
-                textBoxLocationName.Text = string.Format("{0}, {1}", MarkerX, MarkerY);
-                textBoxLocationName.Value = string.Format("{0}, {1}", latitude, longitude);
-            }
-            finally
-            {
-                WaitCursor.Hide();    
-            }
+            Log.Info("MapView.UpdateMapAndMarker", "{0}, {1}", latitude, longitude);
+            mapBox.Latitude = latitude;
+            mapBox.Longitude = longitude;
+            mapBox.Image = image;
+            menuItemAddIncident.Enabled = true;
+            WaitCursor.Hide();
         }
 
         private void OnAddLocation(object sender, EventArgs e)
@@ -246,23 +233,24 @@ namespace Ushahidi.View.Views
             OnBack();
         }
 
-        private void OnMouseMove(object sender, MouseEventArgs e)
+        private void OnPlacemarkChanged(double latitude, double longitude)
         {
-            textBoxLocationName.Text = string.Format("{0}, {1}", e.X, e.Y);
-
-            Geolocation geolocation = new Geolocation(e.X - CenterX, e.Y - CenterY, Latitude, Longitude, ZoomLevel);
-            textBoxLocationName.Value = string.Format("{0}, {1}", geolocation.Latitude, geolocation.Longitude);
-
-            Latitude = geolocation.Latitude;
-            Longitude = geolocation.Longitude;
-
-            MarkerX = e.X - (imageList.ImageSize.Width / 2);
-            MarkerY = e.Y - imageList.ImageSize.Height;
-
-            pictureBox.Invalidate();
-
+            Log.Info("MapView.OnPlacemarkChanged");
             WaitCursor.Show();
-            MapService.GetMap(Latitude, Longitude, pictureBox.Width, pictureBox.Height, ZoomLevel, Satellite);
-        }  
+            MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+        }
+
+        private void OnReverseGeocoded(string address)
+        {
+            Log.Info("MapView.OnReverseGeocoded: {0}", address);
+            Invoke(new UpdateLocationHandler(UpdateLocation), address);
+        }
+
+        private delegate void UpdateLocationHandler(string address);
+
+        private void UpdateLocation(string address)
+        {
+            textBoxLocationName.Value = address;
+        }
     }
 }

@@ -30,15 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapView));
             this.panelContent = new System.Windows.Forms.Panel();
+            this.mapBox = new Ushahidi.Common.Controls.MapBox();
             this.textBoxLocationName = new Ushahidi.Common.Controls.LabelTextBox();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.menuItemDetectLocation = new System.Windows.Forms.MenuItem();
             this.menuItemZoom = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
             this.menuItemAddLocation = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
-            this.imageList = new System.Windows.Forms.ImageList();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,11 +57,26 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.mapBox);
             this.panelContent.Controls.Add(this.textBoxLocationName);
-            this.panelContent.Controls.Add(this.pictureBox);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(176, 180);
+            // 
+            // mapBox
+            // 
+            this.mapBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.mapBox.Image = null;
+            this.mapBox.Latitude = 0;
+            this.mapBox.Location = new System.Drawing.Point(0, 45);
+            this.mapBox.Longitude = 0;
+            this.mapBox.Name = "mapBox";
+            this.mapBox.Size = new System.Drawing.Size(176, 135);
+            this.mapBox.TabIndex = 0;
+            this.mapBox.ZoomLevel = 0;
+            this.mapBox.MarkerChanged += new Ushahidi.Common.Controls.MapBox.MarkerChangedHandler(this.OnPlacemarkChanged);
             // 
             // textBoxLocationName
             // 
@@ -77,15 +91,6 @@
             this.textBoxLocationName.Size = new System.Drawing.Size(176, 45);
             this.textBoxLocationName.TabIndex = 1;
             this.textBoxLocationName.Value = "";
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox.Location = new System.Drawing.Point(0, 45);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(176, 135);
             // 
             // menuItemDetectLocation
             // 
@@ -114,12 +119,6 @@
             this.menuItemCancel.Text = "Cancel";
             this.menuItemCancel.Click += new System.EventHandler(this.OnCancel);
             // 
-            // imageList
-            // 
-            this.imageList.ImageSize = new System.Drawing.Size(20, 34);
-            this.imageList.Images.Clear();
-            this.imageList.Images.Add(((System.Drawing.Image)(resources.GetObject("resource"))));
-            // 
             // MapView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -137,7 +136,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelContent;
-        private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.MenuItem menuItemDetectLocation;
         private System.Windows.Forms.MenuItem menuItemZoom;
         private System.Windows.Forms.MenuItem menuItemSeparator1;
@@ -145,7 +143,7 @@
         private System.Windows.Forms.MenuItem menuItemSeparator2;
         private System.Windows.Forms.MenuItem menuItemCancel;
         private Ushahidi.Common.Controls.LabelTextBox textBoxLocationName;
-        private System.Windows.Forms.ImageList imageList;
+        private Ushahidi.Common.Controls.MapBox mapBox;
 
     }
 }

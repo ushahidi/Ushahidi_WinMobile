@@ -130,6 +130,12 @@
     <Compile Include="Controls\LabelTextBox.Designer.cs">
       <DependentUpon>LabelTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MapBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MapBox.Designer.cs">
+      <DependentUpon>MapBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ProgressBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     <EmbeddedResource Include="Controls\LabelTextBox.resx">
       <DependentUpon>LabelTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MapBox.resx">
+      <DependentUpon>MapBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ProgressBox.resx">
       <DependentUpon>ProgressBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,6 +235,7 @@
     <None Include="Ushahidi.Common.snk" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\map_marker.png" />
     <Content Include="Ushahidi.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
