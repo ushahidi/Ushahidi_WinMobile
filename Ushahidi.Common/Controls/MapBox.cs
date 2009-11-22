@@ -81,12 +81,11 @@ namespace Ushahidi.Common.Controls
             }
             if (Focused)
             {
-                Rectangle rectangle = ClientRectangle;
-                rectangle.X += (int) (Border.Width / 2);
-                rectangle.Y += (int) (Border.Width / 2);
-                rectangle.Width -= (int) Border.Width;
-                rectangle.Height -= (int) Border.Width;
-                e.Graphics.DrawRectangle(Border, rectangle);
+                e.Graphics.DrawRectangle(Border, 
+                                        (int)(Border.Width / 2),
+                                        (int)(Border.Width / 2),
+                                        (int)(ClientRectangle.Width - Border.Width - (Border.Width / 2)),
+                                        (int)(ClientRectangle.Height - Border.Width - (Border.Width / 2)));
             }
         }
         
@@ -110,7 +109,12 @@ namespace Ushahidi.Common.Controls
         protected override void OnKeyDown(KeyEventArgs e)
         {
             Log.Info("MapBox.OnKeyDown: {0}", e.KeyCode);
-            if (e.KeyCode == Keys.Left)
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Back)
+            {
+                e.Handled = true;
+                Parent.SelectNextControl(this, true, true, true, true);
+            }
+            else if (e.KeyCode == Keys.Left)
             {
                 MarkerX -= DISTANCE_DELTA;
                 Invalidate();

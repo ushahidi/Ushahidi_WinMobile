@@ -48,6 +48,7 @@ namespace Ushahidi.View.Views
             comboBoxLocales.Translate("defaultLocation");
             checkBoxKeyboard.Translate("keyboard", "autoShow");
             menuItemClear.Translate("clearCache");
+            menuItemDone.Translate("done");
         }
 
         public override void Render()

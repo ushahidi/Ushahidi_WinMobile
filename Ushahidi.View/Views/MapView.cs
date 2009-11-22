@@ -100,6 +100,7 @@ namespace Ushahidi.View.Views
         public double Latitude
         {
             get { return mapBox.Latitude; }
+            set { mapBox.Latitude = value; }
         }
 
         /// <summary>
@@ -108,6 +109,7 @@ namespace Ushahidi.View.Views
         public double Longitude
         {
             get { return mapBox.Longitude; }
+            set { mapBox.Longitude = value; }
         }
 
         /// <summary>
@@ -167,6 +169,17 @@ namespace Ushahidi.View.Views
             textBoxLocationName.BackColor = Colors.Background;
         }
 
+        public override void Loaded()
+        {
+            base.Loaded();
+            if (Latitude != double.MinValue && Longitude != double.MinValue)
+            {
+                //load default locale
+                WaitCursor.Show();
+                MapService.GetMap(Latitude, Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+            }
+        }
+
         public override void Translate()
         {
             base.Translate();
@@ -182,6 +195,7 @@ namespace Ushahidi.View.Views
         {
             base.Render();
             menuItemMenu.Enabled = false;
+            menuItemAddLocation.Enabled = Latitude != double.MinValue && Longitude != double.MinValue;
             ShouldSave = true;
         }
 
@@ -238,18 +252,9 @@ namespace Ushahidi.View.Views
             }
         }
 
-        private void OnZoomLevelChanged(object sender, EventArgs e)
-        {
-            Log.Info("MapView.OnZoomLevelChanged", "ZoomLevel:{0}", ((MenuItem)sender).Text);
-            WaitCursor.Show();
-            mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
-            MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
-        }
-
         private void OnMapDownloaded(object sender, MapEventArgs args)
         {
             Log.Info("MapView.OnMapDownloaded", "Image:{0}", args.Image != null);
-            GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
             if (InvokeRequired)
             {
                 BeginInvoke(new MethodInvoker(delegate
@@ -265,7 +270,17 @@ namespace Ushahidi.View.Views
                 menuItemAddIncident.Enabled = true;
                 WaitCursor.Hide();
             }
+            WaitCursor.Show();
+            GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
         }
+
+       private void OnZoomLevelChanged(object sender, EventArgs e)
+       {
+           Log.Info("MapView.OnZoomLevelChanged", "ZoomLevel:{0}", ((MenuItem)sender).Text);
+           WaitCursor.Show();
+           mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
+           MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+       }
 
         private void OnAddLocation(object sender, EventArgs e)
         {
@@ -311,11 +326,13 @@ namespace Ushahidi.View.Views
                 BeginInvoke(new MethodInvoker(delegate
                 {
                     textBoxLocationName.Value = address;
+                    WaitCursor.Hide();
                 }));
             }
             else
             {
                 textBoxLocationName.Value = address;
+                WaitCursor.Hide();
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Collections.Generic;
 using Ushahidi.Common.Controls;
@@ -21,6 +22,13 @@ namespace Ushahidi.View.Views
         public AddView()
         {
             InitializeComponent();
+        }
+
+        public override void Loaded()
+        {
+            base.Loaded();
+            textBoxTitle.Focus();
+            panel.AutoScrollPosition = new Point(0, 0);
         }
 
         public override void Initialize()
@@ -71,6 +79,7 @@ namespace Ushahidi.View.Views
             textBoxVideo.Top = textBoxNews.Bottom;
             scrollListBox.Top = textBoxVideo.Bottom;
             scrollListBox.AdjustHeight();
+            scrollListBox.Enabled = scrollListBox.TabStop = MediaItems.Length > 0;
         }
 
         public override bool Validate()
@@ -272,7 +281,6 @@ namespace Ushahidi.View.Views
         {
             Log.Info("AddView.OnSave");
             ShouldSave = true;
-            textBoxTitle.Focus();
             OnBack();
         }
 
@@ -280,7 +288,6 @@ namespace Ushahidi.View.Views
         {
             Log.Info("AddView.OnCancel");
             ShouldSave = false;
-            textBoxTitle.Focus();
             OnBack();
         }
 

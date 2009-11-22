@@ -77,6 +77,7 @@
             this.buttonSynchronize.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSynchronize.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonSynchronize.BackColorFocussed = System.Drawing.Color.Silver;
             this.buttonSynchronize.BackColorSelected = System.Drawing.Color.Gray;
             this.buttonSynchronize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonSynchronize.DisabledImage = null;
@@ -95,6 +96,7 @@
             this.buttonAddIncident.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAddIncident.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonAddIncident.BackColorFocussed = System.Drawing.Color.Silver;
             this.buttonAddIncident.BackColorSelected = System.Drawing.Color.Gray;
             this.buttonAddIncident.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonAddIncident.DisabledImage = null;
@@ -113,6 +115,7 @@
             this.buttonIncidentList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonIncidentList.BackColor = System.Drawing.Color.Gainsboro;
+            this.buttonIncidentList.BackColorFocussed = System.Drawing.Color.Silver;
             this.buttonIncidentList.BackColorSelected = System.Drawing.Color.Gray;
             this.buttonIncidentList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.buttonIncidentList.DisabledImage = null;

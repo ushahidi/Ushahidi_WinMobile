@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Windows.Forms;
-using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.View.Controllers;
@@ -60,14 +58,6 @@ namespace Ushahidi.View.Views
         private void OnIncidentList(object sender, EventArgs e)
         {
             OnForward<ListViewController>(true);
-        }
-
-        /// <summary>
-        /// On incident map
-        /// </summary>
-        private void OnIncidentMap(object sender, EventArgs e)
-        {
-            OnForward<MapViewController>(true);
         }
 
         /// <summary>

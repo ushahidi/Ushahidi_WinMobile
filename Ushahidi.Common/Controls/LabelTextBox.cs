@@ -18,7 +18,7 @@ namespace Ushahidi.Common.Controls
         {
             InitializeComponent();
             label.Font = label.Font.ToBold();
-            //Keyboard.Register(textBox);
+            Keyboard.Register(textBox);
         }
 
         /// <summary>

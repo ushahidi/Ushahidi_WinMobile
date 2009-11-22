@@ -16,6 +16,12 @@ namespace Ushahidi.View.Views
             InitializeComponent();
         }
 
+        public override void Loaded()
+        {
+            base.Loaded();
+            buttonIncidentList.Focus();
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -29,12 +35,6 @@ namespace Ushahidi.View.Views
             buttonIncidentList.Translate("incidentList");
             buttonAddIncident.Translate("addIncident");
             buttonSynchronize.Translate("synchronize");
-        }
-
-        public override void Render()
-        {
-            base.Render();
-            buttonIncidentList.Focus();
         }
 
         /// <summary>

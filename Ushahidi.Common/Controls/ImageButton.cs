@@ -82,11 +82,17 @@ namespace Ushahidi.Common.Controls
             }
         }private Image _Image;
 
+        public Color BackColorFocussed
+        {
+            get { return _BackColorFocussed; }
+            set { _BackColorFocussed = value; }
+        }private Color _BackColorFocussed = Color.Silver;
+
         public Color BackColorSelected
         {
             get { return _BackColorSelected; }
             set { _BackColorSelected = value; }
-        }private Color _BackColorSelected = Color.White;
+        }private Color _BackColorSelected = Color.Gray;
 
         /// <summary>
         /// Disabled Image
@@ -155,7 +161,18 @@ namespace Ushahidi.Common.Controls
             base.OnPaintBackground(e);
             if (Image == null)
             {
-                e.Graphics.FillRectangle(new SolidBrush(Pressed ? BackColorSelected : BackColor), ClientRectangle);
+                if (Pressed)
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(BackColorSelected), ClientRectangle);
+                }
+                else if (Focused)
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(BackColorFocussed), ClientRectangle);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(new SolidBrush(BackColor), ClientRectangle);        
+                }
             }
         }
 
@@ -170,9 +187,13 @@ namespace Ushahidi.Common.Controls
                 }
                 if (Focused || Image == null && Pressed)
                 {
-                    using (Pen pen = new Pen(Color.Black))
+                    using (Pen pen = new Pen(Color.Black, 2))
                     {
-                        e.Graphics.DrawRectangle(pen, 0, 0, ClientRectangle.Width - 1, ClientRectangle.Height - 1);
+                        e.Graphics.DrawRectangle(pen, 
+                                                (int)(pen.Width / 2), 
+                                                (int)(pen.Width / 2),
+                                                (int)(ClientRectangle.Width - pen.Width - (pen.Width / 2)),
+                                                (int)(ClientRectangle.Height - pen.Width - (pen.Width / 2)));
                     }
                 }
             }

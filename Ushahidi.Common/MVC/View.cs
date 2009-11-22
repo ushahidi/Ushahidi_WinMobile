@@ -44,6 +44,14 @@ namespace Ushahidi.Common.MVC
         }
 
         /// <summary>
+        /// View Loaded
+        /// </summary>
+        public virtual void Loaded()
+        {
+            //implementing view can override and provide loaded code
+        }
+
+        /// <summary>
         /// The forward event
         /// </summary>
         public event ForwardHandler Forward;

@@ -42,6 +42,11 @@ namespace Ushahidi.Common.MVC
         void Translate();
 
         /// <summary>
+        /// Loaded View
+        /// </summary>
+        void Loaded();
+
+        /// <summary>
         /// Close view
         /// </summary>
         void Close();

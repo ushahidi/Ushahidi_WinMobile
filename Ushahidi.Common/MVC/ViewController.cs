@@ -96,6 +96,7 @@ namespace Ushahidi.Common.MVC
             Keyboard.Visible = false;
             View.Show();
             View.Focus();
+            View.Loaded();
         }
 
         /// <summary>
@@ -105,6 +106,11 @@ namespace Ushahidi.Common.MVC
         {
             Keyboard.Visible = false;
             View.Hide();
+        }
+
+        protected void OnLoaded(object sender, EventArgs e)
+        {
+            View.Loaded();
         }
 
         /// <summary>
@@ -129,6 +135,7 @@ namespace Ushahidi.Common.MVC
         /// <param name="parameters">parameters to return to previous view controller</param>
         protected void OnBack(params object [] parameters)
         {
+            WaitCursor.Hide();
             if (Back != null)
             {
                 Back(parameters);
@@ -147,6 +154,7 @@ namespace Ushahidi.Common.MVC
         /// <param name="parameters">parameters to pass to next view controller</param>
         protected void OnForward(Type type, params object[] parameters)
         {
+            WaitCursor.Hide();
             if (Forward != null)
             {
                 Forward(type, false, parameters);
@@ -161,6 +169,7 @@ namespace Ushahidi.Common.MVC
         /// <param name="parameters">parameters to pass to next view controller</param>
         protected void OnForward(Type type, bool clearStack, params object [] parameters)
         {
+            WaitCursor.Hide();
             if (Forward != null)
             {
                 Forward(type, clearStack, parameters);
@@ -177,6 +186,7 @@ namespace Ushahidi.Common.MVC
         /// </summary>
         protected void OnExit(params object [] parameters)
         {
+            WaitCursor.Hide();
             if (Exit != null)
             {
                 Exit(parameters);
