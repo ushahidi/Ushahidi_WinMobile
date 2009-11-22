@@ -44,7 +44,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Name = "MapBox";
             this.Size = new System.Drawing.Size(176, 135);
+            this.GotFocus += new System.EventHandler(this.OnGotFocus);
             this.Resize += new System.EventHandler(this.OnResize);
+            this.LostFocus += new System.EventHandler(this.OnLostFocus);
             this.ResumeLayout(false);
 
         }

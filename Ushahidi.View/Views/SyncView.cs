@@ -241,7 +241,7 @@ namespace Ushahidi.View.Views
         private void UpdateProgress(Status status, string text, int value)
         {
             progressBox.Value = value;
-            listView.Items.Add(new ListViewItem(text));
+            listView.Items.Insert(0, new ListViewItem(text));
             double totalSeconds = DateTime.Now.Subtract(StartTime).TotalSeconds;
             columnHeaderProgress.Width = -2;
             if (status == Status.Downloading)

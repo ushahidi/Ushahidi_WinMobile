@@ -31,6 +31,12 @@ namespace Ushahidi.View.Views
             buttonSynchronize.Translate("synchronize");
         }
 
+        public override void Render()
+        {
+            base.Render();
+            buttonIncidentList.Focus();
+        }
+
         /// <summary>
         /// The logo
         /// </summary>

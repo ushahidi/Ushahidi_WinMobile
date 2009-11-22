@@ -188,7 +188,7 @@ namespace Ushahidi.Common.Controls
             Log.Info("LabelDateBox.OnGotFocus");
             if (Type == Types.Date && ShouldEnableTimer)
             {
-                focusTimer.Enabled = true;
+                //focusTimer.Enabled = true;
             }
         }
 
@@ -198,12 +198,12 @@ namespace Ushahidi.Common.Controls
             if (focusTimer.Enabled)
             {
                 Log.Info("  Timer enabled");
-                ShouldEnableTimer = false;
+                //ShouldEnableTimer = false;
             }
             else
             {
                 Log.Info("  Timer disabled");
-                ShouldEnableTimer = true;
+                //ShouldEnableTimer = true;
             }
         }
 

@@ -54,6 +54,7 @@ namespace Ushahidi.View.Views
             comboBoxLocales.Translate("location");
             textBoxNews.Translate("news");
             textBoxVideo.Translate("video");
+            menuItemAction.Translate("action");
             menuItemSubmit.Translate("submit");
             menuItemCancel.Translate("cancel");
             menuItemAddPhoto.Translate("addPhoto");
@@ -271,16 +272,16 @@ namespace Ushahidi.View.Views
         {
             Log.Info("AddView.OnSave");
             ShouldSave = true;
-            OnBack();
             textBoxTitle.Focus();
+            OnBack();
         }
 
         private void OnCancel(object sender, EventArgs e)
         {
             Log.Info("AddView.OnCancel");
             ShouldSave = false;
-            OnBack();
             textBoxTitle.Focus();
+            OnBack();
         }
 
         private void OnKeyboardChanged(object sender, KeyboardEventArgs args)

@@ -30,9 +30,12 @@ namespace Ushahidi.Common.Controls
                     _Image.Dispose();
                     _Image = null;
                 }
+                if (value != null)
+                {
+                    MarkerX = CenterX;
+                    MarkerY = CenterY;    
+                }
                 _Image = value;
-                MarkerX = CenterX;
-                MarkerY = CenterY;
                 Invalidate();
             }
         }private Image _Image;
@@ -49,14 +52,8 @@ namespace Ushahidi.Common.Controls
         public MapBox()
         {
             InitializeComponent();
-        }
-
-        public void UpdateMap(Image image, double latitude, double longitude)
-        {
-            Image = image;
-            Latitude = latitude;
-            Longitude = longitude;
-            Invalidate();
+            CenterX = Width / 2;
+            CenterY = Height / 2;
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -84,7 +81,12 @@ namespace Ushahidi.Common.Controls
             }
             if (Focused)
             {
-                e.Graphics.DrawRectangle(Border, ClientRectangle);
+                Rectangle rectangle = ClientRectangle;
+                rectangle.X += (int) (Border.Width / 2);
+                rectangle.Y += (int) (Border.Width / 2);
+                rectangle.Width -= (int) Border.Width;
+                rectangle.Height -= (int) Border.Width;
+                e.Graphics.DrawRectangle(Border, rectangle);
             }
         }
         
@@ -188,7 +190,17 @@ namespace Ushahidi.Common.Controls
         {
             CenterX = Width / 2;
             CenterY = Height / 2;
+            Log.Info("MapBox.OnResize", "CenterX:{0} CenterY:{1}", CenterX, CenterY);
         }
 
+        private void OnLostFocus(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
+
+        private void OnGotFocus(object sender, EventArgs e)
+        {
+            Invalidate();
+        }
     }
 }

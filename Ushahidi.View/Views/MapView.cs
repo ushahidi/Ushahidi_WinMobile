@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Logging;
@@ -15,6 +14,11 @@ namespace Ushahidi.View.Views
     /// </summary>
     public partial class MapView : BaseView
     {
+        /// <summary>
+        /// MethodInvoker delegate declaration, since its not currently supported in Compact Framework 
+        /// </summary>
+        private delegate void MethodInvoker();
+
         public MapView()
         {
             InitializeComponent();
@@ -70,21 +74,45 @@ namespace Ushahidi.View.Views
         /// </summary>
         public bool ShouldSave { get; private set; }
 
+        /// <summary>
+        /// UserName
+        /// </summary>
         public string Username { get; set; }
+
+        /// <summary>
+        /// Password
+        /// </summary>
         public string Password { get; set; }
+
+        /// <summary>
+        /// MapApiKey
+        /// </summary>
         public string MapApiKey { get; set; }
+
+        /// <summary>
+        /// Is Map Satellite view?
+        /// </summary>
         public bool Satellite { get; set; }
 
+        /// <summary>
+        /// Latitude
+        /// </summary>
         public double Latitude
         {
             get { return mapBox.Latitude; }
         }
 
+        /// <summary>
+        /// Longitude
+        /// </summary>
         public double Longitude
         {
             get { return mapBox.Longitude; }
         }
 
+        /// <summary>
+        /// ZoomLevel
+        /// </summary>
         public int ZoomLevel
         {
             get { return _ZoomLevel; }
@@ -101,6 +129,9 @@ namespace Ushahidi.View.Views
             }
         }private int _ZoomLevel = 1;
         
+        /// <summary>
+        /// Zoom Levels
+        /// </summary>
         public IEnumerable<int> ZoomLevels
         {
             get { return _ZoomLevels; }
@@ -121,6 +152,9 @@ namespace Ushahidi.View.Views
             }
         }private IEnumerable<int> _ZoomLevels;
 
+        /// <summary>
+        /// Location Name
+        /// </summary>
         public string LocationName
         {
             get { return textBoxLocationName.Value; }
@@ -183,18 +217,30 @@ namespace Ushahidi.View.Views
 
         private void OnDetectLocationChanged(object sender, LocationEventArgs args)
         {
-            Log.Info("MapView.OnDetectLocationChanged", "");
-            
-            mapBox.Latitude = args.Latitude;
-            mapBox.Longitude = args.Longitude;
-
-            WaitCursor.Show();
-            MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+            Log.Info("MapView.OnDetectLocationChanged", "Latitude:{0} Longitude:{1}", args.Latitude, args.Longitude);
+            LocationService.Stop();
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate
+                {
+                    WaitCursor.Show();
+                    mapBox.Latitude = args.Latitude;
+                    mapBox.Longitude = args.Longitude;
+                    MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+                }));
+            }
+            else
+            {
+                WaitCursor.Show();
+                mapBox.Latitude = args.Latitude;
+                mapBox.Longitude = args.Longitude;
+                MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+            }
         }
 
         private void OnZoomLevelChanged(object sender, EventArgs e)
         {
-            Log.Info("MapView.OnZoomLevelChanged", "");
+            Log.Info("MapView.OnZoomLevelChanged", "ZoomLevel:{0}", ((MenuItem)sender).Text);
             WaitCursor.Show();
             mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
             MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
@@ -202,55 +248,75 @@ namespace Ushahidi.View.Views
 
         private void OnMapDownloaded(object sender, MapEventArgs args)
         {
-            Log.Info("MapView.OnMapDownloaded", "");
+            Log.Info("MapView.OnMapDownloaded", "Image:{0}", args.Image != null);
             GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
-            Invoke(new UpdateMapHandler(UpdateMap), args.Image, mapBox.Latitude, mapBox.Longitude);
-        }
-
-        private delegate void UpdateMapHandler(Image image, double latitude, double longitude);
-
-        private void UpdateMap(Image image, double latitude, double longitude)
-        {
-            Log.Info("MapView.UpdateMapAndMarker", "{0}, {1}", latitude, longitude);
-            mapBox.Latitude = latitude;
-            mapBox.Longitude = longitude;
-            mapBox.Image = image;
-            menuItemAddIncident.Enabled = true;
-            WaitCursor.Hide();
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate
+                {
+                    mapBox.Image = args.Image;
+                    menuItemAddIncident.Enabled = true;
+                    WaitCursor.Hide();
+                }));
+            }
+            else
+            {
+                mapBox.Image = args.Image;
+                menuItemAddIncident.Enabled = true;
+                WaitCursor.Hide();
+            }
         }
 
         private void OnAddLocation(object sender, EventArgs e)
         {
             Log.Info("MapView.OnAddLocation");
+            LocationService.Stop();
             ShouldSave = true;
+            WaitCursor.Hide();
             OnBack();   
         }
 
         private void OnCancel(object sender, EventArgs e)
         {
             Log.Info("MapView.OnCancel");
+            LocationService.Stop();
             ShouldSave = false;
+            WaitCursor.Hide();
             OnBack();
         }
 
         private void OnPlacemarkChanged(double latitude, double longitude)
         {
-            Log.Info("MapView.OnPlacemarkChanged");
-            WaitCursor.Show();
-            MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+            Log.Info("MapView.OnPlacemarkChanged", "Latitude:{0} Longitude:{1}", latitude, longitude);
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate
+                {
+                    WaitCursor.Show();
+                    MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+                }));
+            }
+            else
+            {
+                WaitCursor.Show();
+                MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+            }
         }
 
         private void OnReverseGeocoded(string address)
         {
-            Log.Info("MapView.OnReverseGeocoded: {0}", address);
-            Invoke(new UpdateLocationHandler(UpdateLocation), address);
-        }
-
-        private delegate void UpdateLocationHandler(string address);
-
-        private void UpdateLocation(string address)
-        {
-            textBoxLocationName.Value = address;
+            Log.Info("MapView.OnReverseGeocoded", "Address:{0}", address);
+            if (InvokeRequired)
+            {
+                BeginInvoke(new MethodInvoker(delegate
+                {
+                    textBoxLocationName.Value = address;
+                }));
+            }
+            else
+            {
+                textBoxLocationName.Value = address;
+            }
         }
     }
 }
