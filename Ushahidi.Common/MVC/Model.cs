@@ -71,7 +71,6 @@ namespace Ushahidi.Common.MVC
 
         public static TModel Parse<TModel>(string xml) where TModel : Model
         {
-            Log.Info("Model.Parse", xml);
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(TModel));

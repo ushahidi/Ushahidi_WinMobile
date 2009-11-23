@@ -72,10 +72,10 @@ namespace Ushahidi.Common.MVC
                     }
                 }
                 TModels models = new TModels();
-                WebRequest request = WebRequest.Create(url);
-                request.Timeout = 5000;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.KeepAlive = false;
                 request.Credentials = CredentialCache.DefaultCredentials;
-                using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     using (Stream dataStream = response.GetResponseStream())
                     {
@@ -104,8 +104,7 @@ namespace Ushahidi.Common.MVC
                                         if (duplicateModel.Delete())
                                         {
                                             uploaded.Remove(duplicateModel);
-                                            Log.Info("Models.Download", "Duplicate model deleted: {0}",
-                                                     duplicateModel.ID);
+                                            Log.Info("Models.Download", "Duplicate model deleted: {0}", duplicateModel.ID);
                                         }
                                     }
                                     models.Add(model);

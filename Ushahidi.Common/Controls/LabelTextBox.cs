@@ -53,7 +53,8 @@ namespace Ushahidi.Common.Controls
             get { return textBox.Enabled; }
             set
             {
-                textBox.Enabled = textBox.ReadOnly = value;
+                textBox.Enabled = value;
+                textBox.ReadOnly = !value;
                 textBox.BackColor = value ? Color.White : Color.WhiteSmoke;
             }
         }

@@ -52,8 +52,11 @@ namespace Ushahidi.Common.Net
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(TestURL);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                return response.StatusCode == HttpStatusCode.OK;
+                request.KeepAlive = false;
+                using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    return response.StatusCode == HttpStatusCode.OK;    
+                }
             }
             catch
             {

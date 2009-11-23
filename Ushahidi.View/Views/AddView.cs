@@ -79,7 +79,8 @@ namespace Ushahidi.View.Views
             textBoxVideo.Top = textBoxNews.Bottom;
             scrollListBox.Top = textBoxVideo.Bottom;
             scrollListBox.AdjustHeight();
-            scrollListBox.Enabled = scrollListBox.TabStop = MediaItems.Length > 0;
+            scrollListBox.Enabled = scrollListBox.TabStop = scrollListBox.Count > 0;
+            checkBoxesCategories.Enabled = checkBoxesCategories.TabStop = checkBoxesCategories.Names.Count() > 0;
         }
 
         public override bool Validate()

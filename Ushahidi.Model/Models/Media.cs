@@ -98,6 +98,7 @@ namespace Ushahidi.Model.Models
                     request.ReadWriteTimeout = 5000;
                     request.Method = "GET";
                     request.Timeout = 5000;
+                    request.KeepAlive = false;
                     using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                     {
                         using (Stream stream = response.GetResponseStream())

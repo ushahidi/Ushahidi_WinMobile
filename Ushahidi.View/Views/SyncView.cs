@@ -20,6 +20,13 @@ namespace Ushahidi.View.Views
             InitializeComponent();    
         }
 
+        public override void Loaded()
+        {
+            base.Loaded();
+            Synchronizing = false;
+            Log.Info("SyncView.Loaded", "Synchronizing:{0}", Synchronizing);
+        }
+
         public override void Initialize()
         {
             base.Initialize();
@@ -46,15 +53,12 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             base.Render();
-            progressBox.Value = 0;
             listView.Items.Clear();
             if (LastSyncDate > DateTime.MinValue)
             {
                 listView.Items.Add(new ListViewItem("lastSynchronization".Translate()));
-                listView.Items.Add(new ListViewItem(LastSyncDate.ToString("h:mm tt, dddd MMMM 2, yyyy")));    
+                listView.Items.Add(new ListViewItem(LastSyncDate.ToString("h:mm tt, ddd MMM d, yyyy")));    
             }
-            columnHeaderProgress.Width = -2;
-            listView.Focus();
         }
 
         /// <summary>
@@ -78,7 +82,7 @@ namespace Ushahidi.View.Views
         {
             get { return checkBoxDownloadIncidents.Checked; }
             set { checkBoxDownloadIncidents.Checked = value; }
-        }private bool _ShouldDownloadIncidents;
+        }
 
         /// <summary>
         /// Download Maps
@@ -87,8 +91,7 @@ namespace Ushahidi.View.Views
         {
             get { return checkBoxDownloadMaps.Checked; }
             set { checkBoxDownloadMaps.Checked = value; }
-        }private bool _ShouldDownloadMaps;
-
+        }
         /// <summary>
         /// Download Media
         /// </summary>
@@ -96,7 +99,7 @@ namespace Ushahidi.View.Views
         {
             get { return checkBoxDownloadMedia.Checked; }
             set { checkBoxDownloadMedia.Checked = value; }
-        }private bool _ShouldDownloadMedia;
+        }
 
         /// <summary>
         /// Start time
@@ -110,13 +113,38 @@ namespace Ushahidi.View.Views
         {
             set
             {
-                textBoxServer.Enabled = 
-                menuItemAction.Enabled = 
-                menuItemMenu.Enabled =
-                checkBoxDownloadIncidents.Enabled =
-                checkBoxDownloadMedia.Enabled =
-                checkBoxDownloadMaps.Enabled = !value;
+                if (value)
+                {
+                    WaitCursor.Show();
+                    progressBox.Value = 0;
+                    progressBox.Maximum = 10;
+                    listView.Items.Clear();
+                    columnHeaderProgress.Width = -2;
+                    StartTime = DateTime.Now;
+                    textBoxServer.Enabled =
+                    menuItemAction.Enabled =
+                    menuItemMenu.Enabled =
+                    checkBoxDownloadIncidents.Enabled =
+                    checkBoxDownloadMedia.Enabled =
+                    checkBoxDownloadMaps.Enabled = false;
+                    listView.Focus();
+                }
+                else
+                {
+                    WaitCursor.Hide();
+                    progressBox.Value = 0;
+                    progressBox.Text = "";
+                    columnHeaderProgress.Width = -2;
+                    textBoxServer.Enabled =
+                    menuItemAction.Enabled =
+                    menuItemMenu.Enabled =
+                    checkBoxDownloadIncidents.Enabled =
+                    checkBoxDownloadMedia.Enabled =
+                    checkBoxDownloadMaps.Enabled = true;
+                    textBoxServer.Focus(); 
+                }
             }
+            get { return !textBoxServer.Enabled; }
         }
 
         /// <summary>
@@ -125,27 +153,24 @@ namespace Ushahidi.View.Views
         public void OnSynchronize(object sender, EventArgs args)
         {
             Log.Info("SyncView.OnSynchronize");
-            progressBox.Value = 0;
-            progressBox.Maximum = 10;
-            listView.Items.Clear();
-            columnHeaderProgress.Width = -2;
-            StartTime = DateTime.Now;
             Synchronizing = true;
-            _ShouldDownloadIncidents = checkBoxDownloadIncidents.Checked;
-            _ShouldDownloadMedia = checkBoxDownloadMedia.Checked;
-            _ShouldDownloadMaps = checkBoxDownloadMaps.Checked;
             Internet.TestURL = textBoxServer.Value;
             DataManager.ScreenWidth = Screen.PrimaryScreen.Bounds.Width;
             DataManager.ScreenHeight = Screen.PrimaryScreen.Bounds.Height;
             DataManager.ServerAddress = textBoxServer.Value;
-            listView.Focus();
-            new Thread(SyncInternal).Start();
+            bool shouldDownloadIncidents = ShouldDownloadIncidents;
+            bool shouldDownloadMedia = ShouldDownloadMedia;
+            bool shouldDownloadMaps = ShouldDownloadMaps;
+            new Thread(() => Synchronize(shouldDownloadIncidents, shouldDownloadMedia, shouldDownloadMaps)).Start();
         }
 
         /// <summary>
-        /// Sync Internal
+        /// Synchronize
         /// </summary>
-        private void SyncInternal()
+        /// <param name="shouldDownloadIncidents">should download incidents?</param>
+        /// <param name="shouldDownloadMedia">should download media?</param>
+        /// <param name="shouldDownloadMaps">should download maps?</param>
+        private void Synchronize(bool shouldDownloadIncidents, bool shouldDownloadMedia, bool shouldDownloadMaps)
         {
             Log.Info("SyncView.SyncInternal");
             try
@@ -160,12 +185,12 @@ namespace Ushahidi.View.Views
                 }
                 else if (Download(DataManager.UploadIncidents, "uploadingIncidents".Translate(), 2) &&
                          Download(DataManager.UploadMedia, "uploadingPhotos".Translate(), 3) &&
-                         Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 4, _ShouldDownloadIncidents) &&
-                         Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 5, _ShouldDownloadIncidents) &&
-                         Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 6, _ShouldDownloadIncidents) &&
-                         Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 7, _ShouldDownloadIncidents) &&
-                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 8, _ShouldDownloadMedia) &&
-                         Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 9, _ShouldDownloadMaps))
+                         Download(DataManager.DownloadIncidents, "downloadingIncidents".Translate(), 4, shouldDownloadIncidents) &&
+                         Download(DataManager.DownloadCountries, "downloadingCountries".Translate(), 5, shouldDownloadIncidents) &&
+                         Download(DataManager.DownloadLocales, "downloadingLocations".Translate(), 6, shouldDownloadIncidents) &&
+                         Download(DataManager.DownloadCategories, "downloadingCategories".Translate(), 7, shouldDownloadIncidents) &&
+                         Download(DataManager.DownloadMedia, "downloadingMedia".Translate(), 8, shouldDownloadMedia) &&
+                         Download(DataManager.DownloadMaps, "downloadingMaps".Translate(), 9, shouldDownloadMaps))
                 {
                     Invoke(new UpdateProgressHandler(UpdateProgress), Status.Complete, "synchronizationComplete".Translate(), 10);
                 }
@@ -242,14 +267,14 @@ namespace Ushahidi.View.Views
         {
             progressBox.Value = value;
             listView.Items.Insert(0, new ListViewItem(text));
-            double totalSeconds = DateTime.Now.Subtract(StartTime).TotalSeconds;
             columnHeaderProgress.Width = -2;
             if (status == Status.Downloading)
             {
-                Cursor.Current = Cursors.WaitCursor;    
+                WaitCursor.Show();
             }
             else
             {
+                double totalSeconds = DateTime.Now.Subtract(StartTime).TotalSeconds;
                 if (status == Status.NoNetwork && Dialog.Warning("noNetworkConnection".Translate(), "verifyNetworkConnection".Translate()))
                 {
                     Log.Info("SyncView.UpdateProgress", "noNetworkConnection");
@@ -268,9 +293,14 @@ namespace Ushahidi.View.Views
                     LastSyncDate = DateTime.Now;
                 }
                 Synchronizing = false;
-                progressBox.Value = 0;
-                progressBox.Text = "";
-                Cursor.Current = Cursors.Default;
+                if (status == Status.Complete)
+                {
+                    OnBack();
+                }
+                else
+                {
+                    textBoxServer.Focus();
+                }
             }
             columnHeaderProgress.Width = -2;
         }

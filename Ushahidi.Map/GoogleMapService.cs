@@ -49,6 +49,7 @@ namespace Ushahidi.Map
                 Log.Info("GoogleMapService.GetMapInternal()", "URL: {0}", url);
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url.ToString());
+                request.KeepAlive = false;
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     using (Stream stream = response.GetResponseStream())

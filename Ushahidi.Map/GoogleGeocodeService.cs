@@ -45,6 +45,7 @@ namespace Ushahidi.Map
                 Log.Info("GoogleGeocodeService.ReverseGeocodeInternal()", "URL: {0}", url);
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url.ToString());
+                request.KeepAlive = false;
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     using (Stream dataStream = response.GetResponseStream())
