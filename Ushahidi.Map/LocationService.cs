@@ -118,6 +118,7 @@ namespace Ushahidi.Map
         private void OnLocationChanged(object sender, LocationChangedEventArgs args)
         {
             Log.Info("LocationService.OnLocationChanged", "lat={0} long={1}", args.Position.Latitude, args.Position.Longitude);
+            Timer.Enabled = false;
             if (LocationChanged != null)
             {
                 LocationChanged(this, new LocationEventArgs(args.Position.Latitude,
