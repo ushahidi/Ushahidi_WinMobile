@@ -80,7 +80,7 @@ namespace Ushahidi.Map
             {
                 if (Gps.Opened == false)
                 {
-                    //Gps.Open();
+                    Gps.Open();
                     Timer.Enabled = true;
                 }
                 return true;
