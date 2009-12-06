@@ -50,6 +50,9 @@ namespace Ushahidi.Map
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url.ToString());
                 request.KeepAlive = false;
+                request.AllowAutoRedirect = true;
+                request.ReadWriteTimeout = 2*60*1000; // 2 Minutes
+                request.Timeout = 2*60*1000; // 2 Minutess
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     using (Stream stream = response.GetResponseStream())
@@ -63,7 +66,7 @@ namespace Ushahidi.Map
             }
             catch (Exception ex)
             {
-                Log.Exception("MapService.GetMap", "Exception: {0}", ex.Message);
+                Log.Exception("GoogleMapService.GetMap", "Exception: {0}", ex.Message);
                 if (MapDownloaded != null)
                 {
                     MapDownloaded(this, new MapEventArgs(null, false));

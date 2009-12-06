@@ -68,6 +68,7 @@ namespace Ushahidi.View.Views
                     scrollListBox.Add(DataManager.LoadMap(Incident.ID));
                 }
             }
+            scrollListBox.Enabled = scrollListBox.TabStop = scrollListBox.Count > 0;
         }
 
         public Incident Incident { get; set; }

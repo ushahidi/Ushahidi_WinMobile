@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Map
 {
@@ -61,6 +62,8 @@ namespace Ushahidi.Map
         /// <param name="satellite">map satellite view?</param>
         public void GetMap(double latitude, double longitude, int width, int height, int zoom, bool satellite)
         {
+            Log.Info("MapService.GetMap", "Latitude:{0} Longitude:{1} Width:{2} Height:{3} Zoom:{4} Satellite:{5}", 
+                                          latitude, longitude, width, height, zoom, satellite);
             Latitude = latitude;
             Longitude = longitude;
             Width = width;

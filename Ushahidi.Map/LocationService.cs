@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Windows.Forms;
 using Microsoft.WindowsMobile.Samples.Location;
 using Ushahidi.Common.Logging;
-using Ushahidi.Map.Geocode.Staging;
-//using Ushahidi.Map.MapPoint.Staging;
 
 namespace Ushahidi.Map
 {
@@ -15,10 +14,19 @@ namespace Ushahidi.Map
 
         public delegate void StateEventHandler(object sender, StateEventArgs args);
 
+        /// <summary>
+        /// Location Changed Event Handler
+        /// </summary>
         public event LocationEventHandler LocationChanged;
 
+        /// <summary>
+        /// State Changed Event Handler
+        /// </summary>
         public event StateEventHandler StateChanged;
 
+        /// <summary>
+        /// GPS
+        /// </summary>
         private Gps Gps
         {
             get
@@ -33,16 +41,25 @@ namespace Ushahidi.Map
             }
         }private Gps _Gps;
 
-        protected string Username { get; private set; }
-
-        protected string Password { get; private set; }
-
-        public LocationService(string username, string password)
+        protected Timer Timer
         {
-            Username = username;
-            Password = password;
-        }
+            get
+            {
+                if (_Timer == null)
+                {
+                    _Timer = new Timer
+                    {
+                        Interval = 60*1000
+                    };
+                    _Timer.Tick += OnTimeOut;
+                }
+                return _Timer;
+            }
+        }private Timer _Timer;
 
+        /// <summary>
+        /// De-constructor
+        /// </summary>
         ~LocationService()
         {
             if (_Gps != null && _Gps.Opened)
@@ -52,81 +69,60 @@ namespace Ushahidi.Map
             _Gps = null;
         }
 
+        /// <summary>
+        /// Start Location Service
+        /// </summary>
+        /// <returns>true, if successful</returns>
         public bool Start()
         {
-            Log.Info("Locator.Start");
+            Log.Info("LocationService.Start");
             try
             {
                 if (Gps.Opened == false)
                 {
-                    Gps.Open();
+                    //Gps.Open();
+                    Timer.Enabled = true;
                 }
                 return true;
             }
             catch (Exception ex)
             {
-                Log.Exception("Locator.Start", "Exception: {0}", ex);
+                Log.Exception("LocationService.Start", "Exception: {0}", ex);
                 return false;
             }
         }
 
+        /// <summary>
+        /// Stop Location Service
+        /// </summary>
         public void Stop()
         {
-            Log.Info("Locator.Stop");
-            if (Gps.Opened)
+            Log.Info("LocationService.Stop");
+            if (Gps != null && Gps.Opened)
             {
                 Gps.Close();
             }
         }
 
+        private void OnTimeOut(object sender, EventArgs e)
+        {
+            Log.Info("LocationService.Timeout");
+            Timer.Enabled = false;
+            Stop();
+            if (LocationChanged != null)
+            {
+                LocationChanged(this, new LocationEventArgs(0, 0, string.Empty, false, false));
+            }
+        }
+
         private void OnLocationChanged(object sender, LocationChangedEventArgs args)
         {
-            Log.Info("Locator.OnLocationChanged", "lat={0} long={1}", args.Position.Latitude, args.Position.Longitude);
-            string requestToken = TokenService.GetToken(Username, Password);
-            string locationAddress = string.Empty;
-            if (requestToken != null)
-            {
-                Log.Info("VitualEarth Token", requestToken);
-                try
-                {
-                    ReverseGeocodeRequest reverseGeocodeRequest = new ReverseGeocodeRequest
-                    {
-                        Credentials = new Credentials { Token = requestToken },
-                        Location = new Location
-                        {
-                            Latitude = args.Position.Latitude,
-                            LatitudeSpecified = true,
-                            Longitude = args.Position.Longitude,
-                            LongitudeSpecified = true
-                        }
-                    };
-                    using (GeocodeService geocodeService = new GeocodeService())
-                    {
-                        GeocodeResponse geocodeResponse = geocodeService.ReverseGeocode(reverseGeocodeRequest);
-                        if (geocodeResponse.Results.Length > 0)
-                        {
-                            locationAddress = geocodeResponse.Results[0].DisplayName;
-                            Log.Info("Locator.OnLocationChanged", "DisplayName={0}", geocodeResponse.Results[0].DisplayName);
-                            Log.Info("Locator.OnLocationChanged", "Address={0}", geocodeResponse.Results[0].Address);
-                            Log.Info("Locator.OnLocationChanged", "EntityType={0}", geocodeResponse.Results[0].EntityType);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Exception("Locator.OnLocationChanged", "Exception: {0}", ex);
-                    locationAddress = null;
-                }
-            }
-            else
-            {
-                Log.Info("VitualEarth Token is NULL");
-            }
+            Log.Info("LocationService.OnLocationChanged", "lat={0} long={1}", args.Position.Latitude, args.Position.Longitude);
             if (LocationChanged != null)
             {
                 LocationChanged(this, new LocationEventArgs(args.Position.Latitude,
                                                             args.Position.Longitude,
-                                                            locationAddress,
+                                                            string.Empty,
                                                             args.Position.LatitudeValid,
                                                             args.Position.LongitudeValid));
             }
@@ -134,7 +130,7 @@ namespace Ushahidi.Map
 
         private void OnDeviceStateChanged(object sender, DeviceStateChangedEventArgs args)
         {
-            Log.Info("Locator.OnDeviceStateChanged", "FriendlyName={0}", args.DeviceState.FriendlyName);
+            Log.Info("LocationService.OnDeviceStateChanged", "FriendlyName={0}", args.DeviceState.FriendlyName);
             if (StateChanged != null)
             {
                 StateChanged(this, new StateEventArgs(args.DeviceState.FriendlyName, 
@@ -143,6 +139,9 @@ namespace Ushahidi.Map
             }
         }
 
+        /// <summary>
+        /// Close GPS Connection
+        /// </summary>
         public void Dispose()
         {
             if (_Gps != null && _Gps.Opened)

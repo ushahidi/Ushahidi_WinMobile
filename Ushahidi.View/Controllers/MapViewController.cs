@@ -19,6 +19,7 @@ namespace Ushahidi.View.Controllers
             View.MapApiKey = ResourcesManager.GoogleMapApiKey;
             View.ZoomLevel = DataManager.MapZoomLevel;
             View.ZoomLevels = Enumerable.Range(1, 20);
+            View.MaxZoomLevel = 20;
             if (DataManager.DefaultLocale != null && 
                 string.IsNullOrEmpty(DataManager.DefaultLocale.Latitude) == false &&
                 string.IsNullOrEmpty(DataManager.DefaultLocale.Longitude) == false)

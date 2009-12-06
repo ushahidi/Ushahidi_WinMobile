@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Drawing.Imaging;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Microsoft.WindowsCE.Forms;
 using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.Controls
@@ -19,7 +21,7 @@ namespace Ushahidi.Common.Controls
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public int ZoomLevel { get; set; }
-        
+
         public Image Image
         {
             get { return _Image; }
@@ -33,7 +35,7 @@ namespace Ushahidi.Common.Controls
                 if (value != null)
                 {
                     MarkerX = CenterX;
-                    MarkerY = CenterY;    
+                    MarkerY = CenterY;
                 }
                 _Image = value;
                 Invalidate();
@@ -54,6 +56,11 @@ namespace Ushahidi.Common.Controls
             InitializeComponent();
             CenterX = Width / 2;
             CenterY = Height / 2;
+            //mProc = new WndProcDelegate(WndProc);
+            //mOldWndProc = SetWindowLong(Handle, GWL_WNDPROC, Marshal.GetFunctionPointerForDelegate(mProc));
+
+            //RegisterHotKey(Handle, KeyIDs.VolumeUp, KeyModifiers.None, VirtualKeys.VolumeUp);
+            //RegisterHotKey(Handle, KeyIDs.VolumeDown, KeyModifiers.None, VirtualKeys.VolumeDown);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -69,26 +76,33 @@ namespace Ushahidi.Common.Controls
             }
             if (MarkerX > double.MinValue && MarkerY > double.MinValue)
             {
-                Color transparencyColor = Color.Transparent;
-                ImageAttributes imageAttributes = new ImageAttributes();
-                imageAttributes.SetColorKey(transparencyColor, transparencyColor);
+                try
+                {
+                    Color transparencyColor = Color.Transparent;
+                    ImageAttributes imageAttributes = new ImageAttributes();
+                    imageAttributes.SetColorKey(transparencyColor, transparencyColor);
 
-                int markerX = MarkerX - imageList.ImageSize.Width / 2;
-                int markerY = MarkerY - imageList.ImageSize.Height;
+                    int markerX = MarkerX - imageList.ImageSize.Width / 2;
+                    int markerY = MarkerY - imageList.ImageSize.Height;
 
-                Rectangle rectangle = new Rectangle(markerX, markerY, imageList.ImageSize.Width, imageList.ImageSize.Height);
-                e.Graphics.DrawImage(imageList.Images[0], rectangle, 0, 0, imageList.ImageSize.Width, imageList.ImageSize.Height, GraphicsUnit.Pixel, imageAttributes);
+                    Rectangle rectangle = new Rectangle(markerX, markerY, imageList.ImageSize.Width, imageList.ImageSize.Height);
+                    e.Graphics.DrawImage(imageList.Images[0], rectangle, 0, 0, imageList.ImageSize.Width, imageList.ImageSize.Height, GraphicsUnit.Pixel, imageAttributes);
+                }
+                catch
+                {
+                    //do nothing                   
+                }
             }
             if (Focused)
             {
-                e.Graphics.DrawRectangle(Border, 
+                e.Graphics.DrawRectangle(Border,
                                         (int)(Border.Width / 2),
                                         (int)(Border.Width / 2),
                                         (int)(ClientRectangle.Width - Border.Width - (Border.Width / 2)),
                                         (int)(ClientRectangle.Height - Border.Width - (Border.Width / 2)));
             }
         }
-        
+
         protected override void OnMouseDown(MouseEventArgs e)
         {
             Latitude = YToLatitude(LatitudeToY(Latitude) + ((e.Y - CenterY) << (_MaxZoomLevel - ZoomLevel)));
@@ -101,7 +115,7 @@ namespace Ushahidi.Common.Controls
 
             if (MarkerChanged != null)
             {
-                MarkerChanged(Latitude, Longitude); 
+                MarkerChanged(Latitude, Longitude);
             }
             base.OnMouseDown(e);
         }
@@ -142,6 +156,24 @@ namespace Ushahidi.Common.Controls
                 if (MarkerChanged != null)
                 {
                     MarkerChanged(Latitude, Longitude);
+                }
+            }
+            else if (e.KeyCode == Keys.F6)
+            {
+                //ZOOM IN
+                Log.Info("MapBox", "ZoomIn");
+                if (ZoomIn != null && Latitude != double.MinValue && Longitude != double.MinValue)
+                {
+                    ZoomIn(this, EventArgs.Empty);
+                }
+            }
+            else if (e.KeyCode == Keys.F7)
+            {
+                //ZOOM OUT
+                Log.Info("MapBox", "ZoomOut");
+                if (ZoomOut != null && Latitude != double.MinValue && Longitude != double.MinValue)
+                {
+                    ZoomOut(this, EventArgs.Empty);
                 }
             }
             else
@@ -197,14 +229,262 @@ namespace Ushahidi.Common.Controls
             Log.Info("MapBox.OnResize", "CenterX:{0} CenterY:{1}", CenterX, CenterY);
         }
 
-        private void OnLostFocus(object sender, EventArgs e)
+        private MapMessageWindow MapMsgWindow
         {
-            Invalidate();
-        }
+            get
+            {
+                if (_MapMsgWindow == null)
+                {
+                    _MapMsgWindow = new MapMessageWindow(this);
+                }
+                return _MapMsgWindow;
+            }
+        }private MapMessageWindow _MapMsgWindow;
 
         private void OnGotFocus(object sender, EventArgs e)
         {
+            Log.Info("MapBox.OnGotFocus");
             Invalidate();
+
+            //OverrideKey(VK_TVOLUMEUP, false);
+            //OverrideKey(VK_TVOLUMEDOWN, false);
+
+            //_MapMessageWindow = new MapMessageWindow(this);
+
+            //Subclass(hWindow, messageWindow.Hwnd);
+
+            //UnregisterFunc1(KeyModifiers.None, VirtualKeys.VolumeUp);
+            //UnregisterFunc1(KeyModifiers.None, VirtualKeys.VolumeDown);
+
+            //RegisterHotKey(MyMsgWindow.Hwnd, KeyIDs.VolumeUp, KeyModifiers.None, VirtualKeys.VolumeUp);
+            //RegisterHotKey(MyMsgWindow.Hwnd, KeyIDs.VolumeDown, KeyModifiers.None, VirtualKeys.VolumeDown);
+
+            //IntPtr handle = SHFindMenuBar(Handle);
+            //Message volumeUpMessage = Message.Create(handle, SHCMBM_OVERRIDEKEY, (IntPtr)3, MakeLParam((SHMBOF_NODEFAULT | SHMBOF_NOTIFY), (SHMBOF_NODEFAULT | SHMBOF_NOTIFY)));
+            //MessageWindow.SendMessage(ref volumeUpMessage);
+
+            //Message volumeDownMessage = Message.Create(handle, SHCMBM_OVERRIDEKEY, (IntPtr)4, MakeLParam((SHMBOF_NODEFAULT | SHMBOF_NOTIFY), (SHMBOF_NODEFAULT | SHMBOF_NOTIFY)));
+            //MessageWindow.SendMessage(ref volumeDownMessage);
+        }
+
+        private void OnLostFocus(object sender, EventArgs e)
+        {
+            Log.Info("MapBox.OnLostFocus");
+            Invalidate();
+
+            //OverrideKey(VK_TVOLUMEUP, true);
+            //OverrideKey(VK_TVOLUMEDOWN, true);
+
+            //_MapMessageWindow.Dispose();
+            //_MapMessageWindow = null;
+
+            //Unsubclass(hWindow);
+
+            //UnregisterHotKey(MyMsgWindow.Hwnd, KeyIDs.VolumeUp);
+            //UnregisterHotKey(MyMsgWindow.Hwnd, KeyIDs.VolumeDown);
+
+            //IntPtr handle = SHFindMenuBar(Parent.Handle);s
+            //Message volumeUpMessage = Message.Create(handle, SHCMBM_OVERRIDEKEY, (IntPtr)3, MakeLParam(0, (SHMBOF_NODEFAULT | SHMBOF_NOTIFY)));
+            //MessageWindow.SendMessage(ref volumeUpMessage);
+
+            //Message volumeDownMessage = Message.Create(handle, SHCMBM_OVERRIDEKEY, (IntPtr)4, MakeLParam(0, (SHMBOF_NODEFAULT | SHMBOF_NOTIFY)));
+            //MessageWindow.SendMessage(ref volumeDownMessage);
+        }
+
+        private MapMessageWindow _MapMessageWindow;
+
+        protected virtual int WndProc(IntPtr hwnd, uint msg, uint wParam, int lParam)
+        {
+            Log.Info("MapBox.WndProc");
+            switch (lParam)
+            {
+                case VK_TVOLUMEUP:
+                    Log.Info("MapBox.WndProc", "VK_TVOLUMEUP");
+                    OnZoomIn();
+                    break;
+                case VK_TVOLUMEDOWN:
+                    Log.Info("MapBox.WndProc", "VK_TVOLUMEDOWN");
+                    OnZoomOut();
+                    break;
+
+            }
+            return CallWindowProc(mOldWndProc, Handle, msg, wParam, lParam);
+        }
+
+        IntPtr mOldWndProc;
+        public const int GWL_WNDPROC = -4;
+        private const int Mode_KeyUP = 0x1000;
+        private const int VK_Back = 27;
+        private const int HOTKEYID = 0xB000;  
+
+        private void OverrideKey(int wparam, bool restore)
+        {
+            Log.Info("MapBox.OverrideKey", "wparam:{0} restore:{1}", wparam, restore);
+            IntPtr handle = SHFindMenuBar(Handle);
+            IntPtr lparam = restore ? MakeLParam(0, HiWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY))
+                                    : MakeLParam(LoWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY), HiWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY));
+            Message message = Message.Create(handle, SHCMBM_OVERRIDEKEY,  (IntPtr)wparam, lparam);
+            MessageWindow.SendMessage(ref message);
+        }
+
+        protected enum KeyIDs
+        {
+            VolumeUp = 3,
+            VolumeDown = 4
+        }
+
+        protected enum KeyModifiers : uint
+        {
+            None = 0,
+            Alt = 1,
+            Control = 2,
+            Shift = 4,
+            Windows = 8
+        }
+
+        protected enum VirtualKeys
+        {
+            VolumeUp = 0x75,
+            VolumeDown = 0x76
+        }
+
+        [DllImport("native.dll")]
+        private extern static void Subclass(IntPtr subclassWindow, IntPtr messageWindow);
+
+        [DllImport("native.dll")]
+        private extern static void Unsubclass(IntPtr subclassWindow);
+
+        [DllImport("coredll.dll")]
+        protected static extern uint RegisterHotKey(IntPtr hWnd, KeyIDs id, KeyModifiers modifiers, VirtualKeys vk);
+
+        [DllImport("coredll.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, KeyIDs id);
+
+        [DllImport("coredll.dll")]
+        protected static extern bool UnregisterFunc1(KeyModifiers modifiers, VirtualKeys id);
+
+        [DllImport("coredll.dll")]
+        protected static extern short GetAsyncKeyState(int vKey);
+
+        [DllImport("aygshell")]
+        private extern static IntPtr SHFindMenuBar(IntPtr hwnd);
+
+        [DllImport("coredll.dll")]
+        private extern static int CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hwnd, uint msg, uint wParam, int lParam);
+
+        [DllImport("coredll.dll")]
+        public extern static IntPtr SetWindowLong(IntPtr hwnd, int nIndex, IntPtr dwNewLong);
+
+        private const int VK_TVOLUMEUP = 3;
+        private const int VK_TVOLUMEDOWN = 4;
+        private const int SHCMBM_OVERRIDEKEY = 0x0593;
+        private const int SHMBOF_NODEFAULT = 0x00000001;
+        private const int SHMBOF_NOTIFY = 0x00000002;
+
+        public static IntPtr MakeLParam(int LoWord, int HiWord)
+        {
+            return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
+        }
+
+        public static int HiWord(int Number)
+        {
+            return (Number >> 16) & 0xffff;
+        }
+
+        public static int LoWord(int Number)
+        {
+            return Number & 0xffff;
+        } 
+
+        /// <summary>
+        /// Zoom In Event
+        /// </summary>
+        public event EventHandler ZoomIn;
+
+        /// <summary>
+        /// Zoom Out Event
+        /// </summary>
+        public event EventHandler ZoomOut;
+
+        /// <summary>
+        /// Fire Zoom In Event
+        /// </summary>
+        internal void OnZoomIn()
+        {
+            Log.Info("MapBox", "OnZoomIn");
+            if (ZoomIn != null && Latitude != double.MinValue && Longitude != double.MinValue)
+            {
+                ZoomIn(this, EventArgs.Empty);
+            }
+        }
+
+        /// <summary>
+        /// Fire Zoom Out Event
+        /// </summary>
+        internal void OnZoomOut()
+        {
+            Log.Info("MapBox", "OnZoomOut");
+            if (ZoomOut != null && Latitude != double.MinValue && Longitude != double.MinValue)
+            {
+                ZoomOut(this, EventArgs.Empty);
+            }
+        }
+
+        WndProcDelegate mProc; 
+
+        public delegate int WndProcDelegate(IntPtr hwnd, uint msg, uint wParam, int lParam);
+
+        /// <summary>
+        /// Custom MessageWindow to allow intecepting WndProc call
+        /// </summary>
+        private class MapMessageWindow : MessageWindow
+        {
+            /// <summary>
+            /// Volume Up
+            /// </summary>
+            private const int VK_TVOLUMEUP = 7667712;
+
+            /// <summary>
+            /// Volume Down
+            /// </summary>
+            private const int VK_TVOLUMEDOWN = 7733248;
+
+            /// <summary>
+            /// Map Box Reference
+            /// </summary>
+            private readonly MapBox MapBox;
+            
+            /// <summary>
+            /// Save a reference to the form so it can be notified when messages are received
+            /// </summary>
+            /// <param name="mapBox">MapBox</param>
+            public MapMessageWindow(MapBox mapBox)
+            {
+                MapBox = mapBox;
+            }
+            
+            /// <summary>
+            /// Override the default WndProc behavior to examine messages.
+            /// </summary>
+            protected override void WndProc(ref Message msg)
+            {
+                Log.Info("MsgWindow.WndProc", "Msg:{0} LParam:{1}", msg.Msg, (int)msg.LParam);
+                switch ((int)msg.LParam)
+                {
+                    case VK_TVOLUMEUP:
+                        Log.Info("MsgWindow.WndProc", "VK_TVOLUMEUP");
+                        MapBox.OnZoomIn();
+                        break;
+                    case VK_TVOLUMEDOWN:
+                        Log.Info("MsgWindow.WndProc", "VK_TVOLUMEDOWN");
+                        MapBox.OnZoomOut();
+                        break;
+                    default:
+                        base.WndProc(ref msg);
+                        break;
+                }
+                base.WndProc(ref msg);
+            }
         }
     }
 }

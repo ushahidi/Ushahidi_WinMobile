@@ -387,4 +387,7 @@
   <data name="defaultLocation" xml:space="preserve">
     <value>Emplacement par défaut</value>
   </data>
+  <data name="errorTryAgain" xml:space="preserve">
+    <value>Il y avait un problème avec la demande, s'il vous plaît essayer de nouveau.</value>
+  </data>
 </root>

@@ -52,6 +52,7 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CompactFramework.CSharp.targets" />
   <ItemGroup>
     <Reference Include="mscorlib" />
+    <Reference Include="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
@@ -96,5 +97,8 @@ del /q /f $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Ushahidi.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
 </Project>

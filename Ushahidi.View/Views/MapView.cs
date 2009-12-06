@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Ushahidi.Common.Controls;
+using Ushahidi.Common.Extensions;
 using Ushahidi.Common.Logging;
 using Ushahidi.Model.Extensions;
 using Ushahidi.Map;
@@ -33,7 +34,7 @@ namespace Ushahidi.View.Views
             {
                 if (_LocationService == null)
                 {
-                    _LocationService = new LocationService(Username, Password);
+                    _LocationService = new LocationService();
                     _LocationService.LocationChanged += OnDetectLocationChanged;
                 }
                 return _LocationService;
@@ -56,6 +57,9 @@ namespace Ushahidi.View.Views
             }
         }private MapService _MapService;
 
+        /// <summary>
+        /// Geocode Service
+        /// </summary>
         private GoogleGeocodeService GoogleGeocodeService
         {
             get
@@ -111,6 +115,11 @@ namespace Ushahidi.View.Views
             get { return mapBox.Longitude; }
             set { mapBox.Longitude = value; }
         }
+
+        /// <summary>
+        /// Maximum Zoom Level
+        /// </summary>
+        public int MaxZoomLevel { get; set; }
 
         /// <summary>
         /// ZoomLevel
@@ -194,6 +203,7 @@ namespace Ushahidi.View.Views
         public override void Render()
         {
             base.Render();
+            menuItemAction.Enabled = true;
             menuItemMenu.Enabled = false;
             menuItemAddLocation.Enabled = Latitude != double.MinValue && Longitude != double.MinValue;
             ShouldSave = true;
@@ -231,56 +241,114 @@ namespace Ushahidi.View.Views
 
         private void OnDetectLocationChanged(object sender, LocationEventArgs args)
         {
-            Log.Info("MapView.OnDetectLocationChanged", "Latitude:{0} Longitude:{1}", args.Latitude, args.Longitude);
+            Log.Info("MapView.OnDetectLocationChanged", "Latitude:{0} Longitude:{1} Address:{2}", args.Latitude, args.Longitude, args.Address);
             LocationService.Stop();
-            if (InvokeRequired)
+            MethodInvoker methodInvoker = delegate
             {
-                BeginInvoke(new MethodInvoker(delegate
+                menuItemDetectLocation.Enabled = true;
+                if (args.Latitude.AlmostEquals(0, 0) || args.Longitude.AlmostEquals(0, 0))
+                {
+                    //invalid latitude and longitude
+                    Dialog.Warning("detectingLocation".Translate(), "errorTryAgain".Translate());
+                    WaitCursor.Hide();
+                }
+                else if (args.Latitude == double.MinValue  && args.Longitude == double.MinValue)
+                {
+                    //invalid latitude and longitude
+                    Dialog.Warning("detectingLocation".Translate(), "errorTryAgain".Translate());
+                    WaitCursor.Hide();
+                }
+                else
                 {
                     WaitCursor.Show();
                     mapBox.Latitude = args.Latitude;
                     mapBox.Longitude = args.Longitude;
-                    MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
-                }));
+                    textBoxLocationName.Value = string.Format("({0},{1})", Math.Round(args.Latitude, 8), Math.Round(args.Longitude, 8));
+                    MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);        
+                }
+            };
+            if (InvokeRequired)
+            {
+                BeginInvoke(methodInvoker);    
             }
             else
             {
-                WaitCursor.Show();
-                mapBox.Latitude = args.Latitude;
-                mapBox.Longitude = args.Longitude;
-                MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+                methodInvoker.Invoke();
             }
         }
 
         private void OnMapDownloaded(object sender, MapEventArgs args)
         {
             Log.Info("MapView.OnMapDownloaded", "Image:{0}", args.Image != null);
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate
-                {
-                    mapBox.Image = args.Image;
-                    menuItemAddIncident.Enabled = true;
-                    WaitCursor.Hide();
-                }));
-            }
-            else
+            MethodInvoker methodInvoker = delegate
             {
                 mapBox.Image = args.Image;
                 menuItemAddIncident.Enabled = true;
+                menuItemDetectLocation.Enabled = true;
                 WaitCursor.Hide();
+                if (args.Successful)
+                {
+                    WaitCursor.Show();
+                    GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
+                }
+                else
+                {
+                    Dialog.Error("detectingLocation".Translate(), "errorTryAgain".Translate());
+                }
+            };
+            if (InvokeRequired)
+            {
+                BeginInvoke(methodInvoker);
             }
-            WaitCursor.Show();
-            GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
+            else
+            {
+                methodInvoker.Invoke();
+            }
         }
 
-       private void OnZoomLevelChanged(object sender, EventArgs e)
-       {
+        private void OnPlacemarkChanged(double latitude, double longitude)
+        {
+            Log.Info("MapView.OnPlacemarkChanged", "Latitude:{0} Longitude:{1}", latitude, longitude);
+            MethodInvoker methodInvoker = delegate
+            {
+                WaitCursor.Show();
+                MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+            };
+            if (InvokeRequired)
+            {
+                BeginInvoke(methodInvoker);
+            }
+            else
+            {
+                methodInvoker.Invoke();
+            }
+        }
+
+        private void OnReverseGeocoded(string address)
+        {
+            Log.Info("MapView.OnReverseGeocoded", "Address:{0}", address);
+            MethodInvoker methodInvoker = delegate
+            {
+                textBoxLocationName.Value = address;
+                WaitCursor.Hide();
+            };
+            if (InvokeRequired)
+            {
+                BeginInvoke(methodInvoker);
+            }
+            else
+            {
+                methodInvoker.Invoke();
+            }
+        }
+
+        private void OnZoomLevelChanged(object sender, EventArgs e)
+        {
            Log.Info("MapView.OnZoomLevelChanged", "ZoomLevel:{0}", ((MenuItem)sender).Text);
-           WaitCursor.Show();
            mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
-           MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
-       }
+           WaitCursor.Show();
+           MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+        }
 
         private void OnAddLocation(object sender, EventArgs e)
         {
@@ -300,39 +368,25 @@ namespace Ushahidi.View.Views
             OnBack();
         }
 
-        private void OnPlacemarkChanged(double latitude, double longitude)
+        private void OnZoomIn(object sender, EventArgs e)
         {
-            Log.Info("MapView.OnPlacemarkChanged", "Latitude:{0} Longitude:{1}", latitude, longitude);
-            if (InvokeRequired)
-            {
-                BeginInvoke(new MethodInvoker(delegate
-                {
-                    WaitCursor.Show();
-                    MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
-                }));
-            }
-            else
+            Log.Info("MapView", "OnZoomIn");
+            if (ZoomLevel < MaxZoomLevel)
             {
                 WaitCursor.Show();
-                MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+                mapBox.ZoomLevel = ++ZoomLevel;
+                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
             }
         }
 
-        private void OnReverseGeocoded(string address)
+        private void OnZoomOut(object sender, EventArgs e)
         {
-            Log.Info("MapView.OnReverseGeocoded", "Address:{0}", address);
-            if (InvokeRequired)
+            Log.Info("MapView", "OnZoomOut");
+            if (ZoomLevel > 1)
             {
-                BeginInvoke(new MethodInvoker(delegate
-                {
-                    textBoxLocationName.Value = address;
-                    WaitCursor.Hide();
-                }));
-            }
-            else
-            {
-                textBoxLocationName.Value = address;
-                WaitCursor.Hide();
+                WaitCursor.Show();
+                mapBox.ZoomLevel = --ZoomLevel;
+                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);    
             }
         }
     }

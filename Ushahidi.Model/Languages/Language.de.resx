@@ -387,4 +387,7 @@
   <data name="defaultLocation" xml:space="preserve">
     <value>Rückstellungs-Position</value>
   </data>
+  <data name="errorTryAgain" xml:space="preserve">
+    <value>Es gab ein Problem mit der Bitte, bitte versuchen Sie es erneut.</value>
+  </data>
 </root>

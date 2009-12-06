@@ -10,8 +10,19 @@ namespace Ushahidi.Map
     /// </summary>
     public class TokenService
     {
+        /// <summary>
+        /// Token String
+        /// </summary>
         private static string TokenString { get; set; }
+
+        /// <summary>
+        /// Token DateTime
+        /// </summary>
         private static DateTime TokenDateTime { get; set; }
+
+        /// <summary>
+        /// Token Life
+        /// </summary>
         private const int TokenMinutes = 120; 
 
         /// <summary>
@@ -43,7 +54,15 @@ namespace Ushahidi.Map
                 }
                 catch (Exception ex)
                 {
-                    Log.Exception("TokenService.GetToken", "Exception: {0}", ex);
+                    if (ex is WebException)
+                    {
+                        WebException webException = ex as WebException;
+                        Log.Exception("TokenService.GetToken", "Status:{0} Message:{1}", webException.Status, webException.Message);
+                    }
+                    else
+                    {
+                        Log.Exception("TokenService.GetToken", "Exception: {0}", ex);    
+                    }
                     TokenDateTime = DateTime.MinValue;
                     TokenString = null;
                 }    

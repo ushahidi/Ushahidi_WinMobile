@@ -68,7 +68,6 @@
             this.mapBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.mapBox.Image = null;
             this.mapBox.Latitude = 0;
             this.mapBox.Location = new System.Drawing.Point(0, 45);
             this.mapBox.Longitude = 0;
@@ -77,6 +76,8 @@
             this.mapBox.TabIndex = 0;
             this.mapBox.ZoomLevel = 0;
             this.mapBox.MarkerChanged += new Ushahidi.Common.Controls.MapBox.MarkerChangedHandler(this.OnPlacemarkChanged);
+            this.mapBox.ZoomIn += new System.EventHandler(this.OnZoomIn);
+            this.mapBox.ZoomOut += new System.EventHandler(this.OnZoomOut);
             // 
             // textBoxLocationName
             // 
