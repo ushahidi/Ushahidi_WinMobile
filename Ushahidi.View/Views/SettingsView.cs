@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.MVC;
 using Ushahidi.Model;
@@ -32,6 +33,7 @@ namespace Ushahidi.View.Views
             checkBoxKeyboard.BackColor = Colors.Background;
             panelContent.BackColor = Colors.Background;
             comboBoxLocales.BackColor = Colors.Background;
+            checkBoxKeyboard.Visible = Runtime.IsPocketPC;
         }
 
         public override void Translate()
