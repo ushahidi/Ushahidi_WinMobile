@@ -633,7 +633,7 @@ namespace Ushahidi.Model
                 postData.Add("incident_title", incident.Title);
                 postData.Add("incident_description", incident.Description);
                 postData.Add("incident_date", incident.Date.ToString("MM/dd/yyyy"));
-                postData.Add("incident_hour", incident.Date.ToString("hh"));
+                postData.Add("incident_hour", incident.Date.ToString("HH"));
                 postData.Add("incident_minute", incident.Date.ToString("mm"));
                 postData.Add("incident_ampm", incident.Date.ToString("tt").ToLower());
                 postData.Add("incident_category", incident.Categories.Select(c => c.ID));
@@ -769,7 +769,7 @@ namespace Ushahidi.Model
         public static IEnumerable<string> MapTypes
         {
             get { return _MapTypes; }
-        }private static readonly string[] _MapTypes = new[] { "Roadmap", "Satellite", "Terrain", "Hybrid" };
+        }private static readonly string[] _MapTypes = new[] { "Roadmap", "Satellite" };
 
         public static string MapType
         {

@@ -10,8 +10,14 @@ namespace Ushahidi.Map
     /// </summary>
     public class LocationService : IDisposable
     {
+        /// <summary>
+        /// Location Event Handler
+        /// </summary>
         public delegate void LocationEventHandler(object sender, LocationEventArgs args);
 
+        /// <summary>
+        /// State Event Handler
+        /// </summary>
         public delegate void StateEventHandler(object sender, StateEventArgs args);
 
         /// <summary>
@@ -131,12 +137,13 @@ namespace Ushahidi.Map
 
         private void OnDeviceStateChanged(object sender, DeviceStateChangedEventArgs args)
         {
-            Log.Info("LocationService.OnDeviceStateChanged", "FriendlyName={0}", args.DeviceState.FriendlyName);
+            string friendlyName = args.DeviceState == null || string.IsNullOrEmpty(args.DeviceState.FriendlyName) ? "unknown" : args.DeviceState.FriendlyName;
+            Log.Info("LocationService.OnDeviceStateChanged", "FriendlyName={0}", friendlyName);
             if (StateChanged != null)
             {
-                StateChanged(this, new StateEventArgs(args.DeviceState.FriendlyName, 
-                                                       args.DeviceState.DeviceState.ToString(),
-                                                       args.DeviceState.ServiceState.ToString()));
+                string deviceState = args.DeviceState == null ? "unknown" : args.DeviceState.DeviceState.ToString();
+                string serviceState = args.DeviceState == null ? "unknown" : args.DeviceState.ServiceState.ToString();
+                StateChanged(this, new StateEventArgs(friendlyName, deviceState, serviceState));
             }
         }
 
