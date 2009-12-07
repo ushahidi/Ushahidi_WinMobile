@@ -22,6 +22,8 @@ namespace Ushahidi.View.Controllers
             View.LastName = DataManager.LastName;
             View.Email = DataManager.Email;
             View.ShowKeyboard = DataManager.ShowKeyboard;
+            View.ImageSizes = DataManager.ImageSizes;
+            View.ImageSize = DataManager.ImageSize;
         }
 
         public override bool Save()
@@ -33,6 +35,7 @@ namespace Ushahidi.View.Controllers
             DataManager.LastName = View.LastName;
             DataManager.Email = View.Email;
             DataManager.ShowKeyboard = View.ShowKeyboard;
+            DataManager.ImageSize = View.ImageSize;
             return DataManager.Save();
         }
     }

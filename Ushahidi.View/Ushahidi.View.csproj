@@ -87,7 +87,7 @@
     <Compile Include="Controls\PhotoListItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\PhotoSelector_WM6.cs" />
+    <Compile Include="Controls\PhotoSelector.cs" />
     <Compile Include="Controls\TextListItem.cs">
       <SubType>Component</SubType>
     </Compile>

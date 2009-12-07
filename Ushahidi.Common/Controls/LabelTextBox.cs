@@ -18,7 +18,14 @@ namespace Ushahidi.Common.Controls
         {
             InitializeComponent();
             label.Font = label.Font.ToBold();
-            Keyboard.Register(textBox);
+            if (base.Site != null && base.Site.DesignMode)
+            {
+                //Design Time
+            }
+            else //Runtime
+            {
+                Keyboard.Register(textBox);
+            }
         }
 
         /// <summary>

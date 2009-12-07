@@ -390,4 +390,7 @@
   <data name="errorTryAgain" xml:space="preserve">
     <value>Er was een probleem met het verzoek, probeer het opnieuw.</value>
   </data>
+  <data name="imageSize" xml:space="preserve">
+    <value>Afbeeldingsgrootte</value>
+  </data>
 </root>

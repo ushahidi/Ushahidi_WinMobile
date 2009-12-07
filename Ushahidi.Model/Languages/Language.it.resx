@@ -390,4 +390,7 @@
   <data name="errorTryAgain" xml:space="preserve">
     <value>C'è stato un problema con la richiesta, si prega di riprovare.</value>
   </data>
+  <data name="imageSize" xml:space="preserve">
+    <value>Formato di immagine</value>
+  </data>
 </root>

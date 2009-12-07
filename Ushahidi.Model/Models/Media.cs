@@ -79,6 +79,27 @@ namespace Ushahidi.Model.Models
         }
 
         /// <summary>
+        /// Import Photo Into Media Directory
+        /// </summary>
+        /// <param name="filePath">image path</param>
+        /// <param name="directory">destination directory</param>
+        /// <returns>Media</returns>
+        public static Media Import(string filePath, string directory)
+        {
+            string dateString = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
+            string imageName = string.Format("{0}.jpg", dateString);
+            string thumbnailName = string.Format("{0}_t.jpg", dateString);
+            string imagePath = Path.Combine(directory, imageName);
+            File.Copy(filePath, imagePath);
+            using (Bitmap thumbnail = CreateThumbnail(imagePath, 100))
+            {
+                string thumbnailPath = Path.Combine(directory, thumbnailName);
+                thumbnail.Save(thumbnailPath, ImageFormat.Jpeg);
+            }
+            return New(imageName, thumbnailName);
+        }
+
+        /// <summary>
         /// Download image from server
         /// </summary>
         /// <param name="sourceURL">source url</param>
@@ -119,7 +140,7 @@ namespace Ushahidi.Model.Models
             return false;
         }
 
-        public static Bitmap CreateThumbnail(string filePath, int widthOrHeight)
+        protected static Bitmap CreateThumbnail(string filePath, int widthOrHeight)
         {
             try
             {

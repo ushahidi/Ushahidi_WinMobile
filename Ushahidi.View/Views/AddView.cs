@@ -195,6 +195,11 @@ namespace Ushahidi.View.Views
         }
 
         /// <summary>
+        /// Image Size
+        /// </summary>
+        public ImageSize ImageSize { get; set; }
+
+        /// <summary>
         /// Media Items
         /// </summary>
         public Media[] MediaItems
@@ -255,7 +260,7 @@ namespace Ushahidi.View.Views
 
         private void OnAddPhoto(object sender, EventArgs e)
         {
-            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this));
+            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this, ImageSize.ToSize()));
             if (media != null)
             {
                 _MediaItems.Add(media);

@@ -33,7 +33,8 @@ namespace Ushahidi.View.Views
             checkBoxKeyboard.BackColor = Colors.Background;
             panelContent.BackColor = Colors.Background;
             comboBoxLocales.BackColor = Colors.Background;
-            checkBoxKeyboard.Visible = Runtime.IsPocketPC;
+            comboBoxPhotoSizes.BackColor = Colors.Background;
+            checkBoxKeyboard.Visible = checkBoxKeyboard.Enabled = checkBoxKeyboard.TabStop = Runtime.IsPocketPC;
         }
 
         public override void Translate()
@@ -48,6 +49,7 @@ namespace Ushahidi.View.Views
             comboBoxLanguages.Translate("language");
             comboBoxMapType.Translate("mapType");
             comboBoxLocales.Translate("defaultLocation");
+            comboBoxPhotoSizes.Translate("imageSize");
             checkBoxKeyboard.Translate("keyboard", "autoShow");
             menuItemClear.Translate("clearCache");
             menuItemDone.Translate("done");
@@ -64,6 +66,7 @@ namespace Ushahidi.View.Views
             comboBoxMapType.Width = panelContent.ClientRectangle.Width;
             checkBoxKeyboard.Width = panelContent.ClientRectangle.Width;
             comboBoxLocales.Width = panelContent.ClientRectangle.Width;
+            comboBoxPhotoSizes.Width = panelContent.ClientRectangle.Width;
         }
        
         public override bool Validate()
@@ -152,6 +155,34 @@ namespace Ushahidi.View.Views
         {
             get { return comboBoxMapType.SelectedValue<string>(); }
             set { comboBoxMapType.SelectedItem = value; }
+        }
+
+        /// <summary>
+        /// Image Sizes
+        /// </summary>
+        public object ImageSizes
+        {
+            get { return comboBoxPhotoSizes.DataSource; }
+            set { comboBoxPhotoSizes.DataSource = value; }
+        }
+
+        /// <summary>
+        /// Image Size
+        /// </summary>
+        public ImageSize ImageSize
+        {
+            get { return comboBoxPhotoSizes.SelectedValue<ImageSize>(); }
+            set
+            {
+                if (value != null)
+                {
+                    comboBoxPhotoSizes.SelectedItem = value;    
+                }
+                else
+                {
+                    comboBoxPhotoSizes.SelectedIndex = 0;   
+                }
+            }
         }
 
         /// <summary>

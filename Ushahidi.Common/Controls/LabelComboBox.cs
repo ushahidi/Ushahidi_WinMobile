@@ -202,7 +202,17 @@ namespace Ushahidi.Common.Controls
         public object SelectedItem
         {
             get { return comboBox.SelectedItem; }
-            set { comboBox.SelectedItem = value; }
+            set
+            {
+                if (value != null)
+                {
+                    comboBox.SelectedItem = value;    
+                }
+                else
+                {
+                    comboBox.SelectedIndex = -1;
+                }
+            }
         }
 
         /// <summary>

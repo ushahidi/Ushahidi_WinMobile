@@ -35,6 +35,7 @@ namespace Ushahidi.View.Controllers
                 View.Date = DateTime.Now;
                 View.Description = string.Empty;
                 View.MediaItems = null;
+                View.ImageSize = DataManager.ImageSize;
             }
         }
 

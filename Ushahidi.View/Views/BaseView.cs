@@ -49,7 +49,10 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnAddIncident(object sender, EventArgs e)
         {
-            OnForward<AddViewController>(true);
+            using (new WaitCursor())
+            {
+                OnForward<AddViewController>(true);
+            }
         }
 
         /// <summary>
@@ -57,7 +60,10 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnIncidentList(object sender, EventArgs e)
         {
-            OnForward<ListViewController>(true);
+            using (new WaitCursor())
+            {
+                OnForward<ListViewController>(true);
+            }
         }
 
         /// <summary>
@@ -65,12 +71,18 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnSync(object sender, EventArgs e)
         {
-            OnForward<SyncViewController>(true);
+            using (new WaitCursor())
+            {
+                OnForward<SyncViewController>(true);
+            }
         }
 
         private void OnAbout(object sender, EventArgs e)
         {
-            OnForward<AboutViewController>(true);
+            using (new WaitCursor())
+            {
+                OnForward<AboutViewController>(true);
+            }
         }
 
         /// <summary>
@@ -78,7 +90,10 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnSettings(object sender, EventArgs e)
         {
-            OnForward<SettingsViewController>(true);
+            using (new WaitCursor())
+            {
+                OnForward<SettingsViewController>(true);
+            }
         }
 
         /// <summary>
@@ -86,7 +101,10 @@ namespace Ushahidi.View.Views
         /// </summary>
         private void OnWebsite(object sender, EventArgs e)
         {
-            OnForward<WebsiteViewController>(true, DataManager.ServerAddress, "website".Translate());  
+            using (new WaitCursor())
+            {
+                OnForward<WebsiteViewController>(true, DataManager.ServerAddress, "website".Translate());
+            }
         }
 
         /// <summary>
@@ -110,6 +128,5 @@ namespace Ushahidi.View.Views
             menuItemAbout.Enabled = type != typeof (AboutView);
             menuItemWebsite.Enabled = type != typeof (WebsiteView);
         }
-
     }
 }

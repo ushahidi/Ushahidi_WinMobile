@@ -75,6 +75,7 @@
     <Compile Include="Controls\ImageButton.Designer.cs">
       <DependentUpon>ImageButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ImageSize.cs" />
     <Compile Include="Controls\Keyboard.cs" />
     <Compile Include="Controls\LabelCheckBox.cs">
       <SubType>UserControl</SubType>
@@ -158,10 +159,10 @@
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\DateExtensions.cs" />
     <Compile Include="Extensions\FontExtensions.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Extensions\NumberExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\UrlExtensions.cs" />
-    <Compile Include="Geo\GeoManager.cs" />
     <Compile Include="Logging\DebugLog.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\Log.cs" />

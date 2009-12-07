@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -15,6 +14,7 @@ using Ushahidi.Common.Logging;
 using Ushahidi.Common.Net;
 using Ushahidi.Model.Models;
 using Ushahidi.Common;
+using Ushahidi.Common.Controls;
 
 namespace Ushahidi.Model
 {
@@ -39,6 +39,8 @@ namespace Ushahidi.Model
         private const string RegKeyMapType = "Maptype";
         private const string RegKeyMapZoomLevel = "MapZoomLevel";
         private const string RegKeyDefaultLocale = "DefaultLocale";
+        private const string RegKeyImageWidth = "ImageWidth";
+        private const string RegKeyImageHeight = "ImageHeight";
         private const string GoogleMapApiKey = "ABQIAAAAbBp5ldXb8kPYkZBnJ3s41RSEmPulsHbWDF8kadrMDbdex3-Z4BTbs5-9i1AkCIoGYgsph72Mjc1g_Q";
 
         /// <summary>
@@ -139,6 +141,11 @@ namespace Ushahidi.Model
 
                 DefaultLocaleName = registryKey.GetValue(RegKeyDefaultLocale, "").ToString();
 
+                int imageWidth = Convert.ToInt32(registryKey.GetValue(RegKeyImageWidth, 640));
+                int imageHeight = Convert.ToInt32(registryKey.GetValue(RegKeyImageHeight, 480));
+                ImageSize imageSize = ImageSizes.FirstOrDefault(i => i.Width == imageWidth && i.Height == imageHeight);
+                ImageSize = imageSize ?? ImageSizes.ElementAt(1);
+
                 registryKey.Close();
             }
         }
@@ -167,6 +174,8 @@ namespace Ushahidi.Model
                     registryKey.SetValue(RegKeyMapType, MapType);
                     registryKey.SetValue(RegKeyMapZoomLevel, MapZoomLevel.ToString());
                     registryKey.SetValue(RegKeyDefaultLocale, DefaultLocale != null ? DefaultLocale.Name : "");
+                    registryKey.SetValue(RegKeyImageWidth, ImageSize.Width.ToString());
+                    registryKey.SetValue(RegKeyImageHeight, ImageSize.Height.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -856,7 +865,34 @@ namespace Ushahidi.Model
         #region Media
 
         /// <summary>
-        /// Data Directory
+        /// Image Size
+        /// </summary>
+        public static ImageSize ImageSize { get; set; }
+
+        /// <summary>
+        /// Image Sizes
+        /// </summary>
+        public static IEnumerable<ImageSize> ImageSizes
+        {
+            get
+            {
+                if (_ImageSizes == null)
+                {
+                    _ImageSizes = new []{
+                        new ImageSize(160, 120), 
+                        new ImageSize(320, 240), 
+                        new ImageSize(640, 480), 
+                        new ImageSize(800, 600),
+                        new ImageSize(1024, 768),
+                        new ImageSize(1280, 960),
+                        new ImageSize(1600, 1200)};
+                }
+                return _ImageSizes;
+            }
+        }private static IEnumerable<ImageSize> _ImageSizes;
+
+        /// <summary>
+        /// Media Directory
         /// </summary>
         private static string MediaDirectory
         {
@@ -925,17 +961,7 @@ namespace Ushahidi.Model
         {
             if (fileInfo != null && fileInfo.Exists)
             {
-                string dateString = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
-                string imageName = string.Format("{0}.jpg", dateString);
-                string thumbnailName = string.Format("{0}_t.jpg", dateString);
-                string imagePath = Path.Combine(MediaDirectory, imageName);
-                fileInfo.CopyTo(imagePath, true);
-                string thumbnailPath = Path.Combine(MediaDirectory, thumbnailName);
-                using(Bitmap thumbnail = Media.CreateThumbnail(imagePath, 100))
-                {
-                    thumbnail.Save(thumbnailPath, ImageFormat.Jpeg);
-                }
-                return Media.New(imageName, thumbnailName);
+                return Media.Import(fileInfo.FullName, MediaDirectory);
             }
             return null;
         }
