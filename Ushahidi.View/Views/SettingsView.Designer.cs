@@ -1,4 +1,6 @@
-﻿namespace Ushahidi.View.Views
+﻿using System.Globalization;
+
+namespace Ushahidi.View.Views
 {
     partial class SettingsView
     {
@@ -164,7 +166,7 @@
             this.comboBoxLanguages.SelectedText = "";
             this.comboBoxLanguages.Size = new System.Drawing.Size(155, 45);
             this.comboBoxLanguages.TabIndex = 1;
-            this.comboBoxLanguages.ValueMember = "Name";
+            this.comboBoxLanguages.ValueMember = "NativeName";
             this.comboBoxLanguages.SelectedIndexChanged += new System.EventHandler(this.OnLanguageChanged);
             // 
             // textBoxEmail

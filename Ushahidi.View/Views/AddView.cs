@@ -35,8 +35,8 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             Keyboard.KeyboardChanged += OnKeyboardChanged;
-            dateBoxTime.Type = LabelDateBox.Types.Date;
-            dateBoxTime.Type = LabelDateBox.Types.Time;
+            dateBoxTime.DateFormat = LabelDateBox.DateFormats.Date;
+            dateBoxTime.DateFormat = LabelDateBox.DateFormats.Time;
             panel.BackColor =
             textBoxTitle.BackColor =
             dateBoxDate.BackColor =
@@ -260,7 +260,7 @@ namespace Ushahidi.View.Views
 
         private void OnAddPhoto(object sender, EventArgs e)
         {
-            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this, ImageSize));
+            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this));
             if (media != null)
             {
                 _MediaItems.Add(media);
@@ -281,6 +281,12 @@ namespace Ushahidi.View.Views
             ShouldSave = false;
             textBoxVideo.Focus();
             OnForward<MediaViewController>(false, MediaType.Video);
+        }
+
+        private void OnAddLocation(object sender, EventArgs e)
+        {
+            ShouldSave = false;
+            OnForward<MapViewController>(false, Locale);
         }
 
         private void OnSave(object sender, EventArgs e)
@@ -313,12 +319,6 @@ namespace Ushahidi.View.Views
             textBoxNews.Width =
             textBoxVideo.Width =
             scrollListBox.Width = panel.ClientRectangle.Width;
-        }
-
-        private void OnAddLocation(object sender, EventArgs e)
-        {
-            ShouldSave = false;
-            OnForward<MapViewController>(false);
         }
     }
 }

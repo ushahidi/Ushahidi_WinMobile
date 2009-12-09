@@ -141,10 +141,10 @@ namespace Ushahidi.Model
 
                 DefaultLocaleName = registryKey.GetValue(RegKeyDefaultLocale, "").ToString();
 
-                int imageWidth = Convert.ToInt32(registryKey.GetValue(RegKeyImageWidth, 640));
-                int imageHeight = Convert.ToInt32(registryKey.GetValue(RegKeyImageHeight, 480));
+                int imageWidth = Convert.ToInt32(registryKey.GetValue(RegKeyImageWidth, 0));
+                int imageHeight = Convert.ToInt32(registryKey.GetValue(RegKeyImageHeight, 0));
                 ImageSize imageSize = ImageSizes.FirstOrDefault(i => i.Width == imageWidth && i.Height == imageHeight);
-                ImageSize = imageSize ?? ImageSizes.ElementAt(1);
+                ImageSize = imageSize ?? ImageSizes.FirstOrDefault();
 
                 registryKey.Close();
             }
@@ -867,7 +867,18 @@ namespace Ushahidi.Model
         /// <summary>
         /// Image Size
         /// </summary>
-        public static ImageSize ImageSize { get; set; }
+        public static ImageSize ImageSize
+        {
+            get
+            {
+                if (_ImageSize == null)
+                {
+                    _ImageSize = ImageSizes.FirstOrDefault();
+                }
+                return _ImageSize;
+            }
+            set { _ImageSize = value; }
+        }private static ImageSize _ImageSize;
 
         /// <summary>
         /// Image Sizes
@@ -878,14 +889,55 @@ namespace Ushahidi.Model
             {
                 if (_ImageSizes == null)
                 {
-                    _ImageSizes = new []{
-                        new ImageSize(160, 120), 
-                        new ImageSize(320, 240), 
-                        new ImageSize(640, 480), 
-                        new ImageSize(800, 600),
-                        new ImageSize(1024, 768),
-                        new ImageSize(1280, 960),
-                        new ImageSize(1600, 1200)};
+                    //List<ImageSize> imageSizes = new List<ImageSize>();
+                    //RegistryKey registryKey1 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Pictures\Camera\USER\Resolution");
+                    //if (registryKey1 != null)
+                    //{
+                    //    foreach (string subKeyName in registryKey1.GetSubKeyNames())
+                    //    {
+                    //        RegistryKey subKey = registryKey1.OpenSubKey(subKeyName);
+                    //        if (subKey != null)
+                    //        {
+                    //            object width = subKey.GetValue("Width");
+                    //            object height = subKey.GetValue("Height");
+                    //            if (width != null && height != null)
+                    //            {
+                    //                ImageSize imageSize = new ImageSize(Convert.ToInt32(width), Convert.ToInt32(height));
+                    //                imageSizes.Add(imageSize);
+                    //            }
+                    //            subKey.Close();
+                    //        }
+                    //    }
+                    //    registryKey1.Close();
+                    //}
+                    //RegistryKey registryKey2 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Pictures\Camera\OEM\PictureResolution");
+                    //if (registryKey2 != null)
+                    //{
+                    //    foreach (string subKeyName in registryKey2.GetSubKeyNames())
+                    //    {
+                    //        RegistryKey subKey = registryKey2.OpenSubKey(subKeyName);
+                    //        if (subKey != null)
+                    //        {
+                    //            object width = subKey.GetValue("Width");
+                    //            object height = subKey.GetValue("Height");
+                    //            if (width != null && height != null)
+                    //            {
+                    //                ImageSize imageSize = new ImageSize(Convert.ToInt32(width), Convert.ToInt32(height));
+                    //                imageSizes.Add(imageSize);
+                    //            }
+                    //            subKey.Close();
+                    //        }
+                    //    }
+                    //    registryKey2.Close();
+                    //}
+                    //_ImageSizes = imageSizes.ToArray();
+                    _ImageSizes = new[]{new ImageSize(160, 120), 
+                                        new ImageSize(320, 240), 
+                                        new ImageSize(640, 480), 
+                                        new ImageSize(800, 600),
+                                        new ImageSize(1024, 768),
+                                        new ImageSize(1280, 960),
+                                        new ImageSize(1600, 1200)};
                 }
                 return _ImageSizes;
             }
@@ -961,7 +1013,7 @@ namespace Ushahidi.Model
         {
             if (fileInfo != null && fileInfo.Exists)
             {
-                return Media.Import(fileInfo.FullName, MediaDirectory);
+                return Media.Import(fileInfo.FullName, MediaDirectory, ImageSize.ToSize());
             }
             return null;
         }

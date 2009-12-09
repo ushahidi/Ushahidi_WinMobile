@@ -105,7 +105,6 @@
             this.scrollListBox.Location = new System.Drawing.Point(0, 350);
             this.scrollListBox.Name = "scrollListBox";
             this.scrollListBox.SelectedIndex = -1;
-            this.scrollListBox.SelectedItem = null;
             this.scrollListBox.Size = new System.Drawing.Size(127, 20);
             this.scrollListBox.TabIndex = 7;
             // 
@@ -127,7 +126,7 @@
             this.panel.Controls.Add(this.textBoxTitle);
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(176, 180);
+            this.panel.Size = new System.Drawing.Size(176, 400);
             // 
             // dateBoxTime
             // 
@@ -140,7 +139,6 @@
             this.dateBoxTime.Name = "dateBoxTime";
             this.dateBoxTime.Size = new System.Drawing.Size(154, 45);
             this.dateBoxTime.TabIndex = 2;
-            this.dateBoxTime.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Time;
             this.dateBoxTime.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
             // 
             // textBoxVideo
@@ -202,14 +200,12 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxLocales.BackColor = System.Drawing.Color.WhiteSmoke;
             this.comboBoxLocales.Bold = true;
-            this.comboBoxLocales.DataSource = null;
             this.comboBoxLocales.DisplayMember = "";
             this.comboBoxLocales.IsRequired = true;
             this.comboBoxLocales.Label = "Location";
             this.comboBoxLocales.Location = new System.Drawing.Point(0, 135);
             this.comboBoxLocales.Name = "comboBoxLocales";
             this.comboBoxLocales.SelectedIndex = -1;
-            this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
             this.comboBoxLocales.Size = new System.Drawing.Size(154, 45);
             this.comboBoxLocales.TabIndex = 3;
@@ -226,7 +222,6 @@
             this.dateBoxDate.Name = "dateBoxDate";
             this.dateBoxDate.Size = new System.Drawing.Size(154, 45);
             this.dateBoxDate.TabIndex = 1;
-            this.dateBoxDate.Type = Ushahidi.Common.Controls.LabelDateBox.Types.Date;
             this.dateBoxDate.Value = new System.DateTime(2009, 6, 9, 2, 9, 26, 281);
             // 
             // textBoxTitle
@@ -256,7 +251,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 180);
+            this.ClientSize = new System.Drawing.Size(176, 400);
             this.Controls.Add(this.panel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddView";

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Ushahidi.Common.Extensions;
+using Ushahidi.Common.Logging;
 using Ushahidi.Model;
 using Ushahidi.Model.Models;
 using Ushahidi.View.Resources;
@@ -21,7 +23,23 @@ namespace Ushahidi.View.Controllers
             View.ZoomLevel = DataManager.MapZoomLevel;
             View.ZoomLevels = Enumerable.Range(1, 20);
             View.MaxZoomLevel = 20;
-            if (DataManager.DefaultLocale != null && 
+            if (parameters.Exists(0) && parameters[0] is Locale)
+            {
+                Locale locale = parameters[0] as Locale;
+                if (locale != null)
+                {
+                    View.Latitude = Convert.ToDouble(locale.Latitude);
+                    View.Longitude = Convert.ToDouble(locale.Longitude);
+                    View.LocationName = locale.Name;
+                }
+                else
+                {
+                    View.Latitude = double.MinValue;
+                    View.Longitude = double.MinValue;
+                    View.LocationName = string.Empty;
+                }
+            }
+            else if (DataManager.DefaultLocale != null && 
                 string.IsNullOrEmpty(DataManager.DefaultLocale.Latitude) == false &&
                 string.IsNullOrEmpty(DataManager.DefaultLocale.Longitude) == false)
             {
@@ -42,19 +60,27 @@ namespace Ushahidi.View.Controllers
             if (View.ShouldSave)
             {
                 DataManager.MapZoomLevel = View.ZoomLevel;
-                if (View.Latitude != 0 && 
-                    View.Longitude != 0 && 
-                    string.IsNullOrEmpty(View.LocationName) == false)
+                if (View.Latitude.AlmostEquals(0) == false && View.Longitude.AlmostEquals(0) == false &&
+                    View.Latitude != double.MinValue && View.Longitude != double.MinValue)
                 {
-                    Locale locale = new Locale
+                    if (DataManager.Locales.Any(l => Convert.ToDouble(l.Latitude).AlmostEquals(View.Latitude) &&
+                                                     Convert.ToDouble(l.Longitude).AlmostEquals(View.Longitude)))
                     {
-                        CountryID = null,
-                        Latitude = View.Latitude.ToString(),
-                        Longitude = View.Longitude.ToString(),
-                        Name = View.LocationName
-                    };
-                    //save new locale
-                    DataManager.AddLocale(locale);
+                        Log.Info("MapViewController.Save", "Lat:{0} Long:{1} Exists!", View.Latitude, View.Longitude);
+                    }
+                    else
+                    {
+                        Log.Info("MapViewController.Save", "Adding Lat:{0} Long:{1}", View.Latitude, View.Longitude);
+                        Locale locale = new Locale
+                        {
+                            CountryID = null,
+                            Latitude = View.Latitude.ToString(),
+                            Longitude = View.Longitude.ToString(),
+                            Name = string.IsNullOrEmpty(View.LocationName)
+                                 ? string.Format("({0},{1})", View.Latitude, View.Longitude) : View.LocationName
+                        };
+                        DataManager.AddLocale(locale);    
+                    }
                 }
             }
             return true;

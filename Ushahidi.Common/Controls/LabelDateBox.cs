@@ -18,7 +18,7 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Date Formats
         /// </summary>
-        public enum Types
+        public enum DateFormats
         {
             Date,
             Time
@@ -36,26 +36,26 @@ namespace Ushahidi.Common.Controls
         /// <summary>
         /// Style format: Date or Time
         /// </summary>
-        public Types Type
+        public DateFormats DateFormat
         {
-            get { return _Type; }
+            get { return _DateFormat; }
             set
             {
-                _Type = value;
-                if (value == Types.Date)
+                _DateFormat = value;
+                if (value == DateFormats.Date)
                 {
                     dateTimePicker.Format = DateTimePickerFormat.Custom;
                     dateTimePicker.CustomFormat = DATE_FORMAT;
                     dateTimePicker.ShowUpDown = false;
                 }
-                else if (value == Types.Time)
+                else if (value == DateFormats.Time)
                 {
                     dateTimePicker.Format = DateTimePickerFormat.Custom;
                     dateTimePicker.CustomFormat = TIME_FORMAT;
                     dateTimePicker.ShowUpDown = true;
                 }
             }
-        }private Types _Type = Types.Date;
+        }private DateFormats _DateFormat = DateFormats.Date;
 
         /// <summary>
         /// Is input valid?
@@ -173,7 +173,7 @@ namespace Ushahidi.Common.Controls
                 {
                     dateTimePicker.Value = value;
                     dateTimePicker.Format = DateTimePickerFormat.Custom;
-                    dateTimePicker.CustomFormat = (Type == Types.Date) ? DATE_FORMAT : TIME_FORMAT;
+                    dateTimePicker.CustomFormat = (DateFormat == DateFormats.Date) ? DATE_FORMAT : TIME_FORMAT;
                 }
                 else
                 {
@@ -186,7 +186,7 @@ namespace Ushahidi.Common.Controls
         private void OnGotFocus(object sender, EventArgs e)
         {
             Log.Info("LabelDateBox.OnGotFocus");
-            if (Type == Types.Date && ShouldEnableTimer)
+            if (DateFormat == DateFormats.Date && ShouldEnableTimer)
             {
                 //focusTimer.Enabled = true;
             }

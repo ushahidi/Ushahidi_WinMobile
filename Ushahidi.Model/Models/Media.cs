@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Xml.Serialization;
+using Ushahidi.Common.Extensions;
 using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Model.Models
@@ -83,14 +84,19 @@ namespace Ushahidi.Model.Models
         /// </summary>
         /// <param name="filePath">image path</param>
         /// <param name="directory">destination directory</param>
+        /// <param name="size">image size</param>
         /// <returns>Media</returns>
-        public static Media Import(string filePath, string directory)
+        public static Media Import(string filePath, string directory, Size size)
         {
+            Log.Info("Media.Import", "filePath:{0} size:{1}x{2}", filePath, size.Width, size.Height);
             string dateString = DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss");
             string imageName = string.Format("{0}.jpg", dateString);
             string thumbnailName = string.Format("{0}_t.jpg", dateString);
             string imagePath = Path.Combine(directory, imageName);
-            File.Copy(filePath, imagePath);
+            if(filePath.Resize(imagePath, size))
+            {
+                Log.Info("Media.Import");    
+            }
             using (Bitmap thumbnail = CreateThumbnail(imagePath, 100))
             {
                 string thumbnailPath = Path.Combine(directory, thumbnailName);

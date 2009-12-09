@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace Ushahidi.Common.Extensions
 {
@@ -8,6 +10,22 @@ namespace Ushahidi.Common.Extensions
     /// </summary>
     public static class ImageExtensions
     {
+        public static bool Resize(this string sourcePath, string destinationPath, Size size)
+        {
+            if (File.Exists(sourcePath))
+            {
+                using (Image image = new Bitmap(sourcePath))
+                {
+                    using (Image resized = image.Resize(size))
+                    {
+                        resized.Save(destinationPath, ImageFormat.Jpeg);
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
         public static Image Resize(this Image image, Size size)
         {
             if (image == null)

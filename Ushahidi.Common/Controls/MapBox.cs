@@ -122,7 +122,6 @@ namespace Ushahidi.Common.Controls
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            Log.Info("MapBox.OnKeyDown: {0}", e.KeyCode);
             if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Back)
             {
                 e.Handled = true;
@@ -180,6 +179,22 @@ namespace Ushahidi.Common.Controls
             {
                 base.OnKeyDown(e);
             }
+        }
+
+        /// <summary>
+        /// Recalculate Latitude and Longitude
+        /// </summary>
+        public bool ReCalculate()
+        {
+            Log.Info("MapBox.ReCalculate", "Before Latitude:{0} Longitude:{1}", Latitude, Longitude);
+            if (MarkerY != CenterY || MarkerX != CenterX)
+            {
+                Latitude = YToLatitude(LatitudeToY(Latitude) + ((MarkerY - CenterY) << (_MaxZoomLevel - ZoomLevel)));
+                Longitude = XToLongitude(LongitudeToX(Longitude) + ((MarkerX - CenterX) << (_MaxZoomLevel - ZoomLevel)));
+                Log.Info("MapBox.ReCalculate", "After Latitude:{0} Longitude:{1}", Latitude, Longitude);
+                return true;
+            }
+            return false;
         }
 
         /// <summary>

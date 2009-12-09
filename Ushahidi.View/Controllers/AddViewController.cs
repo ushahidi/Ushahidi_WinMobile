@@ -26,7 +26,19 @@ namespace Ushahidi.View.Controllers
                     View.AddMedia(media);
                 }
             }
-            else if (parameters.Length == 0)
+            else if (parameters.Exists(0) && parameters.Exists(1))
+            {
+                View.Locales = DataManager.Locales;
+                double latitude = Convert.ToDouble(parameters[0]);
+                double longitude = Convert.ToDouble(parameters[1]);
+                if (latitude != double.MinValue && longitude != double.MinValue)
+                {
+                    Locale locale = DataManager.Locales.FirstOrDefault(l => Convert.ToDouble(l.Latitude).AlmostEquals(latitude) &&
+                                                                            Convert.ToDouble(l.Longitude).AlmostEquals(longitude));
+                    View.Locale = locale ?? DataManager.Locales.LastOrDefault();
+                }
+            }
+            else if (parameters == null || parameters.Length == 0)
             {
                 View.Categories = DataManager.Categories;
                 View.Locales = DataManager.Locales;

@@ -393,4 +393,7 @@
   <data name="imageSize" xml:space="preserve">
     <value>Afbeeldingsgrootte</value>
   </data>
+  <data name="selectLocation" xml:space="preserve">
+    <value>Huurlocatie</value>
+  </data>
 </root>

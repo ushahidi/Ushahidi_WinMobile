@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.MVC;
@@ -163,7 +165,12 @@ namespace Ushahidi.View.Views
         public object ImageSizes
         {
             get { return comboBoxPhotoSizes.DataSource; }
-            set { comboBoxPhotoSizes.DataSource = value; }
+            set
+            {
+                comboBoxPhotoSizes.DataSource = value;
+                IEnumerable<ImageSize> imageSizes = value as IEnumerable<ImageSize>;
+                comboBoxPhotoSizes.Enabled = imageSizes != null && imageSizes.Count() > 0;
+            }
         }
 
         /// <summary>
@@ -171,16 +178,16 @@ namespace Ushahidi.View.Views
         /// </summary>
         public ImageSize ImageSize
         {
-            get { return comboBoxPhotoSizes.SelectedValue<ImageSize>(); }
+            get { return comboBoxPhotoSizes != null ? comboBoxPhotoSizes.SelectedValue<ImageSize>() : null; }
             set
             {
-                if (value != null)
+                if (comboBoxPhotoSizes != null && value != null)
                 {
-                    comboBoxPhotoSizes.SelectedItem = value;    
+                    comboBoxPhotoSizes.SelectedItem = value;
                 }
-                else
+                else if (comboBoxPhotoSizes != null && comboBoxPhotoSizes.Count > 0)
                 {
-                    comboBoxPhotoSizes.SelectedIndex = 0;   
+                    comboBoxPhotoSizes.SelectedIndex = 0;
                 }
             }
         }

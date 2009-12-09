@@ -393,4 +393,7 @@
   <data name="imageSize" xml:space="preserve">
     <value>Tamanho da imagem</value>
   </data>
+  <data name="selectLocation" xml:space="preserve">
+    <value>Selecione a posição</value>
+  </data>
 </root>

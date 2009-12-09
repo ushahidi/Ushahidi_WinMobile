@@ -35,7 +35,7 @@
             this.menuItemDetectLocation = new System.Windows.Forms.MenuItem();
             this.menuItemZoom = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
-            this.menuItemAddLocation = new System.Windows.Forms.MenuItem();
+            this.menuItemSelectLocation = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
             this.panelContent.SuspendLayout();
@@ -44,9 +44,9 @@
             // menuItemAction
             // 
             this.menuItemAction.MenuItems.Add(this.menuItemDetectLocation);
-            this.menuItemAction.MenuItems.Add(this.menuItemZoom);
+            this.menuItemAction.MenuItems.Add(this.menuItemSelectLocation);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator1);
-            this.menuItemAction.MenuItems.Add(this.menuItemAddLocation);
+            this.menuItemAction.MenuItems.Add(this.menuItemZoom);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemAction.MenuItems.Add(this.menuItemCancel);
             this.menuItemAction.Text = "Action";
@@ -106,10 +106,10 @@
             // 
             this.menuItemSeparator1.Text = "-";
             // 
-            // menuItemAddLocation
+            // menuItemSelectLocation
             // 
-            this.menuItemAddLocation.Text = "Add Location";
-            this.menuItemAddLocation.Click += new System.EventHandler(this.OnAddLocation);
+            this.menuItemSelectLocation.Text = "Select Location";
+            this.menuItemSelectLocation.Click += new System.EventHandler(this.OnSelectLocation);
             // 
             // menuItemSeparator2
             // 
@@ -140,7 +140,7 @@
         private System.Windows.Forms.MenuItem menuItemDetectLocation;
         private System.Windows.Forms.MenuItem menuItemZoom;
         private System.Windows.Forms.MenuItem menuItemSeparator1;
-        private System.Windows.Forms.MenuItem menuItemAddLocation;
+        private System.Windows.Forms.MenuItem menuItemSelectLocation;
         private System.Windows.Forms.MenuItem menuItemSeparator2;
         private System.Windows.Forms.MenuItem menuItemCancel;
         private Ushahidi.Common.Controls.LabelTextBox textBoxLocationName;

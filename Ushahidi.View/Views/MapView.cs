@@ -194,7 +194,7 @@ namespace Ushahidi.View.Views
             base.Translate();
             this.Translate("incidentMap");
             menuItemAction.Translate("action");
-            menuItemAddLocation.Translate("addLocation");
+            menuItemSelectLocation.Translate("selectLocation");
             menuItemDetectLocation.Translate("detectLocation");
             menuItemZoom.Translate("zoomLevel");
             textBoxLocationName.Translate("locationName");
@@ -205,7 +205,7 @@ namespace Ushahidi.View.Views
             base.Render();
             menuItemAction.Enabled = true;
             menuItemMenu.Enabled = false;
-            menuItemAddLocation.Enabled = Latitude != double.MinValue && Longitude != double.MinValue;
+            menuItemSelectLocation.Enabled = Latitude != double.MinValue && Longitude != double.MinValue;
             ShouldSave = true;
         }
 
@@ -350,13 +350,14 @@ namespace Ushahidi.View.Views
            MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
         }
 
-        private void OnAddLocation(object sender, EventArgs e)
+        private void OnSelectLocation(object sender, EventArgs e)
         {
             Log.Info("MapView.OnAddLocation");
             LocationService.Stop();
             ShouldSave = true;
             WaitCursor.Hide();
-            OnBack();   
+            mapBox.ReCalculate();
+            OnBack(mapBox.Latitude, mapBox.Longitude);   
         }
 
         private void OnCancel(object sender, EventArgs e)
@@ -365,7 +366,7 @@ namespace Ushahidi.View.Views
             LocationService.Stop();
             ShouldSave = false;
             WaitCursor.Hide();
-            OnBack();
+            OnBack(double.MinValue, double.MinValue);
         }
 
         private void OnZoomIn(object sender, EventArgs e)
