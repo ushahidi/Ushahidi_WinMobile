@@ -154,7 +154,18 @@ namespace Ushahidi.View.Views
         {
             Log.Info("SyncView.OnSynchronize");
             Synchronizing = true;
-            Internet.TestURL = textBoxServer.Value;
+            if (textBoxServer.Value.EndsWith("/api"))
+            {
+                Internet.TestURL = textBoxServer.Value;
+            }
+            else if (textBoxServer.Value.EndsWith("/"))
+            {
+                Internet.TestURL = string.Format("{0}api", textBoxServer.Value);
+            }
+            else
+            {
+                Internet.TestURL = string.Format("{0}/api", textBoxServer.Value);
+            }
             DataManager.ScreenWidth = Screen.PrimaryScreen.Bounds.Width;
             DataManager.ScreenHeight = Screen.PrimaryScreen.Bounds.Height;
             DataManager.ServerAddress = textBoxServer.Value;
