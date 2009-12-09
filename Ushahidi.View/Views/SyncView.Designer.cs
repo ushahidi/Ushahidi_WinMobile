@@ -68,7 +68,7 @@
             this.checkBoxDownloadIncidents.Location = new System.Drawing.Point(4, 47);
             this.checkBoxDownloadIncidents.Name = "checkBoxDownloadIncidents";
             this.checkBoxDownloadIncidents.Size = new System.Drawing.Size(169, 22);
-            this.checkBoxDownloadIncidents.TabIndex = 2;
+            this.checkBoxDownloadIncidents.TabIndex = 1;
             this.checkBoxDownloadIncidents.Text = "Download Incidents";
             // 
             // checkBoxDownloadMedia
@@ -79,7 +79,7 @@
             this.checkBoxDownloadMedia.Location = new System.Drawing.Point(4, 69);
             this.checkBoxDownloadMedia.Name = "checkBoxDownloadMedia";
             this.checkBoxDownloadMedia.Size = new System.Drawing.Size(169, 22);
-            this.checkBoxDownloadMedia.TabIndex = 3;
+            this.checkBoxDownloadMedia.TabIndex = 2;
             this.checkBoxDownloadMedia.Text = "Download Media";
             // 
             // checkBoxDownloadMaps
@@ -90,7 +90,7 @@
             this.checkBoxDownloadMaps.Location = new System.Drawing.Point(4, 91);
             this.checkBoxDownloadMaps.Name = "checkBoxDownloadMaps";
             this.checkBoxDownloadMaps.Size = new System.Drawing.Size(169, 22);
-            this.checkBoxDownloadMaps.TabIndex = 4;
+            this.checkBoxDownloadMaps.TabIndex = 3;
             this.checkBoxDownloadMaps.Text = "Download Maps";
             // 
             // textBoxServer
@@ -104,7 +104,7 @@
             this.textBoxServer.Multiline = false;
             this.textBoxServer.Name = "textBoxServer";
             this.textBoxServer.Size = new System.Drawing.Size(176, 45);
-            this.textBoxServer.TabIndex = 1;
+            this.textBoxServer.TabIndex = 0;
             this.textBoxServer.Value = "";
             // 
             // listView
@@ -118,6 +118,7 @@
             this.listView.Name = "listView";
             this.listView.Size = new System.Drawing.Size(169, 35);
             this.listView.TabIndex = 0;
+            this.listView.TabStop = false;
             this.listView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeaderProgress

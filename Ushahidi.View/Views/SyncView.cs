@@ -115,6 +115,7 @@ namespace Ushahidi.View.Views
             {
                 if (value)
                 {
+                    Keyboard.Visible = false;
                     WaitCursor.Show();
                     progressBox.Value = 0;
                     progressBox.Maximum = 10;
@@ -127,7 +128,6 @@ namespace Ushahidi.View.Views
                     checkBoxDownloadIncidents.Enabled =
                     checkBoxDownloadMedia.Enabled =
                     checkBoxDownloadMaps.Enabled = false;
-                    listView.Focus();
                 }
                 else
                 {

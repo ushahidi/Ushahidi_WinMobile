@@ -260,7 +260,7 @@ namespace Ushahidi.View.Views
 
         private void OnAddPhoto(object sender, EventArgs e)
         {
-            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this, ImageSize.ToSize()));
+            Media media = DataManager.ImportPhoto(PhotoSelector.ShowDialog(this, ImageSize));
             if (media != null)
             {
                 _MediaItems.Add(media);

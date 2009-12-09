@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-using System.IO;
+﻿using System.IO;
 using System.Windows.Forms;
 using Microsoft.WindowsMobile.Forms;
+using Ushahidi.Common.Controls;
 using Ushahidi.Model.Extensions;
 
 namespace Ushahidi.View.Controls
@@ -15,9 +15,9 @@ namespace Ushahidi.View.Controls
         /// Show Dialog
         /// </summary>
         /// <param name="sender">sender control</param>
-        /// <param name="size">image size</param>
+        /// <param name="resolution">image size</param>
         /// <returns>filepath of photo</returns>
-        public static FileInfo ShowDialog(Control sender, Size size)
+        public static FileInfo ShowDialog(Control sender, ImageSize resolution)
         {
             using (CameraCaptureDialog cameraCaptureDialog = new CameraCaptureDialog())
             {
@@ -25,7 +25,10 @@ namespace Ushahidi.View.Controls
                 cameraCaptureDialog.Mode = CameraCaptureMode.Still;
                 cameraCaptureDialog.StillQuality = CameraCaptureStillQuality.Normal;
                 cameraCaptureDialog.Title = "takeIncidentPhoto".Translate();
-                cameraCaptureDialog.Resolution = size;
+                if (resolution != null)
+                {
+                    cameraCaptureDialog.Resolution = resolution.ToSize();    
+                }
                 if (cameraCaptureDialog.ShowDialog() == DialogResult.OK)
                 {
                     return new FileInfo(cameraCaptureDialog.FileName);
