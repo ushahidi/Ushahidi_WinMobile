@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Drawing.Imaging;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Microsoft.WindowsCE.Forms;
 using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.Controls
@@ -147,14 +145,14 @@ namespace Ushahidi.Common.Controls
                 MarkerY += DISTANCE_DELTA;
                 Invalidate();
             }
-            else if (e.KeyCode == Keys.Return)
+            else if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter)
             {
-                Latitude = YToLatitude(LatitudeToY(Latitude) + ((MarkerY - CenterY) << (_MaxZoomLevel - ZoomLevel)));
-                Longitude = XToLongitude(LongitudeToX(Longitude) + ((MarkerX - CenterX) << (_MaxZoomLevel - ZoomLevel)));
-
-                if (MarkerChanged != null)
+                if (ReCalculate())
                 {
-                    MarkerChanged(Latitude, Longitude);
+                    if (MarkerChanged != null)
+                    {
+                        MarkerChanged(Latitude, Longitude);
+                    }    
                 }
             }
             else if (e.KeyCode == Keys.F6)
@@ -177,6 +175,14 @@ namespace Ushahidi.Common.Controls
             }
             else
             {
+                if (ReCalculate())
+                {
+                    if (MarkerChanged != null)
+                    {
+                        MarkerChanged(Latitude, Longitude);
+                    }    
+                }
+                Parent.SelectNextControl(this, true, true, true, true);
                 base.OnKeyDown(e);
             }
         }
@@ -187,6 +193,8 @@ namespace Ushahidi.Common.Controls
         public bool ReCalculate()
         {
             Log.Info("MapBox.ReCalculate", "Before Latitude:{0} Longitude:{1}", Latitude, Longitude);
+            if (Latitude == double.MinValue) return false;
+            if (Longitude == double.MinValue) return false;
             if (MarkerY != CenterY || MarkerX != CenterX)
             {
                 Latitude = YToLatitude(LatitudeToY(Latitude) + ((MarkerY - CenterY) << (_MaxZoomLevel - ZoomLevel)));
@@ -244,18 +252,6 @@ namespace Ushahidi.Common.Controls
             Log.Info("MapBox.OnResize", "CenterX:{0} CenterY:{1}", CenterX, CenterY);
         }
 
-        private MapMessageWindow MapMsgWindow
-        {
-            get
-            {
-                if (_MapMsgWindow == null)
-                {
-                    _MapMsgWindow = new MapMessageWindow(this);
-                }
-                return _MapMsgWindow;
-            }
-        }private MapMessageWindow _MapMsgWindow;
-
         private void OnGotFocus(object sender, EventArgs e)
         {
             Log.Info("MapBox.OnGotFocus");
@@ -306,111 +302,6 @@ namespace Ushahidi.Common.Controls
             //MessageWindow.SendMessage(ref volumeDownMessage);
         }
 
-        private MapMessageWindow _MapMessageWindow;
-
-        protected virtual int WndProc(IntPtr hwnd, uint msg, uint wParam, int lParam)
-        {
-            Log.Info("MapBox.WndProc");
-            switch (lParam)
-            {
-                case VK_TVOLUMEUP:
-                    Log.Info("MapBox.WndProc", "VK_TVOLUMEUP");
-                    OnZoomIn();
-                    break;
-                case VK_TVOLUMEDOWN:
-                    Log.Info("MapBox.WndProc", "VK_TVOLUMEDOWN");
-                    OnZoomOut();
-                    break;
-
-            }
-            return CallWindowProc(mOldWndProc, Handle, msg, wParam, lParam);
-        }
-
-        IntPtr mOldWndProc;
-        public const int GWL_WNDPROC = -4;
-        private const int Mode_KeyUP = 0x1000;
-        private const int VK_Back = 27;
-        private const int HOTKEYID = 0xB000;  
-
-        private void OverrideKey(int wparam, bool restore)
-        {
-            Log.Info("MapBox.OverrideKey", "wparam:{0} restore:{1}", wparam, restore);
-            IntPtr handle = SHFindMenuBar(Handle);
-            IntPtr lparam = restore ? MakeLParam(0, HiWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY))
-                                    : MakeLParam(LoWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY), HiWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY));
-            Message message = Message.Create(handle, SHCMBM_OVERRIDEKEY,  (IntPtr)wparam, lparam);
-            MessageWindow.SendMessage(ref message);
-        }
-
-        protected enum KeyIDs
-        {
-            VolumeUp = 3,
-            VolumeDown = 4
-        }
-
-        protected enum KeyModifiers : uint
-        {
-            None = 0,
-            Alt = 1,
-            Control = 2,
-            Shift = 4,
-            Windows = 8
-        }
-
-        protected enum VirtualKeys
-        {
-            VolumeUp = 0x75,
-            VolumeDown = 0x76
-        }
-
-        [DllImport("native.dll")]
-        private extern static void Subclass(IntPtr subclassWindow, IntPtr messageWindow);
-
-        [DllImport("native.dll")]
-        private extern static void Unsubclass(IntPtr subclassWindow);
-
-        [DllImport("coredll.dll")]
-        protected static extern uint RegisterHotKey(IntPtr hWnd, KeyIDs id, KeyModifiers modifiers, VirtualKeys vk);
-
-        [DllImport("coredll.dll")]
-        private static extern bool UnregisterHotKey(IntPtr hWnd, KeyIDs id);
-
-        [DllImport("coredll.dll")]
-        protected static extern bool UnregisterFunc1(KeyModifiers modifiers, VirtualKeys id);
-
-        [DllImport("coredll.dll")]
-        protected static extern short GetAsyncKeyState(int vKey);
-
-        [DllImport("aygshell")]
-        private extern static IntPtr SHFindMenuBar(IntPtr hwnd);
-
-        [DllImport("coredll.dll")]
-        private extern static int CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hwnd, uint msg, uint wParam, int lParam);
-
-        [DllImport("coredll.dll")]
-        public extern static IntPtr SetWindowLong(IntPtr hwnd, int nIndex, IntPtr dwNewLong);
-
-        private const int VK_TVOLUMEUP = 3;
-        private const int VK_TVOLUMEDOWN = 4;
-        private const int SHCMBM_OVERRIDEKEY = 0x0593;
-        private const int SHMBOF_NODEFAULT = 0x00000001;
-        private const int SHMBOF_NOTIFY = 0x00000002;
-
-        public static IntPtr MakeLParam(int LoWord, int HiWord)
-        {
-            return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
-        }
-
-        public static int HiWord(int Number)
-        {
-            return (Number >> 16) & 0xffff;
-        }
-
-        public static int LoWord(int Number)
-        {
-            return Number & 0xffff;
-        } 
-
         /// <summary>
         /// Zoom In Event
         /// </summary>
@@ -445,61 +336,187 @@ namespace Ushahidi.Common.Controls
             }
         }
 
-        WndProcDelegate mProc; 
+        //private MapMessageWindow MapMsgWindow
+        //{
+        //    get
+        //    {
+        //        if (_MapMsgWindow == null)
+        //        {
+        //            _MapMsgWindow = new MapMessageWindow(this);
+        //        }
+        //        return _MapMsgWindow;
+        //    }
+        //}private MapMessageWindow _MapMsgWindow;
+        //private MapMessageWindow _MapMessageWindow;
 
-        public delegate int WndProcDelegate(IntPtr hwnd, uint msg, uint wParam, int lParam);
+        //protected virtual int WndProc(IntPtr hwnd, uint msg, uint wParam, int lParam)
+        //{
+        //    Log.Info("MapBox.WndProc");
+        //    switch (lParam)
+        //    {
+        //        case VK_TVOLUMEUP:
+        //            Log.Info("MapBox.WndProc", "VK_TVOLUMEUP");
+        //            OnZoomIn();
+        //            break;
+        //        case VK_TVOLUMEDOWN:
+        //            Log.Info("MapBox.WndProc", "VK_TVOLUMEDOWN");
+        //            OnZoomOut();
+        //            break;
 
-        /// <summary>
-        /// Custom MessageWindow to allow intecepting WndProc call
-        /// </summary>
-        private class MapMessageWindow : MessageWindow
-        {
-            /// <summary>
-            /// Volume Up
-            /// </summary>
-            private const int VK_TVOLUMEUP = 7667712;
+        //    }
+        //    return CallWindowProc(mOldWndProc, Handle, msg, wParam, lParam);
+        //}
 
-            /// <summary>
-            /// Volume Down
-            /// </summary>
-            private const int VK_TVOLUMEDOWN = 7733248;
+        //IntPtr mOldWndProc;
+        //public const int GWL_WNDPROC = -4;
+        //private const int Mode_KeyUP = 0x1000;
+        //private const int VK_Back = 27;
+        //private const int HOTKEYID = 0xB000;  
 
-            /// <summary>
-            /// Map Box Reference
-            /// </summary>
-            private readonly MapBox MapBox;
+        //private void OverrideKey(int wparam, bool restore)
+        //{
+        //    Log.Info("MapBox.OverrideKey", "wparam:{0} restore:{1}", wparam, restore);
+        //    IntPtr handle = SHFindMenuBar(Handle);
+        //    IntPtr lparam = restore ? MakeLParam(0, HiWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY))
+        //                            : MakeLParam(LoWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY), HiWord(SHMBOF_NODEFAULT | SHMBOF_NOTIFY));
+        //    Message message = Message.Create(handle, SHCMBM_OVERRIDEKEY,  (IntPtr)wparam, lparam);
+        //    MessageWindow.SendMessage(ref message);
+        //}
+
+        //protected enum KeyIDs
+        //{
+        //    VolumeUp = 3,
+        //    VolumeDown = 4
+        //}
+
+        //protected enum KeyModifiers : uint
+        //{
+        //    None = 0,
+        //    Alt = 1,
+        //    Control = 2,
+        //    Shift = 4,
+        //    Windows = 8
+        //}
+
+        //protected enum VirtualKeys
+        //{
+        //    VolumeUp = 0x75,
+        //    VolumeDown = 0x76
+        //}
+
+        //[DllImport("native.dll")]
+        //private extern static void Subclass(IntPtr subclassWindow, IntPtr messageWindow);
+
+        //[DllImport("native.dll")]
+        //private extern static void Unsubclass(IntPtr subclassWindow);
+
+        //[DllImport("coredll.dll")]
+        //protected static extern uint RegisterHotKey(IntPtr hWnd, KeyIDs id, KeyModifiers modifiers, VirtualKeys vk);
+
+        //[DllImport("coredll.dll")]
+        //private static extern bool UnregisterHotKey(IntPtr hWnd, KeyIDs id);
+
+        //[DllImport("coredll.dll")]
+        //protected static extern bool UnregisterFunc1(KeyModifiers modifiers, VirtualKeys id);
+
+        //[DllImport("coredll.dll")]
+        //protected static extern short GetAsyncKeyState(int vKey);
+
+        //[DllImport("aygshell")]
+        //private extern static IntPtr SHFindMenuBar(IntPtr hwnd);
+
+        //[DllImport("coredll.dll")]
+        //private extern static int CallWindowProc(IntPtr lpPrevWndFunc, IntPtr hwnd, uint msg, uint wParam, int lParam);
+
+        //[DllImport("coredll.dll")]
+        //public extern static IntPtr SetWindowLong(IntPtr hwnd, int nIndex, IntPtr dwNewLong);
+
+        //private const int VK_TVOLUMEUP = 3;
+        //private const int VK_TVOLUMEDOWN = 4;
+        //private const int SHCMBM_OVERRIDEKEY = 0x0593;
+        //private const int SHMBOF_NODEFAULT = 0x00000001;
+        //private const int SHMBOF_NOTIFY = 0x00000002;
+
+        //public static IntPtr MakeLParam(int LoWord, int HiWord)
+        //{
+        //    return (IntPtr)((HiWord << 16) | (LoWord & 0xffff));
+        //}
+
+        //public static int HiWord(int Number)
+        //{
+        //    return (Number >> 16) & 0xffff;
+        //}
+
+        //public static int LoWord(int Number)
+        //{
+        //    return Number & 0xffff;
+        //} 
+
+        ///// <summary>
+        ///// Zoom In Event
+        ///// </summary>
+        //public event EventHandler ZoomIn;
+
+        ///// <summary>
+        ///// Zoom Out Event
+        ///// </summary>
+        //public event EventHandler ZoomOut;
+
+        //WndProcDelegate mProc; 
+
+        //public delegate int WndProcDelegate(IntPtr hwnd, uint msg, uint wParam, int lParam);
+
+        ///// <summary>
+        ///// Custom MessageWindow to allow intecepting WndProc call
+        ///// </summary>
+        //private class MapMessageWindow : MessageWindow
+        //{
+        //    /// <summary>
+        //    /// Volume Up
+        //    /// </summary>
+        //    private const int VK_TVOLUMEUP = 7667712;
+
+        //    /// <summary>
+        //    /// Volume Down
+        //    /// </summary>
+        //    private const int VK_TVOLUMEDOWN = 7733248;
+
+        //    /// <summary>
+        //    /// Map Box Reference
+        //    /// </summary>
+        //    private readonly MapBox MapBox;
             
-            /// <summary>
-            /// Save a reference to the form so it can be notified when messages are received
-            /// </summary>
-            /// <param name="mapBox">MapBox</param>
-            public MapMessageWindow(MapBox mapBox)
-            {
-                MapBox = mapBox;
-            }
+        //    /// <summary>
+        //    /// Save a reference to the form so it can be notified when messages are received
+        //    /// </summary>
+        //    /// <param name="mapBox">MapBox</param>
+        //    public MapMessageWindow(MapBox mapBox)
+        //    {
+        //        MapBox = mapBox;
+        //    }
             
-            /// <summary>
-            /// Override the default WndProc behavior to examine messages.
-            /// </summary>
-            protected override void WndProc(ref Message msg)
-            {
-                Log.Info("MsgWindow.WndProc", "Msg:{0} LParam:{1}", msg.Msg, (int)msg.LParam);
-                switch ((int)msg.LParam)
-                {
-                    case VK_TVOLUMEUP:
-                        Log.Info("MsgWindow.WndProc", "VK_TVOLUMEUP");
-                        MapBox.OnZoomIn();
-                        break;
-                    case VK_TVOLUMEDOWN:
-                        Log.Info("MsgWindow.WndProc", "VK_TVOLUMEDOWN");
-                        MapBox.OnZoomOut();
-                        break;
-                    default:
-                        base.WndProc(ref msg);
-                        break;
-                }
-                base.WndProc(ref msg);
-            }
-        }
+        //    /// <summary>
+        //    /// Override the default WndProc behavior to examine messages.
+        //    /// </summary>
+        //    protected override void WndProc(ref Message msg)
+        //    {
+        //        Log.Info("MsgWindow.WndProc", "Msg:{0} LParam:{1}", msg.Msg, (int)msg.LParam);
+        //        switch ((int)msg.LParam)
+        //        {
+        //            case VK_TVOLUMEUP:
+        //                Log.Info("MsgWindow.WndProc", "VK_TVOLUMEUP");
+        //                MapBox.OnZoomIn();
+        //                break;
+        //            case VK_TVOLUMEDOWN:
+        //                Log.Info("MsgWindow.WndProc", "VK_TVOLUMEDOWN");
+        //                MapBox.OnZoomOut();
+        //                break;
+        //            default:
+        //                base.WndProc(ref msg);
+        //                break;
+        //        }
+        //        base.WndProc(ref msg);
+        //    }
+        //}
     }
 }

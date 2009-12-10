@@ -229,6 +229,7 @@ namespace Ushahidi.View.Views
             if (LocationService.Start())
             {
                 menuItemDetectLocation.Enabled = false;
+                mapBox.Focus();
                 WaitCursor.Show();
             }
             else
@@ -260,10 +261,10 @@ namespace Ushahidi.View.Views
                 }
                 else
                 {
+                    menuItemSelectLocation.Enabled = true;
                     WaitCursor.Show();
                     mapBox.Latitude = args.Latitude;
                     mapBox.Longitude = args.Longitude;
-                    textBoxLocationName.Value = string.Format("({0},{1})", Math.Round(args.Latitude, 8), Math.Round(args.Longitude, 8));
                     MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);        
                 }
             };
@@ -288,8 +289,12 @@ namespace Ushahidi.View.Views
                 WaitCursor.Hide();
                 if (args.Successful)
                 {
-                    WaitCursor.Show();
-                    GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
+                    menuItemSelectLocation.Enabled = true;
+                    if (string.IsNullOrEmpty(textBoxLocationName.Value))
+                    {
+                        WaitCursor.Show();
+                        GoogleGeocodeService.ReverseGeocode(mapBox.Latitude, mapBox.Longitude);
+                    }
                 }
                 else
                 {
@@ -324,12 +329,12 @@ namespace Ushahidi.View.Views
             }
         }
 
-        private void OnReverseGeocoded(string address)
+        private void OnReverseGeocoded(object sender, GeocodeEventArgs args)
         {
-            Log.Info("MapView.OnReverseGeocoded", "Address:{0}", address);
+            Log.Info("MapView.OnReverseGeocoded", "Address:{0}", args.Address);
             MethodInvoker methodInvoker = delegate
             {
-                textBoxLocationName.Value = address;
+                textBoxLocationName.Value = args.ToString();
                 WaitCursor.Hide();
             };
             if (InvokeRequired)

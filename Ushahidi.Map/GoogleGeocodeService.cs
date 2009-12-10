@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Text;
@@ -52,14 +53,21 @@ namespace Ushahidi.Map
                     {
                         XmlDocument document = new XmlDocument();
                         document.Load(dataStream);
-                        foreach (XmlNode node in document.GetElementsByTagName("address"))
+                        
+                        GeocodeEventArgs geocodeEventArgs = new GeocodeEventArgs
                         {
-                            if (ReverseGeocoded != null)
-                            {
-                                Address = node.InnerText;
-                                ReverseGeocoded(node.InnerText);
-                            }
-                            break;
+                            Address = GetElementByTagName(document, "address"),
+                            Administrative = GetElementByTagName(document, "AdministrativeAreaName"),
+                            SubAdministrative = GetElementByTagName(document, "SubAdministrativeAreaName"),
+                            Locality = GetElementByTagName(document, "LocalityName"),
+                            Thoroughfare = GetElementByTagName(document, "ThoroughfareName"),
+                            PostalCode = GetElementByTagName(document, "PostalCodeNumber"),
+                            Country = GetElementByTagName(document, "CountryNameCode")
+                        };
+
+                        if (ReverseGeocoded != null)
+                        {
+                            ReverseGeocoded(this, geocodeEventArgs);
                         }
                     }
                 }
@@ -70,8 +78,64 @@ namespace Ushahidi.Map
             }
         }
 
-        public delegate void ReverseGeocodedHandler(string address);
+        private static string GetElementByTagName(XmlDocument document, string name)
+        {
+            foreach (XmlNode node in document.GetElementsByTagName(name))
+            {
+                return node.InnerText;
+            }
+            return null;
+        }
+
+        public delegate void ReverseGeocodedHandler(object sender, GeocodeEventArgs args);
 
         public event ReverseGeocodedHandler ReverseGeocoded;
+
+        
+    }
+
+    public class GeocodeEventArgs : EventArgs
+    {
+        /// <summary>
+        /// address
+        /// </summary>
+        public string Address { get; set; }
+
+        /// <summary>
+        /// AdministrativeAreaName
+        /// </summary>
+        public string Administrative { get; set; }
+
+        /// <summary>
+        /// SubAdministrativeAreaName
+        /// </summary>
+        public string SubAdministrative { get; set; }
+
+        /// <summary>
+        /// LocalityName
+        /// </summary>
+        public string Locality { get; set; }
+
+        /// <summary>
+        /// ThoroughfareName
+        /// </summary>
+        public string Thoroughfare { get; set; }
+
+        /// <summary>
+        /// PostalCodeNumber
+        /// </summary>
+        public string PostalCode { get; set; }
+
+        /// <summary>
+        /// CountryNameCode
+        /// </summary>
+        public string Country { get; set; }
+
+        public override string ToString()
+        {
+            List<string> items = new List<string>(new[] { Locality, SubAdministrative, Administrative, Country });
+            items.RemoveAll(s => string.IsNullOrEmpty(s));
+            return string.Join(", ", items.ToArray());
+        }
     }
 }
