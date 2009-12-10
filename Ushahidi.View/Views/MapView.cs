@@ -229,6 +229,7 @@ namespace Ushahidi.View.Views
             if (LocationService.Start())
             {
                 menuItemDetectLocation.Enabled = false;
+                textBoxLocationName.Value = string.Empty;
                 mapBox.Focus();
                 WaitCursor.Show();
             }
