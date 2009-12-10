@@ -7,6 +7,7 @@ using System.Net;
 using System.Xml;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Common.Logging;
+using Ushahidi.Common.Net;
 
 namespace Ushahidi.Common.MVC
 {
@@ -73,6 +74,7 @@ namespace Ushahidi.Common.MVC
                 }
                 TModels models = new TModels();
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                ServicePointManager.CertificatePolicy = Internet.AcceptAllCertificatePolicy();
                 request.KeepAlive = false;
                 request.Credentials = CredentialCache.DefaultCredentials;
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())

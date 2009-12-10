@@ -1,4 +1,7 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using Ushahidi.Common.Logging;
 
 namespace Ushahidi.Common.Net
 {
@@ -52,17 +55,32 @@ namespace Ushahidi.Common.Net
             try
             {
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(TestURL);
+                ServicePointManager.CertificatePolicy = AcceptAllCertificatePolicy();
                 request.KeepAlive = false;
                 using(HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 {
                     return response.StatusCode == HttpStatusCode.OK;    
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                Log.Exception("Internet.HasInternetConnection", "Exception: {0}", ex);
                 return false;
             }
         }
 
+        public static AcceptAllCertificatePolicy AcceptAllCertificatePolicy()
+        {
+            return new AcceptAllCertificatePolicy();
+        }
+        
+    }
+
+    public class AcceptAllCertificatePolicy : ICertificatePolicy
+    {
+        public bool CheckValidationResult(ServicePoint point, X509Certificate certificate, WebRequest request, int certProb)
+        {
+            return true;
+        }
     }
 }

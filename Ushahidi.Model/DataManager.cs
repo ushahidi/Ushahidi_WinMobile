@@ -701,6 +701,7 @@ namespace Ushahidi.Model
             {
                 string url = string.Format("{0}{1}{2}", ServerAddress, ServerAddress.EndsWith("/") ? "" : "/", "api/");
                 HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(url);
+                ServicePointManager.CertificatePolicy = Internet.AcceptAllCertificatePolicy();
                 webRequest.Credentials = CredentialCache.DefaultCredentials;
                 webRequest.Method = "POST";
                 webRequest.ContentType = string.Format("multipart/form-data; boundary={0}", PostData.Boundary);
@@ -775,11 +776,17 @@ namespace Ushahidi.Model
             }
         }private static string _MapDirectory;
 
+        /// <summary>
+        /// Map Types
+        /// </summary>
         public static IEnumerable<string> MapTypes
         {
             get { return _MapTypes; }
         }private static readonly string[] _MapTypes = new[] { "Roadmap", "Satellite" };
 
+        /// <summary>
+        /// Mape Type
+        /// </summary>
         public static string MapType
         {
             get
@@ -793,6 +800,10 @@ namespace Ushahidi.Model
             set { _MapType = value; }
         }private static string _MapType;
 
+        /// <summary>
+        /// Download Maps
+        /// </summary>
+        /// <returns>true, if successful</returns>
         public static bool DownloadMaps()
         {
             foreach (Incident incident in Incidents)
@@ -889,48 +900,6 @@ namespace Ushahidi.Model
             {
                 if (_ImageSizes == null)
                 {
-                    //List<ImageSize> imageSizes = new List<ImageSize>();
-                    //RegistryKey registryKey1 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Pictures\Camera\USER\Resolution");
-                    //if (registryKey1 != null)
-                    //{
-                    //    foreach (string subKeyName in registryKey1.GetSubKeyNames())
-                    //    {
-                    //        RegistryKey subKey = registryKey1.OpenSubKey(subKeyName);
-                    //        if (subKey != null)
-                    //        {
-                    //            object width = subKey.GetValue("Width");
-                    //            object height = subKey.GetValue("Height");
-                    //            if (width != null && height != null)
-                    //            {
-                    //                ImageSize imageSize = new ImageSize(Convert.ToInt32(width), Convert.ToInt32(height));
-                    //                imageSizes.Add(imageSize);
-                    //            }
-                    //            subKey.Close();
-                    //        }
-                    //    }
-                    //    registryKey1.Close();
-                    //}
-                    //RegistryKey registryKey2 = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Pictures\Camera\OEM\PictureResolution");
-                    //if (registryKey2 != null)
-                    //{
-                    //    foreach (string subKeyName in registryKey2.GetSubKeyNames())
-                    //    {
-                    //        RegistryKey subKey = registryKey2.OpenSubKey(subKeyName);
-                    //        if (subKey != null)
-                    //        {
-                    //            object width = subKey.GetValue("Width");
-                    //            object height = subKey.GetValue("Height");
-                    //            if (width != null && height != null)
-                    //            {
-                    //                ImageSize imageSize = new ImageSize(Convert.ToInt32(width), Convert.ToInt32(height));
-                    //                imageSizes.Add(imageSize);
-                    //            }
-                    //            subKey.Close();
-                    //        }
-                    //    }
-                    //    registryKey2.Close();
-                    //}
-                    //_ImageSizes = imageSizes.ToArray();
                     _ImageSizes = new[]{new ImageSize(160, 120), 
                                         new ImageSize(320, 240), 
                                         new ImageSize(640, 480), 

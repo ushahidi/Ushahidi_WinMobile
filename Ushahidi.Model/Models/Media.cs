@@ -6,6 +6,7 @@ using System.Net;
 using System.Xml.Serialization;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Common.Logging;
+using Ushahidi.Common.Net;
 
 namespace Ushahidi.Model.Models
 {
@@ -120,6 +121,7 @@ namespace Ushahidi.Model.Models
                 if (fileInfo.Exists == false || fileInfo.Length == 0)
                 {
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(sourceURL);
+                    ServicePointManager.CertificatePolicy = Internet.AcceptAllCertificatePolicy();
                     request.Credentials = CredentialCache.DefaultCredentials;
                     request.AllowAutoRedirect = true;
                     request.ReadWriteTimeout = 5000;
