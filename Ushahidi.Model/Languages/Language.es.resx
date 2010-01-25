@@ -133,16 +133,16 @@
     <value>Agregar Incidente</value>
   </data>
   <data name="addNewsLink" xml:space="preserve">
-    <value>Agregar Nuevo Enlace</value>
+    <value>Agregar enlace de noticias</value>
   </data>
   <data name="addPhoto" xml:space="preserve">
     <value>Agregar Foto</value>
   </data>
   <data name="addPhotoLink" xml:space="preserve">
-    <value>Añadir Foto Enlace</value>
+    <value>Agregar foto</value>
   </data>
   <data name="addVideoLink" xml:space="preserve">
-    <value>Agregar Nuevo Enlace de Vídeo</value>
+    <value>Agregar enlace de noticias</value>
   </data>
   <data name="allCategories" xml:space="preserve">
     <value>Todas las Categorías</value>
@@ -172,7 +172,7 @@
     <value>Descripción</value>
   </data>
   <data name="done" xml:space="preserve">
-    <value>Finalizado</value>
+    <value>Finalizar</value>
   </data>
   <data name="downloadingCategories" xml:space="preserve">
     <value>Descargando Categorías</value>
@@ -235,7 +235,7 @@
     <value>Cargar</value>
   </data>
   <data name="location" xml:space="preserve">
-    <value>Lugar</value>
+    <value>Ubicación</value>
   </data>
   <data name="mapType" xml:space="preserve">
     <value>Tipo de mapa</value>
@@ -250,7 +250,7 @@
     <value>Por favor, verifique todos los campos obligatorios se introducen</value>
   </data>
   <data name="news" xml:space="preserve">
-    <value>Noticias</value>
+    <value>Noticias en Internet</value>
   </data>
   <data name="noInternetConnection" xml:space="preserve">
     <value>Conexión a Internet no encontrada</value>
@@ -295,7 +295,7 @@
     <value>Parar</value>
   </data>
   <data name="submit" xml:space="preserve">
-    <value>Enviar</value>
+    <value>Guardar</value>
   </data>
   <data name="synchronizationComplete" xml:space="preserve">
     <value>Sincronización Terminada</value>
@@ -304,7 +304,7 @@
     <value>Fallo en la Sincronización</value>
   </data>
   <data name="synchronize" xml:space="preserve">
-    <value>Sincronizar</value>
+    <value>Enviar</value>
   </data>
   <data name="takeIncidentPhoto" xml:space="preserve">
     <value>Tomar una foto del Incidente</value>
@@ -385,7 +385,7 @@
     <value>Versión</value>
   </data>
   <data name="defaultLocation" xml:space="preserve">
-    <value>Localización de defecto</value>
+    <value>Ubicación inicial</value>
   </data>
   <data name="errorTryAgain" xml:space="preserve">
     <value>Hubo un problema con la solicitud, por favor, inténtelo de nuevo.</value>
