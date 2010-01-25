@@ -34,6 +34,8 @@
             this.scrollListBox = new Ushahidi.Common.Controls.ScrollListBox();
             this.menuItemAddNews = new System.Windows.Forms.MenuItem();
             this.menuItemAddVideo = new System.Windows.Forms.MenuItem();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.menuItemBack = new System.Windows.Forms.MenuItem();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,6 +44,8 @@
             this.menuItemAction.MenuItems.Add(this.menuItemAddPhoto);
             this.menuItemAction.MenuItems.Add(this.menuItemAddNews);
             this.menuItemAction.MenuItems.Add(this.menuItemAddVideo);
+            this.menuItemAction.MenuItems.Add(this.menuItem1);
+            this.menuItemAction.MenuItems.Add(this.menuItemBack);
             this.menuItemAction.Text = "Action";
             // 
             // menuItemAddPhoto
@@ -77,7 +81,7 @@
             this.scrollListBox.SelectedItem = null;
             this.scrollListBox.Size = new System.Drawing.Size(176, 180);
             this.scrollListBox.TabIndex = 0;
-            this.scrollListBox.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(OnItemSelected);
+            this.scrollListBox.ItemSelected += new Ushahidi.Common.Controls.ScrollListBox.ItemHandler(this.OnItemSelected);
             // 
             // menuItemAddNews
             // 
@@ -88,6 +92,15 @@
             // 
             this.menuItemAddVideo.Text = "Add Video Link";
             this.menuItemAddVideo.Click += new System.EventHandler(this.OnAddVideo);
+            // 
+            // menuItem1
+            // 
+            this.menuItem1.Text = "-";
+            // 
+            // menuItemBack
+            // 
+            this.menuItemBack.Text = "Back";
+            this.menuItemBack.Click += new System.EventHandler(this.OnMenuBack);
             // 
             // DetailsView
             // 
@@ -111,5 +124,7 @@
         private Ushahidi.Common.Controls.ScrollListBox scrollListBox;
         private System.Windows.Forms.MenuItem menuItemAddNews;
         private System.Windows.Forms.MenuItem menuItemAddVideo;
+        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.MenuItem menuItemBack;
     }
 }

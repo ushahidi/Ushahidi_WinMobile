@@ -396,4 +396,7 @@
   <data name="selectLocation" xml:space="preserve">
     <value>Huurlocatie</value>
   </data>
+  <data name="back" xml:space="preserve">
+    <value>Terug</value>
+  </data>
 </root>

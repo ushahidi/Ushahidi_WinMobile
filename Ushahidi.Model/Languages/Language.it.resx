@@ -396,4 +396,7 @@
   <data name="selectLocation" xml:space="preserve">
     <value>Selezioni la posizione</value>
   </data>
+  <data name="back" xml:space="preserve">
+    <value>Indietro</value>
+  </data>
 </root>

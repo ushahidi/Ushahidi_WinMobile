@@ -299,10 +299,20 @@ namespace Ushahidi.Common.Controls
                 case Keys.Down:
                     if (SelectedItem != null)
                     {
-                        int indexDown = Controls.GetChildIndex(SelectedItem) + 1;
-                        if (indexDown > -1 && Count > indexDown)
+                        int index = Controls.GetChildIndex(SelectedItem);
+                        if (index == Count - 1)
                         {
-                            SelectedIndex = indexDown;
+                            Parent.SelectNextControl(this, true, true, true, true);
+                            SelectedItem = null;
+                            SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            int indexDown = index + 1;
+                            if (indexDown > -1 && Count > indexDown)
+                            {
+                                SelectedIndex = indexDown;
+                            }    
                         }
                     }
                     else if (Count > 0)
@@ -313,10 +323,20 @@ namespace Ushahidi.Common.Controls
                 case Keys.Up:
                     if (SelectedItem != null)
                     {
-                        int indexUp = Controls.GetChildIndex(SelectedItem) - 1;
-                        if (indexUp > -1 && Count > indexUp)
+                        int index = Controls.GetChildIndex(SelectedItem);
+                        if (index == 0)
                         {
-                            SelectedIndex = indexUp;
+                            Parent.SelectNextControl(this, false, true, true, true);
+                            SelectedItem = null;
+                            SelectedIndex = -1;
+                        }
+                        else
+                        {
+                            int indexUp = index - 1;
+                            if (indexUp > -1 && Count > indexUp)
+                            {
+                                SelectedIndex = indexUp;
+                            }        
                         }
                     }
                     else

@@ -38,6 +38,7 @@ namespace Ushahidi.View.Views
             menuItemAddPhoto.Translate("addPhotoLink");
             menuItemAddNews.Translate("addNewsLink");
             menuItemAddVideo.Translate("addVideoLink");
+            menuItemBack.Translate("back");
         }
 
         public override void Render()
@@ -115,6 +116,11 @@ namespace Ushahidi.View.Views
                 LocaleListItem mapListItem = args.Item as LocaleListItem;
                 Dialog.Help(mapListItem.Item.Name, string.Format("({0},{1})", mapListItem.Item.Latitude, mapListItem.Item.Longitude));
             }
+        }
+
+        private void OnMenuBack(object sender, EventArgs e)
+        {
+            OnBack();
         }
     }
 }
