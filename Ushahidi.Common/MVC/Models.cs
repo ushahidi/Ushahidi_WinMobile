@@ -133,6 +133,42 @@ namespace Ushahidi.Common.MVC
 
         }
 
+        protected void Sort(IComparer<TModel> comparer)
+        {
+            Sort(comparer, null);
+        }
+        
+        protected void Sort(Comparison<TModel> comparison)
+        {
+           Sort(null, comparison);
+        }
+
+        private void Sort(IComparer<TModel> comparer, Comparison<TModel> comparison)
+        {
+            List<TModel> sortList = new List<TModel>();
+            sortList.AddRange(this);
+            if (comparer != null)
+            {
+                sortList.Sort(comparer);
+            }
+            else if (comparison != null)
+            {
+                sortList.Sort(comparison);
+            }
+            bool oldRaise = RaiseListChangedEvents;
+            RaiseListChangedEvents = false;
+            try
+            {
+                ClearItems();
+                Add(sortList);
+            }
+            finally
+            {
+                RaiseListChangedEvents = oldRaise;
+                ResetBindings();
+            }
+        }
+
         public void Dispose()
         {
             foreach(TModel model in this.Reverse())

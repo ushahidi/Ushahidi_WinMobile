@@ -27,5 +27,13 @@ namespace Ushahidi.Model.Models
         {
             return Download<Incidents>(url, directory, "incident");
         }
+
+        /// <summary>
+        /// Sort Incidents By Date
+        /// </summary>
+        public void Sort()
+        {
+            Sort((a, b) => a.Date.CompareTo(b.Date));
+        }
     }
 }
