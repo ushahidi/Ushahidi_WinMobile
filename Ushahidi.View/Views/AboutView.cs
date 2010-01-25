@@ -1,5 +1,5 @@
-﻿using System.Drawing;
-using Ushahidi.Common;
+﻿using System;
+using System.Drawing;
 using Ushahidi.Model.Extensions;
 using Ushahidi.View.Controls;
 
@@ -26,13 +26,9 @@ namespace Ushahidi.View.Views
         {
             base.Translate();
             this.Translate("about");
+            menuItemAction.Translate("back");
             textBlockDescription.Translate("ushahidiDescription");
             textBlockDescription.AdjustHeight();
-        }
-
-        public override void Render()
-        {
-            base.Render();
         }
 
         /// <summary>
@@ -42,6 +38,11 @@ namespace Ushahidi.View.Views
         {
             get { return pictureBoxLogo.Image; }
             set { pictureBoxLogo.Image = value; }
+        }
+
+        private void OnMenuBack(object sender, EventArgs e)
+        {
+            OnBack();
         }
     }
 }

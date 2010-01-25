@@ -1,4 +1,6 @@
 ﻿using System.Drawing;
+using System.IO;
+using Ushahidi.Common;
 using Ushahidi.Common.Controls;
 using Ushahidi.Model;
 using Ushahidi.View.Resources;
@@ -17,12 +19,24 @@ namespace Ushahidi.View.Controllers
         public override void Load(object[] parameters)
         {
             Keyboard.AutoShow = DataManager.ShowKeyboard;
-            View.Logo = UshahidiLogo;
+            View.Logo = Logo;
         }
 
         /// <summary>
-        /// The logo
+        /// Logo
         /// </summary>
-        private readonly Image UshahidiLogo = ResourcesManager.LoadImageResource("ushahidi_btn.png");
+        protected Image Logo
+        {
+            get
+            {
+                if (_Logo == null)
+                {
+                    string filePath = Path.Combine(Runtime.AppDirectory, "logo.png");
+                    _Logo = File.Exists(filePath) ? new Bitmap(filePath) : ResourcesManager.LoadImageResource("ushahidi_btn.png");
+                }
+                return _Logo;
+            }
+        }private Image _Logo; 
+
     }
 }

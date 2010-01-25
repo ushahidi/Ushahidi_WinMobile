@@ -33,6 +33,11 @@
             this.textBlockDescription = new Ushahidi.Common.Controls.TextBlock();
             this.SuspendLayout();
             // 
+            // menuItemAction
+            // 
+            this.menuItemAction.Text = "Back";
+            this.menuItemAction.Click += new System.EventHandler(this.OnMenuBack);
+            // 
             // pictureBoxLogo
             // 
             this.pictureBoxLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)

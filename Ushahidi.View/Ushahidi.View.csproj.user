@@ -2,7 +2,7 @@
   <PropertyGroup>
     <DeployDeviceID>8b86f8c7-ce90-4a9f-ac1c-bc1481299aa1</DeployDeviceID>
     <EnableSigning>true</EnableSigning>
-    <SigningCertHash>1049B790EDA3C369E9C206B44AF16B2657CC1555</SigningCertHash>
+    <SigningCertHash>8AEB6E720079EB0494AE9BE32CB13A9E3687D913</SigningCertHash>
     <ProvisionStore>priv</ProvisionStore>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
