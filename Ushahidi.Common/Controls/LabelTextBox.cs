@@ -151,6 +151,32 @@ namespace Ushahidi.Common.Controls
         }
 
         /// <summary>
+        /// TextBox GotFocus
+        /// </summary>
+        public new event EventHandler GotFocus
+        {
+            add { textBox.GotFocus += value; }
+            remove { textBox.GotFocus -= value; }
+        }
+
+        /// <summary>
+        /// TextBox LostFocus
+        /// </summary>
+        public new event EventHandler LostFocus
+        {
+            add { textBox.LostFocus += value; }
+            remove { textBox.LostFocus -= value; }
+        }
+
+        /// <summary>
+        /// Selects all text in the TextBox
+        /// </summary>
+        public void SelectAll()
+        {
+            textBox.SelectAll();
+        }
+
+        /// <summary>
         /// On text changed
         /// </summary>
         private void OnTextChanged(object sender, EventArgs e)

@@ -120,7 +120,7 @@ namespace Ushahidi.Common.Controls
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Back)
+            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Back || e.KeyCode == Keys.Cancel)
             {
                 e.Handled = true;
                 Parent.SelectNextControl(this, true, true, true, true);

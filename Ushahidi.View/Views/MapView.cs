@@ -176,6 +176,7 @@ namespace Ushahidi.View.Views
         {
             base.Initialize();
             textBoxLocationName.BackColor = Colors.Background;
+            textBoxLocationName.GotFocus += OnLocationGotFocus;
         }
 
         public override void Loaded()
@@ -395,6 +396,12 @@ namespace Ushahidi.View.Views
                 mapBox.ZoomLevel = --ZoomLevel;
                 MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);    
             }
+        }
+
+        private void OnLocationGotFocus(object sender, EventArgs e)
+        {
+            Log.Info("Location GotFocus");
+            textBoxLocationName.SelectAll();
         }
     }
 }
