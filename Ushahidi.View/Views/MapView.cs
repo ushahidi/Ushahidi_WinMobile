@@ -352,8 +352,9 @@ namespace Ushahidi.View.Views
         private void OnZoomLevelChanged(object sender, EventArgs e)
         {
            Log.Info("MapView.OnZoomLevelChanged", "ZoomLevel:{0}", ((MenuItem)sender).Text);
-           mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
            WaitCursor.Show();
+           mapBox.ReCalculate();
+           mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
            MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
         }
 
