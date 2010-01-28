@@ -399,4 +399,10 @@
   <data name="back" xml:space="preserve">
     <value>Terug</value>
   </data>
+  <data name="zoomIn" xml:space="preserve">
+    <value>Inzoomen</value>
+  </data>
+  <data name="zoomOut" xml:space="preserve">
+    <value>Uitzoomen</value>
+  </data>
 </root>

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Ushahidi.Common.Controls;
 using Ushahidi.Common.Extensions;
 using Ushahidi.Common.Logging;
@@ -122,47 +120,19 @@ namespace Ushahidi.View.Views
         public int MaxZoomLevel { get; set; }
 
         /// <summary>
+        /// Minimum Zoom Level
+        /// </summary>
+        public int MinZoomLevel { get; set; }
+
+        /// <summary>
         /// ZoomLevel
         /// </summary>
         public int ZoomLevel
         {
             get { return _ZoomLevel; }
-            set
-            {
-                foreach (MenuItem menuItem in menuItemZoom.MenuItems)
-                {
-                    menuItem.Click -= OnZoomLevelChanged;
-                    menuItem.Checked = Convert.ToInt32(menuItem.Text) == value;
-                    menuItem.Click += OnZoomLevelChanged;
-                }
-                mapBox.ZoomLevel = value;
-                _ZoomLevel = value;
-            }
-        }private int _ZoomLevel = 1;
+            set { mapBox.ZoomLevel = _ZoomLevel = value; }
+        }private int _ZoomLevel = 12;
         
-        /// <summary>
-        /// Zoom Levels
-        /// </summary>
-        public IEnumerable<int> ZoomLevels
-        {
-            get { return _ZoomLevels; }
-            set
-            {
-                menuItemZoom.MenuItems.Clear();
-                foreach (int zoomLevel in value)
-                {
-                    MenuItem menuItem = new MenuItem
-                    {
-                        Text = zoomLevel.ToString(),
-                        Checked = (zoomLevel == ZoomLevel)
-                    };
-                    menuItem.Click += OnZoomLevelChanged;
-                    menuItemZoom.MenuItems.Add(menuItem);
-                }
-                _ZoomLevels = value;
-            }
-        }private IEnumerable<int> _ZoomLevels;
-
         /// <summary>
         /// Location Name
         /// </summary>
@@ -197,7 +167,8 @@ namespace Ushahidi.View.Views
             menuItemAction.Translate("action");
             menuItemSelectLocation.Translate("selectLocation");
             menuItemDetectLocation.Translate("detectLocation");
-            menuItemZoom.Translate("zoomLevel");
+            menuItemZoomIn.Translate("zoomIn");
+            menuItemZoomOut.Translate("zoomOut");
             textBoxLocationName.Translate("locationName");
         }
 
@@ -207,6 +178,8 @@ namespace Ushahidi.View.Views
             menuItemAction.Enabled = true;
             menuItemMenu.Enabled = false;
             menuItemSelectLocation.Enabled = Latitude != double.MinValue && Longitude != double.MinValue;
+            menuItemZoomIn.Enabled = ZoomLevel < MaxZoomLevel;
+            menuItemZoomOut.Enabled = ZoomLevel > MinZoomLevel;
             ShouldSave = true;
         }
 
@@ -237,6 +210,7 @@ namespace Ushahidi.View.Views
             else
             {
                 Dialog.Warning("detectLocation".Translate(), "notActive".Translate());
+                textBoxLocationName.Value = string.Empty;
                 menuItemDetectLocation.Enabled = false;
             }
             menuItemAddIncident.Enabled = false;
@@ -349,22 +323,13 @@ namespace Ushahidi.View.Views
             }
         }
 
-        private void OnZoomLevelChanged(object sender, EventArgs e)
-        {
-           Log.Info("MapView.OnZoomLevelChanged", "ZoomLevel:{0}", ((MenuItem)sender).Text);
-           WaitCursor.Show();
-           mapBox.ReCalculate();
-           mapBox.ZoomLevel = ZoomLevel = Convert.ToInt32(((MenuItem)sender).Text);
-           MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
-        }
-
         private void OnSelectLocation(object sender, EventArgs e)
         {
             Log.Info("MapView.OnAddLocation");
             LocationService.Stop();
             ShouldSave = true;
-            WaitCursor.Hide();
             mapBox.ReCalculate();
+            WaitCursor.Hide();
             OnBack(mapBox.Latitude, mapBox.Longitude);   
         }
 
@@ -383,9 +348,11 @@ namespace Ushahidi.View.Views
             if (ZoomLevel < MaxZoomLevel)
             {
                 WaitCursor.Show();
+                mapBox.ReCalculate();
                 mapBox.ZoomLevel = ++ZoomLevel;
-                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
             }
+            menuItemZoomIn.Enabled = ZoomLevel < MaxZoomLevel;
         }
 
         private void OnZoomOut(object sender, EventArgs e)
@@ -394,9 +361,11 @@ namespace Ushahidi.View.Views
             if (ZoomLevel > 1)
             {
                 WaitCursor.Show();
+                mapBox.ReCalculate();
                 mapBox.ZoomLevel = --ZoomLevel;
-                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);    
+                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);    
             }
+            menuItemZoomOut.Enabled = ZoomLevel > MinZoomLevel;
         }
 
         private void OnLocationGotFocus(object sender, EventArgs e)

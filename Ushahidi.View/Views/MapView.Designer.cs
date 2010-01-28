@@ -33,11 +33,12 @@
             this.mapBox = new Ushahidi.Common.Controls.MapBox();
             this.textBoxLocationName = new Ushahidi.Common.Controls.LabelTextBox();
             this.menuItemDetectLocation = new System.Windows.Forms.MenuItem();
-            this.menuItemZoom = new System.Windows.Forms.MenuItem();
+            this.menuItemZoomIn = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator1 = new System.Windows.Forms.MenuItem();
             this.menuItemSelectLocation = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator2 = new System.Windows.Forms.MenuItem();
             this.menuItemCancel = new System.Windows.Forms.MenuItem();
+            this.menuItemZoomOut = new System.Windows.Forms.MenuItem();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +47,8 @@
             this.menuItemAction.MenuItems.Add(this.menuItemDetectLocation);
             this.menuItemAction.MenuItems.Add(this.menuItemSelectLocation);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator1);
-            this.menuItemAction.MenuItems.Add(this.menuItemZoom);
+            this.menuItemAction.MenuItems.Add(this.menuItemZoomIn);
+            this.menuItemAction.MenuItems.Add(this.menuItemZoomOut);
             this.menuItemAction.MenuItems.Add(this.menuItemSeparator2);
             this.menuItemAction.MenuItems.Add(this.menuItemCancel);
             this.menuItemAction.Text = "Action";
@@ -99,9 +101,10 @@
             this.menuItemDetectLocation.Text = "Detect Location";
             this.menuItemDetectLocation.Click += new System.EventHandler(this.OnDetectLocation);
             // 
-            // menuItemZoom
+            // menuItemZoomIn
             // 
-            this.menuItemZoom.Text = "Zoom Level";
+            this.menuItemZoomIn.Text = "Zoom In";
+            this.menuItemZoomIn.Click += new System.EventHandler(this.OnZoomIn);
             // 
             // menuItemSeparator1
             // 
@@ -121,6 +124,11 @@
             this.menuItemCancel.Text = "Cancel";
             this.menuItemCancel.Click += new System.EventHandler(this.OnCancel);
             // 
+            // menuItemZoomOut
+            // 
+            this.menuItemZoomOut.Text = "Zoom Out";
+            this.menuItemZoomOut.Click += new System.EventHandler(this.OnZoomOut);
+            // 
             // MapView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -139,13 +147,14 @@
 
         private System.Windows.Forms.Panel panelContent;
         private System.Windows.Forms.MenuItem menuItemDetectLocation;
-        private System.Windows.Forms.MenuItem menuItemZoom;
+        private System.Windows.Forms.MenuItem menuItemZoomIn;
         private System.Windows.Forms.MenuItem menuItemSeparator1;
         private System.Windows.Forms.MenuItem menuItemSelectLocation;
         private System.Windows.Forms.MenuItem menuItemSeparator2;
         private System.Windows.Forms.MenuItem menuItemCancel;
         private Ushahidi.Common.Controls.LabelTextBox textBoxLocationName;
         private Ushahidi.Common.Controls.MapBox mapBox;
+        private System.Windows.Forms.MenuItem menuItemZoomOut;
 
     }
 }

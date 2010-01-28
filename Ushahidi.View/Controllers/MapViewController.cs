@@ -20,9 +20,9 @@ namespace Ushahidi.View.Controllers
             View.Password = ResourcesManager.BingMapPassword;
             View.MapApiKey = ResourcesManager.GoogleMapApiKey;
             View.Satellite = DataManager.MapType == "Satellite";
-            View.ZoomLevel = DataManager.MapZoomLevel;
-            View.ZoomLevels = Enumerable.Range(1, 20);
             View.MaxZoomLevel = 20;
+            View.MinZoomLevel = 1;
+            View.ZoomLevel = DataManager.MapZoomLevel;
             if (parameters.Exists(0) && parameters[0] is Locale)
             {
                 Locale locale = parameters[0] as Locale;
