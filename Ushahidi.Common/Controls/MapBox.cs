@@ -129,44 +129,71 @@ namespace Ushahidi.Common.Controls
             {
                 MarkerX -= DISTANCE_DELTA;
                 Invalidate();
+                if (MarkerX <= imageList.ImageSize.Width / 2)
+                {
+                    Log.Info("Left Edge");
+                    if (ReCalculate() && MarkerChanged != null)
+                    {
+                        MarkerChanged(Latitude, Longitude);
+                    }
+                }
             }
             else if (e.KeyCode == Keys.Right)
             {
                 MarkerX += DISTANCE_DELTA;
                 Invalidate();
+                if (MarkerX >= Width - (imageList.ImageSize.Width / 2))
+                {
+                    Log.Info("Right Edge");
+                    if (ReCalculate() && MarkerChanged != null)
+                    {
+                        MarkerChanged(Latitude, Longitude);
+                    }
+                }
             }
             else if (e.KeyCode == Keys.Up)
             {
                 MarkerY -= DISTANCE_DELTA;
                 Invalidate();
+                if (MarkerY <= imageList.ImageSize.Height)
+                {
+                    Log.Info("Top Edge");
+                    if (ReCalculate() && MarkerChanged != null)
+                    {
+                        MarkerChanged(Latitude, Longitude);
+                    }
+                }
             }
             else if (e.KeyCode == Keys.Down)
             {
                 MarkerY += DISTANCE_DELTA;
                 Invalidate();
+                if (MarkerY >= Height - 2)
+                {
+                    Log.Info("Bottom Edge");
+                    if (ReCalculate() && MarkerChanged != null)
+                    {
+                        MarkerChanged(Latitude, Longitude);
+                    }
+                }
             }
             else if (e.KeyCode == Keys.Return || e.KeyCode == Keys.Enter)
             {
-                if (ReCalculate())
+                if (ReCalculate() && MarkerChanged != null)
                 {
-                    if (MarkerChanged != null)
-                    {
-                        MarkerChanged(Latitude, Longitude);
-                    }    
+                    MarkerChanged(Latitude, Longitude);
                 }
             }
-            else if (e.KeyCode == Keys.F6)
+            else if (e.KeyCode == Keys.F6 || e.KeyCode == Keys.Add)
             {
-                //ZOOM IN
                 Log.Info("MapBox", "ZoomIn");
                 if (ZoomIn != null && Latitude != double.MinValue && Longitude != double.MinValue)
                 {
                     ZoomIn(this, EventArgs.Empty);
                 }
             }
-            else if (e.KeyCode == Keys.F7)
+            else if (e.KeyCode == Keys.F7 || e.KeyCode == Keys.Subtract)
             {
-                //ZOOM OUT
                 Log.Info("MapBox", "ZoomOut");
                 if (ZoomOut != null && Latitude != double.MinValue && Longitude != double.MinValue)
                 {
@@ -175,12 +202,9 @@ namespace Ushahidi.Common.Controls
             }
             else
             {
-                if (ReCalculate())
+                if (ReCalculate() && MarkerChanged != null)
                 {
-                    if (MarkerChanged != null)
-                    {
-                        MarkerChanged(Latitude, Longitude);
-                    }    
+                    MarkerChanged(Latitude, Longitude);
                 }
                 Parent.SelectNextControl(this, true, true, true, true);
                 base.OnKeyDown(e);
