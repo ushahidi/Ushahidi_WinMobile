@@ -31,9 +31,16 @@ namespace Ushahidi.Model.Models
         /// <summary>
         /// Sort Incidents By Date
         /// </summary>
-        public void Sort()
+        public void Sort(bool descending)
         {
-            Sort((a, b) => a.Date.CompareTo(b.Date));
+            if (descending)
+            {
+                Sort((a, b) => b.Date.CompareTo(a.Date));
+            }
+            else
+            {
+                Sort((a, b) => a.Date.CompareTo(b.Date));        
+            }
         }
     }
 }

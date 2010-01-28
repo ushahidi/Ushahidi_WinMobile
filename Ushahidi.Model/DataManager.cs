@@ -544,7 +544,7 @@ namespace Ushahidi.Model
         {
             Log.Info("DataManager.DownloadIncidents", "serverAddress={0}", ServerAddress);
             Incidents = Incidents.Download(IncidentsURL, IncidentsDirectory);
-            Incidents.Sort();
+            Incidents.Sort(true);
             return Incidents != null;
         }
 
@@ -559,7 +559,7 @@ namespace Ushahidi.Model
                 if (_Incidents == null)
                 {
                     _Incidents = Incidents.Load(IncidentsDirectory);
-                    _Incidents.Sort();
+                    _Incidents.Sort(true);
                 }
                 return _Incidents;
             }
@@ -572,7 +572,7 @@ namespace Ushahidi.Model
         public static bool AddIncident(Incident incident)
         {
             Incidents.Add(incident);
-            Incidents.Sort();
+            Incidents.Sort(true);
             string fileName = string.Format("{0}.xml", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
             incident.FilePath = Path.Combine(IncidentsDirectory, fileName);
             incident.Upload = true;
