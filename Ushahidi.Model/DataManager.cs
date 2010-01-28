@@ -30,6 +30,7 @@ namespace Ushahidi.Model
         private const string RegKeyLanguage = "Language";
         private const string RegKeyLastSync = "LastSync";
         private const string RegKeyShowKeyboard = "ShowKeyboard";
+        private const string RegKeyEnableGPS = "EnableGPS";
         private const string RegKeyDownloadMaps = "DownloadMaps";
         private const string RegKeyDownloadMedia = "DownloadMedia";
         private const string RegKeyDownloadIncidents = "DownloadIncidents";
@@ -84,6 +85,11 @@ namespace Ushahidi.Model
         public static bool ShowKeyboard { get; set; }
 
         /// <summary>
+        /// Enable GPS
+        /// </summary>
+        public static bool EnableGPS { get; set; }
+
+        /// <summary>
         /// First Name
         /// </summary>
         public static string FirstName { get; set; }
@@ -122,6 +128,8 @@ namespace Ushahidi.Model
                 LastSyncDate = string.IsNullOrEmpty(lastSyncDate) ? DateTime.MinValue : DateTime.Parse(lastSyncDate);
 
                 ShowKeyboard = Convert.ToBoolean(registryKey.GetValue(RegKeyShowKeyboard, true));
+
+                EnableGPS = Convert.ToBoolean(registryKey.GetValue(RegKeyEnableGPS, false));
 
                 ShouldDownloadIncidents = Convert.ToBoolean(registryKey.GetValue(RegKeyDownloadIncidents, true));
 
@@ -165,6 +173,7 @@ namespace Ushahidi.Model
                     registryKey.SetValue(RegKeyLanguage, Language);
                     registryKey.SetValue(RegKeyLastSync, LastSyncDate.ToString());
                     registryKey.SetValue(RegKeyShowKeyboard, ShowKeyboard.ToString());
+                    registryKey.SetValue(RegKeyEnableGPS, EnableGPS.ToString());
                     registryKey.SetValue(RegKeyDownloadIncidents, ShouldDownloadIncidents.ToString());
                     registryKey.SetValue(RegKeyDownloadMedia, ShouldDownloadMedia.ToString());
                     registryKey.SetValue(RegKeyDownloadMaps, ShouldDownloadMaps.ToString());

@@ -405,4 +405,10 @@
   <data name="zoomOut" xml:space="preserve">
     <value>Bourdonnement dehors</value>
   </data>
+  <data name="enabled" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="gps" xml:space="preserve">
+    <value>GPS</value>
+  </data>
 </root>

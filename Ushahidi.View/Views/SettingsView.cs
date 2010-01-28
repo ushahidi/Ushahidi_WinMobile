@@ -33,6 +33,7 @@ namespace Ushahidi.View.Views
             comboBoxLanguages.BackColor = Colors.Background;
             comboBoxMapType.BackColor = Colors.Background;
             checkBoxKeyboard.BackColor = Colors.Background;
+            checkBoxGPS.BackColor = Colors.Background;
             panelContent.BackColor = Colors.Background;
             comboBoxLocales.BackColor = Colors.Background;
             comboBoxPhotoSizes.BackColor = Colors.Background;
@@ -52,6 +53,7 @@ namespace Ushahidi.View.Views
             comboBoxMapType.Translate("mapType");
             comboBoxLocales.Translate("defaultLocation");
             comboBoxPhotoSizes.Translate("imageSize");
+            checkBoxGPS.Translate("gps", "enabled");
             checkBoxKeyboard.Translate("keyboard", "autoShow");
             menuItemClear.Translate("clearCache");
             menuItemDone.Translate("done");
@@ -69,6 +71,7 @@ namespace Ushahidi.View.Views
             checkBoxKeyboard.Width = panelContent.ClientRectangle.Width;
             comboBoxLocales.Width = panelContent.ClientRectangle.Width;
             comboBoxPhotoSizes.Width = panelContent.ClientRectangle.Width;
+            checkBoxGPS.Width = panelContent.ClientRectangle.Width;
         }
        
         public override bool Validate()
@@ -217,6 +220,15 @@ namespace Ushahidi.View.Views
         {
             get { return checkBoxKeyboard.Checked; }
             set { checkBoxKeyboard.Checked = value; }
+        }
+
+        /// <summary>
+        /// Enble GPS
+        /// </summary>
+        public bool EnableGPS
+        {
+            get { return checkBoxGPS.Checked; }
+            set { checkBoxGPS.Checked = value; }
         }
 
         /// <summary>

@@ -44,6 +44,7 @@ namespace Ushahidi.View.Views
             this.menuItemDone = new System.Windows.Forms.MenuItem();
             this.menuItemClear = new System.Windows.Forms.MenuItem();
             this.menuItemSeparator = new System.Windows.Forms.MenuItem();
+            this.checkBoxGPS = new Ushahidi.Common.Controls.LabelCheckBox();
             this.panelContent.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,6 +62,7 @@ namespace Ushahidi.View.Views
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.AutoScroll = true;
             this.panelContent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelContent.Controls.Add(this.checkBoxGPS);
             this.panelContent.Controls.Add(this.comboBoxPhotoSizes);
             this.panelContent.Controls.Add(this.comboBoxLocales);
             this.panelContent.Controls.Add(this.textBoxVersion);
@@ -72,7 +74,7 @@ namespace Ushahidi.View.Views
             this.panelContent.Controls.Add(this.textBoxFirstName);
             this.panelContent.Location = new System.Drawing.Point(0, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(176, 180);
+            this.panelContent.Size = new System.Drawing.Size(176, 450);
             // 
             // comboBoxPhotoSizes
             // 
@@ -80,12 +82,14 @@ namespace Ushahidi.View.Views
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxPhotoSizes.BackColor = System.Drawing.Color.WhiteSmoke;
             this.comboBoxPhotoSizes.Bold = true;
+            this.comboBoxPhotoSizes.DataSource = null;
             this.comboBoxPhotoSizes.DisplayMember = "Name";
             this.comboBoxPhotoSizes.IsRequired = false;
             this.comboBoxPhotoSizes.Label = "Image Size";
             this.comboBoxPhotoSizes.Location = new System.Drawing.Point(0, 135);
             this.comboBoxPhotoSizes.Name = "comboBoxPhotoSizes";
             this.comboBoxPhotoSizes.SelectedIndex = -1;
+            this.comboBoxPhotoSizes.SelectedItem = null;
             this.comboBoxPhotoSizes.SelectedText = "";
             this.comboBoxPhotoSizes.Size = new System.Drawing.Size(155, 45);
             this.comboBoxPhotoSizes.TabIndex = 3;
@@ -97,11 +101,14 @@ namespace Ushahidi.View.Views
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxLocales.BackColor = System.Drawing.Color.Gainsboro;
             this.comboBoxLocales.Bold = true;
+            this.comboBoxLocales.DataSource = null;
+            this.comboBoxLocales.DisplayMember = "";
             this.comboBoxLocales.IsRequired = false;
             this.comboBoxLocales.Label = "Default Location";
             this.comboBoxLocales.Location = new System.Drawing.Point(0, 180);
             this.comboBoxLocales.Name = "comboBoxLocales";
             this.comboBoxLocales.SelectedIndex = -1;
+            this.comboBoxLocales.SelectedItem = null;
             this.comboBoxLocales.SelectedText = "";
             this.comboBoxLocales.Size = new System.Drawing.Size(155, 45);
             this.comboBoxLocales.TabIndex = 4;
@@ -129,11 +136,14 @@ namespace Ushahidi.View.Views
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxMapType.BackColor = System.Drawing.Color.Gainsboro;
             this.comboBoxMapType.Bold = true;
+            this.comboBoxMapType.DataSource = null;
+            this.comboBoxMapType.DisplayMember = "Name";
             this.comboBoxMapType.IsRequired = true;
             this.comboBoxMapType.Label = "Map Type";
             this.comboBoxMapType.Location = new System.Drawing.Point(0, 90);
             this.comboBoxMapType.Name = "comboBoxMapType";
             this.comboBoxMapType.SelectedIndex = -1;
+            this.comboBoxMapType.SelectedItem = null;
             this.comboBoxMapType.SelectedText = "";
             this.comboBoxMapType.Size = new System.Drawing.Size(155, 45);
             this.comboBoxMapType.TabIndex = 2;
@@ -143,14 +153,14 @@ namespace Ushahidi.View.Views
             // 
             this.checkBoxKeyboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBoxKeyboard.BackColor = System.Drawing.Color.Gainsboro;
+            this.checkBoxKeyboard.BackColor = System.Drawing.Color.WhiteSmoke;
             this.checkBoxKeyboard.CheckBox = "Auto Show";
             this.checkBoxKeyboard.Checked = false;
             this.checkBoxKeyboard.Label = "Keyboard";
-            this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 360);
+            this.checkBoxKeyboard.Location = new System.Drawing.Point(0, 405);
             this.checkBoxKeyboard.Name = "checkBoxKeyboard";
             this.checkBoxKeyboard.Size = new System.Drawing.Size(155, 45);
-            this.checkBoxKeyboard.TabIndex = 8;
+            this.checkBoxKeyboard.TabIndex = 9;
             // 
             // comboBoxLanguages
             // 
@@ -158,11 +168,14 @@ namespace Ushahidi.View.Views
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxLanguages.BackColor = System.Drawing.Color.WhiteSmoke;
             this.comboBoxLanguages.Bold = true;
+            this.comboBoxLanguages.DataSource = null;
+            this.comboBoxLanguages.DisplayMember = "NativeName";
             this.comboBoxLanguages.IsRequired = true;
             this.comboBoxLanguages.Label = "Language";
             this.comboBoxLanguages.Location = new System.Drawing.Point(0, 45);
             this.comboBoxLanguages.Name = "comboBoxLanguages";
             this.comboBoxLanguages.SelectedIndex = -1;
+            this.comboBoxLanguages.SelectedItem = null;
             this.comboBoxLanguages.SelectedText = "";
             this.comboBoxLanguages.Size = new System.Drawing.Size(155, 45);
             this.comboBoxLanguages.TabIndex = 1;
@@ -173,42 +186,42 @@ namespace Ushahidi.View.Views
             // 
             this.textBoxEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEmail.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxEmail.BackColor = System.Drawing.Color.Gainsboro;
             this.textBoxEmail.IsRequired = false;
             this.textBoxEmail.Label = "Email";
-            this.textBoxEmail.Location = new System.Drawing.Point(0, 315);
+            this.textBoxEmail.Location = new System.Drawing.Point(0, 360);
             this.textBoxEmail.Multiline = false;
             this.textBoxEmail.Name = "textBoxEmail";
             this.textBoxEmail.Size = new System.Drawing.Size(155, 45);
-            this.textBoxEmail.TabIndex = 7;
+            this.textBoxEmail.TabIndex = 8;
             this.textBoxEmail.Value = "";
             // 
             // textBoxLastName
             // 
             this.textBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxLastName.BackColor = System.Drawing.Color.Gainsboro;
+            this.textBoxLastName.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxLastName.IsRequired = false;
             this.textBoxLastName.Label = "Last Name";
-            this.textBoxLastName.Location = new System.Drawing.Point(0, 270);
+            this.textBoxLastName.Location = new System.Drawing.Point(0, 315);
             this.textBoxLastName.Multiline = false;
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(155, 45);
-            this.textBoxLastName.TabIndex = 6;
+            this.textBoxLastName.TabIndex = 7;
             this.textBoxLastName.Value = "";
             // 
             // textBoxFirstName
             // 
             this.textBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxFirstName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.textBoxFirstName.BackColor = System.Drawing.Color.Gainsboro;
             this.textBoxFirstName.IsRequired = false;
             this.textBoxFirstName.Label = "First Name";
-            this.textBoxFirstName.Location = new System.Drawing.Point(0, 225);
+            this.textBoxFirstName.Location = new System.Drawing.Point(0, 270);
             this.textBoxFirstName.Multiline = false;
             this.textBoxFirstName.Name = "textBoxFirstName";
             this.textBoxFirstName.Size = new System.Drawing.Size(155, 45);
-            this.textBoxFirstName.TabIndex = 5;
+            this.textBoxFirstName.TabIndex = 6;
             this.textBoxFirstName.Value = "";
             // 
             // menuItemDone
@@ -225,11 +238,24 @@ namespace Ushahidi.View.Views
             // 
             this.menuItemSeparator.Text = "-";
             // 
+            // checkBoxGPS
+            // 
+            this.checkBoxGPS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkBoxGPS.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.checkBoxGPS.CheckBox = "Enabled";
+            this.checkBoxGPS.Checked = false;
+            this.checkBoxGPS.Label = "GPS";
+            this.checkBoxGPS.Location = new System.Drawing.Point(0, 225);
+            this.checkBoxGPS.Name = "checkBoxGPS";
+            this.checkBoxGPS.Size = new System.Drawing.Size(155, 45);
+            this.checkBoxGPS.TabIndex = 5;
+            // 
             // SettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(176, 180);
+            this.ClientSize = new System.Drawing.Size(176, 450);
             this.Controls.Add(this.panelContent);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsView";
@@ -254,6 +280,7 @@ namespace Ushahidi.View.Views
         private Ushahidi.Common.Controls.LabelTextBox textBoxVersion;
         private Ushahidi.Common.Controls.LabelComboBox comboBoxLocales;
         private Ushahidi.Common.Controls.LabelComboBox comboBoxPhotoSizes;
+        private Ushahidi.Common.Controls.LabelCheckBox checkBoxGPS;
 
     }
 }

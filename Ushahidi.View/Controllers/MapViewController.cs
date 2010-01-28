@@ -20,6 +20,7 @@ namespace Ushahidi.View.Controllers
             View.Password = ResourcesManager.BingMapPassword;
             View.MapApiKey = ResourcesManager.GoogleMapApiKey;
             View.Satellite = DataManager.MapType == "Satellite";
+            View.EnableGPS = DataManager.EnableGPS;
             View.MaxZoomLevel = 20;
             View.MinZoomLevel = 1;
             View.ZoomLevel = DataManager.MapZoomLevel;

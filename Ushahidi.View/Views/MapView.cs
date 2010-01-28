@@ -97,6 +97,11 @@ namespace Ushahidi.View.Views
         public bool Satellite { get; set; }
 
         /// <summary>
+        /// Enable GPS
+        /// </summary>
+        public bool EnableGPS { get; set; }
+
+        /// <summary>
         /// Latitude
         /// </summary>
         public double Latitude
@@ -178,6 +183,7 @@ namespace Ushahidi.View.Views
             menuItemAction.Enabled = true;
             menuItemMenu.Enabled = false;
             menuItemSelectLocation.Enabled = Latitude != double.MinValue && Longitude != double.MinValue;
+            menuItemDetectLocation.Enabled = EnableGPS;
             menuItemZoomIn.Enabled = ZoomLevel < MaxZoomLevel;
             menuItemZoomOut.Enabled = ZoomLevel > MinZoomLevel;
             ShouldSave = true;
@@ -222,7 +228,7 @@ namespace Ushahidi.View.Views
             LocationService.Stop();
             MethodInvoker methodInvoker = delegate
             {
-                menuItemDetectLocation.Enabled = true;
+                menuItemDetectLocation.Enabled = EnableGPS;
                 if (args.Latitude.AlmostEquals(0, 0) || args.Longitude.AlmostEquals(0, 0))
                 {
                     //invalid latitude and longitude
@@ -261,7 +267,7 @@ namespace Ushahidi.View.Views
             {
                 mapBox.Image = args.Image;
                 menuItemAddIncident.Enabled = true;
-                menuItemDetectLocation.Enabled = true;
+                menuItemDetectLocation.Enabled = EnableGPS;
                 WaitCursor.Hide();
                 if (args.Successful)
                 {

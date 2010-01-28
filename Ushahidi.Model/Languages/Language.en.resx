@@ -405,4 +405,10 @@
   <data name="zoomOut" xml:space="preserve">
     <value>Zoom Out</value>
   </data>
+  <data name="enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="gps" xml:space="preserve">
+    <value>GPS</value>
+  </data>
 </root>

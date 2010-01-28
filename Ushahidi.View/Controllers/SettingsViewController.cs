@@ -22,6 +22,7 @@ namespace Ushahidi.View.Controllers
             View.LastName = DataManager.LastName;
             View.Email = DataManager.Email;
             View.ShowKeyboard = DataManager.ShowKeyboard;
+            View.EnableGPS = DataManager.EnableGPS;
             View.ImageSizes = DataManager.ImageSizes;
             View.ImageSize = DataManager.ImageSize;
         }
@@ -35,6 +36,7 @@ namespace Ushahidi.View.Controllers
             DataManager.LastName = View.LastName;
             DataManager.Email = View.Email;
             DataManager.ShowKeyboard = View.ShowKeyboard;
+            DataManager.EnableGPS = View.EnableGPS;
             DataManager.ImageSize = View.ImageSize;
             return DataManager.Save();
         }
