@@ -186,6 +186,7 @@ namespace Ushahidi.View.Views
             menuItemDetectLocation.Enabled = EnableGPS;
             menuItemZoomIn.Enabled = ZoomLevel < MaxZoomLevel;
             menuItemZoomOut.Enabled = ZoomLevel > MinZoomLevel;
+            mapBox.Image = null;
             ShouldSave = true;
         }
 
