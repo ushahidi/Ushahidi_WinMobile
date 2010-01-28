@@ -193,12 +193,20 @@ namespace Ushahidi.Model
         public static bool ClearCacheFiles()
         {
             Log.Info("DataManager.ClearCacheFiles");
-            return DeleteFolderContents(IncidentsDirectory) &&
-                   DeleteFolderContents(CountriesDirectory) && 
-                   DeleteFolderContents(CategoriesDirectory) &&
-                   DeleteFolderContents(LocalesDirectory) &&
-                   DeleteFolderContents(MediaDirectory) &&
-                   DeleteFolderContents(MapDirectory);
+            if(DeleteFolderContents(IncidentsDirectory) &&
+               DeleteFolderContents(CountriesDirectory) && 
+               DeleteFolderContents(CategoriesDirectory) &&
+               DeleteFolderContents(LocalesDirectory) &&
+               DeleteFolderContents(MediaDirectory) &&
+               DeleteFolderContents(MapDirectory))
+            {
+                Incidents.Clear();
+                Countries.Clear();
+                Categories.Clear();
+                Locales.Clear();
+                return true;
+            }
+            return false;
         }
 
         private static bool DeleteFolderContents(string directory)
