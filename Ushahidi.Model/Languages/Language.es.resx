@@ -400,10 +400,10 @@
     <value>Regresar</value>
   </data>
   <data name="zoomIn" xml:space="preserve">
-    <value>Enfoque adentro</value>
+    <value>Ampliar Imagen</value>
   </data>
   <data name="zoomOut" xml:space="preserve">
-    <value>Zumbido hacia fuera</value>
+    <value>Reducir Imagen</value>
   </data>
   <data name="enabled" xml:space="preserve">
     <value>Habilitado</value>
