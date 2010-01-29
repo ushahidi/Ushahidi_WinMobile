@@ -16,10 +16,29 @@ namespace Ushahidi.Common.Controls
 
         private const int DISTANCE_DELTA = 5;
 
+        /// <summary>
+        /// Latitude
+        /// </summary>
         public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public int ZoomLevel { get; set; }
 
+        /// <summary>
+        /// Longitude
+        /// </summary>
+        public double Longitude { get; set; }
+
+        /// <summary>
+        /// Zoom Level
+        /// </summary>
+        public int Zoom { get; set; }
+
+        /// <summary>
+        /// Is the map loading?
+        /// </summary>
+        public bool Loading { get; set; }
+
+        /// <summary>
+        /// Map Image
+        /// </summary>
         public Image Image
         {
             get { return _Image; }
@@ -37,6 +56,7 @@ namespace Ushahidi.Common.Controls
                 }
                 _Image = value;
                 Invalidate();
+                Loading = (value == null);
             }
         }private Image _Image;
 
@@ -103,8 +123,10 @@ namespace Ushahidi.Common.Controls
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            Latitude = YToLatitude(LatitudeToY(Latitude) + ((e.Y - CenterY) << (_MaxZoomLevel - ZoomLevel)));
-            Longitude = XToLongitude(LongitudeToX(Longitude) + ((e.X - CenterX) << (_MaxZoomLevel - ZoomLevel)));
+            if (Loading) return;
+
+            Latitude = YToLatitude(LatitudeToY(Latitude) + ((e.Y - CenterY) << (_MaxZoomLevel - Zoom)));
+            Longitude = XToLongitude(LongitudeToX(Longitude) + ((e.X - CenterX) << (_MaxZoomLevel - Zoom)));
 
             MarkerX = e.X;
             MarkerY = e.Y;
@@ -113,6 +135,7 @@ namespace Ushahidi.Common.Controls
 
             if (MarkerChanged != null)
             {
+                Loading = true;
                 MarkerChanged(Latitude, Longitude);
             }
             base.OnMouseDown(e);
@@ -120,7 +143,11 @@ namespace Ushahidi.Common.Controls
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Back || e.KeyCode == Keys.Cancel)
+            if (Loading)
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyCode == Keys.Escape || e.KeyCode == Keys.Back || e.KeyCode == Keys.Cancel)
             {
                 e.Handled = true;
                 Parent.SelectNextControl(this, true, true, true, true);
@@ -134,6 +161,7 @@ namespace Ushahidi.Common.Controls
                     Log.Info("Left Edge");
                     if (ReCalculate() && MarkerChanged != null)
                     {
+                        Loading = true;
                         MarkerChanged(Latitude, Longitude);
                     }
                 }
@@ -147,6 +175,7 @@ namespace Ushahidi.Common.Controls
                     Log.Info("Right Edge");
                     if (ReCalculate() && MarkerChanged != null)
                     {
+                        Loading = true;
                         MarkerChanged(Latitude, Longitude);
                     }
                 }
@@ -160,6 +189,7 @@ namespace Ushahidi.Common.Controls
                     Log.Info("Top Edge");
                     if (ReCalculate() && MarkerChanged != null)
                     {
+                        Loading = true;
                         MarkerChanged(Latitude, Longitude);
                     }
                 }
@@ -173,6 +203,7 @@ namespace Ushahidi.Common.Controls
                     Log.Info("Bottom Edge");
                     if (ReCalculate() && MarkerChanged != null)
                     {
+                        Loading = true;
                         MarkerChanged(Latitude, Longitude);
                     }
                 }
@@ -181,6 +212,7 @@ namespace Ushahidi.Common.Controls
             {
                 if (ReCalculate() && MarkerChanged != null)
                 {
+                    Loading = true;
                     MarkerChanged(Latitude, Longitude);
                 }
             }
@@ -204,6 +236,7 @@ namespace Ushahidi.Common.Controls
             {
                 if (ReCalculate() && MarkerChanged != null)
                 {
+                    Loading = true;
                     MarkerChanged(Latitude, Longitude);
                 }
                 Parent.SelectNextControl(this, true, true, true, true);
@@ -221,8 +254,8 @@ namespace Ushahidi.Common.Controls
             if (Longitude == double.MinValue) return false;
             if (MarkerY != CenterY || MarkerX != CenterX)
             {
-                Latitude = YToLatitude(LatitudeToY(Latitude) + ((MarkerY - CenterY) << (_MaxZoomLevel - ZoomLevel)));
-                Longitude = XToLongitude(LongitudeToX(Longitude) + ((MarkerX - CenterX) << (_MaxZoomLevel - ZoomLevel)));
+                Latitude = YToLatitude(LatitudeToY(Latitude) + ((MarkerY - CenterY) << (_MaxZoomLevel - Zoom)));
+                Longitude = XToLongitude(LongitudeToX(Longitude) + ((MarkerX - CenterX) << (_MaxZoomLevel - Zoom)));
                 Log.Info("MapBox.ReCalculate", "After Latitude:{0} Longitude:{1}", Latitude, Longitude);
                 return true;
             }

@@ -122,21 +122,21 @@ namespace Ushahidi.View.Views
         /// <summary>
         /// Maximum Zoom Level
         /// </summary>
-        public int MaxZoomLevel { get; set; }
+        public int MaxZoom { get; set; }
 
         /// <summary>
         /// Minimum Zoom Level
         /// </summary>
-        public int MinZoomLevel { get; set; }
+        public int MinZoom { get; set; }
 
         /// <summary>
         /// ZoomLevel
         /// </summary>
-        public int ZoomLevel
+        public int Zoom
         {
-            get { return _ZoomLevel; }
-            set { mapBox.ZoomLevel = _ZoomLevel = value; }
-        }private int _ZoomLevel = 12;
+            get { return _Zoom; }
+            set { mapBox.Zoom = _Zoom = value; }
+        }private int _Zoom = 12;
         
         /// <summary>
         /// Location Name
@@ -161,7 +161,7 @@ namespace Ushahidi.View.Views
             {
                 //load default locale
                 WaitCursor.Show();
-                MapService.GetMap(Latitude, Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);
+                MapService.GetMap(Latitude, Longitude, mapBox.Width, mapBox.Height, Zoom, Satellite);
             }
         }
 
@@ -184,8 +184,8 @@ namespace Ushahidi.View.Views
             menuItemMenu.Enabled = false;
             menuItemSelectLocation.Enabled = Latitude != double.MinValue && Longitude != double.MinValue;
             menuItemDetectLocation.Enabled = EnableGPS;
-            menuItemZoomIn.Enabled = ZoomLevel < MaxZoomLevel;
-            menuItemZoomOut.Enabled = ZoomLevel > MinZoomLevel;
+            menuItemZoomIn.Enabled = Zoom < MaxZoom;
+            menuItemZoomOut.Enabled = Zoom > MinZoom;
             mapBox.Image = null;
             ShouldSave = true;
         }
@@ -248,7 +248,7 @@ namespace Ushahidi.View.Views
                     WaitCursor.Show();
                     mapBox.Latitude = args.Latitude;
                     mapBox.Longitude = args.Longitude;
-                    MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, ZoomLevel, Satellite);        
+                    MapService.GetMap(args.Latitude, args.Longitude, mapBox.Width, mapBox.Height, Zoom, Satellite);        
                 }
             };
             if (InvokeRequired)
@@ -266,12 +266,12 @@ namespace Ushahidi.View.Views
             Log.Info("MapView.OnMapDownloaded", "Image:{0}", args.Image != null);
             MethodInvoker methodInvoker = delegate
             {
-                mapBox.Image = args.Image;
                 menuItemAddIncident.Enabled = true;
                 menuItemDetectLocation.Enabled = EnableGPS;
                 WaitCursor.Hide();
                 if (args.Successful)
                 {
+                    mapBox.Image = args.Image;
                     menuItemSelectLocation.Enabled = true;
                     if (string.IsNullOrEmpty(textBoxLocationName.Value))
                     {
@@ -300,7 +300,7 @@ namespace Ushahidi.View.Views
             MethodInvoker methodInvoker = delegate
             {
                 WaitCursor.Show();
-                MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+                MapService.GetMap(latitude, longitude, mapBox.Width, mapBox.Height, mapBox.Zoom, Satellite);
             };
             if (InvokeRequired)
             {
@@ -352,27 +352,27 @@ namespace Ushahidi.View.Views
         private void OnZoomIn(object sender, EventArgs e)
         {
             Log.Info("MapView", "OnZoomIn");
-            if (ZoomLevel < MaxZoomLevel)
+            if (Zoom < MaxZoom)
             {
                 WaitCursor.Show();
                 mapBox.ReCalculate();
-                mapBox.ZoomLevel = ++ZoomLevel;
-                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);
+                mapBox.Zoom = ++Zoom;
+                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.Zoom, Satellite);
             }
-            menuItemZoomIn.Enabled = ZoomLevel < MaxZoomLevel;
+            menuItemZoomIn.Enabled = Zoom < MaxZoom;
         }
 
         private void OnZoomOut(object sender, EventArgs e)
         {
             Log.Info("MapView", "OnZoomOut");
-            if (ZoomLevel > 1)
+            if (Zoom > 1)
             {
                 WaitCursor.Show();
                 mapBox.ReCalculate();
-                mapBox.ZoomLevel = --ZoomLevel;
-                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.ZoomLevel, Satellite);    
+                mapBox.Zoom = --Zoom;
+                MapService.GetMap(mapBox.Latitude, mapBox.Longitude, mapBox.Width, mapBox.Height, mapBox.Zoom, Satellite);    
             }
-            menuItemZoomOut.Enabled = ZoomLevel > MinZoomLevel;
+            menuItemZoomOut.Enabled = Zoom > MinZoom;
         }
 
         private void OnLocationGotFocus(object sender, EventArgs e)

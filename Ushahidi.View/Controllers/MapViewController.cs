@@ -21,9 +21,9 @@ namespace Ushahidi.View.Controllers
             View.MapApiKey = ResourcesManager.GoogleMapApiKey;
             View.Satellite = DataManager.MapType == "Satellite";
             View.EnableGPS = DataManager.EnableGPS;
-            View.MaxZoomLevel = 20;
-            View.MinZoomLevel = 1;
-            View.ZoomLevel = DataManager.MapZoomLevel;
+            View.MaxZoom = 20;
+            View.MinZoom = 1;
+            View.Zoom = DataManager.MapZoom;
             if (parameters.Exists(0) && parameters[0] is Locale)
             {
                 Locale locale = parameters[0] as Locale;
@@ -60,7 +60,7 @@ namespace Ushahidi.View.Controllers
         {
             if (View.ShouldSave)
             {
-                DataManager.MapZoomLevel = View.ZoomLevel;
+                DataManager.MapZoom = View.Zoom;
                 if (View.Latitude.AlmostEquals(0) == false && View.Longitude.AlmostEquals(0) == false &&
                     View.Latitude != double.MinValue && View.Longitude != double.MinValue)
                 {

@@ -107,7 +107,7 @@ namespace Ushahidi.Model
         /// <summary>
         /// Map Zoom Level
         /// </summary>
-        public static int MapZoomLevel { get; set; }
+        public static int MapZoom { get; set; }
 
         /// <summary>
         /// Default Locale Name
@@ -145,7 +145,7 @@ namespace Ushahidi.Model
 
                 MapType = registryKey.GetValue(RegKeyMapType, MapTypes.ElementAt(0)).ToString();
 
-                MapZoomLevel = Convert.ToInt32(registryKey.GetValue(RegKeyMapZoomLevel, "14"));
+                MapZoom = Convert.ToInt32(registryKey.GetValue(RegKeyMapZoomLevel, "14"));
 
                 DefaultLocaleName = registryKey.GetValue(RegKeyDefaultLocale, "").ToString();
 
@@ -181,7 +181,7 @@ namespace Ushahidi.Model
                     registryKey.SetValue(RegKeyLastName, LastName);
                     registryKey.SetValue(RegKeyEmail, Email);
                     registryKey.SetValue(RegKeyMapType, MapType);
-                    registryKey.SetValue(RegKeyMapZoomLevel, MapZoomLevel.ToString());
+                    registryKey.SetValue(RegKeyMapZoomLevel, MapZoom.ToString());
                     registryKey.SetValue(RegKeyDefaultLocale, DefaultLocale != null ? DefaultLocale.Name : "");
                     registryKey.SetValue(RegKeyImageWidth, ImageSize.Width.ToString());
                     registryKey.SetValue(RegKeyImageHeight, ImageSize.Height.ToString());
